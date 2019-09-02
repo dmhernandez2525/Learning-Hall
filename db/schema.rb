@@ -15,6 +15,20 @@ ActiveRecord::Schema.define(version: 2019_09_02_175411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+
+
+  ## `users`
+## column name     | data type | details
+## ----------------|-----------|-----------------------
+## `id `             | integer   | not null, primary key
+## `username  `      | string    | not null, indexed, unique
+## `email  `      | string    | not null, indexed, unique
+## `password_digest` | string    | not null
+## `session_token`   | string    | not null, indexed, unique
+## `preferred_name` | string | not null
+## `user_role` | string | not null
+## `pronunciation ` | string | 
+## --- 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
