@@ -3,22 +3,26 @@ import React from "react"
 // debugger
 class SignUp extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = this.props.user
-        this.handleSumbit = this.handleSumbit.bind(this)
-    }
+        super(props);
+        this.state = this.props.user;
+        this.handleSumbit = this.handleSumbit.bind(this);
+        // debugger
+    };
 
     handleInput(type){
+        // debugger
         return (e) => {
-            this.setState({[type]: e.target.value})
-        } 
-    }  
+            this.setState({[type]: e.target.value});
+        };
+    };  
 
     handleSumbit(event){
-        event.preventDefult
-        this.props.signUp(this.state)
+        event.preventDefult;
+        debugger
+
+        this.props.signUp(this.state);
         // .then(this.props.history.push("/profile"))~~~~this will be addid when the hash router is addid
-    }
+    };
 
 
     render(){
@@ -32,7 +36,7 @@ class SignUp extends React.Component {
                         <input 
                         type="text"
                         value={this.state.username}
-                        onChange={e => this.handleInput("username") } 
+                        onChange={this.handleInput("username") } 
                         />
                     </label>
 
@@ -40,7 +44,7 @@ class SignUp extends React.Component {
                         <input 
                         type="text"
                         value={this.state.email}
-                        onChange={e => this.handleInput("email")}
+                        onChange={this.handleInput("email")}
                             />
                     </label>
 
@@ -48,7 +52,7 @@ class SignUp extends React.Component {
                         <input 
                         type="text"
                         value={this.state.preferred_name}
-                        onChange={e => this.handleInput("preferred_name")}
+                        onChange={this.handleInput("preferred_name")}
                         />
                     </label>
 
@@ -56,7 +60,7 @@ class SignUp extends React.Component {
                         <input 
                         type="password"
                         value={this.state.password}
-                        onChange={e => this.handleInput("password")}
+                        onChange={this.handleInput("password")}
                         />
                     </label>
 
@@ -64,7 +68,7 @@ class SignUp extends React.Component {
                         <input 
                         type="text"
                         value={this.state.user_role}
-                        onChange={e => this.handleInput("user_role")}
+                        onChange={this.handleInput("user_role")}
                         />
                     </label>
 
@@ -72,7 +76,7 @@ class SignUp extends React.Component {
                         <input 
                         type="text"
                         value={this.state.pronunciation}
-                        onChange={e => this.handleInput("pronunciation")}
+                        onChange={this.handleInput("pronunciation")}
                         />
 
                     </label>
@@ -81,7 +85,7 @@ class SignUp extends React.Component {
             </div>
 
         )
-    }
+    };
 };
 
 

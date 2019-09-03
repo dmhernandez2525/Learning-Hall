@@ -2,6 +2,7 @@ import {connect} from "react-redux"
 import {signUp} from "../../actions/session"
 import SignUp from "./signup"
 
+
 const mapStateToProps = (state) => ({
     user: {
         username: "",
@@ -14,7 +15,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    signUp: (user) => dispatch(signUp)
+    signUp: (user) => dispatch(signUp(user))
 })
 // debugger
 
