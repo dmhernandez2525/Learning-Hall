@@ -10,9 +10,9 @@ import configureStore from './store/store';
 
     window.signOut = signOut
 document.addEventListener("DOMContentLoaded", () => {
-    // debugger
-    // const store = configureStore()
+    const store = configureStore()
+    debugger
     const root = document.getElementById("root")
-    ReactDOM.render(<App />, root)
+    ReactDOM.render(<App  store={store}/>, root)
 })
-// ReactDOM.render(<App  store={store}/>, root)
+// ReactDOM.render(<App />, root)

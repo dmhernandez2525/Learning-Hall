@@ -1,6 +1,6 @@
 import React from "react"
 
-debugger
+// debugger
 class SignUp extends React.Component {
     constructor(props) {
         super(props)
@@ -23,65 +23,62 @@ class SignUp extends React.Component {
 
     render(){
         return (
-            <form onSubmit={this.handleSumbit}>
-                <label >Username
-                    <input 
-                    type="text"
-                    value={this.state.username}
-                    onChange={e => this.handleInput("username") } 
-                    />
-                </label>
+            <div className="sign_up_form">
 
-                <label >Email
-                    <input 
-                    type="text"
-                    value={this.state.email}
-                    onChange={e => this.handleInput("email")}
+                <h2> Sign Up </h2>
+
+                <form  onSubmit={this.handleSumbit}>
+                    <label >Username
+                        <input 
+                        type="text"
+                        value={this.state.username}
+                        onChange={e => this.handleInput("username") } 
                         />
-                </label>
+                    </label>
 
-                <label >Preferred_name
-                    <input 
-                    type="text"
-                    value={this.state.preferred_name}
-                    onChange={e => this.handleInput("preferred_name")}
-                    />
-                </label>
+                    <label >Email
+                        <input 
+                        type="text"
+                        value={this.state.email}
+                        onChange={e => this.handleInput("email")}
+                            />
+                    </label>
 
-                <label >Password
-                    <input 
-                    type="password"
-                    value={this.state.password}
-                    onChange={e => this.handleInput("password")}
-                    />
-                </label>
+                    <label >Preferred_name
+                        <input 
+                        type="text"
+                        value={this.state.preferred_name}
+                        onChange={e => this.handleInput("preferred_name")}
+                        />
+                    </label>
 
-                <label >User_role
-                    <input 
-                    type="text"
-                    value={this.state.user_role}
-                    onChange={e => this.handleInput("user_role")}
-                    />
-                </label>
+                    <label >Password
+                        <input 
+                        type="password"
+                        value={this.state.password}
+                        onChange={e => this.handleInput("password")}
+                        />
+                    </label>
 
-                <label >Pronunciation
-                    <input 
-                    type="text"
-                    value={this.state.pronunciation}
-                    onChange={e => this.handleInput("pronunciation")}
-                    />
+                    <label >User_role
+                        <input 
+                        type="text"
+                        value={this.state.user_role}
+                        onChange={e => this.handleInput("user_role")}
+                        />
+                    </label>
 
-                </label>
-                <button className="sign_up_buttion"> Sign Up</button>
-            </form>
+                    <label >Pronunciation
+                        <input 
+                        type="text"
+                        value={this.state.pronunciation}
+                        onChange={e => this.handleInput("pronunciation")}
+                        />
 
-
-
-
-
-
-
-
+                    </label>
+                    <button className="sign_up_buttion"> Sign Up</button>
+                </form>
+            </div>
 
         )
     }

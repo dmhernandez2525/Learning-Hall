@@ -1,20 +1,20 @@
 import React from "react"
-import SignUpContainer from "../components/session/signup_container"
-import provider
-class App extends React.Component{
+import SignUpContainer from "./session/signup_container"
+import {Provider, Route, HashRouter } from "react-router-dom"
+
+const App = ({store}) => {
 
 
-
-
-    render()
-    {
         return(
-            <div>
-                <h1>Hello World</h1>
-                <SignUpContainer/>
-            </div>
+            <Provider store={store}>
+                <HashRouter>
+                    <div className="Main">
+                        <h1>Hello World</h1>
+                        <Route path="/signUp" container={SignUpContainer}/>
+                    </div>
+                </HashRouter>
+            </Provider>
         )
-    }
 
 }
 

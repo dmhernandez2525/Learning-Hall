@@ -16,6 +16,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     signUp: (user) => dispatch(signUp)
 })
-debugger
+// debugger
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
