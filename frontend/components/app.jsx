@@ -1,5 +1,6 @@
 import React from "react"
-
+import SignUpContainer from "../components/session/signup_container"
+import provider
 class App extends React.Component{
 
 
@@ -10,6 +11,7 @@ class App extends React.Component{
         return(
             <div>
                 <h1>Hello World</h1>
+                <SignUpContainer/>
             </div>
         )
     }
