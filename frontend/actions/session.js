@@ -5,7 +5,7 @@ export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 
 
 export const signUp = (user) => (dispatch) => {
-    debugger
+    // debugger
     return(
         APIuser.signUp(user).then(user => dispatch({
             type: RECEIVE_CURRENT_USER,

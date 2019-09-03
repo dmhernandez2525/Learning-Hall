@@ -5,7 +5,7 @@ import {signOut} from "../../actions/session"
 
 const mapStateToProps = (state) => {
 
-    const currentUser = state.session.currentUser
+    const currentUser = state.session.currentUser;
     debugger
     return ({
         currentUser

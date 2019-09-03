@@ -3,8 +3,14 @@ import {Link} from "react-router-dom"
 
 
 const NavBar = ({ currentUser, signOut}) => {
+    debugger
+    const display = currentUser ?  (
+        <div>
+            <p>Hello {currentUser.name}</p>
+            <button onClick={() => signOut()}> Sign Out</button>
+        </div>
 
-    const display = (
+    ) : (
         <div>
             <Link className="buttion" to="/signup"> Sign Up</Link>
             <Link className="buttion" to="/logIn">logIn</Link>
