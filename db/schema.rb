@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2019_09_02_175411) do
 ## `user_role` | string | not null
 ## `pronunciation ` | string | 
 ## --- 
+
+  # user = {username: "dan the man", email: "danielmark2525",preferred_name: "daniel", user_role: "king", pronunciation: "d an ule" }
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false

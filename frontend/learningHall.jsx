@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {logIn , signOut , signUp} from "./util/session"
+import App from './components/app';
 
-import Root from './components/root';
 import configureStore from './store/store';
-document.addEventListener("DOMContentLoaded", () => {
+    window.logIn = logIn
+    // debugger;
+    window.signUp = signUp
 
-    const store = configureStore()
+    window.signOut = signOut
+document.addEventListener("DOMContentLoaded", () => {
+    // debugger
+    // const store = configureStore()
     const root = document.getElementById("root")
-    ReactDOM.render(<Root  store={store}/>, root)
+    ReactDOM.render(<App />, root)
 })
+// ReactDOM.render(<App  store={store}/>, root)

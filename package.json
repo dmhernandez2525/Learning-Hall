@@ -1,7 +1,10 @@
 {
   "name": "LearningHall",
   "private": true,
-  "dependencies": {
+  "scripts": {
+    "start": "webpack -w --mode=development"
+  },
+  "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
@@ -20,9 +23,6 @@
   "directories": {
     "lib": "lib",
     "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
