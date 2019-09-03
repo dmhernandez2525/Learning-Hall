@@ -18,4 +18,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 debugger
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
