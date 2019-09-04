@@ -3,12 +3,13 @@ import NavBar from "./nav"
 import {signOut} from "../../actions/session"
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state,ownProps) => {
 
     const currentUser = state.session.currentUser;
     // debugger
     return ({
-        currentUser
+        currentUser,
+        history: ownProps.history.location.pathname
     })
 }
 

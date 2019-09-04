@@ -5,11 +5,11 @@ class Hall extends React.Component{
     constructor(props){
         super(props)
         this.state = this.props.user
-        debugger
+        // debugger
     }
 
     render(){
-        debugger
+        // debugger
         return(
             <div>
                 <h2>{`Welcome ${this.props.user.username} `}</h2>

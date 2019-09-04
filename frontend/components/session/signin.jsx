@@ -35,6 +35,9 @@ class SignIn extends React.Component{
                     </label>
                     <button>Log In</button>
                 </form>
+
+                <h2>OR</h2>
+                <Link className="buttion" to="/signup"> Sign Up</Link>
             </div>
         )
     }

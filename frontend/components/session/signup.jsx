@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import {Link} from "react-router-dom";
 
 // debugger
 class SignUp extends React.Component {
@@ -82,6 +83,11 @@ class SignUp extends React.Component {
                     </label>
                     <button className="sign_up_buttion"> Sign Up</button>
                 </form>
+
+                
+                <Link to="/signIn">All ready have an asccount?</Link>
+                <Link className="buttion" to="/signIn">logIn</Link>
+
             </div>
 
         )

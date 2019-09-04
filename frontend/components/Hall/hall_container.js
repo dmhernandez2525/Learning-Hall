@@ -1,12 +1,12 @@
 import {connect} from "react-redux"
 import Hall from "./hall"
-debugger
+// debugger
 const mapStateToProps = (state) => {
-    debugger
+    // debugger
     return({
         user: state.session.currentUser
     })
 }
-debugger
+// debugger
 
 export default connect(mapStateToProps, null)(Hall)
