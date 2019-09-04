@@ -5,12 +5,12 @@ import SignUp from "./signup"
 
 const mapStateToProps = (state) => ({
     user: {
-        username: "",
-        email: "",
-        preferred_name: "",
+        username: "Username",
+        email: "Email",
+        preferred_name: "Preferred Name",
         password: "",
-        user_role: "",
-        pronunciation: ""
+        user_role: "User Role",
+        pronunciation: "Pronunciation"
     }
 })
 

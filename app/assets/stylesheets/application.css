@@ -15,31 +15,83 @@
  */
 
 
- .sign_up_buttion{
-     
- }
- .sign_up_form{
+ div>.sign_up_buttion {
+     width: 77.45%;
+     margin: 8px;
+     /* font-weight: 400; */
+     padding: 15px 20px;
+     font-family: Arial,
+         Helvetica,
+         sans-serif;
+     border: 1px solid #ccc;
+     border-radius: 7px;
+     height: 20px;
+     color: rgb(145, 145, 145);
+     background-color: rgb(65, 97, 255);
+     font-size: 100%;
+     padding-bottom: 30px;
+     margin-left: 15px;
+
+
+
 
  }
 
- .nav-bar{
+ .sign_up_form {
+     display: flex;
+     justify-content: space-evenly
+ }
+
+ .sign_up_form>form>input[type="text"],
+ input[type="password"] {
+     width: 75%;
+     padding: 12px 12px;
+     margin: 8px;
+     text-align: start;
+     font-weight: 400;
+     font-family: Arial, Helvetica, sans-serif;
+     border: 1px solid #ccc;
+     border-radius: 7px;
+     height: 20px;
+     color: rgb(145, 145, 145);
+     background-color: rgb(245, 245, 245);
+ }
+
+ .password {
+     font-weight: 400;
+     font-family: Arial,
+         Helvetica,
+         sans-serif;
+ }
+
+ .nav-bar {
      background-color: aqua;
-     
- } 
- 
- .logo , img{
-    width: 15%;
-    height: 15%;
-    max-width: 150px;
-    max-height: 36px;
+     display: flex;
+     align-items: stretch;
+     justify-content: space-between;
+     height: 50px;
 
-     
  }
+
+.logo,img {
+    width: 50%;
+    height: 100%;
+    max-width: 250px;
+    max-height: 50px;
+}
+
  .logo img:hover {
      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
  }
 
- .splash{
+ .splash {
      background-color: gray;
-     
+
+ }
+ .main{
+     display: flex;
+     width: 100%
+ }
+ .buttion{
+     height: 20%;
  }

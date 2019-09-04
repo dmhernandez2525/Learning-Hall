@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // debugger
 class SignUp extends React.Component {
@@ -10,14 +10,14 @@ class SignUp extends React.Component {
         // debugger
     };
 
-    handleInput(type){
+    handleInput(type) {
         // debugger
         return (e) => {
-            this.setState({[type]: e.target.value});
+            this.setState({ [type]: e.target.value });
         };
-    };  
+    };
 
-    handleSumbit(event){
+    handleSumbit(event) {
         event.preventDefault();
         // debugger
 
@@ -26,67 +26,74 @@ class SignUp extends React.Component {
     };
 
 
-    render(){
+    render() {
         return (
             <div className="sign_up_form">
 
                 <h2> Sign Up </h2>
 
-                <form  onSubmit={this.handleSumbit}>
-                    <label >Username
-                        <input 
+                <form onSubmit={this.handleSumbit}>
+                    {/* <label >Username */}
+                    <input
                         type="text"
                         value={this.state.username}
-                        onChange={this.handleInput("username") } 
-                        />
-                    </label>
+                        onChange={this.handleInput("username")}
+                    />
+                    {/* </label> */}
 
-                    <label >Email
-                        <input 
+                    {/* <label >Email */}
+                    <input
                         type="text"
                         value={this.state.email}
                         onChange={this.handleInput("email")}
-                            />
-                    </label>
+                    />
+                    {/* </label> */}
 
-                    <label >Preferred_name
-                        <input 
+                    {/* <label >Preferred_name */}
+                    <input
                         type="text"
                         value={this.state.preferred_name}
                         onChange={this.handleInput("preferred_name")}
-                        />
-                    </label>
+                    />
+                    {/* </label> */}
 
-                    <label >Password
-                        <input 
+                    {/* <label >Password */}
+                    <input
+                        className="password"
                         type="password"
                         value={this.state.password}
+                        placeholder="Password"
                         onChange={this.handleInput("password")}
-                        />
-                    </label>
+                    />
+                    {/* </label> */}
 
-                    <label >User_role
-                        <input 
+                    {/* <label >User_role */}
+                    <input
                         type="text"
                         value={this.state.user_role}
                         onChange={this.handleInput("user_role")}
-                        />
-                    </label>
+                    />
+                    {/* </label> */}
 
-                    <label >Pronunciation
-                        <input 
+                    {/* <label >Pronunciation */}
+                    <input
                         type="text"
                         value={this.state.pronunciation}
                         onChange={this.handleInput("pronunciation")}
-                        />
+                    />
 
-                    </label>
-                    <button className="sign_up_buttion"> Sign Up</button>
+                    {/* </label> */}
+                    {/* <label > */}
+                    <div>
+                        <input className="sign_up_buttion" type="submit" value={"Continue"} />
+                    </div>
+                    {/* </label> */}
+                    <div>
+                        All ready have an asccount?
+                        <Link to="/signIn">click here to login.</Link>
+                    </div>
                 </form>
 
-                
-                <Link to="/signIn">All ready have an asccount?</Link>
-                <Link className="buttion" to="/signIn">logIn</Link>
 
             </div>
 
