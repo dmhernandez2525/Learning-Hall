@@ -16,7 +16,7 @@ const NavBar = ({ currentUser, signOut}) => {
         <div>
             <Link className="buttion" to="/signup"> Sign Up</Link>
             <Link className="buttion" to="/signIn">logIn</Link>
-            {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
+            <div className="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
     )
     // if (currentUser) {

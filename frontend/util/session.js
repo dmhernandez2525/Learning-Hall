@@ -1,3 +1,4 @@
+
 export const signUp = (user) => {
     return (
         $.ajax({
