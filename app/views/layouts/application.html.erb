@@ -7,6 +7,25 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    
+    <% if current_user %>
+      <script>
+        window.currentUser = {
+        "id":<%= current_user.id %>,
+        "username": "<%= current_user.username %>",
+        "email": "<%= current_user.email %>",
+        "preferred_name": "<%= current_user.preferred_name %>",
+        "user_role": "<%= current_user.user_role %>",
+        "pronunciation": "<%= current_user.pronunciation %>" 
+
+        };
+      </script>
+      
+    <% else %>
+      
+    <% end %>
+    
+
   </head>
 
   <body>

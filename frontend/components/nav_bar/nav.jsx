@@ -3,10 +3,10 @@ import {Link} from "react-router-dom"
 
 
 const NavBar = ({ currentUser, signOut}) => {
-    debugger
+    // debugger
     const display = currentUser ?  (
         <div>
-            <p>Hello {currentUser.name}</p>
+            <p>Hello {currentUser.username}</p>
             <button onClick={() => signOut()}> Sign Out</button>
         </div>
 

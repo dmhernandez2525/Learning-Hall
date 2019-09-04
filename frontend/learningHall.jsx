@@ -7,14 +7,23 @@ import configureStore from './store/store';
     window.logIn = logIn
     // debugger;
     window.signUp = signUp
-
     window.signOut = signOut
 document.addEventListener("DOMContentLoaded", () => {
+    let preloadedState = undefined;
+    // debugger
+    if (window.currentUser){
+        preloadedState = {
+            session: {
+                currentUser: window.currentUser
+            }
+        };
+    };
 
-    const store = configureStore()
+
+    const store = configureStore(preloadedState)
     
     window.store = store 
-    debugger
+    // debugger
     const root = document.getElementById("root")
     ReactDOM.render(<App  store={store}/>, root)
 })

@@ -13,7 +13,7 @@ class Api::SessionsController < ApplicationController
     end
 
     def destroy
+        # debugger
         logout
-        render json: {}
     end
 end

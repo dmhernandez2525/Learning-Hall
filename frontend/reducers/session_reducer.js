@@ -9,15 +9,15 @@ const _nullSession = {
 }
 const sessionReducer = (state = _nullSession ,action) => {
     Object.freeze(state)
-    debugger
+    // debugger
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            debugger
             return Object.assign({},state,{currentUser: action.user});
         case LOGOUT_CURRENT_USER:
+            // debugger
             return _nullSession;
         default:
-        debugger            
+        // debugger            
             return state;
     }
 }
