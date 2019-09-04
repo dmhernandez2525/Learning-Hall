@@ -13,7 +13,7 @@ const NavBar = ({ currentUser, signOut}) => {
     ) : (
         <div>
             <Link className="buttion" to="/signup"> Sign Up</Link>
-            <Link className="buttion" to="/logIn">logIn</Link>
+                <Link className="buttion" to="/signIn">logIn</Link>
         </div>
     )
     // if (currentUser) {

@@ -13,7 +13,7 @@ export const signUp = (user) => (dispatch) => {
         }))
     )
 }
-export const logIn = (user) => (dispatch) => {
+export const signIn = (user) => (dispatch) => {
     return(
         APIuser.logIn(user).then(user => dispatch({
             type: RECEIVE_CURRENT_USER,
