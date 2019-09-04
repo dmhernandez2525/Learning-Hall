@@ -4,7 +4,7 @@ import {Link} from "react-router-dom"
 
 class SignIn extends React.Component{
     constructor(props){
-        debugger
+        // debugger
         super(props)
         this.state = this.props.user
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -15,9 +15,10 @@ class SignIn extends React.Component{
         return e => this.setState({ username: e.target.value})
     }
     handleSubmit(event){
-        // debugger
-        event.preventDefault;
+        debugger
+        event.preventDefault();
         this.props.signIn(this.state)
+        // .this.props.history.push("/hall")
     }
     render(){
         // debugger

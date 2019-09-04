@@ -23,8 +23,14 @@
  }
 
  .nav-bar{
+     background-color: aqua;
      
  } 
  .logo{
+     
+ }
+
+ .splash{
+     background-color: blue;
      
  }

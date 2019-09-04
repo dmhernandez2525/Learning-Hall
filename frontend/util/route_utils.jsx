@@ -30,7 +30,8 @@ const Protectd = ({loggedIn, path , component: Component}) => {
     return(
         <Route
             path={path}
-            rander={props => {
+            render={props => {
+                debugger
                 return(
                     loggedIn ? <Component {...props} /> : <Redirect to="/signup"/>
                 )

@@ -17,11 +17,11 @@ class SignUp extends React.Component {
     };  
 
     handleSumbit(event){
-        event.preventDefult;
+        event.preventDefault();
         // debugger
 
-        this.props.signUp(this.state);
-        // .then(this.props.history.push("/profile"))~~~~this will be addid when the hash router is addid
+        this.props.signUp(this.state)
+        // .then(this.props.history.push("/hall"))
     };
 
 

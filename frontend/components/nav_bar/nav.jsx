@@ -6,9 +6,10 @@ const NavBar = ({ currentUser, signOut}) => {
     // debugger
     const display = currentUser ?  (
         <div>
-            <p>Hello {currentUser.username}</p>
-            <button onClick={() => signOut()}> Sign Out</button>
-            
+            <form onSubmit={e => e.preventDefault}>
+                <p>Hello {currentUser.username}</p>
+                <button onClick={() => signOut()}> Sign Out</button>
+            </form>
         </div>
 
     ) : (
