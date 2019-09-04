@@ -1,9 +1,10 @@
-import React from "react"
-import SignUpContainer from "./session/signup_container"
-import SignInContainer from "./session/signin_container"
-import NavBarContainer from "./nav_bar/nav_bar_container"
-import { Route, HashRouter } from "react-router-dom"
-import {Provider} from "react-redux"
+import React from "react";
+import SignUpContainer from "./session/signup_container";
+import SignInContainer from "./session/signin_container";
+import NavBarContainer from "./nav_bar/nav_bar_container";
+import { Route, HashRouter } from "react-router-dom";
+import {Provider} from "react-redux";
+import { AuthRoute, ProtectdRoute} from "../util/route_utils";
 
 const App = ({store}) => {
 
@@ -13,9 +14,9 @@ const App = ({store}) => {
                 <h1>Hello World</h1>
                 <Provider store={store}>
                     <HashRouter>
-                        <NavBarContainer/>
-                        <Route path="/signup" component={SignUpContainer}/>
-                        <Route path="/signIn" component={SignInContainer}/>
+                        <Route path="/" component={NavBarContainer}/>
+                        <AuthRoute path="/signup" component={SignUpContainer}/>
+                        <AuthRoute path="/signIn" component={SignInContainer}/>
                     </HashRouter>
                 </Provider>
             </div>
