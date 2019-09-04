@@ -37,6 +37,7 @@
   "homepage": "https://github.com/dmhernandez2525/Brainy-Developer_Quick-Start-Academy_Learning-Hall#readme",
   "dependencies": {
     "react-router": "^5.0.1",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"
   }
 }
