@@ -113,7 +113,14 @@ class SignUp extends React.Component {
                     <div className="a1">
                         Allready have an account? &nbsp;
                         <Link to="/signIn">click here to login.</Link>
+
+
+
+
+
+
                     </div>
+                        <div className="g-signin2" data-onsuccess="onSignIn"></div>
 
                 </form>
 
