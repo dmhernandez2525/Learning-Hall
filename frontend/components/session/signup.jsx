@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../footer/footer"
+
 
 // debugger
 class SignUp extends React.Component {
@@ -124,6 +126,7 @@ class SignUp extends React.Component {
 
                 </form>
 
+                <Footer/>
 
             </div>
 

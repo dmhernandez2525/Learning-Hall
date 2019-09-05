@@ -1,5 +1,7 @@
 import React from "react"
 import {Link} from "react-router-dom"
+import Footer from "../footer/footer"
+
 
 
 class SignIn extends React.Component{
@@ -22,13 +24,13 @@ class SignIn extends React.Component{
     handleSubmit(event){
         // debugger
         event.preventDefault();
-        this.props.signIn({username: "user100",password: "hunter2"})
+        this.props.signIn(this.state)
         // .this.props.history.push("/hall")
     }
     handleDemo(event){
         // debugger
         event.preventDefault();
-        this.props.signIn(this.state)
+        this.props.signIn({username: "user100",password: "hunter2"})
         // .this.props.history.push("/hall")
     }
 
@@ -53,11 +55,13 @@ class SignIn extends React.Component{
                     <input className="login-input" placeholder="Password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
                     <button className="big-buttion-input" >Log In</button>
                 </form>
-                <button onClick={ e => this.handleDemo(e)} className="big-buttion-input" >DEMO</button>
+                    <button onClick={ e => this.handleDemo(e)} className="big-buttion-input" >DEMO</button>
                 <div className="a1">
                     dont have an account? &nbsp;
                     <Link to="/signUp">click here sign up.</Link>
                 </div>
+                
+                <Footer />
             </div>
         )
     }

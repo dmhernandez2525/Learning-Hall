@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Footer from "../footer/footer"
 
 // debugger
 class Splash extends React.Component{
@@ -11,7 +12,7 @@ class Splash extends React.Component{
     render(){
         return(
             <div className="splash">
-                <section>
+                {/* <section>
                     <Link className="buttion" to="/signup"> Sign Up</Link>
                     <section>
                         <header>
@@ -29,8 +30,8 @@ class Splash extends React.Component{
                         </section>
 
                     </section>
-                </section>
-                <section>
+                </section> */}
+                <section className="sec1">
                     <section>
                         <h2>Free Plan</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat turpis sit amet tincidunt dignissim. Aliquam vestibulum sem mauris, eget bibendum tortor pretium at. Morbi sit amet euismod arcu. Integer ut sodales magna. Vestibulum interdum non ex ut porta. Proin pretium neque vitae neque sagittis, in ultrices magna pellentesque. Proin eleifend sollicitudin ex, consequat imperdiet est. Nunc tincidunt imperdiet sem, nec viverra augue rutrum eget. Pellentesque nec purus vitae ligula rutrum pharetra. Nam nec placerat enim. Nulla turpis nunc, laoreet vitae quam id, ornare vestibulum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
@@ -41,7 +42,7 @@ class Splash extends React.Component{
                         </p>
                     </section>
                 </section>
-                <section>
+                <section className="sec2">
                     <section>
                         <nav>
                             <div>
@@ -90,14 +91,14 @@ class Splash extends React.Component{
                     <source/>
                     <img src="" alt=""/>
                 </picture>
-                <section>
+                <section className="sec3">
                     <section>
                         <h2>
                             chuse the right plan for yor school
                         </h2>
                     </section>
-                    <section>
-                        <table>
+                    <section >
+                        <table className="grid-white">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -133,7 +134,7 @@ class Splash extends React.Component{
                             <tbody>
                                 <tr>
                                     <td>
-                                        <span>
+                                        <span className="no-style">
                                             priceing options
                                         </span>
                                     </td>
@@ -152,12 +153,17 @@ class Splash extends React.Component{
                                 </tr>
                                 <tr>
                                    <td>
-                                    <span>
+                                        <span className="no-style">
                                         schudle
                                     </span>
                                     </td> 
                                 </tr>
                                 <tr>
+                                    <td>
+                                        <span className="no-style">
+                                            Features
+                                    </span>
+                                    </td> 
                                     <td>
                                         <span>some survice</span>
                                     </td>
@@ -350,7 +356,7 @@ class Splash extends React.Component{
 
                     </section>
                 </section>
-                <section>
+                <section className="sec4">
                     <section>
                         <header>
                             <h3>the plan name</h3>
@@ -400,7 +406,7 @@ class Splash extends React.Component{
                         </ul>
                     </section>
                 </section>
-                <section>
+                <section className="sec5">
                     <section>
                         <h2>plan 2</h2>
                         <p>
@@ -435,6 +441,8 @@ class Splash extends React.Component{
                     </section>
                     <Link className={"reg-buttion"} to="???">apply now</Link>
                 </section>
+                <Footer />
+
 
 
 
