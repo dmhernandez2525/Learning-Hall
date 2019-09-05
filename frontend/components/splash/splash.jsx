@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../footer/footer"
+import Switch from "../swcher/switch"
 
 // debugger
 class Splash extends React.Component{
@@ -12,25 +13,6 @@ class Splash extends React.Component{
     render(){
         return(
             <div className="splash">
-                {/* <section>
-                    <Link className="buttion" to="/signup"> Sign Up</Link>
-                    <section>
-                        <header>
-                            <Link className="logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
-                        </header>
-                        <section>
-                            <h1>Incres productivity and engament with your students -for free</h1>
-                            <p>create a cores with the days and tasks maped out for your students.
-                               get access to Learning halls corse creation tools for free</p>
-                            <section>
-                                <Link to="/signUp" className={"reg-buttion"}> get premium tools </Link> /////NEED TO CHANGE EVENTIALY
-                                <div className="or"> or</div>
-                                <Link to="/signUp" className={"reg-buttion"}> Continue with the free plan</Link>
-                            </section>
-                        </section>
-
-                    </section>
-                </section> */}
                 <section className="sec1">
                     <section>
                         <h2>Free Plan</h2>
@@ -42,51 +24,7 @@ class Splash extends React.Component{
                         </p>
                     </section>
                 </section>
-                <section className="sec2">
-                    <section>
-                        <nav>
-                            <div>
-                                <section>
-                                    <h3>Lorem ipsum dolor sit amet</h3>
-                                    <p>
-                                        Aliquam euismod dolor eget ligula tempor, eget lacinia ante condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla at vestibulum urna. Morbi eu dolor a urna rutrum suscipit vel vel massa. Pellentesque ultricies, justo eget accumsan pellentesque, urna felis placerat arcu, non sagittis ligula sem sit amet nisi. Mauris interdum urna et mollis sollicitudin. Mauris condimentum augue imperdiet ipsum mollis, et fringilla quam elementum. Fusce malesuada dui quis lacus vestibulum, ut consectetur felis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum at iaculis massa, vel mattis velit. Quisque fringilla eleifend velit, ut interdum urna lobortis a. Donec molestie mauris id ultrices consequat. Vestibulum dignissim vel est ac sodales. Mauris et arcu maximus, maximus eros id, tristique enim. Phasellus est lectus, fringilla non erat posuere, auctor mattis lorem.
-                                    </p>
-
-                                </section>
-                                    
-
-                                <section>
-                                    <h3>Lorem ipsum dolor sit amet</h3>
-                                    <p>
-                                      Aliquam euismod dolor eget ligula tempor, eget lacinia ante condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla at vestibulum urna. Morbi eu dolor a urna rutrum suscipit vel vel massa. Pellentesque ultricies, justo eget accumsan pellentesque, urna felis placerat arcu, non sagittis ligula sem sit amet nisi. Mauris interdum urna et mollis sollicitudin. Mauris condimentum augue imperdiet ipsum mollis, et fringilla quam elementum. Fusce malesuada dui quis lacus vestibulum, ut consectetur felis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum at iaculis massa, vel mattis velit. Quisque fringilla eleifend velit, ut interdum urna lobortis a. Donec molestie mauris id ultrices consequat. Vestibulum dignissim vel est ac sodales. Mauris et arcu maximus, maximus eros id, tristique enim. Phasellus est lectus, fringilla non erat posuere, auctor mattis lorem.
-                                    </p>
-                                </section>
-
-                                <section>
-                                    <h3>Lorem ipsum dolor sit amet</h3>
-                                    <p>
-                                       Aliquam euismod dolor eget ligula tempor, eget lacinia ante condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla at vestibulum urna. Morbi eu dolor a urna rutrum suscipit vel vel massa. Pellentesque ultricies, justo eget accumsan pellentesque, urna felis placerat arcu, non sagittis ligula sem sit amet nisi. Mauris interdum urna et mollis sollicitudin. Mauris condimentum augue imperdiet ipsum mollis, et fringilla quam elementum. Fusce malesuada dui quis lacus vestibulum, ut consectetur felis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum at iaculis massa, vel mattis velit. Quisque fringilla eleifend velit, ut interdum urna lobortis a. Donec molestie mauris id ultrices consequat. Vestibulum dignissim vel est ac sodales. Mauris et arcu maximus, maximus eros id, tristique enim. Phasellus est lectus, fringilla non erat posuere, auctor mattis lorem. 
-                                    </p>
-                                </section>
-
-                                <section>
-                                    <section>1</section>
-                                    <section>2</section>
-                                    <section>3</section>
-
-                                </section>
-
-                            </div>
-                        </nav>
-                        <div className={"i-change"}>
-                            //rnder commpont based on click
-                            <section>
-                                <img src="" alt=""/>
-                            </section>
-
-                        </div>
-                    </section>
-                </section>
+                <Switch />
                 <picture>
                     <source/>
                     <img src="" alt=""/>

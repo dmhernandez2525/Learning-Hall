@@ -298,3 +298,8 @@ background-color: aqua
         display: none;
     }
 }
+.switch-img{
+        width: 50%;
+        max-width: 400px;
+        max-height: 150px;
+}
