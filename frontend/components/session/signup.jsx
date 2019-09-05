@@ -16,6 +16,9 @@ class SignUp extends React.Component {
             this.setState({ [type]: e.target.value });
         };
     };
+    componentWillUnmount() {
+        this.props.clearErrors()
+    }
 
     handleSumbit(event) {
         event.preventDefault();
@@ -27,10 +30,19 @@ class SignUp extends React.Component {
 
 
     render() {
+
+        let errors = this.props.errors.map(e => {
+            return (
+                <li className="errors">{e}</li>
+            )
+        })
+
+        debugger
         return (
             <div className="sign_up_form">
 
 
+                <ul>{errors}</ul>
                 <form onSubmit={this.handleSumbit}>
                     <h2 className="formH2"> Sign up to start Learning </h2>
                     {/* <label >Username */}

@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // creates the store var and initializes it to configureStore with the preloadedState passed in
     //from  up above 
     const store = configureStore(preloadedState);
+    window.getState = store.getState;
    
     // grabing the div that we set in the static page show page to render react into 
     const root = document.getElementById("root")

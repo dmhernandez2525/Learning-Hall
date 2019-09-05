@@ -12,11 +12,11 @@ const NavBar = ({ currentUser, signOut, history }) => {
             </form>
         </div>
 
-    ) : (history === "/signup") ? (
+    ) : (history === "/signup" || history === "/signIn" ) ? (
         <div>
             {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
         </div>
-    ) : (<Link className="buttion" to="/signIn">logIn</Link>)
+        ) : (<Link className="main-bottion-black" to="/signIn">logIn</Link>)
 
     return (
 

@@ -1,4 +1,7 @@
-import {signIn} from "../../actions/session"
+import {
+    signIn,
+    clearErrors
+} from "../../actions/session"
 import {connect} from "react-redux"
 import SignIn from "./signin"
 
@@ -6,13 +9,18 @@ import SignIn from "./signin"
 
 const mapStateToProps = (state) =>{
     return{
-        user: {username:"",password: ""}
+        user: {
+                username: "",
+                password: ""
+            },
+            errors: state.errors.session
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        signIn: (user) => dispatch(signIn(user))
+        signIn: (user) => dispatch(signIn(user)),
+        clearErrors: () => dispatch(clearErrors())
     })
 }
 

@@ -14,18 +14,29 @@ class SignIn extends React.Component{
         // debugger
         return e => this.setState({ username: e.target.value})
     }
+
+    componentWillUnmount(){
+        this.props.clearErrors()
+    }
     handleSubmit(event){
-        debugger
+        // debugger
         event.preventDefault();
         this.props.signIn(this.state)
         // .this.props.history.push("/hall")
     }
+
+
     render(){
         // debugger
 
-
+        let errors = this.props.errors.map((e,i) => {
+            return(
+                <li key={i} className="errors">{e}</li>
+            )
+        })
         return (
             <div >
+                <ul>{errors}</ul>
                 <div className="a11">
                 <h1>Get back to learning</h1>
                     <h2> Login to your account</h2>
