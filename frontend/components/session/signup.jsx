@@ -32,7 +32,7 @@ class SignUp extends React.Component {
 
 
                 <form onSubmit={this.handleSumbit}>
-                    <h2> Sign up to start Learning </h2>
+                    <h2 className="formH2"> Sign up to start Learning </h2>
                     {/* <label >Username */}
                     <input
                         className="big-input"
@@ -99,7 +99,7 @@ class SignUp extends React.Component {
                     </div>
                     {/* </label> */}
                     <div className="a1">
-                        All ready have an asccount? &nbsp;
+                        Allready have an account? &nbsp;
                         <Link to="/signIn">click here to login.</Link>
                     </div>
                 </form>

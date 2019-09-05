@@ -26,6 +26,10 @@ class SignIn extends React.Component{
 
         return (
             <div >
+                <div className="a11">
+                <h1>Get back to learning</h1>
+                    <h2> Login to your account</h2>
+                </div>
                 <form className="login_form" onSubmit={this.handleSubmit}>
                     <input className="login-input" placeholder="Username" type="text" value={this.state.username} onChange={this.handleInput()}/>
                     <input className="login-input" placeholder="Password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
