@@ -15,7 +15,8 @@
  */
 
 
- div>.sign_up_buttion {
+.big-buttion,
+.big-buttion-input {
      width: 77.45%;
      margin: 8px;
      /* font-weight: 400; */
@@ -30,61 +31,76 @@
      background-color: rgb(65, 97, 255);
      font-size: 100%;
      padding-bottom: 30px;
-     margin-left: 15px;
-
-
-
-
+     margin-left: 10.2%;
  }
 
- .sign_up_form {
+
+.big-buttion:hover ,.big-buttion-input:hover{
+     color: white;
+ }
+
+.sign_up_form , .login_form {
      display: flex;
-     justify-content: space-evenly
+     justify-content: space-evenly;
+     flex-direction: column
+    
  }
 
- .sign_up_form>form>input[type="text"],
- input[type="password"] {
-     width: 75%;
-     padding: 12px 12px;
-     margin: 8px;
-     text-align: start;
-     font-weight: 400;
-     font-family: Arial, Helvetica, sans-serif;
-     border: 1px solid #ccc;
-     border-radius: 7px;
-     height: 20px;
-     color: rgb(145, 145, 145);
-     background-color: rgb(245, 245, 245);
+ .big-input, .login-input {
+    width: 40%;
+    padding: 12px 12px;
+    margin: 8px;
+    text-align: start;
+    font-weight: 400;
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    height: 20px;
+    color: rgb(145, 145, 145);
+    background-color: rgb(245, 245, 245);
+    margin-left: 25%;
+    margin-right: 5%
  }
 
- .password {
-     font-weight: 400;
-     font-family: Arial,
-         Helvetica,
-         sans-serif;
+ .login-input{
+     width: 40%;
+    margin-left: 25%;
  }
+
+ .big-buttion,
+ .big-buttion-input {
+    width: 40%;
+    margin-left: 25.85%;
+ }
+
+
+
+ .a1{
+     padding-left: 35%;
+     padding-right: 25%
+ }
+
 
  .nav-bar {
-     background-color: aqua;
+     background-color: white;
      display: flex;
      align-items: stretch;
      justify-content: space-between;
-     height: 50px;
-
+     height: 100px;
+     border-bottom:1px solid rgb(121, 121, 121);
  }
 
 .logo,img {
     width: 50%;
-    height: 100%;
-    max-width: 250px;
-    max-height: 50px;
+    max-width: 400px;
+    max-height: 150px;
 }
 
- .logo img:hover {
+.logo img:hover {
      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
  }
 
- .splash {
+.splash {
      background-color: gray;
 
  }

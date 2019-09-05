@@ -30,36 +30,42 @@ class SignUp extends React.Component {
         return (
             <div className="sign_up_form">
 
-                <h2> Sign Up </h2>
 
                 <form onSubmit={this.handleSumbit}>
+                    <h2> Sign up to start Learning </h2>
                     {/* <label >Username */}
                     <input
+                        className="big-input"
                         type="text"
                         value={this.state.username}
+                        placeholder="Username"
                         onChange={this.handleInput("username")}
                     />
                     {/* </label> */}
 
                     {/* <label >Email */}
                     <input
+                        className="big-input"
                         type="text"
                         value={this.state.email}
+                        placeholder="Email"
                         onChange={this.handleInput("email")}
                     />
                     {/* </label> */}
 
                     {/* <label >Preferred_name */}
                     <input
+                        className="big-input"
                         type="text"
                         value={this.state.preferred_name}
+                        placeholder="Preferred Name"
                         onChange={this.handleInput("preferred_name")}
                     />
                     {/* </label> */}
 
                     {/* <label >Password */}
                     <input
-                        className="password"
+                        className="big-input"
                         type="password"
                         value={this.state.password}
                         placeholder="Password"
@@ -69,27 +75,31 @@ class SignUp extends React.Component {
 
                     {/* <label >User_role */}
                     <input
+                        className="big-input"
                         type="text"
                         value={this.state.user_role}
+                        placeholder="User Role"
                         onChange={this.handleInput("user_role")}
                     />
                     {/* </label> */}
 
                     {/* <label >Pronunciation */}
                     <input
+                        className="big-input"
                         type="text"
                         value={this.state.pronunciation}
+                        placeholder="Pronunciation"
                         onChange={this.handleInput("pronunciation")}
                     />
 
                     {/* </label> */}
                     {/* <label > */}
                     <div>
-                        <input className="sign_up_buttion" type="submit" value={"Continue"} />
+                        <input className="big-buttion" type="submit" value={"Continue"} />
                     </div>
                     {/* </label> */}
-                    <div>
-                        All ready have an asccount?
+                    <div className="a1">
+                        All ready have an asccount? &nbsp;
                         <Link to="/signIn">click here to login.</Link>
                     </div>
                 </form>

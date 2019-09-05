@@ -25,19 +25,17 @@ class SignIn extends React.Component{
 
 
         return (
-            <div className="login_form">
-                <form onSubmit={this.handleSubmit}>
-                    <label >Username
-                        <input type="text" value={this.state.username} onChange={this.handleInput()}/>
-                    </label>
-                    <label >Password
-                        <input type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
-                    </label>
-                    <button>Log In</button>
+            <div >
+                <form className="login_form" onSubmit={this.handleSubmit}>
+                    <input className="login-input" placeholder="Username" type="text" value={this.state.username} onChange={this.handleInput()}/>
+                    <input className="login-input" placeholder="Password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
+                    <button className="big-buttion-input" >Log In</button>
                 </form>
 
-                <h2>OR</h2>
-                <Link className="buttion" to="/signup"> Sign Up</Link>
+                <div className="a1">
+                    dont have an account? &nbsp;
+                    <Link to="/signUp">click here sign up.</Link>
+                </div>
             </div>
         )
     }
