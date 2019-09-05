@@ -114,6 +114,7 @@ class SignUp extends React.Component {
                         Allready have an account? &nbsp;
                         <Link to="/signIn">click here to login.</Link>
                     </div>
+
                 </form>
 
 
