@@ -13,10 +13,10 @@ const mapStateToProps = (state,ownProps) => {
     })
 }
 
-const mapDispatichToProps = (dispatch) =>{
+const mapDispatchToProps = (dispatch) =>{
     return({
         signOut: () => dispatch(signOut())
     })
 }
 
-export default connect(mapStateToProps,mapDispatichToProps)(NavBar)
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar)
