@@ -10,6 +10,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript">
+  window.logoUrl = "<%= image_url('Screenshot from 2019-09-04 13-22-55.png') %>";
+</script>
 
 
     <% if current_user %>
