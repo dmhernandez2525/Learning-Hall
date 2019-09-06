@@ -17,9 +17,9 @@ class Switch extends React.Component{
 
     render(){
         let allImg = { 
-            1: <img className="switch-img" key={1} src="/assets/main2.png" alt="Learning Hall Logo"></img>,
-            2: <img className="switch-img" key={2} src="/assets/DSC100704119.jpg" alt="Learning Hall Logo"></img>,
-            3: <img className="switch-img" key={3} src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img>
+            1: <img className="switch-img" key={1} src={window.logoUrl} alt="Learning Hall Logo"></img>,
+            2: <img className="switch-img" key={2} src={window.img2Url} alt="Learning Hall Logo"></img>,
+            3: <img className="switch-img" key={3} src={window.img3Url} alt="Learning Hall Logo"></img>
         
         }
         let current_image = allImg[Object.values(this.state)[0]]

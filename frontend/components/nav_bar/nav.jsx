@@ -72,7 +72,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
     )
     else if ( history !== "/") display = (        
         <header className="nav-bar">
-            <Link className="logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
+            <Link className="logo" to="/" ><img src={window.logo} alt="Learning Hall Logo"></img></Link>
             {display}
         </header>
         )
@@ -80,7 +80,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
         display = (
             <section className="hero">
                 <header className="main-top">
-                    <Link className="main-logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
+                    <Link className="main-logo" to="/" ><img src={window.logo} alt="Learning Hall Logo"></img></Link>
                     <Link className="main-bottion-black" to="/signIn">logIn</Link>
                 </header>
                 
