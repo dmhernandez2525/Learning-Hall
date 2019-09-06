@@ -24,6 +24,7 @@ body , html{
     max-height: 1200px;
 } */
 .hero{
+    background-image: url(main2.png);
     background-repeat: no-repeat;
     height: 100vh;
     background-position: center center;
