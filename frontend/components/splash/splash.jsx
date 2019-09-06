@@ -351,7 +351,7 @@ class Splash extends React.Component{
                         </p>
                     </section>
                     <picture>
-                        <img className="switch-img" src="/assets/main2.png" alt="Learning Hall Logo" />
+                        <img className="bottem-img" src="/assets/2" alt="Learning Hall Logo" />
                     </picture>
                     <Link className={"reg-buttion"} to="???">idk yes</Link>
                 </section>
@@ -363,11 +363,11 @@ class Splash extends React.Component{
                         </p>
                     </section>
                     <picture>
-                        <img className="switch-img"  src="/assets/main2.png" alt="Learning Hall Logo" />
+                        <img className="bottem-img"  src="/assets/3" alt="Learning Hall Logo" />
                     </picture>
                     <section>
                         <h3>apply now for somthing</h3>
-                        <section>
+                        <section id="almost-done">
                             <label >some date
                                 <h3>info</h3>
                             </label>

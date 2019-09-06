@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 
 const NavBar = ({ currentUser, signOut, history }) => {
+
+
     let display;
     let logo;
     if (currentUser) display = (
@@ -11,10 +13,11 @@ const NavBar = ({ currentUser, signOut, history }) => {
             <form onSubmit={e => e.preventDefault}>
                 <p>Hello {currentUser.username}</p>
                 <button onClick={() => signOut()}> Sign Out</button>
+
             </form>
         </div>
     )
-    if ( history !== "/") display = (        
+    else if ( history !== "/") display = (        
         <header className="nav-bar">
             <Link className="logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
             {display}
