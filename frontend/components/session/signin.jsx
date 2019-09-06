@@ -11,7 +11,7 @@ class SignIn extends React.Component{
         this.state = this.props.user
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleInput = this.handleInput.bind(this)
-        this.handleDemo = this.handleDemo.bind(this)
+        // this.handleDemo = this.handleDemo.bind(this)
         this.prettyDemoUser = this.prettyDemoUser.bind(this);
     }
     handleInput(){
@@ -48,7 +48,7 @@ class SignIn extends React.Component{
             this.setState({ username: demoUser.username.substr(0, i) });
             await sleep(50);
         }
-        await sleep(250);
+        await sleep(50);
         document.getElementById('password-input').focus();
         for (let i = 1; i <= demoUser.password.length; i++) {
             this.setState({ password: demoUser.password.substr(0, i) });
