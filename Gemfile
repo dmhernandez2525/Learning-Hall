@@ -40,7 +40,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "rails_12factor"
+  # gem "rails_12factor"
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -53,7 +53,7 @@ group :development do
   gem 'pry-rails'
   gem 'annotate'
   gem 'jquery-rails'
-  gem 'rails-ujs'
+  # gem 'rails-ujs'
 end
 
 group :test do
