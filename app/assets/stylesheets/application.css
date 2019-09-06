@@ -24,7 +24,6 @@ body , html{
     max-height: 1200px;
 } */
 .hero{
-    background-image: image-url('brent.png');
     background-repeat: no-repeat;
     height: 100vh;
     background-position: center center;
