@@ -23,23 +23,23 @@ const NavBar = ({ currentUser, signOut, history }) => {
     else{
         display = (
             <section className="hero">
+                <header className="main-top">
+                    <Link className="main-logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
+                    <Link className="main-bottion-black" to="/signIn">logIn</Link>
+                </header>
+                
+                <section className="hero-con">
+                    <h1>Incres productivity and engament with your students -for free</h1>
+                    <p>create a cores with the days and tasks maped out for your students.
+                        get access to Learning halls corse creation tools for free</p>
                     <section>
-                        <header className="main-top">
-                            <Link className="main-logo" to="/" ><img src="/assets/Screenshot from 2019-09-04 13-22-55.png" alt="Learning Hall Logo"></img></Link>
-                            <Link className="main-bottion-black" to="/signIn">logIn</Link>
-                        </header>
-                        <section className="hero-con">
-                            <h1>Incres productivity and engament with your students -for free</h1>
-                            <p>create a cores with the days and tasks maped out for your students.
-                               get access to Learning halls corse creation tools for free</p>
-                            <section>
-                                <Link to="/signUp" className={"reg-buttion"}> get premium tools </Link> /////NEED TO CHANGE EVENTIALY
-                                <div className="or"> or</div>
-                                <Link to="/signUp" className={"reg-buttion"}> Continue with the free plan</Link>
-                            </section>
-                        </section>
-
+                        <Link to="/signUp" className={"reg-buttion"}> get premium tools </Link>
+                        <div className="or"> or</div>
+                        <Link to="/signUp" className={"reg-buttion"}> Continue with the free plan</Link>
                     </section>
+                </section>
+
+                <p className="testimonial">I learned more real-world skills in 12 weeks than my Stanford degree taught me.</p>
                 </section>
         )
     }

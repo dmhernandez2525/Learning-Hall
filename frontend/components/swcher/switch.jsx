@@ -6,13 +6,13 @@ class Switch extends React.Component{
         super(props)
         this.state = {currentPane: 1}
         this.handleClick = this.handleClick.bind(this)
-        debugger
 
     }
 
-    handleClick(num) {
-        debugger
+    handleClick(num,id) {
         this.setState({ currentPane: [num]})
+        let a = document.getElementById(id)
+        a.classList.toggle("switch-to")
     }
 
     render(){
@@ -25,22 +25,21 @@ class Switch extends React.Component{
         let current_image = allImg[Object.values(this.state)[0]]
 
 
-        debugger
 
         return(
-            <div>
+            <div className="switch">
                 <section >
-                    <div onClick={() => this.handleClick(1)}>
+                    <div id="1" onClick={() => this.handleClick(1,"1")}>
                         <h3>some content</h3>
                         <p>put a bref discription for this part</p>
                     </div>
 
-                    <div onClick={() => this.handleClick(2)} >
+                    <div id="2" onClick={() => this.handleClick(2,"2")} >
                         <h3>some content</h3>
                         <p>put a bref discription for this part</p>
                     </div >
 
-                <div onClick={() => this.handleClick(3)}>
+                <div  id="3" onClick={() => this.handleClick(3,"3")}>
                         <h3>some content</h3>
                         <p>put a bref discription for this part</p>
                     </div>

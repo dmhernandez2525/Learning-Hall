@@ -26,17 +26,16 @@ class Splash extends React.Component{
                 </section>
                 <Switch />
                 <picture>
-                    <source/>
-                    <img src="" alt=""/>
+                    <img className="switch-img-long" src="/assets/graduate-companies.png" alt="Learning Hall Logo" />
                 </picture>
                 <section className="sec3">
                     <section>
-                        <h2>
-                            chuse the right plan for yor school
+                        <h2 id="plan-school">
+                            Choose the right plan for yor school
                         </h2>
                     </section>
                     <section >
-                        <table className="grid-white">
+                        <table id="plans">
                             <thead>
                                 <tr>
                                     <th></th>
@@ -71,8 +70,8 @@ class Splash extends React.Component{
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <span className="no-style">
+                                    <td id='td-no'>
+                                        <span id='td-no' className="no-style">
                                             priceing options
                                         </span>
                                     </td>
@@ -90,18 +89,14 @@ class Splash extends React.Component{
                                     </td>
                                 </tr>
                                 <tr>
-                                   <td>
-                                        <span className="no-style">
+                                   <td id='td-no'>
+                                        <span  className="no-style">
                                         schudle
                                     </span>
                                     </td> 
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <span className="no-style">
-                                            Features
-                                    </span>
-                                    </td> 
+
                                     <td>
                                         <span>some survice</span>
                                     </td>
@@ -132,7 +127,11 @@ class Splash extends React.Component{
                                     <td><span> yes/no</span></td>
                                 </tr>
 
-
+                                <td id='td-no'>
+                                    <span id='td-no' className="no-style">
+                                        Features
+                                        </span>
+                                </td> 
 
                                 <tr>
                                     <td>
@@ -295,7 +294,7 @@ class Splash extends React.Component{
                     </section>
                 </section>
                 <section className="sec4">
-                    <section>
+                    <section className="white">
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
@@ -311,7 +310,7 @@ class Splash extends React.Component{
                             <li>detail about plan</li>
                         </ul>
                     </section>
-                    <section>
+                    <section className="gray">
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
@@ -327,7 +326,7 @@ class Splash extends React.Component{
                             <li>detail about plan</li>
                         </ul>
                     </section>
-                    <section>
+                    <section className="white">
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
@@ -351,17 +350,21 @@ class Splash extends React.Component{
                            Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
                         </p>
                     </section>
-                    <picture>pic goes hear</picture>
+                    <picture>
+                        <img className="switch-img" src="/assets/main2.png" alt="Learning Hall Logo" />
+                    </picture>
                     <Link className={"reg-buttion"} to="???">idk yes</Link>
                 </section>
-                <section>
+                <section className="sec6">
                     <section>
                         <h2>plan 3</h2>
                         <p>
                             Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
                         </p>
                     </section>
-                    <picture>pic goes hear</picture>
+                    <picture>
+                        <img className="switch-img"  src="/assets/main2.png" alt="Learning Hall Logo" />
+                    </picture>
                     <section>
                         <h3>apply now for somthing</h3>
                         <section>
