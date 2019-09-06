@@ -15,7 +15,9 @@
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7"
+    "webpack-cli": "^3.3.7",
+    "@babel/plugin-transform-runtime": "^7.5.5"
+
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -36,6 +38,9 @@
   },
   "homepage": "https://github.com/dmhernandez2525/Brainy-Developer_Quick-Start-Academy_Learning-Hall#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/runtime": "^7.5.5",
+    "babel-polyfill": "^6.26.0",
     "react-router": "^5.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

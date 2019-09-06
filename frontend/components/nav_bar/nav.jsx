@@ -6,6 +6,31 @@ import { Link } from "react-router-dom"
 const NavBar = ({ currentUser, signOut, history }) => {
 
 
+
+
+
+
+    
+    let openNav = ()  => (
+
+        document.getElementById("mySidenav").style.width = "250px"
+    
+        );
+
+    let closeNav = ()  => (
+
+        document.getElementById("mySidenav").style.width = "0"
+    
+        );
+
+
+
+
+
+
+
+
+
     let display;
     let logo;
     if (currentUser) display = (
@@ -13,6 +38,34 @@ const NavBar = ({ currentUser, signOut, history }) => {
             <form onSubmit={e => e.preventDefault}>
                 <p>Hello {currentUser.username}</p>
                 <button onClick={() => signOut()}> Sign Out</button>
+
+
+
+
+
+
+
+                {/* here */}
+
+                <div id="mySidenav" className="sidenav">
+
+                    {/* <a href="javascript:void(0)" className="closebtn" onClick={e => openNav()}>&times;</a> */}
+                    <Link to="/"> About </Link>
+                    <Link to="/"> Services </Link>
+                    <Link to="/"> Clients </Link>
+                    <Link to="/"> Contact </Link>
+                </div>
+                
+                <div  onClick={e => openNav()}> open </div>
+
+                {/* here */}
+
+
+
+
+
+
+
 
             </form>
         </div>
