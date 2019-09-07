@@ -21,8 +21,8 @@ const App = ({store}) => {
                             <AuthRoute path="/signup" component={SignUpContainer}/>
                             <AuthRoute path="/signIn" component={SignInContainer}/>
                             <AuthRoute path="/" component={SplashContainner}/>
-                            <ProtectdRoute path="/" component={HallContainner}/>
                         </Switch>
+                            <ProtectdRoute path="/" component={HallContainner}/>
                     </HashRouter>
                 </Provider>
             </div>
