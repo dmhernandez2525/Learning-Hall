@@ -25,21 +25,21 @@ export const  newCourse = (course) => {
     )
 }
 
-// export const updateCourse = (course) => {
-//     return(
-//         $.ajax({
-//             method: "Patch",
-//             url: `/api/courses/${course.id}`,
-//             data: {course}
-//         })
-//     )
-// }
+export const updateCourse = (course) => {
+    return(
+        $.ajax({
+            method: "Patch",
+            url: `/api/courses/${course.id}`,
+            data: {course}
+        })
+    )
+}
 
-// export const deleteCourse = (id) => {
-//     return(
-//         $.ajax({
-//             method: "DELETE",
-//             url: `/api/courses/${id}`
-//         })
-//     )
-// }
+export const deleteCourse = (id) => {
+    return(
+        $.ajax({
+            method: "DELETE",
+            url: `/api/courses/${id}`
+        })
+    )
+}
