@@ -24,6 +24,7 @@ class Api::CoursesController < ApplicationController
       render "api/courses/show"
     else
       render json: @course.errors.full_messages, status: 422
+    end
 
   end
 
@@ -35,10 +36,12 @@ class Api::CoursesController < ApplicationController
     else
       render json: @course.errors.full_messages, status: 422
     end
+
   end
 
   private 
   def course_params
-      params.require(:course).permit(:name,:user_id)
+      params.require(:course).permit(:name,:author_id)
   end
+
 end
