@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
 import {
-    newCourse, allCourses, showCourse, updateCourse,
-deleteCourse} from "./util/course"
+allCourses,
+showCourse,
+newCourse,
+updateCourse,
+deleteCourse} from "./actions/course"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -31,9 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root")
     // test start here
         window.dispatch = store.dispatch
-        window.newCourse = newCourse
+
         window.allCourses = allCourses
         window.showCourse = showCourse
+        window.newCourse = newCourse
         window.updateCourse = updateCourse
         window.deleteCourse = deleteCourse
     // test ends here

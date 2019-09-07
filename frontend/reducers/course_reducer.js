@@ -10,14 +10,13 @@ const CourseReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_ALL_COURSES:
-            debugger;
-            return state;
+            return action.courses;
         case RECEIVE_COURSE:
-            debugger;
-            return state;
+            return Object.assign({}, state, {[action.course.id]: action.course});
         case DELETE_COURSE:
-            debugger;
-            return state;
+            const newState =  Object.assign({}, state);
+            delete newState[action.courseId]
+            return newState;
     
         default:
             return state;
