@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Footer from "../footer/footer"
 import Switch from "../swcher/switch"
 
-// debugger
 class Splash extends React.Component{
     constructor(props){
         super(props)

@@ -6,7 +6,6 @@ import {signOut} from "../../actions/session"
 const mapStateToProps = (state,ownProps) => {
 
     const currentUser = state.session.currentUser;
-    // debugger
     return ({
         currentUser,
         history: ownProps.history.location.pathname

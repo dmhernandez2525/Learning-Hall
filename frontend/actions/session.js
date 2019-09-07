@@ -7,7 +7,6 @@ export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 
 export const signUp = (user) => (dispatch) => {
-    // debugger
     return(
         APIuser.signUp(user).then(user => dispatch({
             type: RECEIVE_CURRENT_USER,

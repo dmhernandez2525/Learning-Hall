@@ -12,9 +12,8 @@ class Hall extends React.Component{
     }
 
     render(){
-        debugger
         const courses = this.props.courses.map(course => (
-            <CourseLink course={course}  />)
+            <CourseLink key={course.id} course={course}  />)
         )
             
         return(

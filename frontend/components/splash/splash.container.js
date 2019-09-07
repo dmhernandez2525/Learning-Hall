@@ -11,5 +11,4 @@ const mapDispatchToProps = (dispatch) => {
     
     })
 }
-// debugger
 export default connect(mapStateToProps,mapDispatchToProps)(Splash)
