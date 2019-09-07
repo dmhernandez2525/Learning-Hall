@@ -14,12 +14,12 @@ class Api::CoursesController < ApplicationController
   end
   
   def show
-    @course = Course.find(course_params[:id])
+    @course = Course.find(params[:id])
     render "api/courses/show"
   end
 
   def update
-    @course = Course.find(course_params[:id])
+    @course = Course.find(params[:id])
     if @course.update(course_params)
       render "api/courses/show"
     else
@@ -29,7 +29,7 @@ class Api::CoursesController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(course_params[:id])
+    @course = Course.find(params[:id])
 
     if @course.distroy
       render json: course_params[:id]

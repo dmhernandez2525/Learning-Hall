@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
-import { newCourse, allCourses} from "./util/course"
+import { newCourse, allCourses, showCourse} from "./util/course"
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.dispatch = store.dispatch
         window.newCourse = newCourse
         window.allCourses = allCourses
+        window.showCourse = showCourse
     // test ends here
 
     //seting up react to start its initialize proses with a prop of store and being put into

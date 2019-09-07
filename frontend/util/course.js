@@ -6,14 +6,14 @@ export const  allCourses = () => {
         })
     )
 }
-// export const  showCourse = (id) => {
-//     return(
-//         $.ajax({
-//             method: "GET",
-//             url: `/api/courses/${id}`
-//         })
-//     )
-// }
+export const  showCourse = (id) => {
+    return(
+        $.ajax({
+            method: "GET",
+            url: `/api/courses/${id}`
+        })
+    )
+}
 
 export const  newCourse = (course) => {
     return(
