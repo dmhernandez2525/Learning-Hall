@@ -1,4 +1,5 @@
 import React from "react";
+import CourseLink from "../course/courseLink"
 
 
 class Hall extends React.Component{
@@ -13,7 +14,7 @@ class Hall extends React.Component{
     render(){
         debugger
         const courses = this.props.courses.map(course => (
-            <li> {course.id} {course.name} </li>)
+            <CourseLink course={course}  />)
         )
             
         return(
