@@ -8,5 +8,4 @@ class CreateCourses < ActiveRecord::Migration[5.2]
     end
     add_index :courses, :name, unique: true
     end
-  end
 end
