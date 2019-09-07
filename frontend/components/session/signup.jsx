@@ -3,17 +3,14 @@ import { Link } from "react-router-dom";
 import Footer from "../footer/footer"
 
 
-// debugger
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.user;
         this.handleSumbit = this.handleSumbit.bind(this);
-        // debugger
     };
 
     handleInput(type) {
-        // debugger
         return (e) => {
             this.setState({ [type]: e.target.value });
         };
@@ -24,7 +21,6 @@ class SignUp extends React.Component {
 
     handleSumbit(event) {
         event.preventDefault();
-        // debugger
 
         this.props.signUp(this.state)
         // .then(this.props.history.push("/hall"))
@@ -39,7 +35,6 @@ class SignUp extends React.Component {
             )
         })
 
-        debugger
         return (
             <div className="sign_up_form">
 

@@ -16,7 +16,6 @@ const Auth = ({loggedIn, path, component: Component}) => {
         <Route 
             path={path}
             render={props =>{
-                // debugger
                 return(
                     loggedIn ? <Redirect to="/" /> : <Component {...props}/>
                 )
@@ -31,7 +30,6 @@ const Protectd = ({loggedIn, path , component: Component}) => {
         <Route
             path={path}
             render={props => {
-                debugger
                 return(
                     loggedIn ? <Component {...props} /> : <Redirect to="/signup"/>
                 )

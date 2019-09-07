@@ -6,7 +6,6 @@ import Footer from "../footer/footer"
 
 class SignIn extends React.Component{
     constructor(props){
-        // debugger
         super(props)
         this.state = this.props.user
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -15,7 +14,6 @@ class SignIn extends React.Component{
         this.prettyDemoUser = this.prettyDemoUser.bind(this);
     }
     handleInput(){
-        // debugger
         return e => this.setState({ username: e.target.value})
     }
 
@@ -23,13 +21,11 @@ class SignIn extends React.Component{
         this.props.clearErrors()
     }
     handleSubmit(event){
-        // debugger
         event.preventDefault();
         this.props.signIn(this.state)
         // .this.props.history.push("/hall")
     }
     // handleDemo(event){
-    //     // debugger
     //     event.preventDefault();
     //     this.props.signIn({username: "user100",password: "hunter2"})
     //     // .this.props.history.push("/hall")
@@ -73,7 +69,6 @@ class SignIn extends React.Component{
 
 
     render(){
-        // debugger
 
         let errors = this.props.errors.map((e,i) => {
             return(

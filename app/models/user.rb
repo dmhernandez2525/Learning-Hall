@@ -1,7 +1,24 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string           not null
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  preferred_name  :string
+#  user_role       :string           not null
+#  pronunciation   :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
     validates :username, :email, :session_token, :password_digest , :user_role, presence: true
     validates :username, :email, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
+    has_many :courses
 
       after_initialize :ensure_session_token
       attr_reader :password
