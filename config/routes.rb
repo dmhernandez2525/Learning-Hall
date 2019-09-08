@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create, :update,:destroy ]
       resources :courses, only: [:index, :update, :create, :destroy, :show]
       resources :subjects, only: [:index, :update, :create, :destroy, :show]
+      resources :tasks, only: [:index, :update, :create, :destroy, :show]
     end
 
  
