@@ -26,17 +26,22 @@ class DropDownNav extends React.Component {
     // }
 
     render() {
-        let openNav = () => (
+        let openNav = () => {
 
-            document.getElementById("mySidenav").style.width = "250px"
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("Main").classList.remove("Main");
+            document.getElementById("Main").classList.add("move");
 
-        );
 
-        let closeNav = () => (
+        };
+
+        let closeNav = () => {
 
             document.getElementById("mySidenav").style.width = "0"
+            document.getElementById("Main").classList.add("Main");
+            document.getElementById("Main").classList.remove("move");
 
-        );
+        };
         
         const courses = this.props.courses.map(course => (
             <CourseLink key={course.id} course={course} />)

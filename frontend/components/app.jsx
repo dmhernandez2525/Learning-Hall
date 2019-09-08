@@ -14,7 +14,7 @@ const App = ({store}) => {
 
     // <h1>Hello World</h1>
         return(
-            <div className="Main">
+            <div id="Main" className="Main">
                 <Provider store={store}>
                     <HashRouter>
                         <Route path="/" component={NavBarContainer}/>
