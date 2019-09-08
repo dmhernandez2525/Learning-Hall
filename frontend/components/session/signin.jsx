@@ -42,13 +42,13 @@ class SignIn extends React.Component{
         document.getElementById('username-input').focus();
         for (let i = 1; i <= demoUser.username.length; i++) {
             this.setState({ username: demoUser.username.substr(0, i) });
-            await sleep(250);
+            await sleep(200);
         }
-        await sleep(250);
+        await sleep(200);
         document.getElementById('password-input').focus();
         for (let i = 1; i <= demoUser.password.length; i++) {
             this.setState({ password: demoUser.password.substr(0, i) });
-            await sleep(250);
+            await sleep(200);
         }
         await sleep(500);
         document.getElementById('session-submit-btn').click();
