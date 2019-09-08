@@ -28,42 +28,33 @@ class Hall extends React.Component{
             
         return(
             <div className="color1"> 
-                {/* <h2>{`Welcome ${this.props.user.username} `}</h2>
-            <h2>{`LET THE LEARNING BEGIN `}</h2> */}
-                <nav>
-                    <DropDown />
-                </nav>
-                <header className="hall_nav">
-{/* 
-                        <ul></ul>
-                        <h2>somthing soon</h2>
-                        <ul>
-                            <li>
-                                <h1>links</h1>
-                                <a href="1"></a>
-                            </li>
-                            <h2>name of task</h2> */}
-                            {/* <ul> */}
-                                <button>Learn</button>
-                                <button><Link to="/profile"> Profile </Link></button>
-                                <button>mentore</button>
-                                <button>slack</button>
-                                <button>comunitty</button>
-                            {/* </ul>
-                        </ul> */}
+                <nav className="the_nav">
+                <DropDown />
+
+                <header className="hall_nav" >
+                    <section className="color2">
+                        <button>Learn</button>
+                        <button><Link to="/profile"> Profile </Link></button>
+                        <button>mentore</button>
+                        <button>slack</button>
+                        <button>comunitty</button>
+                    </section>
 
                 </header>
+                </nav>
+
                 <section className='main_task_part'>
                     <h1>LOAD THE TASK IN HERE</h1>
                     {text}
-                    <section>
+                    <section className="color3">
                         <h1>did u find this helpfull?</h1>
                         <ul>
-                                <li type="checkbox" >yes</li>
-                                <li type="checkbox" >no</li>
+                                <li  ><input type="checkbox" name="help"/> Yes</li>
+
+                            <li  ><input type="checkbox" name="help"/> No </li>
                         </ul>
                     </section>
-                    <div>
+                    <div className="color4">
                         <button>subbmit project</button>
                         <button>download project</button>
                         <h1>some text</h1>
