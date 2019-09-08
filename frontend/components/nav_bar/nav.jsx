@@ -6,65 +6,12 @@ import { Link } from "react-router-dom"
 const NavBar = ({ currentUser, signOut, history }) => {
 
 
-
-
-
-
-    
-    let openNav = ()  => (
-
-        document.getElementById("mySidenav").style.width = "250px"
-    
-        );
-
-    let closeNav = ()  => (
-
-        document.getElementById("mySidenav").style.width = "0"
-    
-        );
-
-
-
-
-
-
-
-
-
     let display;
     let logo;
     if (currentUser) display = (
         <div>
-            <form onSubmit={e => e.preventDefault}>
-                <p>Hello {currentUser.username}</p>
-                <button onClick={() => signOut()}> Sign Out</button>
-
-
-
-
-
-
-
-                {/* here */}
-
-                <div id="mySidenav" className="sidenav">
-
-                    {/* <a href="javascript:void(0)" className="closebtn" onClick={e => openNav()}>&times;</a> */}
-                    
-                </div>
-                
-                <div  onClick={e => openNav()}> open </div>
-
-                {/* here */}
-
-
-
-
-
-
-
-
-            </form>
+            <p>Hello {currentUser.username}</p>
+            <button onClick={() => signOut()}> Sign Out</button>
         </div>
     )
     else if ( history !== "/") display = (        
@@ -96,21 +43,6 @@ const NavBar = ({ currentUser, signOut, history }) => {
                 </section>
         )
     }
-    
-        
-    // }
-    // else if (history === "/signup" || history === "/signIn") display =  (
-    //     <div>
-    //         {/* <div className="g-signin2" data-onsuccess="onSignIn"></div> */}
-    //     </div>
-    //     ) 
-    // else if (history === "/") display = (
-    //         <div>
-                
-    //         </div>
-    //     )
-    // else display =
-    //     // (<Link className="main-bottion-black" to="/signIn">logIn</Link>)
 
     return (
         <div>
