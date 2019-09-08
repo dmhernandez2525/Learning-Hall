@@ -1,4 +1,5 @@
 import React from "react";
+import SubjectLink from "../subject/subjectLink"
 import CourseLink from "../course/courseLink"
 
 
@@ -9,11 +10,18 @@ class Hall extends React.Component{
     }
     componentDidMount(){
         this.props.allCourses()
+        debugger
+        this.props.allSubjects()
     }
 
     render(){
+
         const courses = this.props.courses.map(course => (
             <CourseLink key={course.id} course={course}  />)
+        )
+
+        const subjects = this.props.subjects.map(subject => (
+            <SubjectLink key={subject.id} subject={subject}  />)
         )
             
         return(
@@ -22,6 +30,7 @@ class Hall extends React.Component{
             <h2>{`LET THE LEARNING BEGIN `}</h2>
                 <ul>
                     {courses}
+                    {subjects}
                 </ul>
 
             </div>

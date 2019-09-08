@@ -11,7 +11,7 @@ export const newSubject = (subject) => {
 };
 
 
-export const allSubject = () => {
+export const allSubjects = () => {
     return (
         $.ajax({
             method: "GET",
