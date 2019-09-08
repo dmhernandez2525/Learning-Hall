@@ -1,5 +1,5 @@
 import React from "react";
-import CourseLink from "../course/courseLink"
+import DropDown from "../dropDownNav/dropDownNavContainer"
 
 
 class Hall extends React.Component{
@@ -7,22 +7,16 @@ class Hall extends React.Component{
         super(props)
         this.state = this.props.user
     }
-    componentDidMount(){
-        this.props.allCourses()
-    }
 
     render(){
-        const courses = this.props.courses.map(course => (
-            <CourseLink key={course.id} course={course}  />)
-        )
+
             
         return(
             <div>
                 <h2>{`Welcome ${this.props.user.username} `}</h2>
             <h2>{`LET THE LEARNING BEGIN `}</h2>
-                <ul>
-                    {courses}
-                </ul>
+            <DropDown/>
+ 
 
             </div>
         )

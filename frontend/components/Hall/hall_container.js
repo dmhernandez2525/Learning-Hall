@@ -1,16 +1,10 @@
 import {connect} from "react-redux"
 import Hall from "./hall"
-import {allCourses} from "../../actions/course"
+
 const mapStateToProps = (state) => {
     return({
-        user: state.session.currentUser,
-        courses: Object.values(state.entities.courses)
-    })
-}
-const mapDispatchToProps = (dispatch) => {
-    return({
-        allCourses: () => dispatch(allCourses())
+        user: state.session.currentUser
     })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hall)
+export default connect(mapStateToProps,null)(Hall)

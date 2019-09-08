@@ -4,8 +4,8 @@ export const RECEIVE_SUBJECT = "RECEIVE_SUBJECT";
 export const DELETE_SUBJECT = "DELETE_SUBJECT";
 
 
-export const allSubject = () => dispatch => (
-    APIsubject.allSubject().then(subjects => dispatch({
+export const allSubjects = () => dispatch => (
+    APIsubject.allSubjects().then(subjects => dispatch({
         type: RECEIVE_ALL_SUBJECTS,
         subjects
     }))
