@@ -27,7 +27,7 @@ class Hall extends React.Component{
 
             
         return(
-            <div className="color1"> 
+            <div id="Main" className="main-hall-as color1" > 
                 <nav className="the_nav">
                 <DropDown />
 

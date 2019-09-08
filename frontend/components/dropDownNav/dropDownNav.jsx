@@ -29,7 +29,7 @@ class DropDownNav extends React.Component {
         let openNav = () => {
 
             document.getElementById("mySidenav").style.width = "250px";
-            document.getElementById("Main").classList.remove("Main");
+            document.getElementById("Main").classList.remove("main-hall-as");
             document.getElementById("Main").classList.add("move");
 
 
@@ -38,7 +38,7 @@ class DropDownNav extends React.Component {
         let closeNav = () => {
 
             document.getElementById("mySidenav").style.width = "0"
-            document.getElementById("Main").classList.add("Main");
+            document.getElementById("Main").classList.add("main-hall-as");
             document.getElementById("Main").classList.remove("move");
 
         };
