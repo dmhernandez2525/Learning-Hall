@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
-import { newSubject } from "./util/subject"
+
 
 
 
@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // test start here
         window.dispatch = store.dispatch
 
-    window.newSubject = newSubject
     // test ends here
 
     //seting up react to start its initialize proses with a prop of store and being put into
