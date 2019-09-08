@@ -28,7 +28,7 @@ export const updateTask = (task) => (
     })
 )
 
-export const updateTask = (id) => (
+export const deleteTask = (id) => (
     $.ajax({
         method: "DELETE",
         url: `/api/tasks/${id}`

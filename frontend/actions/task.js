@@ -36,8 +36,8 @@ export const updateTask = (task) => dispatch => (
 );
 
 
-export const updateTask = (id) => dispatch => (
-    APItask.updateTask(id).then(taskId => dispatch({
+export const deleteTask = (id) => dispatch => (
+    APItask.deleteTask(id).then(taskId => dispatch({
         type: DELETE_TASK,
         taskId
     }))
