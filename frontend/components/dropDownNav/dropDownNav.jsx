@@ -10,11 +10,20 @@ class DropDownNav extends React.Component {
         super(props)
     }
     componentDidMount() {
-        s
         this.props.allCourses()
         this.props.allSubjects()
         this.props.allTasks()
+        // add a sleep in app/controllers/api/tasks_controller.rb
+        //on line 4
+
     }
+    // async down(){
+       
+    //     this.props.allCourses()
+    //     this.props.allSubjects()
+    //     this.props.allTasks()
+    //     await sleep(3);
+    // }
 
     render() {
         let openNav = () => (
@@ -42,6 +51,9 @@ class DropDownNav extends React.Component {
         )
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
+            
+            document.body.classList.remove("background-loading")
+            
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
@@ -56,7 +68,14 @@ class DropDownNav extends React.Component {
                 </div>
             ) 
         } else {
-            return <Loading/>
+            document.body.classList.add("background-loading")
+
+            return(
+
+                 <Loading/>
+
+            )
+
         } 
 
     }
