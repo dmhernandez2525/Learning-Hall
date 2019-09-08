@@ -1,5 +1,6 @@
 import React from "react";
 import HallContainner from "./Hall/hall_container"
+import Profile from "./profile/profile"
 import SplashContainner from "./splash/splash.container"
 import SignUpContainer from "./session/signup_container";
 import SignInContainer from "./session/signin_container";
@@ -22,7 +23,13 @@ const App = ({store}) => {
                             <AuthRoute path="/signIn" component={SignInContainer}/>
                             <AuthRoute path="/" component={SplashContainner}/>
                         </Switch>
+
+
+                        <Switch>
+                            <ProtectdRoute path="/profile" component={Profile}/>
                             <ProtectdRoute path="/" component={HallContainner}/>
+                        </Switch>
+
                     </HashRouter>
                 </Provider>
             </div>

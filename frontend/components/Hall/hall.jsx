@@ -1,5 +1,7 @@
 import React from "react";
 import DropDown from "../dropDownNav/dropDownNavContainer"
+import {Link} from "react-router-dom"
+
 
 
 class Hall extends React.Component{
@@ -25,7 +27,7 @@ class Hall extends React.Component{
 
             
         return(
-            <div>
+            <div className="color1"> 
                 {/* <h2>{`Welcome ${this.props.user.username} `}</h2>
             <h2>{`LET THE LEARNING BEGIN `}</h2> */}
                 <nav>
@@ -43,7 +45,7 @@ class Hall extends React.Component{
                             <h2>name of task</h2> */}
                             {/* <ul> */}
                                 <button>Learn</button>
-                                <button>Profile</button>
+                                <button><Link to="/profile"> Profile </Link></button>
                                 <button>mentore</button>
                                 <button>slack</button>
                                 <button>comunitty</button>
