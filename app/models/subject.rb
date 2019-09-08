@@ -18,5 +18,7 @@ class Subject < ApplicationRecord
         class_name: :User,
         foreign_key: :authorId
 
-    belongs_to :course
+    belongs_to :course,
+        class_name: :Course,
+        foreign_key: :courseId
 end

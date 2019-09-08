@@ -15,7 +15,7 @@ Course.create({name: 'demo course 4', author_id: 1})
 Course.create({name: 'demo course 5', author_id: 1})
 Course.create({name: 'demo course 6', author_id: 1})
 
-Subject.create({name: 'demo subject 1', authorId: 1, courseId: 1})
+Subject.create({name: 'demo subject 100', authorId: 1, courseId: 1})
 Subject.create({name: 'demo subject 2', authorId: 1, courseId: 2})
 Subject.create({name: 'demo subject 3', authorId: 1, courseId: 3})
 Subject.create({name: 'demo subject 4', authorId: 1, courseId: 4})
