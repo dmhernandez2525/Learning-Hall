@@ -50,10 +50,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
                 <div id="mySidenav" className="sidenav">
 
                     {/* <a href="javascript:void(0)" className="closebtn" onClick={e => openNav()}>&times;</a> */}
-                    <Link to="/"> About </Link>
-                    <Link to="/"> Services </Link>
-                    <Link to="/"> Clients </Link>
-                    <Link to="/"> Contact </Link>
+                    
                 </div>
                 
                 <div  onClick={e => openNav()}> open </div>

@@ -13,6 +13,17 @@
  *= require_tree .
  *= require_self
  */
+ .task-body{
+     display: none;
+ }
+ .task-body-click{
+
+ }
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
 
 body , html{
     size: 100%
