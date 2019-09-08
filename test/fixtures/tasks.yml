@@ -8,7 +8,7 @@
 #  duration   :integer          not null
 #  body       :text             not null
 #  author_id  :integer          not null
-#  module_id  :integer          not null
+#  subject_id :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

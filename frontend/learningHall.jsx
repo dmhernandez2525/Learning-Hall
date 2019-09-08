@@ -2,6 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
+import {
+newTask,
+allTasks,
+showTask,
+updateTask,
+deleteTask} from "./actions/task"
 
 
 
@@ -31,6 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root")
     // test start here
         window.dispatch = store.dispatch
+        window.showTask = showTask
+        window.updateTask = updateTask
 
 
     // test ends here

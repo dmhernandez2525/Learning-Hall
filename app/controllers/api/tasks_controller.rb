@@ -1,47 +1,48 @@
 class Api::TasksController < ApplicationController
   
   def index
-    @tasks = Tasks.all
+    @tasks = Task.all
     render "api/tasks/index"
   end
 
   def create
-    @tasks = Tasks.new(tasks_params)
-    if @tasks.save
+    @task = Task.new(task_params)
+    if @task.save
       render "api/tasks/show"
     else
-      render json: @tasks.errors.full_messages,status: 404
+
+      render json: @task.errors.full_messages,status: 404
     end
   end
   
   def show
-    @tasks = Tasks.find(params[:id])
+    @task = Task.find(params[:id])
     render "api/tasks/show"
   end
 
   def update
-    @tasks = Tasks.find(params[:id])
-    if @tasks.update(tasks_params)
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
       render "api/tasks/show"
     else
-      render json: @tasks.errors.full_messages, status: 422
+      render json: @task.errors.full_messages, status: 422
     end
 
   end
 
   def destroy
-    @tasks = Tasks.find(params[:id])
+    @task = Task.find(params[:id])
 
-    if @tasks.destroy
+    if @task.destroy
       render json: params[:id]
     else
-      render json: @tasks.errors.full_messages, status: 422
+      render json: @task.errors.full_messages, status: 422
     end
 
   end
 
   private 
-  def tasks_params
-      params.require(:task).permit(:name, :authorId, :courseId, :completed, :duration, :body)
+  def task_params
+      params.require(:task).permit(:name, :author_id, :subject_id, :completed, :duration, :body)
   end
 end
