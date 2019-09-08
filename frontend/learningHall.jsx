@@ -6,6 +6,7 @@ import configureStore from './store/store';
 
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
     //useing this logic to bootstrap thhe user in from the backend
     let preloadedState = undefined;
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root")
     // test start here
         window.dispatch = store.dispatch
+
 
     // test ends here
 
