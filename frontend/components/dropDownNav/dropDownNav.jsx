@@ -53,23 +53,34 @@ class DropDownNav extends React.Component {
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
             
             document.body.classList.remove("background-loading")
-            
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
                         <a href="javascript:void(0)" className="closebtn" onClick={e => closeNav()}>&times;</a>
                         <div className="drop-down">
-                            <div className="col"> {courses} </div>
-                            <div className="col"> {subjects} </div>
-                            <div className="col"> {tasks} </div>
+                            
+                            <section>
+                                <h5>cureent course</h5>
+                                <div>
+                                    <h3>subject name</h3>
+                                    <button>switch</button>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div className="col"> {courses} </div>
+                                <div className="col"> {subjects} </div>
+                                <div className="col"> {tasks} </div>
+                            </section>
+
                         </div>
                     </div>
                     <div onClick={e => openNav()}> open </div>
+
                 </div>
             ) 
         } else {
             document.body.classList.add("background-loading")
-
             return(
 
                  <Loading/>
@@ -82,3 +93,6 @@ class DropDownNav extends React.Component {
 
 }
 export default DropDownNav
+
+
+

@@ -587,3 +587,16 @@ td:hover {
         font-size: 18px;
     }
 }
+
+
+
+.hall_nav{
+    display: flex;
+    justify-content: flex-end;
+}
+.main_task_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
