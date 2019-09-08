@@ -14,7 +14,7 @@ class Subject < ApplicationRecord
     validates :name, :courseId, :authorId, presence: true
     validates :name, uniqueness: true
     
-    has_many :tasks
+    # has_many :tasks
 
     belongs_to :author,
         class_name: :User,

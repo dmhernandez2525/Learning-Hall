@@ -5,9 +5,9 @@ export const DELETE_TASK = "DELETE_TASK";
 
 
 export const allTasks = () => dispatch => (
-    APIsubject.allTasks().then(subjects => dispatch({
+    APItask.allTasks().then(tasks => dispatch({
         type: RECEIVE_ALL_TASKS,
-        subjects
+        tasks
     }))
 );
 
