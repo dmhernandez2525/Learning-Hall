@@ -2,12 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
-import {
-allCourses,
-showCourse,
-newCourse,
-updateCourse,
-deleteCourse} from "./actions/course"
+
+
+
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,11 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // test start here
         window.dispatch = store.dispatch
 
-        window.allCourses = allCourses
-        window.showCourse = showCourse
-        window.newCourse = newCourse
-        window.updateCourse = updateCourse
-        window.deleteCourse = deleteCourse
+
     // test ends here
 
     //seting up react to start its initialize proses with a prop of store and being put into
