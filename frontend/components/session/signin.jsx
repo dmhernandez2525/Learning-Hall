@@ -35,20 +35,20 @@ class SignIn extends React.Component{
     async prettyDemoUser(e) {
         e.preventDefault();
         const demoUser = {
-            username: 'user100',
+            username: 'demoUser',
             password: 'hunter2'
         };
         const sleep = ms => new Promise(res => setTimeout(res, ms));
         document.getElementById('username-input').focus();
         for (let i = 1; i <= demoUser.username.length; i++) {
             this.setState({ username: demoUser.username.substr(0, i) });
-            await sleep(50);
+            await sleep(250);
         }
-        await sleep(50);
+        await sleep(250);
         document.getElementById('password-input').focus();
         for (let i = 1; i <= demoUser.password.length; i++) {
             this.setState({ password: demoUser.password.substr(0, i) });
-            await sleep(50);
+            await sleep(250);
         }
         await sleep(500);
         document.getElementById('session-submit-btn').click();
