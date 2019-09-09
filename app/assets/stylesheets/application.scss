@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ 
  .task-body{
      display: none;
  }
@@ -28,6 +30,7 @@
 body , html{
     size: 100%
 }
+
 /* .hero{
     position: relative;
     height: 100vh;
@@ -241,9 +244,21 @@ body , html{
      background-color: gray;
 
  } */
- .main{
-     display: flex;
-     width: 100%
+//  .main{
+//      display: flex;
+//      width: 100%
+//  }
+.main-hall-as{
+    position: relative;
+    left: 0;
+    // display: flex;
+    width: 100%;
+    transition: all .5s ;
+ }
+ .move{
+    position: relative;
+    transition: all .5s ;
+    left: 250px;
  }
  .buttion{
      height: 20%;
@@ -286,10 +301,6 @@ body , html{
     align-items: center;
     justify-content: flex-start;
 }
-
-
-
-
 
 .sec1 , .sec2{
     background-color: white,
@@ -472,74 +483,9 @@ td:hover {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .background-loading{
     background-color: #818181
 }
-
-
-
-
-
-
-
-
-
 
 
 /* nav */
@@ -563,7 +509,7 @@ td:hover {
     font-size: 25px;
     color: #818181;
     display: block;
-    transition: 0.3s;
+    transition: 0.5s;
 }
 
 .sidenav a:hover {
@@ -586,4 +532,17 @@ td:hover {
     .sidenav a {
         font-size: 18px;
     }
+}
+
+
+
+.hall_nav{
+    display: flex;
+    justify-content: flex-end;
+}
+.main_task_part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

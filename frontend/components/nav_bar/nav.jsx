@@ -7,14 +7,23 @@ const NavBar = ({ currentUser, signOut, history }) => {
 
 
     let display;
-    let logo;
-    if (currentUser) display = (
-        <div>
-            <p>Hello {currentUser.username}</p>
-            <button onClick={() => signOut()}> Sign Out</button>
-        </div>
-    )
-    else if ( history !== "/") display = (        
+    if (currentUser ) {
+        if (history === "/") {
+                    display = (
+            <div></div>
+        )
+        }
+
+        else {
+            display = (
+            <div>
+                <p>Hello {currentUser.username}</p>
+                <button onClick={() => signOut()}> Sign Out</button>
+            </div>
+            )}
+
+    }
+    else if (history !== "/" ) display = (        
         <header className="nav-bar">
             <Link className="logo" to="/" ><img src={window.logoUrl} alt="Learning Hall Logo"></img></Link>
             {display}

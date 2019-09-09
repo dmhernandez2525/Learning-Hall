@@ -3,6 +3,7 @@ import DropDownNav from "./dropDownNav"
 import {allCourses} from "../../actions/course"
 import {allSubjects} from "../../actions/subject"
 import {allTasks} from "../../actions/task"
+import {receiveTask} from "../../actions/session"
 const mapStateToProps = (state) => {
     return({
         courses: Object.values(state.entities.courses),
@@ -14,7 +15,8 @@ const mapDispatchToProps = (dispatch) => {
     return({
         allCourses: () => dispatch(allCourses()),
         allSubjects: () => dispatch(allSubjects()),
-        allTasks: () => dispatch(allTasks())
+        allTasks: () => dispatch(allTasks()),
+        receiveTask: (task) => dispatch(receiveTask(task))
     })
 }
 

@@ -26,17 +26,22 @@ class DropDownNav extends React.Component {
     // }
 
     render() {
-        let openNav = () => (
+        let openNav = () => {
 
-            document.getElementById("mySidenav").style.width = "250px"
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("Main").classList.remove("main-hall-as");
+            document.getElementById("Main").classList.add("move");
 
-        );
 
-        let closeNav = () => (
+        };
+
+        let closeNav = () => {
 
             document.getElementById("mySidenav").style.width = "0"
+            document.getElementById("Main").classList.add("main-hall-as");
+            document.getElementById("Main").classList.remove("move");
 
-        );
+        };
         
         const courses = this.props.courses.map(course => (
             <CourseLink key={course.id} course={course} />)
@@ -47,29 +52,40 @@ class DropDownNav extends React.Component {
         )
 
         const tasks = this.props.tasks.map(task => (
-            <TaskLink key={task.id} task={task} />)
+            <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} />)
         )
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
             
             document.body.classList.remove("background-loading")
-            
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
                         <a href="javascript:void(0)" className="closebtn" onClick={e => closeNav()}>&times;</a>
                         <div className="drop-down">
-                            <div className="col"> {courses} </div>
-                            <div className="col"> {subjects} </div>
-                            <div className="col"> {tasks} </div>
+                            
+                            <section>
+                                <h5>cureent course</h5>
+                                <div>
+                                    <h3>subject name</h3>
+                                    <button>switch</button>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div className="col"> {courses} </div>
+                                <div className="col"> {subjects} </div>
+                                <div className="col"> {tasks} </div>
+                            </section>
+
                         </div>
                     </div>
                     <div onClick={e => openNav()}> open </div>
+
                 </div>
             ) 
         } else {
             document.body.classList.add("background-loading")
-
             return(
 
                  <Loading/>
@@ -82,3 +98,6 @@ class DropDownNav extends React.Component {
 
 }
 export default DropDownNav
+
+
+
