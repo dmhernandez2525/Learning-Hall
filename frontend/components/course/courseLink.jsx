@@ -18,10 +18,10 @@ class CourseLink extends React.Component{
     }    
     
     render(){
-        let Mysubjects = this.subjects.map(subject => {
+        let Mysubjects = this.subjects.map((subject )=> {
             if (subject.courseId === this.course.id) {
                 return (
-                    <li><SubjectLink key={subject.id} subject={subject} tasks={this.tasks} /></li>
+                    <li><SubjectLink key={`subject.id${subject.name}`} subject={subject} tasks={this.tasks} receiveTask={this.props.receiveTask}  /></li>
                 )
             } 
 
@@ -37,6 +37,7 @@ class CourseLink extends React.Component{
                 </div>
             </div>  
         )  
+        
 
     }
 
