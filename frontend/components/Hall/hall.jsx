@@ -7,18 +7,36 @@ import {Link} from "react-router-dom"
 class Hall extends React.Component{
     constructor(props){
         super(props)
-        this.openNav = this.openNav.bind(this)
     }
 
-    openNav(){
+    openCloseNav() {
+        const stateNav = document.getElementById("mySidenav")
+        debugger
+        let openNav = () => {
 
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("Main").classList.remove("main-hall-as");
-        document.getElementById("Main").classList.add("move");
+            document.getElementById("mySidenav").classList.remove("mySidenav")
+            document.getElementById("mySidenav").classList.add("sidenav-togle")
+            document.getElementById("Main").classList.remove("main-hall-as");
+            document.getElementById("Main").classList.add("move");
+        };
 
+        let closeNav = () => {
+            document.getElementById("mySidenav").classList.remove("sidenav-togle")
+            document.getElementById("mySidenav").classList.add("sidenav")
+            document.getElementById("Main").classList.add("main-hall-as");
+            document.getElementById("Main").classList.remove("move");
 
-    };
-    
+        };
+        if (stateNav.className === "sidenav") {
+            openNav()
+
+        } else {
+            closeNav()
+
+        }
+
+    }
+
     render(){
 
         let text;
@@ -47,7 +65,7 @@ class Hall extends React.Component{
 
                 <header className="hall_nav" >
                     <section className="color2">
-                        <button onClick={() => this.openNav()}>Learn</button>
+                        <button onClick={() => this.openCloseNav()}>Learn</button>
                         <button><Link to="/profile"> Profile </Link></button>
                         <button>mentore</button>
                         <button>slack</button>
@@ -60,7 +78,7 @@ class Hall extends React.Component{
                 <section className='main_task_part'>
                     <div>
 
-                      <h1>LOAD THE TASK IN HERE</h1>
+                            <h1>{this.props.currentTask.name}</h1>
                         <div className="main-hall-task-text" >{text}</div>  
 
                     </div>

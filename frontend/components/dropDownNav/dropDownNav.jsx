@@ -18,7 +18,6 @@ class DropDownNav extends React.Component {
 
     openCloseNav(){
         const stateNav = document.getElementById("mySidenav")
-        debugger
         let openNav = () => {
 
             document.getElementById("mySidenav").classList.remove("mySidenav")
@@ -67,16 +66,16 @@ class DropDownNav extends React.Component {
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
-                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
-                        <div className="drop-down">
-                            
-                            <section>
+                            <section  className="nav-con-top">
                                 <h5>cureent course</h5>
-                                <div>
+                                <div className="nav-buttion-sub">
                                     <h3>subject name</h3>
                                     <button>switch</button>
                                 </div>
                             </section>
+                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
+                        <div className="drop-down">
+                            
 
                             <section>
                                 <div className="col"> {courses} </div>
@@ -105,9 +104,9 @@ class DropDownNav extends React.Component {
                         {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
                         <div className="drop-down " >
 
-                            <section>
+                            <section className="nav-con-top">
                                 <h5>cureent course</h5>
-                                <div>
+                                <div className="nav-buttion-sub">
                                     <h3>subject name</h3>
                                     <button>switch</button>
                                 </div>
