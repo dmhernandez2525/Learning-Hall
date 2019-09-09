@@ -13,33 +13,41 @@ class DropDownNav extends React.Component {
         this.props.allCourses()
         this.props.allSubjects()
         this.props.allTasks()
-        // add a sleep in app/controllers/api/tasks_controller.rb
-        //on line 4
 
     }
-    // async down(){
-       
-    //     this.props.allCourses()
-    //     this.props.allSubjects()
-    //     this.props.allTasks()
-    //     await sleep(3);
-    // }
 
-    render() {
+    openCloseNav(){
+        const stateNav = document.getElementById("mySidenav")
+        debugger
         let openNav = () => {
 
-            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").classList.remove("mySidenav")
+            document.getElementById("mySidenav").classList.add("sidenav-togle")
             document.getElementById("Main").classList.remove("main-hall-as");
             document.getElementById("Main").classList.add("move");
         };
 
         let closeNav = () => {
-
-            document.getElementById("mySidenav").style.width = "0"
+            document.getElementById("mySidenav").classList.remove("sidenav-togle")
+            document.getElementById("mySidenav").classList.add("sidenav")
             document.getElementById("Main").classList.add("main-hall-as");
             document.getElementById("Main").classList.remove("move");
 
         };
+        if (stateNav.className === "sidenav") {
+            openNav()
+            
+        } else {
+            closeNav()
+            
+        }
+
+    }
+
+
+    render() {
+
+
         
         const courses = this.props.courses.map(course => (
             <CourseLink key={course.id} course={course} />)
@@ -59,7 +67,7 @@ class DropDownNav extends React.Component {
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
-                        <a href="javascript:void(0)" className="closebtn" onClick={e => closeNav()}>&times;</a>
+                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
                         <div className="drop-down">
                             
                             <section>
@@ -78,7 +86,8 @@ class DropDownNav extends React.Component {
 
                         </div>
                     </div> 
-                    <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
+                    {/* <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div> */}
+                    <div className="open_bar" onClick={e => this.openCloseNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
 
                 </div>
             ) 
@@ -93,7 +102,7 @@ class DropDownNav extends React.Component {
                     <div id="mySidenav" className="sidenav">
             {/* {document.getElementById("mySidenav").style.backgroundColor = "gray"} */}
             
-                        <a href="javascript:void(0)" className="closebtn" onClick={e => closeNav()}>&times;</a>
+                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
                         <div className="drop-down " >
 
                             <section>

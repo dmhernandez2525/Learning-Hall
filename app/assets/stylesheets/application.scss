@@ -522,6 +522,21 @@ td:hover {
     padding-top: 60px;
     overflow: scroll;
 }
+
+.sidenav-togle {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color:white;
+    // border: 5px solid black;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    overflow: scroll;
+}
 /* nav */
 .sidenav1 {
     height: 100%;
