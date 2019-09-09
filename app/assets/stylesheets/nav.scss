@@ -1,5 +1,37 @@
 .the_nav{
     display: flex;
     justify-content: space-between;
-    background-color: darkred
+    background-color: rgb(20, 100, 203);
+    height: 50px;
 }
+
+.project_buttion{
+    display: flex;
+    flex-direction: column;
+}
+
+.project_buttion button{
+    margin: 5px;
+}
+.main-hall-task-text{
+    line-height: 1.5;
+}
+.main-hall-task-text p{
+        /* display: flex; */
+        text-align: justify;
+        /* margin: 0px auto; */
+        width: 70vw;
+
+}
+.open_bar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 20px;
+    color: white;
+}
+    
+.open_bar img{
+padding-right: 20px;
+}
+    

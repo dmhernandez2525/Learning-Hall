@@ -7,11 +7,19 @@ import {Link} from "react-router-dom"
 class Hall extends React.Component{
     constructor(props){
         super(props)
-
+        this.openNav = this.openNav.bind(this)
     }
 
+    openNav(){
+
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("Main").classList.remove("main-hall-as");
+        document.getElementById("Main").classList.add("move");
+
+
+    };
+    
     render(){
-        debugger
 
         let text;
         if (this.props.currentTask === "no task") {
@@ -28,14 +36,18 @@ class Hall extends React.Component{
             text = <div>{ this.props.currentTask }</div >
         }
 
+
+
+
         return (
             <div id="Main" className="main-hall-as color1" > 
+                <div>
                 <nav className="the_nav">
                 <DropDown />
 
                 <header className="hall_nav" >
                     <section className="color2">
-                        <button>Learn</button>
+                        <button onClick={() => this.openNav()}>Learn</button>
                         <button><Link to="/profile"> Profile </Link></button>
                         <button>mentore</button>
                         <button>slack</button>
@@ -46,22 +58,32 @@ class Hall extends React.Component{
                 </nav>
 
                 <section className='main_task_part'>
-                    <h1>LOAD THE TASK IN HERE</h1>
-                    {text}
-                    <section className="color3">
-                        <h1>did u find this helpfull?</h1>
-                        <ul>
-                            <li><input type="checkbox" name="help"/> Yes</li>
+                    <div>
 
-                            <li><input type="checkbox" name="help"/> No </li>
-                        </ul>
+                      <h1>LOAD THE TASK IN HERE</h1>
+                        <div className="main-hall-task-text" >{text}</div>  
+
+                    </div>
+
+                    <section className="color3">
+                            <h1>did u find this helpfull?</h1>
+                            <ul>
+                                <li><input type="checkbox" name="help"/> Yes</li>
+
+                                <li><input type="checkbox" name="help"/> No </li>
+                            </ul>
                     </section>
                     <div className="color4">
-                        <button>subbmit project</button>
-                        <button>download project</button>
-                        <h1>some text</h1>
+                        <div className="project_buttion">
+                            <button>subbmit project</button>
+                            <button>download project</button>         
+                        </div>
+
+                            <h1>some text</h1>
                     </div>
+                    
                 </section>
+                </div>
             </div>
         )
     }

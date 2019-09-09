@@ -25,7 +25,7 @@ $box-wrapper-margin: calc((100% - #{$box-wrapper-height})/2) calc((100% - #{$box
     background-color: transparent;
     border: none;
     -webkit-user-select: none;
-
+    top: 30%;
     .box-wrap {
         width: $box-wrapper-width;
         height: $box-wrapper-height;
@@ -354,4 +354,19 @@ $box-wrapper-margin: calc((100% - #{$box-wrapper-height})/2) calc((100% - #{$box
         animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
     }
 }
+
+.Og-raper{
+justify-content: center;
+align-content: center;
+background-color: rgba(0, 0, 0,0.5);
+top: 0;
+bottom: 0;
+right: 0;
+left: 0;
+z-index: 2;
+position: absolute;
+pointer-events: none;
+
+}
+
 //CREDIT GOSE TO https://codepen.io/bojankrsmanovic/full/dpzZkm
