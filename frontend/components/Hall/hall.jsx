@@ -67,7 +67,7 @@ class Hall extends React.Component{
                         <button onClick={() => this.openCloseNav()}>Learn</button>
                         <button><Link to="/profile"> Profile </Link></button>
                         <button>mentore</button>
-                        <button>slack</button>
+                        <button><img src={window.slack} alt="slack logo"/> </button>
                         <button>comunitty</button>
                     </section>
 
