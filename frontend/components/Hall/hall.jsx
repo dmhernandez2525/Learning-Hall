@@ -11,7 +11,6 @@ class Hall extends React.Component{
 
     openCloseNav() {
         const stateNav = document.getElementById("mySidenav")
-        debugger
         let openNav = () => {
 
             document.getElementById("mySidenav").classList.remove("mySidenav")

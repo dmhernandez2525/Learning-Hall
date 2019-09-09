@@ -47,7 +47,7 @@ class DropDownNav extends React.Component {
 
         
         const courses = this.props.courses.map(course => (
-            <CourseLink key={course.id} course={course} subjects={this.props.subjects} tasks={this.props.tasks}/>)
+            <CourseLink key={course.id} course={course} subjects={this.props.subjects} tasks={this.props.tasks} receiveTask={this.props.receiveTask} />)
         )
 
         // const subjects = this.props.subjects.map(subject => (

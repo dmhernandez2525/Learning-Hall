@@ -17,12 +17,6 @@ class TaskLink extends React.Component{
     
  
     handleClick(){
-    // const body = this.task.body
-        // const task = document.getElementById("main-text-one")
-        // task.classList.toggle("task-body")
-        // task.innerHTML = body
-        // task.dangerouslySetInnerHTML = this.createMarkup() 
-
         this.props.receiveTask(this.task.body)  
     }
 
