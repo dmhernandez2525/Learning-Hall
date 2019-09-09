@@ -501,6 +501,7 @@ td:hover {
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+    overflow: scroll;
 }
 
 .sidenav a {
@@ -545,4 +546,5 @@ td:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: scroll;
 }
