@@ -5,7 +5,7 @@ import React from "react"
 const SubjectLink = ({ subject }) => {
     return(
         <div>
-            <button>{subject.name}</button>
+            <button className="color-white-subjects-in-course">{subject.name}</button>
         </div>
     );
 };

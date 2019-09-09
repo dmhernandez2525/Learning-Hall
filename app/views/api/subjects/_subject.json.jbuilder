@@ -1,1 +1,1 @@
-json.extract! subject, :name , :id
+json.extract! subject, :name , :id, :courseId

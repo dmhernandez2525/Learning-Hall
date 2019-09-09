@@ -1,7 +1,5 @@
 import React from "react";
-import SubjectLink from "../subject/subjectLink"
 import CourseLink from "../course/courseLink"
-import TaskLink from "../task/taskLink"
 import Loading from "../loading/loading"
 
 
@@ -49,16 +47,16 @@ class DropDownNav extends React.Component {
 
         
         const courses = this.props.courses.map(course => (
-            <CourseLink key={course.id} course={course} />)
+            <CourseLink key={course.id} course={course} subjects={this.props.subjects} tasks={this.props.tasks}/>)
         )
 
-        const subjects = this.props.subjects.map(subject => (
-            <SubjectLink key={subject.id} subject={subject} />)
-        )
+        // const subjects = this.props.subjects.map(subject => (
+        //     <SubjectLink key={subject.id} subject={subject} />)
+        // )
 
-        const tasks = this.props.tasks.map(task => (
-            <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} />)
-        )
+        // const tasks = this.props.tasks.map(task => (
+        //     <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} />)
+        // )
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
             
@@ -79,8 +77,8 @@ class DropDownNav extends React.Component {
 
                             <section>
                                 <div className="col"> {courses} </div>
-                                <div className="col"> {subjects} </div>
-                                <div className="col"> {tasks} </div>
+                                {/* <div className="col"> {subjects} </div>  */}
+                                {/* <div className="col"> {tasks} </div> */}
                             </section>
 
                         </div>
@@ -113,9 +111,9 @@ class DropDownNav extends React.Component {
                             </section>
 
                             <section>
-                                <div className="col"> {courses} </div>
+                                {/* <div className="col"> {courses} </div>
                                 <div className="col"> {subjects} </div>
-                                <div className="col"> {tasks} </div>
+                                <div className="col"> {tasks} </div> */}
                             </section>
 
                         </div>
