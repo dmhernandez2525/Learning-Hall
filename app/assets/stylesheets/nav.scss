@@ -34,4 +34,25 @@
 .open_bar img{
 padding-right: 20px;
 }
+
+.nav-buttion-sub{
+    // background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px 20px 5px;
+}
+
+.nav-con-top{
+    background-color: white;
+    padding: 20px;
+
+}
+.togle_course{
+    display: none;
+}
+.color-white-subjects-in-course{
+    background-color: white;
+    padding: 15px 10px 15px 20px;
+    width: 100%;
+}
     
