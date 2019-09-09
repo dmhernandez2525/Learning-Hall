@@ -4,6 +4,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+export const NEW_TASK = "NEW_TASK";
 
 
 export const signUp = (user) => (dispatch) => {
@@ -43,6 +44,12 @@ export const receiveErrors = (errors) => {
     return({
         type: RECEIVE_SESSION_ERRORS,
         errors
+    })
+}
+export const receiveTask = (task) => {
+    return({
+        type: NEW_TASK,
+        task
     })
 }
 

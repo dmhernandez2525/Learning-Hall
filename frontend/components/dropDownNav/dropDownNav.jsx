@@ -52,7 +52,7 @@ class DropDownNav extends React.Component {
         )
 
         const tasks = this.props.tasks.map(task => (
-            <TaskLink key={task.id} task={task} />)
+            <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} />)
         )
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {

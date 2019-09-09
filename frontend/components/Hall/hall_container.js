@@ -2,8 +2,10 @@ import {connect} from "react-redux"
 import Hall from "./hall"
 
 const mapStateToProps = (state) => {
+    debugger
     return({
-        user: state.session.currentUser
+
+        currentTask: state.session.currentTask
     })
 }
 
