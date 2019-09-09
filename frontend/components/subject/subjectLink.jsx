@@ -20,15 +20,15 @@ class SubjectLink extends React.Component {
         let MyTasks = this.tasks.map(task => {
             if (task.subject_id === this.subject.id) {
                 return (
-                    <li> <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} /></li>
+                    <li> <TaskLink key={`task.id${task.id}`} task={task} receiveTask={this.props.receiveTask} /></li>
                 )
             }
 
         })
 
         return (
-            <div>
-                <button onClick={() => this.handlClick()}>{this.subject.name}</button>
+            <div key={`${this.subject.name}+${this.subject.id}`}>
+                <button className="color-white-subjects-in-course" onClick={() => this.handlClick()}>{this.subject.name}</button>
                 <div className="togle_subject" id={`${this.subject.name}+${this.subject.id}`}>
                     <ul>
                         {MyTasks}

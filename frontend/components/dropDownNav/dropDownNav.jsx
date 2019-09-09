@@ -111,9 +111,7 @@ class DropDownNav extends React.Component {
                             </section>
 
                             <section>
-                                {/* <div className="col"> {courses} </div>
-                                <div className="col"> {subjects} </div>
-                                <div className="col"> {tasks} </div> */}
+
                             </section>
 
                         </div>
