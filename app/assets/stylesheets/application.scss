@@ -484,7 +484,7 @@ td:hover {
 
 
 .background-loading{
-    background-color: #818181
+    background-color: #818181 !important
 }
 
 
@@ -497,7 +497,7 @@ td:hover {
     top: 0;
     left: 0;
     background-color:white;
-    border: 5px solid black;
+    // border: 5px solid black;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;

@@ -79,8 +79,8 @@ class DropDownNav extends React.Component {
                             </section>
 
                         </div>
-                    </div>
-                    <div onClick={e => openNav()}> open </div>
+                    </div> 
+                    <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
 
                 </div>
             ) 

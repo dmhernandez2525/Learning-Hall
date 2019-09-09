@@ -1,7 +1,7 @@
 class Api::TasksController < ApplicationController
   
   def index
-    sleep 5   
+    sleep 1   
     @tasks = Task.all
     render "api/tasks/index"
   end
