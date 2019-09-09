@@ -31,8 +31,6 @@ class DropDownNav extends React.Component {
             document.getElementById("mySidenav").style.width = "250px";
             document.getElementById("Main").classList.remove("main-hall-as");
             document.getElementById("Main").classList.add("move");
-
-
         };
 
         let closeNav = () => {
@@ -86,9 +84,37 @@ class DropDownNav extends React.Component {
             ) 
         } else {
             document.body.classList.add("background-loading")
+
             return(
 
-                 <Loading/>
+                <div>
+                <Loading/>
+
+                    <div id="mySidenav" className="sidenav">
+            {/* {document.getElementById("mySidenav").style.backgroundColor = "gray"} */}
+            
+                        <a href="javascript:void(0)" className="closebtn" onClick={e => closeNav()}>&times;</a>
+                        <div className="drop-down " >
+
+                            <section>
+                                <h5>cureent course</h5>
+                                <div>
+                                    <h3>subject name</h3>
+                                    <button>switch</button>
+                                </div>
+                            </section>
+
+                            <section>
+                                <div className="col"> {courses} </div>
+                                <div className="col"> {subjects} </div>
+                                <div className="col"> {tasks} </div>
+                            </section>
+
+                        </div>
+                    </div>
+                    <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
+
+                </div>
 
             )
 

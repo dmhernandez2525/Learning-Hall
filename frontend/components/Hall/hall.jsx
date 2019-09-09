@@ -41,6 +41,7 @@ class Hall extends React.Component{
 
         return (
             <div id="Main" className="main-hall-as color1" > 
+                <div>
                 <nav className="the_nav">
                 <DropDown />
 
@@ -82,7 +83,7 @@ class Hall extends React.Component{
                     </div>
                     
                 </section>
-
+                </div>
             </div>
         )
     }
