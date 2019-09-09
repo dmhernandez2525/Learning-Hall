@@ -7,7 +7,6 @@ const NavBar = ({ currentUser, signOut, history }) => {
 
 
     let display;
-    let logo;
     if (currentUser ) {
         if (history === "/") {
                     display = (

@@ -249,14 +249,14 @@ body , html{
 //      width: 100%
 //  }
 .main-hall-as{
-    position: absolute;
+    position: relative;
     left: 0;
     // display: flex;
     width: 100%;
     transition: all .5s ;
  }
  .move{
-    position: absolute;
+    position: relative;
     transition: all .5s ;
     left: 250px;
  }
