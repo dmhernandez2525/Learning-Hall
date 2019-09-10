@@ -57,13 +57,3 @@
 }
 ```
 
-
-
-    overflow-wrap: inherit;
-    background: brown;
-    display: flex;
-    background-color: #856e6e;
-    width: 50%;
-    /* overflow-y: auto; */
-    overflow: overlay;
-    clear: both;

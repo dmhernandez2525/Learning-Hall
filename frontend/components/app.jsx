@@ -11,8 +11,6 @@ import { AuthRoute, ProtectdRoute} from "../util/route_utils";
 
 const App = ({store}) => {
 
-
-    // <h1>Hello World</h1>
         return(
             <div  className="Main">
                 <Provider store={store}>
@@ -32,7 +30,6 @@ const App = ({store}) => {
                 </Provider>
             </div>
         )
-
 }
 
 export default App

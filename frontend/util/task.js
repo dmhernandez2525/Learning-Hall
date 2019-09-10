@@ -4,21 +4,21 @@ export const newTask = (task) => (
         url: "/api/tasks",
         data: {task}
     })
-)
+);;
 
 export const allTasks = () => (
     $.ajax({
         method: "GET",
         url: "/api/tasks"
     })
-)
+);
 
 export const showTask = (id) => (
     $.ajax({
         method: "GET",
         url: `/api/tasks/${id}`
     })
-)
+);
 
 export const updateTask = (task) => (
     $.ajax({
@@ -26,11 +26,11 @@ export const updateTask = (task) => (
         url: `/api/tasks/${task.id}`,
         data: {task}
     })
-)
+);
 
 export const deleteTask = (id) => (
     $.ajax({
         method: "DELETE",
         url: `/api/tasks/${id}`
     })
-)
+);

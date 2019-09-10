@@ -8,7 +8,11 @@ import {
 const _nullSession = {
     currentUser: null,
     currentTask: "no task"
+    //add last task they where on 
+    //add ui loading true/false
+    //add current course
 }
+
 const sessionReducer = (state = _nullSession ,action) => {
     Object.freeze(state)
     switch (action.type) {

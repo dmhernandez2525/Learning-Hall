@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../footer/footer"
-import Switch from "../swcher/switch"
+import Switcher from "../swcher/switch"
 
 class Splash extends React.Component{
     constructor(props){
@@ -23,7 +23,7 @@ class Splash extends React.Component{
                         </p>
                     </section>
                 </section>
-                <Switch />
+                <Switcher />
                 <picture>
                     <img className="switch-img-long" src={window.img1Url} alt="Learning Hall Logo" />
                 </picture>

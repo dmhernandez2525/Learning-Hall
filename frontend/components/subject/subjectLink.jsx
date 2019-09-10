@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import React from "react"
 import TaskLink from "../task/taskLink"
 
@@ -11,6 +10,7 @@ class SubjectLink extends React.Component {
         this.tasks = this.props.tasks
         this.handlClick = this.handlClick.bind(this)
     }
+    
     handlClick() {
         let curent = document.getElementById(`${this.subject.name}+${this.subject.id}`)
         curent.classList.toggle("togle_subject")
@@ -20,7 +20,9 @@ class SubjectLink extends React.Component {
         let MyTasks = this.tasks.map(task => {
             if (task.subject_id === this.subject.id) {
                 return (
-                    <li> <TaskLink key={`task.id${task.id}`} task={task} receiveTask={this.props.receiveTask} /></li>
+                    <li> 
+                        <TaskLink key={`task.id${task.id}`} task={task} receiveTask={this.props.receiveTask} />
+                    </li>
                 )
             }
 
@@ -28,7 +30,9 @@ class SubjectLink extends React.Component {
 
         return (
             <div key={`${this.subject.name}+${this.subject.id}`}>
-                <button className="color-white-subjects-in-course" onClick={() => this.handlClick()}>{this.subject.name}</button>
+                <button className="color-white-subjects-in-course" onClick={() => this.handlClick()}>
+                    {this.subject.name}
+                </button>
                 <div className="togle_subject" id={`${this.subject.name}+${this.subject.id}`}>
                     <ul>
                         {MyTasks}

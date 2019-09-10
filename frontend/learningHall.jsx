@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
-import {
-newTask,
-allTasks,
-showTask,
-updateTask,
-deleteTask} from "./actions/task"
+//go back start
 
+//  /home/daniel/Desktop/LearningHall/frontend/reducers/session_reducer.js
 
+// /home/daniel/Desktop/LearningHall/frontend/components/course/courseContainer.js
 
+// /home/daniel/Desktop/LearningHall/frontend/reducers/errors_reducer.js
 
+// /home/daniel/Desktop/LearningHall/frontend/components/profile/profile.jsx
+//      add the styling  and the CRUD for task,course,sujbject 
+
+//go back end
 
 document.addEventListener("DOMContentLoaded", () => {
     //useing this logic to bootstrap thhe user in from the backend
@@ -37,11 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
    
     // grabing the div that we set in the static page show page to render react into 
     const root = document.getElementById("root")
-    // test start here
-        window.dispatch = store.dispatch
-        window.showTask = showTask
-        window.updateTask = updateTask
 
+    // test start here
 
     // test ends here
 

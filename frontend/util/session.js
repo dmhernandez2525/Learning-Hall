@@ -6,8 +6,8 @@ export const signUp = (user) => {
             url: "/api/users",
             data: {user}
         })
-    )
-}
+    );
+};
 
 export const logIn = (user) => {
     return(
@@ -16,8 +16,8 @@ export const logIn = (user) => {
             url: "/api/sessions",
             data: {user}
         })
-    )
-}
+    );
+};
 
 export const signOut = () => {
     return(
@@ -25,5 +25,5 @@ export const signOut = () => {
             method: "DELETE",
             url: "/api/sessions"
         })
-    )
-}
+    );
+};
