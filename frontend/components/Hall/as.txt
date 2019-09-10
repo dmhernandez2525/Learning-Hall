@@ -1,0 +1,46 @@
+```javascript
+import Markdown from 'markdown-to-jsx';
+import React from 'react';
+import { render } from 'react-dom';
+import withProps from 'recompose/withProps';
+
+import DatePicker from './date-picker';
+
+const DecemberDatePicker = withProps({
+    range: {
+        start: new Date('2017-12-01'),
+        end: new Date('2017-12-31'),
+    },
+    timezone: 'UTC+5',
+})(DatePicker);
+
+const md = `
+# DatePicker
+
+The DatePicker works by supplying a date to bias towards,
+as well as a default timezone.
+
+<DatePicker
+  biasTowardDateTime="2017-12-05T07:39:36.091Z"
+  timezone="UTC+5"
+  startTime={1514579720511}
+/>
+
+Here's an example of a DatePicker pre-set to only the month of December:
+
+<DecemberDatePicker />
+`;
+
+render(
+    <Markdown
+        children={md}
+        options={{
+            overrides: {
+                DatePicker,
+                DecemberDatePicker,
+            },
+        }}
+    />,
+    document.body
+);
+```
