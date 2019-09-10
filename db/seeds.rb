@@ -124,7 +124,7 @@ produces a line break.</p>
 </blockquote>
 
 <p>Inline <abbr title="Hypertext Markup Language">HTML</abbr> is supported.</p>',
-    duration: 900
+    duration: 900,
     completed: true
 })
 
@@ -147,7 +147,7 @@ Alt-H1
 
 Alt-H2
 ------',
-    duration: 480
+    duration: 480,
     completed: true
 })
 
@@ -163,7 +163,7 @@ Strong emphasis, aka bold, with **asterisks** or __underscores__.
 Combined emphasis with **asterisks and _underscores_**.
 
 Strikethrough uses two tildes. ~~Scratch this.~~',
-    duration: 12
+    duration: 12,
     completed: true
 })
 
@@ -190,7 +190,7 @@ Task.create({
 * Unordered list can use asterisks
 - Or minuses
 + Or pluses",
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -223,7 +223,7 @@ Some text to show that the reference links can follow later.
 [arbitrary case-insensitive reference text]: https://www.mozilla.org
 [1]: http://slashdot.org
 [link text itself]: http://www.reddit.com ",
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -242,7 +242,7 @@ Reference-style:
 ![alt text][logo]
 
 [logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 'Logo Title Text 2' ",
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -271,7 +271,7 @@ print s
 No language indicated, so no syntax highlighting. 
 But let"s throw in a <b>tag</b>.
 ``` ',
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -299,7 +299,7 @@ Markdown | Less | Pretty
 --- | --- | ---
 *Still* | `renders` | **nicely**
 1 | 2 | 3",
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -318,7 +318,7 @@ Quote break.
 
 > This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
     ",
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -337,7 +337,7 @@ Task.create({
   <dt>Markdown in HTML</dt>
   <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
 </dl>',
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -362,7 +362,7 @@ Asterisks
 ___
 
 Underscores',
-    duration: 700
+    duration: 700,
     completed: true
 })
 
@@ -381,7 +381,7 @@ This line is separated from the one above by two newlines, so it will be a *sepa
 
 This line is also a separate paragraph, but...
 This line is only separated by a single newline, so it's a separate line in the *same paragraph*.",
-    duration: 700
+    duration: 700,
     completed: true
 })
 

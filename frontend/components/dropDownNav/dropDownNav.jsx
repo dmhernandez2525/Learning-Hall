@@ -9,6 +9,7 @@ class DropDownNav extends React.Component {
     }
 
     componentDidMount() {
+        debugger
         this.props.allCourses()
         this.props.allSubjects()
         this.props.allTasks()
@@ -58,8 +59,11 @@ class DropDownNav extends React.Component {
             )
         )
 
+        debugger
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
+        debugger
+
             
             document.body.classList.remove("background-loading")
             return (
@@ -94,9 +98,10 @@ class DropDownNav extends React.Component {
             ) 
         } else {
             document.body.classList.add("background-loading")
+            debugger
 
             return(
-
+                
                 <div>
                 <Loading/>
                     <div id="mySidenav" className="sidenav">
