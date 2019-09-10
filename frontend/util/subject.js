@@ -7,7 +7,7 @@ export const newSubject = (subject) => {
                 subject
             }
         })
-    )
+    );
 };
 
 
@@ -17,7 +17,7 @@ export const allSubjects = () => {
             method: "GET",
             url: "/api/subjects"
         })
-    )
+    );
 };
 
 
@@ -28,7 +28,7 @@ export const showSubject = (id) => {
             method: "GET",
             url: `/api/subjects/${id}`
         })
-    )
+    );
 };
 
 
@@ -43,7 +43,7 @@ export const updateSubject = (subject) => {
                 subject
             }
         })
-    )
+    );
 };
 
 
@@ -53,5 +53,5 @@ export const deleteSubject = (id) => {
             method: "DELETE",
             url: `/api/subjects/${id}`
         })
-    )
+    );
 };

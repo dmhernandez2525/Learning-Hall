@@ -41,6 +41,7 @@ class TaskForm extends React.Component {
 
                     <textarea
                         className="big-input"
+                        id="task-new"
 
                         value={this.state.body}
                         placeholder="type out a lession here"

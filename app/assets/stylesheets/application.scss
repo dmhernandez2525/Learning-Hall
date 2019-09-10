@@ -245,61 +245,24 @@ body , html{
      box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
  }
 
-/* .splash {
-     background-color: gray;
-
- } */
-//  .main{
-//      display: flex;
-//      width: 100%
-//  }
 
 .main-hall-as{
-//     position: relative;
-//     left: 0;
-//     // display: flex;
-//     width: 100%;
-//     transition: all .5s ;
-    position: relative;
     left: 0;
     width: 100%;
     display: block;
-    transition: all 0.5s;
-    // position: fixed;
-    right: 0;
+    transition: all .3s;
+    transition: opacity 0.5s ease 0s;
  }
 
-// .main-hall-as{
-//     /* position: relative; */
-//     left: 0;
-//     width: 100%;
-//     display: block;
-//     transition: all 0.5s ease-in-out;
-//     right: 0;
-//     /* position: fixed;*/
-// }
 
  .move{
-    // position: relative;
-    // transition: all .5s ;
-    // left: 250px;
-    position: relative;
+    position: absolute;
     transition: all 0.5s;
     left: 250px;
-    /* display: block; */
-    position: fixed;
+    display: block;
     right: 0;
-    //  width: 100%;
+    transition: opacity 0.5s ease 0s;
  }
-
-//  .move{
-//     position: relative;
-//     transition: all 0.5s ease-in-out;
-//     left: 250px;
-//     /* display: block; */
-//     position: fixed;
-//     right: 0;
-//  }
 
 
  .buttion{
@@ -532,33 +495,21 @@ td:hover {
 
 /* nav */
 .sidenav {
-    height: 100%;
     width: 250px;
     position: fixed;
     z-index: 1;
-    top: 0;
     left: -250px;
-    background-color:white;
-    // border: 5px solid black;
-    overflow-x: hidden;
-    transition: 0.5s;
-    // padding-top: 60px;
-    overflow: scroll;
+    transition: opacity 0.5s ease 0s;
 }
 
 .sidenav-togle {
     height: 100%;
-    width: 250px;
-    position: fixed;
     z-index: 1;
-    top: 0;
     left: 0;
-    background-color:white;
-    // border: 5px solid black;
     overflow-x: hidden;
     transition: 0.5s;
-    // padding-top: 60px;
     overflow: scroll;
+    transition: opacity 0.5s ease 0s;
 }
 /* nav */
 .sidenav1 {
@@ -569,7 +520,6 @@ td:hover {
     top: 0;
     left: 0;
     background-color:darkgray;
-    // border: 5px solid black;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;

@@ -9,9 +9,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
     let display;
     if (currentUser ) {
         if (history === "/") {
-                    display = (
-            <div></div>
-        )
+            return <div className="navBarDoNotUse">do not use</div>
         }
 
         else {
@@ -54,6 +52,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
     }
 
     return (
+        
         <div>
             {display}
         </div>

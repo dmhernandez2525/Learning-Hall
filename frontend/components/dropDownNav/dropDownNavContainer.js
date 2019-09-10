@@ -9,15 +9,16 @@ const mapStateToProps = (state) => {
         courses: Object.values(state.entities.courses),
         subjects: Object.values(state.entities.subject),
         tasks: Object.values(state.entities.task)
-    })
-}
+    });
+};
+
 const mapDispatchToProps = (dispatch) => {
     return({
         allCourses: () => dispatch(allCourses()),
         allSubjects: () => dispatch(allSubjects()),
         allTasks: () => dispatch(allTasks()),
         receiveTask: (task) => dispatch(receiveTask(task))
-    })
-}
+    });
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(DropDownNav)

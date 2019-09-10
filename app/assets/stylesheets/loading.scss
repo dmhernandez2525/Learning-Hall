@@ -358,7 +358,7 @@ $box-wrapper-margin: calc((100% - #{$box-wrapper-height})/2) calc((100% - #{$box
 .Og-raper{
 justify-content: center;
 align-content: center;
-background-color: rgba(0, 0, 0,0.5);
+background-color: rgba(36, 31, 31, 0.815);
 top: 0;
 bottom: 0;
 right: 0;
@@ -367,6 +367,10 @@ z-index: 2;
 position: absolute;
 pointer-events: none;
 
+}
+
+.mentore{
+    cursor: not-allowed;
 }
 
 //CREDIT GOSE TO https://codepen.io/bojankrsmanovic/full/dpzZkm

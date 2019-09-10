@@ -4,16 +4,18 @@ export const  allCourses = () => {
             method: "GET",
             url: "/api/courses"
         })
-    )
-}
+    );
+};
+
+
 export const  showCourse = (id) => {
     return(
         $.ajax({
             method: "GET",
             url: `/api/courses/${id}`
         })
-    )
-}
+    );
+};
 
 export const  newCourse = (course) => {
     return(
@@ -22,8 +24,8 @@ export const  newCourse = (course) => {
             url: "/api/courses",
             data: {course}
         })
-    )
-}
+    );
+};
 
 export const updateCourse = (course) => {
     return(
@@ -32,8 +34,8 @@ export const updateCourse = (course) => {
             url: `/api/courses/${course.id}`,
             data: {course}
         })
-    )
-}
+    );
+};
 
 export const deleteCourse = (id) => {
     return(
@@ -41,5 +43,5 @@ export const deleteCourse = (id) => {
             method: "DELETE",
             url: `/api/courses/${id}`
         })
-    )
-}
+    );
+};

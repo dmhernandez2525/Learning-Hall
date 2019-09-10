@@ -1,7 +1,7 @@
 class Api::TasksController < ApplicationController
-  
+
   def index
-    sleep 3  
+    #sleep 3  
     @tasks = Task.all
     render "api/tasks/index"
   end
@@ -11,11 +11,10 @@ class Api::TasksController < ApplicationController
     if @task.save
       render "api/tasks/show"
     else
-
       render json: @task.errors.full_messages,status: 404
     end
   end
-  
+
   def show
     @task = Task.find(params[:id])
     render "api/tasks/show"

@@ -7,7 +7,9 @@ class DropDownNav extends React.Component {
     constructor(props) {
         super(props)
     }
+
     componentDidMount() {
+        debugger
         this.props.allCourses()
         this.props.allSubjects()
         this.props.allTasks()
@@ -47,18 +49,21 @@ class DropDownNav extends React.Component {
 
         
         const courses = this.props.courses.map(course => (
-            <CourseLink key={course.id} course={course} subjects={this.props.subjects} tasks={this.props.tasks} receiveTask={this.props.receiveTask} />)
+            <CourseLink 
+                key={course.id} 
+                course={course} 
+                subjects={this.props.subjects} 
+                tasks={this.props.tasks} 
+                receiveTask={this.props.receiveTask} 
+            />
+            )
         )
 
-        // const subjects = this.props.subjects.map(subject => (
-        //     <SubjectLink key={subject.id} subject={subject} />)
-        // )
-
-        // const tasks = this.props.tasks.map(task => (
-        //     <TaskLink key={task.id} task={task} receiveTask={this.props.receiveTask} />)
-        // )
+        debugger
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
+        debugger
+
             
             document.body.classList.remove("background-loading")
             return (
@@ -71,62 +76,48 @@ class DropDownNav extends React.Component {
                                     <button>switch</button>
                                 </div>
                             </section>
-                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
                         <div className="drop-down">
                             
 
                             <section>
                                 <div className="col"> {courses} </div>
-                                {/* <div className="col"> {subjects} </div>  */}
-                                {/* <div className="col"> {tasks} </div> */}
+
                             </section>
 
                         </div>
                     </div> 
-                    {/* <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div> */}
-                    <div className="open_bar" onClick={e => this.openCloseNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
+
+                    <div className="open_bar" onClick={e => this.openCloseNav()}> 
+                        <img src={window.handgerUrl} 
+                            alt="Course outline open nav buttion">
+                        </img> 
+                        Course Outline 
+                    </div>
 
                 </div>
             ) 
         } else {
             document.body.classList.add("background-loading")
+            debugger
 
             return(
-
+                
                 <div>
                 <Loading/>
-
                     <div id="mySidenav" className="sidenav">
-            {/* {document.getElementById("mySidenav").style.backgroundColor = "gray"} */}
-            
-                        {/* <button className="closebtn" onClick={e => closeNav()}>&times</button> */}
                         <div className="drop-down " >
-
-                            <section className="nav-con-top">
-                                <h5>cureent course</h5>
-                                <div className="nav-buttion-sub">
-                                    <h3>subject name</h3>
-                                    <button>switch</button>
-                                </div>
-                            </section>
-
-                            <section>
-
-                            </section>
-
                         </div>
                     </div>
-                    <div className="open_bar" onClick={e => openNav()}> <img src={window.handgerUrl} alt="Learning handger Logo"></img> Course Outline </div>
-
+                    <div className="open_bar"> <img src={window.handgerUrl}></img> Course Outline </div>
                 </div>
 
-            )
+            );
 
-        } 
+        }; 
 
-    }
+    };
 
-}
+};
 export default DropDownNav
 
 
