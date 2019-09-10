@@ -1,7 +1,9 @@
 import React from "react";
-import DropDown from "../dropDownNav/dropDownNavContainer"
-import {Link} from "react-router-dom"
-
+import DropDown from "../dropDownNav/dropDownNavContainer";
+import {Link} from "react-router-dom";
+import Markdown from 'markdown-to-jsx';
+// import test from "./da"
+import { compiler } from 'markdown-to-jsx';
 
 
 class Hall extends React.Component{
@@ -50,7 +52,10 @@ class Hall extends React.Component{
                 </p> 
             </div>
         } else {
-            text = <div>{ this.props.currentTask }</div >
+            // text = <Markdown>   </Markdown> 
+            // text = (<div><Markdown> {this.props.currentTask.toString() }</Markdown></div>  )
+            // text = (compiler('# Hello world!'))
+            text = <div>{compiler(this.props.currentTask.toString())}</div> 
         }
 
 
@@ -78,7 +83,13 @@ class Hall extends React.Component{
                     <div>
 
                             <h1>{this.props.currentTask.name}</h1>
-                        <div className="main-hall-task-text" >{text}</div>  
+                            <div className="main-hall-task-text" >{text}</div>  
+
+
+
+
+
+
 
                     </div>
 

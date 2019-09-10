@@ -1,4 +1,3 @@
-
 const path = require('path');
 
 module.exports = {
@@ -17,11 +16,19 @@ module.exports = {
                 query: {
                     presets: ['@babel/env', '@babel/react']
                 }
-            },
-        }]
+            }
+
+        },
+        {
+            test: /\.txt$/i,
+            use: 'raw-loader',
+        },
+    
+    ]
     },
     devtool: 'source-map',
     resolve: {
         extensions: [".js", ".jsx", "*"]
     }
 };
+
