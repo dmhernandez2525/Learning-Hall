@@ -2,7 +2,16 @@
 background-color: rgb(255, 255, 204);
 color:black;
 }
+pre{
+    width: inherit;
+    margin: 0 25%;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 
+}
 .lang-js{
     background: blueviolet
 }

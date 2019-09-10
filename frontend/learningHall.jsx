@@ -13,6 +13,8 @@ import configureStore from './store/store';
 // /home/daniel/Desktop/LearningHall/frontend/components/profile/profile.jsx
 //      add the styling  and the CRUD for task,course,sujbject 
 
+// sepret user accounts
+
 //go back end
 
 document.addEventListener("DOMContentLoaded", () => {

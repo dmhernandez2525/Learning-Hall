@@ -47,7 +47,7 @@ class Hall extends React.Component{
             // text = <Markdown>   </Markdown> 
             // text = (<div><Markdown> {this.props.currentTask.toString() }</Markdown></div>  )
             // text = (compiler('# Hello world!'))
-            text = <div className="code">{compiler(this.props.currentTask.toString())}</div> 
+            text = <div className="code-markDown">{compiler(this.props.currentTask.toString())}</div> 
         }
 
 
@@ -72,8 +72,8 @@ class Hall extends React.Component{
 
                 <section className='main_task_part'>
 
-                    <div>
-                        <h1>{this.props.currentTask.name}</h1>
+                        <div className="main_task_part-first-div">
+                        {/* <h1>{this.props.currentTask.name}</h1> */}
                         <div className="main-hall-task-text"> {text} </div>  
                     </div>
 
