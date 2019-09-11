@@ -41,7 +41,7 @@ class Hall extends React.Component{
     render(){
 
         let text;
-        if (this.props.currentTask === "no task") {
+        if (this.props.currentTask === "no task" || this.props.currentTask === "Profile" ) {
             text = <Profile/> 
         } else {
             // text = <Markdown>   </Markdown> 
@@ -62,7 +62,7 @@ class Hall extends React.Component{
                     <header className="hall_nav" >
                         <section className="color2">
                             <button onClick={() => this.openCloseNav()}>Learn</button>
-                            <button><Link to="/profile"> Profile </Link></button>
+                            <button onClick={() => this.props.receiveTask("Profile")}>Profile</button>
                             <button className="mentore">mentore</button>
                             <button><img src={window.slack} alt="slack logo"/> </button>
                             <button className="mentore">comunitty</button>

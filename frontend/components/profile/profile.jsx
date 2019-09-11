@@ -11,11 +11,12 @@ class Profile extends React.Component{
     render(){
         return(
         <div>
-            <h1>Profile Page</h1>
-            <button><Link to="/">Go Back</Link></button>
+                <h1> Hello {currentUser.username} </h1>
+                <div>
+                    <button onClick={() => signOut()}> Sign Out</button>
+                </div>
             <div>
                 <TaskForm/>
-
             </div>
         </div>  
         )
