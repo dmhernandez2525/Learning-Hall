@@ -34,17 +34,25 @@ class SignUp extends React.Component {
                 <li className="errors">{e}</li>
             )
         })
+        let Errors;
+        if (this.props.errors.length){
+            Errors = <ul >{errors}</ul>
+        }else{
+            Errors = <ul className="has-no-errors">{errors}</ul>
+
+        }
 
         return (
-            <div className="sign_up_form">
+            <div className="sign_up_in_div">
 
 
-                <ul>{errors}</ul>
-                <form onSubmit={this.handleSumbit}>
-                    <h2 className="formH2"> Sign up to start Learning </h2>
+                {Errors}
+                <form className="auth_form" onSubmit={this.handleSumbit}>
+                    {/* <h2 className="formH2"> Sign up to start Learning </h2> */}
+                    <h2 > Sign up to start Learning </h2>
                     {/* <label >Username */}
                     <input
-                        className="big-input"
+                        className="auth-big-input"
                         type="text"
                         value={this.state.username}
                         placeholder="Username"
@@ -54,58 +62,53 @@ class SignUp extends React.Component {
 
                     {/* <label >Email */}
                     <input
-                        className="big-input"
+                        className="auth-big-input"
                         type="text"
                         value={this.state.email}
                         placeholder="Email"
                         onChange={this.handleInput("email")}
                     />
-                    {/* </label> */}
-
-                    {/* <label >Preferred_name */}
+                    
                     <input
-                        className="big-input"
-                        type="text"
-                        value={this.state.preferred_name}
-                        placeholder="Preferred Name"
-                        onChange={this.handleInput("preferred_name")}
-                    />
-                    {/* </label> */}
-
-                    {/* <label >Password */}
-                    <input
-                        className="big-input"
+                        className="auth-big-input"
                         type="password"
                         value={this.state.password}
                         placeholder="Password"
                         onChange={this.handleInput("password")}
-                    />
-                    {/* </label> */}
+                    />                   
+                    
+                    <div className="sign_up_in_div_input">
+                        <input
+                            className="auth-big-input-split"
+                            type="text"
+                            value={this.state.preferred_name}
+                            placeholder="Preferred Name"
+                            onChange={this.handleInput("preferred_name")}
+                        />
 
-                    {/* <label >User_role */}
+                        <input
+                            className="auth-big-input-split"
+                            type="text"
+                            value={this.state.pronunciation}
+                            placeholder="Pronunciation"
+                            onChange={this.handleInput("pronunciation")}
+                        />
+                    </div>
+
+
+
+
                     <input
-                        className="big-input"
+                        className="auth-big-input"
                         type="text"
                         value={this.state.user_role}
                         placeholder="User Role"
                         onChange={this.handleInput("user_role")}
                     />
-                    {/* </label> */}
-
-                    {/* <label >Pronunciation */}
-                    <input
-                        className="big-input"
-                        type="text"
-                        value={this.state.pronunciation}
-                        placeholder="Pronunciation"
-                        onChange={this.handleInput("pronunciation")}
-                    />
 
                     {/* </label> */}
                     {/* <label > */}
-                    <div>
-                        <input className="big-buttion" type="submit" value={"Continue"} />
-                    </div>
+                    <input className="big-buttion-auth" type="submit" value={"Continue"} />
                     {/* </label> */}
                     <div className="a1">
                         Allready have an account? &nbsp;
@@ -121,7 +124,7 @@ class SignUp extends React.Component {
 
                 </form>
 
-                <Footer/>
+                {/* <Footer/> */}
 
             </div>
 

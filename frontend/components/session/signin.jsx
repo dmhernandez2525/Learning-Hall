@@ -1,6 +1,6 @@
 import React from "react"
 import {Link} from "react-router-dom"
-import Footer from "../footer/footer"
+// import Footer from "../footer/footer"// rf
 
 
 
@@ -76,7 +76,7 @@ class SignIn extends React.Component{
             )
         })
         return (
-            <div >
+            <div className="sign_up_in_div">
                 <ul>{errors}</ul>
                 <div className="a11">
                 <h1>Get back to learning</h1>
@@ -93,7 +93,7 @@ class SignIn extends React.Component{
                     <Link to="/signUp">click here sign up.</Link>
                 </div>
                 
-                <Footer />
+                {/* <Footer /> */}
             </div>
         )
     }

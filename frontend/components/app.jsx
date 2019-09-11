@@ -8,6 +8,7 @@ import NavBarContainer from "./nav_bar/nav_bar_container";
 import { Route, HashRouter, Switch } from "react-router-dom";
 import {Provider} from "react-redux";
 import { AuthRoute, ProtectdRoute} from "../util/route_utils";
+import Footer from "./footer/footer"
 
 const App = ({store}) => {
 
@@ -25,6 +26,8 @@ const App = ({store}) => {
                             <ProtectdRoute path="/profile" component={Profile}/>
                             <ProtectdRoute path="/" component={HallContainner}/>
                         </Switch>
+                        <AuthRoute path="/" component={Footer} />
+
                         
                     </HashRouter>
                 </Provider>
