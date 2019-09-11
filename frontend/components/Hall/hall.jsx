@@ -9,6 +9,7 @@ import ProfileComponent from "../profile/profileComponent";
 class Hall extends React.Component{
     constructor(props){
         super(props)
+        this.words = ["Course", "Subject", "Task", "no task","Profile" ]
     }
 
     openCloseNav() {
@@ -42,9 +43,10 @@ class Hall extends React.Component{
 
         let text;
         let bottem;
-        if (this.props.currentTask === "no task" || this.props.currentTask === "Profile" ) {
-            text = <ProfileComponent/> 
-        } else {
+        if ( this.words.includes(this.props.currentTask)  ) {
+            text = <ProfileComponent /> 
+        }
+        else {
             // text = <Markdown>   </Markdown> 
             // text = (<div><Markdown> {this.props.currentTask.toString() }</Markdown></div>  )
             // text = (compiler('# Hello world!'))
