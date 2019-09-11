@@ -18,7 +18,9 @@ class SignIn extends React.Component{
     }
 
     componentWillUnmount(){
-        this.props.clearErrors()
+        if (! this.props.errors.length){
+            this.props.clearErrors()
+        }
     }
     handleSubmit(event){
         event.preventDefault();
@@ -58,16 +60,6 @@ class SignIn extends React.Component{
     }
 // auto demo
 
-
-
-
-
-
-
-
-
-
-
     render(){
 
         let errors = this.props.errors.map((e,i) => {
@@ -75,25 +67,39 @@ class SignIn extends React.Component{
                 <li key={i} className="errors">{e}</li>
             )
         })
+
+        let Errors;
+        if (this.props.errors.length) {
+            Errors = <ul >{errors}</ul>
+        } else {
+            Errors = <ul className="has-no-errors">{errors}</ul>
+
+        }
+
+
         return (
             <div className="sign_up_in_div">
-                <ul>{errors}</ul>
-                <div className="a11">
-                <h1>Get back to learning</h1>
-                    <h2> Login to your account</h2>
-                </div>
-                <form  className="login_form" onSubmit={this.handleSubmit}>
-                    <input id="username-input" className="login-input" placeholder="Username" type="text" value={this.state.username} onChange={this.handleInput()}/>
-                    <input id="password-input" className="login-input" placeholder="Password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
-                    <button id="session-submit-btn" className="big-buttion-input" >Log In</button>
-                </form>
-                <button  onClick={e => this.prettyDemoUser(e)} className="big-buttion-input" >DEMO</button>
-                <div className="a1">
-                    dont have an account? &nbsp;
-                    <Link to="/signUp">click here sign up.</Link>
-                </div>
-                
-                {/* <Footer /> */}
+                {Errors}
+
+                        <form className="auth_form" onSubmit={this.handleSubmit}>
+                            <div className="auth_form_top">
+                                <h2>Get back to learning</h2>
+                                <h3> Login to your account</h3>
+                            </div>
+
+                            <input id="username-input" className="auth-big-input" placeholder="Username" type="text" value={this.state.username} onChange={this.handleInput()}/>
+                            <input id="password-input" className="auth-big-input" placeholder="Password" type="password" value={this.state.password} onChange={e => this.setState({ password: e.target.value })}/>
+                            <input id="session-submit-btn" className="big-buttion-auth" type="submit" value={"Log In"} />
+                            <div className="auth_form_form" >
+                                <button onClick={e => this.prettyDemoUser(e)} className="big-buttion-auth" >DEMO</button>
+                            </div>
+                            <div className="a1">
+                                dont have an account? &nbsp;
+                                <Link to="/signUp">click here sign up.</Link>
+                            </div>  
+                        </form>
+
+
             </div>
         )
     }

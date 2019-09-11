@@ -16,7 +16,9 @@ class SignUp extends React.Component {
         };
     };
     componentWillUnmount() {
-        this.props.clearErrors()
+        if (!this.props.errors.length) {
+            this.props.clearErrors()
+        }
     }
 
     handleSumbit(event) {
@@ -112,24 +114,16 @@ class SignUp extends React.Component {
                         onChange={this.handleInput("user_role")}
                     />
 
-                    {/* </label> */}
-                    {/* <label > */}
+
                     <input className="big-buttion-auth" type="submit" value={"Continue"} />
-                    {/* </label> */}
+
                     <div className="a1">
                         Allready have an account? &nbsp;
                         <Link to="/signIn">click here to login.</Link>
-
-
-
-
-
-
                     </div>
 
                 </form>
 
-                {/* <Footer/> */}
 
             </div>
 

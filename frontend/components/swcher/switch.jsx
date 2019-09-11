@@ -10,9 +10,19 @@ class Switch extends React.Component{
     }
 
     handleClick(num,id) {
-        this.setState({ currentPane: [num]})
-        let a = document.getElementById(id)
-        a.classList.toggle("switch-to")
+        // this.setState({ currentPane: [num]})
+        // let a = document.getElementById(id)
+        // a.classList.toggle("switch-to")
+        this.setState({ currentPane: [num] })
+        let a = document.getElementById(1)
+        let b = document.getElementById(2)
+        let c = document.getElementById(3)
+        let d = document.getElementById(id)
+        a.classList.remove("switch-to")
+        b.classList.remove("switch-to")
+        c.classList.remove("switch-to")
+        d.classList.add("switch-to")
+
     }
 
     render(){
@@ -28,7 +38,7 @@ class Switch extends React.Component{
 
         return(
             <div className="switch">
-                <section >
+                <section className="splash-switcher">
                     <div id="1" onClick={() => this.handleClick(1,"1")}>
                         <h3>some content</h3>
                         <p>put a bref discription for this part</p>

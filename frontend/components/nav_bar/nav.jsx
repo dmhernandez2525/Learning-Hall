@@ -21,11 +21,13 @@ const NavBar = ({ currentUser, signOut, history }) => {
             )}
 
     }
-    else if (history !== "/" ) display = (        
-        <header className="nav-bar">
-            <Link className="logo" to="/" ><img src={window.logoUrl} alt="Learning Hall Logo"></img></Link>
-            {display}
-        </header>
+    else if (history !== "/" ) return  (  
+        <div className="auth-form-div">
+            <header className="nav-bar">
+                <Link className="logo" to="/" ><img src={window.logoUrl} alt="Learning Hall Logo"></img></Link>
+                {display}
+            </header>
+        </div>
         )
     else{
         display = (
@@ -51,9 +53,10 @@ const NavBar = ({ currentUser, signOut, history }) => {
         )
     }
 
+
     return (
         
-        <div className="auth-form-div">
+        <div >
             {display}
         </div>
     )
