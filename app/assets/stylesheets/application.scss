@@ -59,21 +59,6 @@ body , html{
 
 
 
- .nav-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-content: space-between;
-}
- .nav-links > a {
-    color: gold;
-    font-size: 100%;
-    
-}
- .nav-links> a:hover {
-    color: white;
-
-}
 
 
 
@@ -211,11 +196,6 @@ body , html{
      border-bottom:1px solid rgb(121, 121, 121);
  }
 
-.logo > img {
-    width: 50%;
-    max-width: 400px;
-    max-height: 150px;
-}
 
 .main-logo img {
         width: 50%;

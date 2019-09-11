@@ -26,6 +26,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    margin-bottom: 5vh;
 }
 
 .sign_up_in_div_input{
@@ -56,11 +57,28 @@
 
 }
 
+.auth-big-input:hover, .auth-big-input-split:hover {
+     border-color: aqua;
+ }
+.auth_form_top{
+   display: flex;
+   width: 50%;
+   height: 15%;
+   justify-content: space-around;
+   align-items: baseline;
+   flex-direction: column;
+}
+
 
 // google start
-.abcRioButton abcRioButtonLightBlue{
-    width: 40vw;
-}
+// .abcRioButton abcRioButtonLightBlue{
+//     width: 40vw;
+// }
+// .g-signin2 {
+//     width: 50% !important;
+// }
+
+
 // google end
 
 
