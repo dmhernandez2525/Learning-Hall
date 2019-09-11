@@ -258,7 +258,7 @@ body , html{
  .move{
     position: absolute;
     transition: all 0.5s;
-    left: 250px;
+    left: 400px;
     display: block;
     right: 0;
     transition: opacity 0.5s ease 0s;
@@ -495,10 +495,10 @@ td:hover {
 
 /* nav */
 .sidenav {
-    width: 250px;
+    width: 400px;
     position: fixed;
     z-index: 1;
-    left: -250px;
+    left: -400px;
     transition: opacity 0.5s ease 0s;
 }
 
@@ -562,4 +562,5 @@ td:hover {
 .hall_nav{
     display: flex;
     justify-content: flex-end;
+    width: 40%;
 }

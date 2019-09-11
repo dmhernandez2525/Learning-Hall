@@ -88,7 +88,7 @@ class DropDownNav extends React.Component {
                         <img src={window.handgerUrl} 
                             alt="Course outline open nav buttion">
                         </img> 
-                        Course Outline 
+                        <p className="Course-Outline">Course Outline</p> 
                     </div>
 
                 </div>
