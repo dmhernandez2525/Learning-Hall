@@ -9,11 +9,17 @@ class Profile extends React.Component{
     }
 
     render(){
+        debugger
         return(
         <div>
-                <h1> Hello {currentUser.username} </h1>
-                <div>
-                    <button onClick={() => signOut()}> Sign Out</button>
+                <div className="profile-user">
+                <h3> Hello {this.props.currentUser.username} </h3>
+                    <div className="profile-buttions">
+                        <button onClick={() => this.props.signOut()}> Sign Out</button>
+                        <button > Make a Course</button>
+                        <button > Make a Subject</button>
+                        <button > Make a Task</button>
+                    </div>
                 </div>
             <div>
                 <TaskForm/>

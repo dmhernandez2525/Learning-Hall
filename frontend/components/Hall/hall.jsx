@@ -2,8 +2,8 @@ import React from "react";
 import DropDown from "../dropDownNav/dropDownNavContainer";
 import {Link} from "react-router-dom";
 import { compiler } from 'markdown-to-jsx';
-import Profile from "../profile/profile"
 import Markdown from 'markdown-to-jsx';
+import ProfileComponent from "../profile/profileComponent";
 // import css from '!!raw-loader!./a.md'
 
 class Hall extends React.Component{
@@ -41,13 +41,35 @@ class Hall extends React.Component{
     render(){
 
         let text;
+        let bottem;
         if (this.props.currentTask === "no task" || this.props.currentTask === "Profile" ) {
-            text = <Profile/> 
+            text = <ProfileComponent/> 
         } else {
             // text = <Markdown>   </Markdown> 
             // text = (<div><Markdown> {this.props.currentTask.toString() }</Markdown></div>  )
             // text = (compiler('# Hello world!'))
             text = <div className="code-markDown">{compiler(this.props.currentTask.toString())}</div> 
+            bottem = (
+                <div>
+                    <section className="color3">
+                    <h1>did u find this helpfull?</h1>
+                    <ul>
+                        <li><input type="checkbox" name="help" /> Yes</li>
+                        <li><input type="checkbox" name="help" /> No </li>
+                    </ul>
+                </section>
+
+                <div className="color4">
+                    <div className="project_buttion">
+                        <button>subbmit project</button>
+                        <button>download project</button>
+                    </div>
+
+                    <h4> The project solution will be available after you submit </h4>
+                </div>
+                </div>
+
+            )
         }
 
 
@@ -77,7 +99,7 @@ class Hall extends React.Component{
                         <div className="main-hall-task-text"> {text} </div>  
                     </div>
 
-                    <section className="color3">
+                    {/* <section className="color3">
                             <h1>did u find this helpfull?</h1>
                             <ul>
                                 <li><input type="checkbox" name="help"/> Yes</li>
@@ -92,7 +114,8 @@ class Hall extends React.Component{
                         </div>
 
                             <h4> The project solution will be available after you submit </h4>
-                    </div>
+                    </div> */}
+                    {bottem}
                     
                 </section>
                 </div>

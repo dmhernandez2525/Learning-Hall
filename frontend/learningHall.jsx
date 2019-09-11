@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
         };
+        window.currentUser = 1;
     };
+
 
     // creates the store var and initializes it to configureStore with the preloadedState passed in
     //from  up above 
