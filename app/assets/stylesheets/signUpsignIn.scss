@@ -1,0 +1,106 @@
+.Main {
+    height: 100vh;
+}
+
+.auth-form-div {
+    height: 20vh;
+}
+
+.sign_up_in_div {
+    display: flex;
+    justify-content: space-evenly;
+    height: 60%;
+    flex-direction: column;
+
+}
+
+
+
+
+.has-no-errors{
+    display: none
+}
+.auth_form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 5vh;
+}
+
+.sign_up_in_div_input{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 50%;
+}
+
+.auth-big-input, .auth-big-input-split {
+    width: 50%;
+    font-weight: 400;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    height: 20px;
+    color: #919191;
+    background-color: whitesmoke;
+    transition: border-color 2s;
+    font-size: 90%;
+    box-sizing: border-box;
+    padding: 20px 15px;
+}
+.auth-big-input-split{
+    width: 100%;
+
+}
+
+.auth-big-input:hover, .auth-big-input-split:hover {
+     border-color: aqua;
+ }
+.auth_form_top{
+   display: flex;
+   width: 50%;
+   height: 15%;
+   justify-content: space-around;
+   align-items: baseline;
+   flex-direction: column;
+}
+
+
+// google start
+// .abcRioButton abcRioButtonLightBlue{
+//     width: 40vw;
+// }
+// .g-signin2 {
+//     width: 50% !important;
+// }
+
+
+// google end
+
+
+// allready have a account?
+ .a1 {
+     display: flex;
+ }
+
+ .big-buttion-auth {
+    width: 40%;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    color: #919191;
+    background-color: #4161ff;
+    font-size: 100%;
+    height: 5vh;
+    opacity: .7;
+ }
+ .big-buttion-auth:hover{
+     color: white;
+     opacity: 1
+ }

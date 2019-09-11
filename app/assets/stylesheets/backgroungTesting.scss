@@ -7,11 +7,36 @@
     align-content: center;
     display: flex;
     background-color: inherit;
+    width: 100%;
+    justify-content: space-evenly;
 
 }
 .color2 button {
     height: 100%;
+    padding: 10px 15px;
+    background: inherit;
+    color: white;
+    border: none;
+    font-size: initial;
+    opacity: .5;
+    width: 33%;
+}
+.color2 button:hover {
+    opacity: 1.5;
+    background: darkblue
 
+}
+.Course-Outline{
+height: 100%;
+color: white;
+border: none;
+opacity: .5;
+display: flex;
+align-items: center;
+}
+.Course-Outline:hover {
+    opacity: 1.5;
+    background: darkblue
 }
 .color3{
     background-color: darkgreen

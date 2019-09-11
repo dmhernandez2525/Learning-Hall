@@ -28,7 +28,7 @@ class TaskForm extends React.Component {
         return (
             <div className="sign_up_form">
 
-                <form onSubmit={this.handleSumbit}>
+                <form className="course-form" onSubmit={this.handleSumbit}>
                     <h2 className="formH2">make a new task</h2>
 
                     <input
@@ -40,6 +40,7 @@ class TaskForm extends React.Component {
                     />
 
                     <textarea
+                        
                         className="big-input"
                         id="task-new"
 

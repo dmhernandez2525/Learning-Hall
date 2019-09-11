@@ -87,9 +87,9 @@ class Hall extends React.Component{
                         <section className="color2">
                             <button onClick={() => this.openCloseNav()}>Learn</button>
                             <button onClick={() => this.props.receiveTask("Profile")}>Profile</button>
-                            <button className="mentore">mentore</button>
+                            {/* <button className="mentore">mentore</button> */}
                             <button><img src={window.slack} alt="slack logo"/> </button>
-                            <button className="mentore">comunitty</button>
+                            {/* <button className="mentore">comunitty</button> */}
                         </section>
                     </header>
                 </nav>

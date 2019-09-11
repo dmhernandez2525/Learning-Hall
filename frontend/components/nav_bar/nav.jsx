@@ -53,7 +53,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
 
     return (
         
-        <div>
+        <div className="auth-form-div">
             {display}
         </div>
     )
