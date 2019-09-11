@@ -6,8 +6,13 @@
     margin: 4% 20% 20% 20%;
 }
 
-.main_task_part{
-    width: inherit;
+.main_task_part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    // overflow: scroll;
 }
 .main_task_part-first-div {
     width: inherit;

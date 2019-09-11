@@ -1,0 +1,15 @@
+.profile-user{
+    width: inherit;
+    background: lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+}
+.profile-user > h3{
+    font-weight: 400
+}
+.profile-buttions{
+    width: 30%;
+    display: flex;
+    justify-content: space-evenly;
+}
