@@ -70,8 +70,7 @@ body , html{
     width: 100%;
 }
 
-.big-buttion,
-.big-buttion-input {
+.big-buttion {
      width: 77.45%;
      margin: 8px;
      /* font-weight: 400; */
@@ -125,52 +124,6 @@ body , html{
 
 
 
-
-
-
-.big-buttion:hover ,.big-buttion-input:hover{
-     color: white;
- }
-
-
-
- .big-input, .login-input {
-    width: 40%;
-    padding: 12px 12px;
-    margin: 8px;
-    text-align: start;
-    font-weight: 400;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 2px solid #ccc;
-    border-radius: 7px;
-    height: 20px;
-    color: rgb(145, 145, 145);
-    background-color: rgb(245, 245, 245);
-    margin-left: 25%;
-    margin-right: 5%;
-    transition: border-color 2s;
- }
- .big-input:hover{
-     border-color: aqua;
- }
-
-
- .login-input:hover {
-     border-color: aqua;
- }
-
- .login-input{
-     width: 40%;
-    margin-left: 25%;
- }
-
- .big-buttion,
- .big-buttion-input {
-    width: 40%;
-    margin-left: 25.85%;
- }
-
-
  .formH2 {
     width: 40%;
     margin-left: 34.85%;
@@ -179,12 +132,12 @@ body , html{
 
 
 
- .a11{
-     display: flex;
-     flex-direction: column;
-     padding-left: 35%;
-     padding-right: 25%
- }
+//  .a11{
+//      display: flex;
+//      flex-direction: column;
+//      padding-left: 35%;
+//      padding-right: 25%
+//  }
 
 
  .nav-bar {
