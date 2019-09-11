@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom"//rf
-// import CourseForm from "../task/taskformcomponent" ;
-// import SubjectForm from "../task/taskformcomponent" ;
+import SubjectForm from "../subject/newSubjectComponent" ;
+import CourseForm from "../course/courseContainer" ;
 import TaskForm from "../task/taskformcomponent" ;
 
 
 class Profile extends React.Component{
     constructor(props){
         super(props)
-        // this.handleClick = this.handleClick.bind(this)
     }
     
 
