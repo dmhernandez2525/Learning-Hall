@@ -13,6 +13,7 @@ const _nullSession = {
     //add current course
 }
 
+
 const sessionReducer = (state = _nullSession ,action) => {
     Object.freeze(state)
     switch (action.type) {

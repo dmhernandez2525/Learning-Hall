@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../footer/footer"
-import Switcher from "../swcher/switch"
+import Switcher from "../swcher/switchContaner"
 
 class Splash extends React.Component{
     constructor(props){
@@ -381,37 +381,7 @@ class Splash extends React.Component{
                     </section>
                     <Link className={"reg-buttion"} to="???">apply now</Link>
                 </section>
-                <Footer />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                {/* <Footer /> */}
             </div>
         )
     }
