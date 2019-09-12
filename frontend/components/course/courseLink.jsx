@@ -21,21 +21,28 @@ class CourseLink extends React.Component{
         let Mysubjects = this.subjects.map((subject )=> {
             if (subject.courseId === this.course.id) {
                 return (
-                    <li><SubjectLink key={`subject.id${subject.name}`} subject={subject} tasks={this.tasks} receiveTask={this.props.receiveTask}  /></li>
+                    <li key={`subject.id${subject.name}`}><SubjectLink  subject={subject} tasks={this.tasks} receiveTask={this.props.receiveTask}  /></li>
                 )
             } 
 
         })
         
         return (
-            <div>
-                <button onClick={() => this.handlClick()}>{this.course.name}</button>
-                <div className=" togle_course" id={`${this.course.name}+${this.course.id}`}>
+            // <ul>
+            //     <button onClick={() => this.handlClick()}>{this.course.name}</button>
+            //     <div className=" togle_course" id={`${this.course.name}+${this.course.id}`}>
+            //         <ul>
+            //             {Mysubjects}
+            //         </ul>
+            //     </div>
+            // </ul>  
+            <ul>
+                <div id={`${this.course.name}+${this.course.id}`}>
                     <ul>
                         {Mysubjects}
                     </ul>
                 </div>
-            </div>  
+            </ul>  
         )  
         
 

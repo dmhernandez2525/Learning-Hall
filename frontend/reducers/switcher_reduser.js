@@ -1,7 +1,11 @@
-import {RECEIVE_PAIN} from "../actions/switch"
+import {
+    RECEIVE_PAIN,
+    NEW_COURSE
+} from "../actions/switch"
 
 const _nullPain = {
-    currentPain: "no Pain"
+    currentPain: "no Pain",
+    currentCourse: "no Course"
 }
 
 
@@ -11,6 +15,10 @@ const SwitcherReducer = (state = _nullPain, action) => {
         case RECEIVE_PAIN:
             return Object.assign({}, state, {
                 currentPain: action.id
+            });
+        case NEW_COURSE:
+            return Object.assign({}, state, {
+                currentCourse: action.CurrentCourse
             });
         default:
             return state;

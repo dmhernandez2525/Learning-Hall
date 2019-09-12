@@ -126,11 +126,14 @@ class Splash extends React.Component{
                                     <td><span> yes/no</span></td>
                                 </tr>
 
-                                <td id='td-no'>
-                                    <span id='td-no' className="no-style">
-                                        Features
+                                <tr >
+                                    <td id='td-no'>
+                                        <span id='td-no' className="no-style">
+                                            Features
                                         </span>
-                                </td> 
+                                    </td>
+
+                                </tr> 
 
                                 <tr>
                                     <td>
