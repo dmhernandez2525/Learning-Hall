@@ -6,6 +6,8 @@ import Loading from "../loading/loading"
 class DropDownNav extends React.Component {
     constructor(props) {
         super(props)
+        this.handlClick = this.handlClick.bind(this)
+        this.handleClickSwitch = this.handleClickSwitch.bind(this)
     }
 
     componentDidMount() {
@@ -13,6 +15,16 @@ class DropDownNav extends React.Component {
         this.props.allSubjects()
         this.props.allTasks()
 
+    }
+    handlClick() {
+        // let curent = document.getElementById(`${this.course.name}+${this.course.id}`)
+        
+        curent.classList.toggle("togle_course")
+    }   
+
+    handleClickSwitch(){
+        let all = document.getElementById("allCourses")
+        all.classList.toggle("switch-on")
     }
 
     openCloseNav(){
@@ -47,39 +59,73 @@ class DropDownNav extends React.Component {
 
 
         
-        const courses = this.props.courses.map(course => (
-            <CourseLink 
-                key={course.id} 
-                course={course} 
-                subjects={this.props.subjects} 
-                tasks={this.props.tasks} 
-                receiveTask={this.props.receiveTask} 
-            />
+        let CourseToDisplay;
+        let courseToDisplayName;
+        let CurrentCourse = this.props.CurrentCourse 
+        if (CurrentCourse === "no Course"){
+            courseToDisplayName = "plz pick a course"
+        }else{
+            courseToDisplayName = CurrentCourse.name;
+            CourseToDisplay = (
+                <CourseLink 
+                    key={CurrentCourse.id} 
+                    course={CurrentCourse} 
+                    subjects={this.props.subjects} 
+                    tasks={this.props.tasks} 
+                    receiveTask={this.props.receiveTask} 
+                />
             )
+        }
+        // const courses = this.props.courses.map(course => (
+        //     <CourseLink 
+        //         key={course.id} 
+        //         course={course} 
+        //         subjects={this.props.subjects} 
+        //         tasks={this.props.tasks} 
+        //         receiveTask={this.props.receiveTask} 
+        //     />
+        //     )
+        // )
+         const courses = this.props.courses.map(course => {
+            return (<li>
+                {/* key={course.id}  */}
+                {/* <button onClick={() => this.handlClick()}>{course.name}</button> */}
+                <button onClick={() => this.props.receiveCourse(course)}>{course.name}</button>
+            
+                {/* {course.name}  */}
+            </li>)
+            }
         )
 
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
 
-            
+            // debugger
             document.body.classList.remove("background-loading")
             return (
                 <div>
                     <div id="mySidenav" className="sidenav">
                             <section  className="nav-con-top">
-                                <h5>cureent course</h5>
+                                <h5>curent course</h5>
                                 <div className="nav-buttion-sub">
-                                    <h3>subject name</h3>
-                                    <button>switch</button>
+                                <h3>{courseToDisplayName}</h3>
+                                    <button onClick={() => this.handleClickSwitch()}>switch</button>
+                                
                                 </div>
                             </section>
                         <div className="drop-down">
                             
 
                             <section>
-                                <div className="col"> {courses} </div>
+
+                                <div className="col"> 
+                                    <ul id="allCourses" className="switch-on">{courses} </ul> 
+                                </div>
 
                             </section>
+                            <div className="col">
+                                {CourseToDisplay}
+                            </div>
 
                         </div>
                     </div> 
@@ -102,6 +148,7 @@ class DropDownNav extends React.Component {
                 <Loading/>
                     <div id="mySidenav" className="sidenav">
                         <div className="drop-down " >
+
                         </div>
                     </div>
                     <div className="open_bar"> <img src={window.handgerUrl}></img> Course Outline </div>
