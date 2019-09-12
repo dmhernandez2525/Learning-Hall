@@ -395,4 +395,5 @@ This line is only separated by a single newline, so it's a separate line in the 
 #// Task.create({name: 'demo task 6', author_id: 1, subject_id: 6, body: "this is task 6  ", duration: 700, completed: true })
 
 User.create ({username: 'demoUser', email: 'demoUser@gmail.com', preferred_name: 'demo', user_role: 'demo', pronunciation: 'demo', password: 'hunter2' }) 
+User.create ({username: 'demoUserAws', email: 'demoUserAws@gmail.com', preferred_name: 'demo', user_role: 'demo', pronunciation: 'demo', password: 'hunter2' }) 
 

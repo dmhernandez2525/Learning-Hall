@@ -18,6 +18,9 @@ class User < ApplicationRecord
     validates :username, :email, :session_token, :password_digest , :user_role, presence: true
     validates :username, :email, uniqueness: true
     validates :password, length: { minimum: 6 }, allow_nil: true
+    #aws
+    has_one_attached :photo
+
     has_many :courses
     has_many :subjects
     # has_many :tasks
