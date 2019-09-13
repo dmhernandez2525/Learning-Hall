@@ -23,9 +23,24 @@ class TaskLink extends React.Component{
 
 
     render(){
+        let a;
+        if(this.task.completed === true){
+            a = <span>&#10003;</span>
+        }else{
+            a = <span>&#10007;</span>
+
+        }
             return(
-        <li>
-            <button className="color-green-subjects-in-course" onClick={() => this.handleClick()}>{this.task.name}</button> 
+        <li className="nav-back_blue">
+                    <button className="color-green-subjects-in-course" onClick={() => this.handleClick()}>
+                        <span className="task-check-span">
+                          {a}
+                        <span>{this.task.name}</span>                          
+                        </span>
+
+                        <span>{this.task.duration}</span>
+                        
+                    </button> 
             <h1 className="task-body" id={this.task.id}> {this.task.body}</h1>
         </li>
     )

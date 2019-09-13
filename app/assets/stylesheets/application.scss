@@ -22,15 +22,7 @@
 
  }
 
-.col {
-    display: flex;
-    flex-direction: column;
-}
-.col> div > button {
-    background: rgb(222, 222, 222);
-    padding: 15px 10px 15px 20px;
-    width: 100%;
-}
+
 
 body , html{
     size: 100%
@@ -428,18 +420,7 @@ td:hover {
     overflow: scroll;
 }
 
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.5s;
-}
 
-.sidenav a:hover {
-    color: #f1f1f1;
-}
 
 .sidenav .closebtn {
     position: absolute;

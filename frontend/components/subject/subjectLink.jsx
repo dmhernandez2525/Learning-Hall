@@ -1,7 +1,7 @@
 import React from "react"
 import TaskLink from "../task/taskLink"
 
-
+import {Link} from "react-router-dom"
 
 class SubjectLink extends React.Component {
     constructor(props) {
@@ -14,6 +14,8 @@ class SubjectLink extends React.Component {
     handlClick() {
         let curent = document.getElementById(`${this.subject.name}+${this.subject.id}`)
         curent.classList.toggle("togle_subject")
+        let curentCir = document.getElementById(`${ this.subject.id }cir`)
+        curentCir.classList.toggle("cir-nav-click")
     }
 
     render() {
@@ -29,16 +31,24 @@ class SubjectLink extends React.Component {
         })
 
         return (
-            <ul key={`${this.subject.name}+${this.subject.id}`}>
-                <button className="color-white-subjects-in-course" onClick={() => this.handlClick()}>
-                    {this.subject.name}
+            <li key={`${this.subject.name}+${this.subject.id}`}>
+                <button to={this.subject.id} className="color-white-subjects-in-course" onClick={() => this.handlClick()}>
+
+                    <div className="cir-nav">
+                        <div id={`${this.subject.id}cir`} >
+
+                        </div>
+                    </div>
+
+                    <div className="sub-div">{this.subject.name}</div>
+
                 </button>
                 <div className="togle_subject" id={`${this.subject.name}+${this.subject.id}`}>
                     <li>
                         {MyTasks}
                     </li>
                 </div>
-            </ul>
+            </li>
         )
 
     }

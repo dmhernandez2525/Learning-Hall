@@ -1,3 +1,100 @@
 .switch-on{
     display: none;
 }
+.switch-off{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: rgb(20, 100, 203);
+    font-weight: 700;
+    cursor: pointer;
+    padding: 10px 30px;
+    height: 50%;
+
+}
+.switch-off a{
+    color: rgb(20, 100, 203);
+    // font-weight: 700;
+    cursor: pointer;
+    // padding: 10px 30px;
+    text-decoration: none;
+
+}
+.switch-off li {
+    padding: 10px 30px;
+}
+
+// .sidenav a {
+//     padding: 8px 8px 8px 32px;
+//     text-decoration: none;
+//     font-size: 25px;
+//     color: #818181;
+//     display: block;
+//     transition: 0.5s;
+// }
+
+// .sidenav a:hover {
+//     color: #f1f1f1;
+// }
+
+.drop-down{
+    height: 85%;
+}
+
+.col {
+//  display: flex;
+//  flex-direction: column;
+    // height: 100%;
+}
+
+.drop-down>div>button {
+    background: rgb(222, 222, 222);
+    padding: 15px 10px 15px 20px;
+    width: 100%;
+}
+.color-green-subjects-in-course {
+    width: 100%;
+    display: flex;
+    color: rgb(77, 201, 129);
+    cursor: pointer;
+    padding: 10px 10px 10px 25px;
+    border: none;
+    background: rgb(255, 255, 255);
+    justify-content: space-between;
+}
+.task-check-span {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.color-green-subjects-in-course:hover{
+    color: black
+}
+
+.nav-back_blue:focus{
+    background: rgb(20, 100, 203);
+}
+.cir-nav{
+    width: 19px;
+    height: 17px;
+    background: white;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cir-nav-click{
+    width: 53%;
+    background: blue;
+    height: 58%;
+    border-radius: 50%;
+}
+
+
+.sub-div {
+    width: 100%;
+}

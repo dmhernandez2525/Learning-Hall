@@ -1,6 +1,7 @@
 import React from "react";
 import CourseLink from "../course/courseLink"
 import Loading from "../loading/loading"
+import {Link} from "react-router-dom"
 
 
 class DropDownNav extends React.Component {
@@ -24,7 +25,7 @@ class DropDownNav extends React.Component {
 
     handleClickSwitch(){
         let all = document.getElementById("allCourses")
-        all.classList.toggle("switch-on")
+        all.classList.toggle("switch-off")
     }
 
     openCloseNav(){
@@ -90,7 +91,7 @@ class DropDownNav extends React.Component {
             return (<li>
                 {/* key={course.id}  */}
                 {/* <button onClick={() => this.handlClick()}>{course.name}</button> */}
-                <button onClick={() => this.props.receiveCourse(course)}>{course.name}</button>
+                <Link onClick={() => this.props.receiveCourse(course)}>{course.name}</Link>
             
                 {/* {course.name}  */}
             </li>)
@@ -114,18 +115,17 @@ class DropDownNav extends React.Component {
                                 </div>
                             </section>
                         <div className="drop-down">
-                            
+                                {/* <div className="col">  */}
+                                    <ul id="allCourses" className="switch-on ">{courses} </ul> 
+                                {/* </div> */}
 
-                            <section>
 
-                                <div className="col"> 
-                                    <ul id="allCourses" className="switch-on">{courses} </ul> 
-                                </div>
-
-                            </section>
-                            <div className="col">
+            
                                 {CourseToDisplay}
-                            </div>
+                            
+                            {/* <div className="col">
+                                {CourseToDisplay}
+                            </div> */}
 
                         </div>
                     </div> 

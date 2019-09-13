@@ -21,7 +21,7 @@ class CourseLink extends React.Component{
         let Mysubjects = this.subjects.map((subject )=> {
             if (subject.courseId === this.course.id) {
                 return (
-                    <li key={`subject.id${subject.name}`}><SubjectLink  subject={subject} tasks={this.tasks} receiveTask={this.props.receiveTask}  /></li>
+                    <SubjectLink  key={`subject.id${subject.name}`} subject={subject} tasks={this.tasks} receiveTask={this.props.receiveTask}  />
                 )
             } 
 
