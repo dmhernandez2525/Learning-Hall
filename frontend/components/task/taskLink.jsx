@@ -38,7 +38,7 @@ class TaskLink extends React.Component{
                         <span>{this.task.name}</span>                          
                         </span>
 
-                        <span>{this.task.duration}</span>
+                        <time>{this.task.duration}</time>
                         
                     </button> 
             <h1 className="task-body" id={this.task.id}> {this.task.body}</h1>

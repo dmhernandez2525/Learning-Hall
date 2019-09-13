@@ -21,9 +21,9 @@
     text-decoration: none;
 
 }
-.switch-off li {
-    padding: 10px 30px;
-}
+// .switch-off li {
+//     padding: 10px 30px;
+// }
 
 // .sidenav a {
 //     padding: 8px 8px 8px 32px;
@@ -82,19 +82,29 @@
     background: white;
     margin-right: 10px;
     border-radius: 50%;
-    border: 1px black solid;
+    // border: 1px black solid;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .cir-nav-click{
-    width: 53%;
+    width: 50%;
     background: blue;
-    height: 58%;
+    height: 50%;
     border-radius: 50%;
 }
 
 
 .sub-div {
-    width: 100%;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: self-end;
+}
+.sub-sub-div{
+border: 1px blue solid;
+margin: 2% 0;
+font-size: initial;
+padding: 1%;
+background: white;
 }
