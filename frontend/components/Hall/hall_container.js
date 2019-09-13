@@ -3,6 +3,7 @@ import Hall from "./hall"
 import { receiveTask } from "../../actions/session"
 
 const mapStateToProps = (state) => {
+    
     return({
 
         currentTask: state.session.currentTask

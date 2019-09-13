@@ -5,22 +5,36 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "faker"
+
+8.times do |i|
+    invention = Faker::TvShows::SiliconValley.invention
+
+    Course.create({name: invention, author_id: 1})
+    10.times do 
+        motto = Faker::TvShows::SiliconValley.motto
+        Subject.create({name: motto, authorId: 1, courseId: i + 1 })
+    end
+
+end
 
 
 
-Course.create({name: 'demo course 1', author_id: 1})
-Course.create({name: 'demo course 2', author_id: 1})
-Course.create({name: 'demo course 3', author_id: 1})
-Course.create({name: 'demo course 4', author_id: 1})
-Course.create({name: 'demo course 5', author_id: 1})
-Course.create({name: 'demo course 6', author_id: 1})
+# Course.create({name: 'demo course 1', author_id: 1})
+# Course.create({name: 'demo course 2', author_id: 1})
+# Course.create({name: 'demo course 3', author_id: 1})
+# Course.create({name: 'demo course 4', author_id: 1})
+# Course.create({name: 'demo course 5', author_id: 1})
+# Course.create({name: 'demo course 6', author_id: 1})
 
-Subject.create({name: 'demo subject 100', authorId: 1, courseId: 1})
-Subject.create({name: 'demo subject 2', authorId: 1, courseId: 2})
-Subject.create({name: 'demo subject 3', authorId: 1, courseId: 3})
-Subject.create({name: 'demo subject 4', authorId: 1, courseId: 4})
-Subject.create({name: 'demo subject 5', authorId: 1, courseId: 5})
-Subject.create({name: 'demo subject 6', authorId: 1, courseId: 6})
+# Subject.create({name: 'demo subject 100', authorId: 1, courseId: 1})
+# Subject.create({name: 'demo subject 2', authorId: 1, courseId: 2})
+# Subject.create({name: 'demo subject 3', authorId: 1, courseId: 3})
+# Subject.create({name: 'demo subject 4', authorId: 1, courseId: 4})
+# Subject.create({name: 'demo subject 5', authorId: 1, courseId: 5})
+# Subject.create({name: 'demo subject 6', authorId: 1, courseId: 6})
+
+
 
 Task.create({
     name: 'demo task no MarkDown',
@@ -108,7 +122,7 @@ produces a line break.</p>
 </ul>
 
 <p>Numbered list:</p>
-
+demoUser
 <ol>
 <li>lather</li>
 <li>rinse</li>
@@ -395,4 +409,5 @@ This line is only separated by a single newline, so it's a separate line in the 
 #// Task.create({name: 'demo task 6', author_id: 1, subject_id: 6, body: "this is task 6  ", duration: 700, completed: true })
 
 User.create ({username: 'demoUser', email: 'demoUser@gmail.com', preferred_name: 'demo', user_role: 'demo', pronunciation: 'demo', password: 'hunter2' }) 
+# User.create ({username: 'demoUserAws', email: 'demoUserAws@gmail.com', preferred_name: 'demo', user_role: 'demo', pronunciation: 'demo', password: 'hunter2' }) 
 

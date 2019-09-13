@@ -26,5 +26,5 @@ const SwitcherReducer = (state = _nullPain, action) => {
 }
 
 export default SwitcherReducer;
-
+//this is so i can commit befor as
 

@@ -88,7 +88,10 @@ class Hall extends React.Component{
                             <button onClick={() => this.openCloseNav()}>Learn</button>
                             <button onClick={() => this.props.receiveTask("Profile")}>Profile</button>
                             {/* <button className="mentore">mentore</button> */}
-                            <button><img src={window.slack} alt="slack logo"/> </button>
+                                {/* <button onClick={() => console.log("dddd")}> */}
+                                <button onClick={() => console.log(window.open("https://join.slack.com/t/learninghall/shared_invite/enQtNzUzNzM0NDA1NzE2LTY1ZmFmNzY0NjFhOGVjZTBhMzg1M2RmYjJmOGRjNmYxOGM1OGJiOTIxNDY1NDZmMWE1Mzc3ZDE4ODM4OWNjYjk", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=10500,width=400,height=400, position=absolute")
+)}>
+                                    <img src={window.slack} alt="slack logo"/> </button>
                             {/* <button className="mentore">comunitty</button> */}
                         </section>
                     </header>

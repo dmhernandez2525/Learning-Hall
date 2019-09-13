@@ -16,6 +16,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
+gem "aws-sdk-s3"
+#demo2.photo.attach(io: File.open("/home/daniel/Desktop/1200px-React-icon.svg.png"))  demo2.photo.attach(io: File.open("/home/daniel/Desktop/1200px-React-icon.svg.png", filename: "1200px-React-icon.svg.png" ))
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -49,6 +51,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   #!!!!!Add gems 9/2/2019
   gem 'better_errors'
+  gem 'faker'
   gem 'binding_of_caller'
   gem 'pry-rails'
   gem 'annotate'
