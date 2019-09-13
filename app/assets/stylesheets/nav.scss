@@ -42,6 +42,7 @@ padding-right: 20px;
     // background-color: aqua;
     display: flex;
     justify-content: space-between;
+    margin: 2% 0;
     // padding: 0px 20px 20px 5px;
 }
 
@@ -56,16 +57,7 @@ padding-right: 20px;
 .togle_subject{
     display: none;
 }
-.color-white-subjects-in-course{
-    background-color: white;
-    padding: 15px 10px 15px 20px;
-    width: 100%;
-}
-.color-green-subjects-in-course{
-    background-color: green;
-    padding: 15px 10px 15px 20px;
-    width: 100%;
-}
+
 
 
 .open_bar:hover {
@@ -82,5 +74,19 @@ nav.the_nav:hover * {
     opacity: 1;
 }
 
+
+.color-white-subjects-in-course {
+    width: 100%;
+    border: none;
+    color: #878787;
+    background: #dedede;
+    padding: 15px 10px 15px 20px;
+    display: flex;
+    justify-content: start;
+
+}
     
-    
+.color-white-subjects-in-course:hover{
+ color: black;
+
+}
