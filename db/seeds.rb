@@ -7,13 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "faker"
 
-8.times do |i|
-    invention = Faker::TvShows::SiliconValley.invention
+10.times do |i|
+    invention = Faker::TvShows::StarTrek.specie
 
     Course.create({name: invention, author_id: 1})
     10.times do 
-        motto = Faker::TvShows::SiliconValley.motto
-        Subject.create({name: motto, authorId: 1, courseId: i + 1 })
+        motto = Faker::TvShows::MichaelScott.quote 
+        Subject.create({name: motto, authorId: 1, courseId: i + 2 })
+        10.times do 
+            motto2 = Faker::Movies::HitchhikersGuideToTheGalaxy
+            mk = Faker::Markdown.random 
+            Task.create({ name:motto2 , author_id: 1, subject_id: 1, body:mk, duration: 300, completed: true })
+
+        end
+
     end
 
 end
