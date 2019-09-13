@@ -13,6 +13,119 @@
  *= require_tree .
  *= require_self
  */
+@media screen and (max-width: 300px) {
+    .profile-user {
+        flex-direction: column;
+        height: 8vh;
+
+    }
+
+    .profile-user>h3 {
+        flex-direction: column;
+        height: 8vh;
+        font-size: -webkit-xxx-large;
+
+    }
+
+    .the_nav {
+        height: 15vh;
+    }
+
+    .open_bar>img {
+        height: 54%;
+
+    }
+
+    .Course-Outline {
+        font-size: xx-large;
+        width: 20vw;
+    }
+
+    .color2 button {
+        font-size: xx-large;
+    }
+
+    .color2 button>img {
+        height: 30%;
+    }
+
+    .nav-con-top {
+        height: 10vh;
+        font-size: xx-large;
+    }
+
+    .nav-buttion-sub {
+        margin: 9% 0;
+        height: 5vh;
+    }
+
+    .nav-buttion-sub>button {
+        width: 80%;
+    }
+
+    .hall_nav {
+
+        width: 60%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
  .task-body{

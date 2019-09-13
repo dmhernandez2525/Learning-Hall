@@ -9,11 +9,77 @@
     font-weight: 400
 }
 .profile-buttions{
-    width: 30%;
+    width: 50%;
     display: flex;
     justify-content: space-evenly;
 }
 .profile-buttions button{
-    margin: 10px 15px;
+    // margin: 10px 15px;
 
 }
+
+
+// @media screen and (min-width: 700px) {
+//     .profile-user {
+//       flex-direction: column;
+//         height: 8vh;
+//         display: none
+
+//     }
+//     .profile-user > h3 {
+//       flex-direction: column;
+//         height: 8vh;
+//         font-size: -webkit-xxx-large;
+//         display: none
+
+//     }
+//     .the_nav{
+//         height: 15vh;
+//         display: none
+
+//     }
+//     .open_bar > img {
+//         height: 54%;
+//         display: none
+
+//     }
+//     .Course-Outline{
+//         font-size: xx-large;
+//         width: 20vw;
+//         display: none
+
+//     }
+//     .color2 button{
+//         font-size: xx-large;
+//         display: none
+
+//     }
+//     .color2 button > img{ 
+//         height: 30%;
+//         display: none
+
+//     }
+//     .nav-con-top{
+//         height: 10vh;
+//         font-size: xx-large;
+//         display: none
+
+//     }
+//     .nav-buttion-sub {
+//     margin: 9% 0;
+//       height: 5vh;
+//         display: none
+
+//     }
+//     .nav-buttion-sub > button {
+//           width: 80%;
+//         display: none
+
+//     }
+//     .hall_nav {
+
+//         width: 60%;
+//         display: none
+
+//     }
+// }

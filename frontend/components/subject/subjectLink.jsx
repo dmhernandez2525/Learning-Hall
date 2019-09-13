@@ -36,7 +36,6 @@ class SubjectLink extends React.Component {
                 this.allTaskCount = this.allTaskCount + 1
 
                 // this.taskCountLeft = this.taskCountLeft + 1
-                debugger
 
                 if (task.completed) {
                     // this.allTaskTime = this.allTaskTime - task.duration

@@ -5,16 +5,12 @@ import {
 } from "../actions/session"
 
 const sessionErrorsReducer = (state = [], action) => {
-    // debugger
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            // debugger
             return [];
         case RECEIVE_SESSION_ERRORS:
-            // debugger
             return action.errors;
         case CLEAR_SESSION_ERRORS:
-            // debugger
             return [];
         default:
             return state;

@@ -101,7 +101,6 @@ class DropDownNav extends React.Component {
 
         if (this.props.courses.length && this.props.subjects.length && this.props.tasks.length ) {
 
-            // debugger
             document.body.classList.remove("background-loading")
             return (
                 <div>
