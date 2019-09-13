@@ -8,6 +8,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
 
     let display;
     if (currentUser ) {
+        console.log(currentUser.photoUrls) 
         if (history === "/") {
             return <div className="navBarDoNotUse">do not use</div>
         }
@@ -58,6 +59,7 @@ const NavBar = ({ currentUser, signOut, history }) => {
         
         <div >
             {display}
+            
         </div>
     )
 

@@ -66,5 +66,21 @@ padding-right: 20px;
     padding: 15px 10px 15px 20px;
     width: 100%;
 }
+
+
+.open_bar:hover {
+    opacity: 1.5;
+    background: darkblue;
+}
+
+.open_bar:hover * {
+    opacity: 1.5;
+    background: darkblue;
+}
+
+nav.the_nav:hover * {
+    opacity: 1;
+}
+
     
     
