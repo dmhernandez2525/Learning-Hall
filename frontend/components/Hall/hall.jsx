@@ -53,18 +53,36 @@ class Hall extends React.Component{
             text = <div className="code-markDown">{compiler(this.props.currentTask.toString())}</div> 
             bottem = (
                 <div>
-                    <section className="color3">
-                    <h1>did u find this helpfull?</h1>
-                    <ul>
-                        <li><input type="checkbox" name="help" /> Yes</li>
-                        <li><input type="checkbox" name="help" /> No </li>
-                    </ul>
-                </section>
+                    <section className="all-most-don">
+                        <h1 className="space">did you find this helpful?</h1>
+                                <section className="color3">
+                                <ul className="face-ul">
+                                    <li className="face-li"><input type="checkbox" name="help" />
+                                Yes
+
+                                <div className="face">
+                                        <span className="u-f-y">&#9786;</span>
+                                </div>
+                                </li>
+                                    <div className="line"></div>
+
+                                    <li className="face-li"><input type="checkbox" name="help" />
+
+                                No
+                                <div className="face">
+                                        <span className="u-f">&#9785;</span>
+
+                                </div>
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+                    
 
                 <div className="color4">
                     <div className="project_buttion">
-                        <button>subbmit project</button>
-                        <button>download project</button>
+                        <button className="big-buttion">subbmit project</button>
+                        <button className="big-buttion">download project</button>
                     </div>
 
                     <h4> The project solution will be available after you submit </h4>

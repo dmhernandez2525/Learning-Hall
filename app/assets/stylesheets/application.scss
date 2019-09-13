@@ -13,22 +13,24 @@
  *= require_tree .
  *= require_self
  */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
     .profile-user {
         flex-direction: column;
         height: 8vh;
+        align-items: center;
 
     }
 
     .profile-user>h3 {
         flex-direction: column;
         height: 8vh;
-        font-size: -webkit-xxx-large;
+        font-size: x-large;
 
     }
 
     .the_nav {
         height: 15vh;
+        flex-direction: column;
     }
 
     .open_bar>img {
@@ -37,7 +39,7 @@
     }
 
     .Course-Outline {
-        font-size: xx-large;
+        font-size: large;
         width: 20vw;
     }
 

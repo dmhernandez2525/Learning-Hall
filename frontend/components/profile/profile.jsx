@@ -25,10 +25,10 @@ class Profile extends React.Component{
                 <div className="profile-user">
                 <h3> Hello {this.props.currentUser.username} </h3>
                     <div className="profile-buttions">
-                        <button onClick={() => this.props.receiveTask("Course")}> Create Course</button>
-                        <button onClick={() => this.props.receiveTask("Subject")}> Create Subject</button>
-                        <button onClick={() => this.props.receiveTask("Task")}> Create Task</button>
-                        <button onClick={() => this.props.signOut()}> Sign Out</button>
+                        <button className="user-but" onClick={() => this.props.receiveTask("Course")}> Create Course</button>
+                        <button className="user-but"onClick={() => this.props.receiveTask("Subject")}> Create Subject</button>
+                        <button className="user-but"onClick={() => this.props.receiveTask("Task")}> Create Task</button>
+                        <button className="user-but"onClick={() => this.props.signOut()}> Sign Out</button>
                     </div>
                 </div>
             <div>
