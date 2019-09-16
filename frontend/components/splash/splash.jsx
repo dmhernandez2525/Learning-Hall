@@ -14,7 +14,7 @@ class Splash extends React.Component{
             <div className="splash">
                 <section className="sec1">
                     <section>
-                        <h2>Free Plan</h2>
+                        <h2 className="free-plan">Free Plan</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat turpis sit amet tincidunt dignissim. Aliquam vestibulum sem mauris, eget bibendum tortor pretium at. Morbi sit amet euismod arcu. Integer ut sodales magna. Vestibulum interdum non ex ut porta. Proin pretium neque vitae neque sagittis, in ultrices magna pellentesque. Proin eleifend sollicitudin ex, consequat imperdiet est. Nunc tincidunt imperdiet sem, nec viverra augue rutrum eget. Pellentesque nec purus vitae ligula rutrum pharetra. Nam nec placerat enim. Nulla turpis nunc, laoreet vitae quam id, ornare vestibulum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
 
                            Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
@@ -30,7 +30,7 @@ class Splash extends React.Component{
                 <section className="sec3">
                     <section>
                         <h2 id="plan-school">
-                            Choose the right plan for yor school
+                            Choose the right plan for your school
                         </h2>
                     </section>
                     <section >
@@ -38,27 +38,27 @@ class Splash extends React.Component{
                             <thead>
                                 <tr>
                                     <th></th>
-                                    <th>
-                                        <h3>free plan</h3>
-                                        <p>all nessisary tools for the online class room</p>
-                                        <div>
+                                    <th className="after-thought">
+                                        <h3>Free plan</h3>
+                                        <p>all necessary tools for the online classroom</p>
+                                        <div className="buttion-th">
                                             <Link to="/signUp" className={"reg-buttion"}> select plan</Link>
                                             <Link to="/first-pic"></Link>
                                         </div>
                                     </th>
-                                    <th>
-                                        <h3>premum tools plan</h3>
-                                        <p>adds tools for the quiqist online classroom setup </p>
-                                        <div>
+                                    <th className="after-thought">
+                                        <h3>Premium tools plan</h3>
+                                        <p>adds tools for the quickest online classroom setup</p>
+                                        <div className="buttion-th">
                                             <Link to="/signUp" className={"reg-buttion"}> select plan</Link>
                                             <Link to="/second-pic"></Link>
                                         </div>
 
                                     </th>
-                                    <th>
-                                        <h3>custermer service plan</h3>
-                                        <p>custermer service</p>
-                                        <div>
+                                    <th className="after-thought">
+                                        <h3>Customer service plan</h3>
+                                        <p>Customer service</p>
+                                        <div className="buttion-th">
                                             <Link to="/signUp" className={"reg-buttion"}> select plan</Link>
                                             <Link to="/thred-pic"></Link>
                                         </div>
@@ -78,26 +78,26 @@ class Splash extends React.Component{
                                 <tr>
                                     <td>
                                         <span>
-                                            price
+                                            Price
                                         </span>
                                     </td>
                                     <td>$0</td>
                                     <td>29.99/mounth</td>
                                     <td>
-                                        buy full pacig at 25K
+                                        Buy full package for 25K
                                     </td>
                                 </tr>
                                 <tr>
                                    <td id='td-no'>
                                         <span  className="no-style">
-                                        schudle
+                                        Schedule
                                     </span>
                                     </td> 
                                 </tr>
                                 <tr>
 
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -108,7 +108,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -119,7 +119,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -137,7 +137,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -148,7 +148,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -159,7 +159,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -170,7 +170,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -181,7 +181,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -192,7 +192,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -203,7 +203,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -214,7 +214,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -225,7 +225,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -236,7 +236,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -247,7 +247,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -258,7 +258,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -269,7 +269,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -280,7 +280,7 @@ class Splash extends React.Component{
 
                                 <tr>
                                     <td>
-                                        <span>some survice</span>
+                                        <span>Some Service</span>
                                     </td>
                                     <td><span> yes/no</span></td>
                                     <td><span> yes/no</span></td>
@@ -300,8 +300,8 @@ class Splash extends React.Component{
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
-                            <Link to="/signUp"className={"reg-buttion"}>Select Plan</Link>
-                            <Link to="???">Learn More</Link>
+                            <Link to="/signup"className={"reg-buttion"}>Select Plan</Link>
+                            <Link to="/signup">Learn More</Link>
                         </header>
                         <ul>
                             <li>detail about plan</li>
@@ -316,8 +316,8 @@ class Splash extends React.Component{
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
-                            <Link to="/signUp"className={"reg-buttion"}>Select Plan</Link>
-                            <Link to="???">Learn More</Link>
+                            <Link to="/signup"className={"reg-buttion"}>Select Plan</Link>
+                            <Link to="/signup">Learn More</Link>
                         </header>
                         <ul>
                             <li>detail about plan</li>
@@ -332,8 +332,8 @@ class Splash extends React.Component{
                         <header>
                             <h3>the plan name</h3>
                             <p>a breff discription of said corse</p>
-                            <Link to="/signUp"className={"reg-buttion"}>Select Plan</Link>
-                            <Link to="???">Learn More</Link>
+                            <Link to="/signup"className={"reg-buttion"}>Select Plan</Link>
+                            <Link to="/signup">Learn More</Link>
                         </header>
                         <ul>
                             <li>detail about plan</li>
@@ -347,7 +347,7 @@ class Splash extends React.Component{
                 </section>
                 <section className="sec5">
                     <section>
-                        <h2>plan 2</h2>
+                        <h2>Plan 2</h2>
                         <p>
                            Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
                         </p>
@@ -355,11 +355,11 @@ class Splash extends React.Component{
                     <picture>
                         <img className="bottem-img" src={window.img2Url} alt="Learning Hall Logo" />
                     </picture>
-                    <Link className={"reg-buttion"} to="???">idk yes</Link>
+                    <Link className={"reg-buttion"} to="/signup">Choose this plan</Link>
                 </section>
                 <section className="sec6">
                     <section>
-                        <h2>plan 3</h2>
+                        <h2>Plan 3</h2>
                         <p>
                             Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
                         </p>
@@ -367,22 +367,22 @@ class Splash extends React.Component{
                     <picture>
                         <img className="bottem-img"  src={window.img3Url} alt="Learning Hall Logo" />
                     </picture>
-                    <section>
-                        <h3>apply now for somthing</h3>
+                    <section className="bottem-apply">
+                        <h3>Apply Now</h3>
                         <section id="almost-done">
-                            <label >some date
+                            <label className="bottom-apply-part">some date
                                 <h3>info</h3>
-                            </label>
-                            <label >some date
+                            </label >
+                            <label className="bottom-apply-part">some date
                                 <h3>info</h3>
-                            </label>
-                            <label >some date
+                            </label >
+                            <label className="bottom-apply-part">some date
                                 <h3>info</h3>
                             </label>
                         </section>
 
                     </section>
-                    <Link className={"reg-buttion"} to="???">apply now</Link>
+                    <Link className={"reg-buttion"} to="/signup">Apply Now</Link>
                 </section>
                 {/* <Footer /> */}
             </div>
