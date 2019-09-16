@@ -36,7 +36,7 @@ class Splash extends React.Component{
                     <section >
                         <table id="plans">
                             <thead>
-                                <tr>
+                                <tr className="why">
                                     <th></th>
                                     <th className="after-thought">
                                         <h3>Free plan</h3>

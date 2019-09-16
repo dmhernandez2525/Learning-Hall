@@ -306,12 +306,16 @@ body , html{
 
 
  }
-.hero-con{
-      text-align: center;
-      color: white;
-      width: 80%;
-      color: #fff;
-      font-weight: bold;
+.hero-con {
+    text-align: center;
+    color: white;
+    width: 80%;
+    color: #fff;
+    font-weight: bold;
+    height: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
 }
 .hero-con > section{
     display: flex;
