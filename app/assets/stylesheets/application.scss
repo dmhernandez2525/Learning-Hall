@@ -72,7 +72,10 @@
 }
 
 
-
+textarea:focus,
+input:focus {
+    outline: none;
+}
 
 
 
@@ -491,10 +494,7 @@ td:hover {
 
 }
 
-#almost-done{
-    display: flex;
-    margin: 20% 0;
-}
+
 
 
 .background-loading{

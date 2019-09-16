@@ -38,9 +38,9 @@ const NavBar = ({ currentUser, signOut, history }) => {
                 </header>
                 
                 <section className="hero-con">
-                    <h1>Incres productivity and engament with your students -for free</h1>
-                    <p>create a cores with the days and tasks maped out for your students.
-                        get access to Learning halls corse creation tools for free</p>
+                    <h1>Increase productivity and engagement with your students -for free</h1>
+                    <p>Create a course with the days and tasks mapped out for your students.
+                        Get access to Learning halls corse creation tools for free</p>
                     <section>
                         <Link to="/signUp" className={"reg-buttion"}> get premium tools </Link>
                         <div className="or"> or</div>

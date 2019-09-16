@@ -29,7 +29,7 @@ class TaskForm extends React.Component {
             <div className="sign_up_form">
 
                 <form className="course-form" onSubmit={this.handleSumbit}>
-                    <h2 className="formH2">make a new task</h2>
+                    <h2 className="formH2">Make a New Task</h2>
 
                     <input
                         className="big-input"
@@ -45,7 +45,7 @@ class TaskForm extends React.Component {
                         id="task-new"
 
                         value={this.state.body}
-                        placeholder="type out a lession here"
+                        placeholder="type out a lesson here "
                         onChange={this.handleInput("body")}
                     />
 
