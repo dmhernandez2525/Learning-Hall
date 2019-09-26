@@ -96,3 +96,43 @@
 .user-but:hover {
     color: black
 }
+
+.bigInputProfile{
+        width: 40%;
+        padding: 12px 12px;
+        margin: 8px;
+        text-align: start;
+        font-weight: 400;
+        font-family: Arial,
+        Helvetica,
+        sans-serif;
+        border: 2px solid #ccc;
+        border-radius: 7px;
+        height: 20px;
+        color: #919191;
+        background-color: whitesmoke;
+        /* margin-left: 25%; */
+        /* margin-right: 5%; */
+        transition: border-color 2s;
+}
+.bigButtionProfile{
+    width: 77.45%;
+    margin: 8px;
+    padding: 15px 20px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    height: 20px;
+    color: #919191;
+    background-color: #4161ff;
+    font-size: 100%;
+    padding-bottom: 30px;
+}
+
+.task-buttion-div {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+}

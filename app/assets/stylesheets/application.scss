@@ -13,6 +13,11 @@
  *= require_tree .
  *= require_self
  */
+ .hall_nav{
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+}
 @media screen and (max-width: 400px) {
     .profile-user {
         flex-direction: column;
@@ -38,17 +43,17 @@
 
     }
 
-    .Course-Outline {
-        font-size: large;
-        width: 20vw;
-    }
+    // .Course-Outline {
+    //     font-size: large;
+    //     width: 20vw;
+    // }
 
     .color2 button {
-        font-size: xx-large;
+        font-size: x-large;
     }
 
     .color2 button>img {
-        height: 30%;
+        height: 100%;
     }
 
     .nav-con-top {
@@ -67,7 +72,10 @@
 
     .hall_nav {
 
-        width: 60%;
+        width: 100%;
+    }
+    .profile-buttions{
+        width: 100%;
     }
 }
 
@@ -234,10 +242,10 @@ body , html{
 
 
 
- .formH2 {
-    width: 40%;
-    margin-left: 34.85%;
- }
+//  .formH2 {
+//     width: 40%;
+//     margin-left: 34.85%;
+//  }
 
 
 
@@ -561,8 +569,4 @@ td:hover {
 
 
 
-.hall_nav{
-    display: flex;
-    justify-content: flex-end;
-    width: 40%;
-}
+
