@@ -32,7 +32,7 @@ class TaskForm extends React.Component {
                     <h2 className="formH2">Make a New Task</h2>
 
                     <input
-                        className="big-input"
+                        className="bigInputProfile"
                         type="text"
                         value={this.state.name}
                         placeholder="task name"
@@ -41,7 +41,7 @@ class TaskForm extends React.Component {
 
                     <textarea
                         
-                        className="big-input"
+                        className="bigInputProfile"
                         id="task-new"
 
                         value={this.state.body}
@@ -49,8 +49,8 @@ class TaskForm extends React.Component {
                         onChange={this.handleInput("body")}
                     />
 
-                    <div>
-                        <input className="big-buttion" type="submit" value={"make a new Task"} />
+                    <div className=".task-buttion-div">
+                        <input className="bigButtionProfile" type="submit" value={"make a new Task"} />
                     </div>
                 </form>
          </div>
