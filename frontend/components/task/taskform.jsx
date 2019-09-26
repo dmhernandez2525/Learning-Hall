@@ -49,7 +49,7 @@ class TaskForm extends React.Component {
                         onChange={this.handleInput("body")}
                     />
 
-                    <div className=".task-buttion-div">
+                    <div className="task-buttion-div">
                         <input className="bigButtionProfile" type="submit" value={"make a new Task"} />
                     </div>
                 </form>
