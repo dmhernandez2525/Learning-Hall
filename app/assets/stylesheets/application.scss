@@ -65,12 +65,12 @@
     }
 
     .nav-buttion-sub {
-        margin: 9% 0;
-        height: 5vh;
+        // margin: 9% 0;
+        // height: 5vh;
     }
 
     .nav-buttion-sub>button {
-        width: 80%;
+        width: 50%;
     }
 
     .hall_nav {
@@ -580,7 +580,7 @@ td:hover {
         font-size: 18px;
     }
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1500px) {
         
     .sidenav {
             position: fixed;
@@ -604,6 +604,13 @@ td:hover {
         bottom: 0;
         width: 100vw;
             background: white;
+    }
+    .nav-con-top {
+        height: 10vh;
+        font-size: xx-large;
+    }
+    .nav-buttion-sub>button {
+        width: 50%;
     }
 }
 
