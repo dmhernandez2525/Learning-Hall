@@ -27,19 +27,19 @@ class CourseForm extends React.Component {
         return (
             <div className="sign_up_form">
 
-                <form onSubmit={this.handleSumbit}>
+                <form className="course-form" onSubmit={this.handleSumbit}>
                     <h2 className="formH2">make a new course</h2>
 
                     <input
-                        className="big-input"
+                        className="bigInputProfile"
                         type="text"
                         value={this.state.name}
                         placeholder="course name"
                         onChange={this.handleInput("name")}
                     />
 
-                    <div>
-                        <input className="big-buttion" type="submit" value={"make a new course"} />
+                    <div className="task-buttion-div">
+                        <input className="bigButtionProfile" type="submit" value={"make a new course"} />
                     </div>
                 </form>
             </div>
