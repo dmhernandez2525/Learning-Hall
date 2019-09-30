@@ -17,13 +17,17 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: LearningHall_development
+  adapter: postgresql
+  host: db
+  username: postgres
+  password:
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +84,7 @@ test:
 #
 production:
   <<: *default
-  database: LearningHall_production
-  username: LearningHall
-  password: <%= ENV['LEARNINGHALL_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  host: db
+  username: postgres
+  password: 
