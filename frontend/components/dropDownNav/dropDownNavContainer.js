@@ -6,7 +6,6 @@ import {allTasks} from "../../actions/task"
 import {receiveTask} from "../../actions/session"
 import {receiveCourse} from "../../actions/switch"
 const mapStateToProps = (state) => {
-    debugger
     return({
         courses: Object.values(state.entities.courses),
         subjects: Object.values(state.entities.subject),
