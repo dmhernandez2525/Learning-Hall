@@ -5,7 +5,7 @@ const mapStateToProps = (state) => ({
     subject: {
         name: "",
         authorId: state.session.currentUser.id,
-        courseId: ""
+        courseName: ""
     }
 })
 
