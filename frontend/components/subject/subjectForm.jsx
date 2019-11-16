@@ -67,7 +67,9 @@ class SubjectForm extends React.Component {
                             <input className="bigButtionProfile" type="submit" value={"make a new subject"} />
                         </div>
                     </form>
-                    <input className="bigButtionProfile" type="submit" onClick={this.handleInput("FormType") } value={"Edit a subject"} />
+                    <div className="task-buttion-div">
+                        <input className="bigButtionProfile" type="submit" onClick={this.handleInput("FormType") } value={"Edit a subject"} />
+                    </div>
 
                 </div>
                 )
@@ -122,8 +124,9 @@ class SubjectForm extends React.Component {
                             <input className="bigButtionProfile" type="submit" value={"Edit Subject Name"} />
                         </div>
                     </form>
-
-                    <input className="bigButtionProfile" type="submit" onClick={this.handleInput("FormType") } value={"Make a New Subject"} />
+                    <div className="task-buttion-div">
+                        <input className="bigButtionProfile" type="submit" onClick={this.handleInput("FormType")} value={"Make a New Subject"} />
+                    </div>
 
                 </div>
             )
