@@ -17,7 +17,7 @@ class TaskForm extends React.Component {
 
     handleSumbit(event) {
         event.preventDefault();
-
+        this.state.duration = parseInt(this.state.duration)
         this.props.newTask(this.state)
     };
 
@@ -38,7 +38,20 @@ class TaskForm extends React.Component {
                         placeholder="task name"
                         onChange={this.handleInput("name")}
                     />
-
+                    <input
+                        className="bigInputProfile"
+                        type="text"
+                        value={this.state.subjectName}
+                        placeholder="Subject name"
+                        onChange={this.handleInput("subjectName")}
+                    />
+                    <input
+                        className="bigInputProfile"
+                        type="text"
+                        value={this.state.duration}
+                        placeholder="Duration"
+                        onChange={this.handleInput("duration")}
+                    />
                     <textarea
                         
                         className="bigInputProfile"

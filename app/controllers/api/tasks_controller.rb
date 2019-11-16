@@ -7,7 +7,9 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    subject = Subject.where(name: task_params[:subjectName])
+    subjectIdd = subject.first.id
+    @task = Task.new( name: task_params[:name],author_id: task_params[:author_id],body: task_params[:body], duration:task_params[:duration],subject_id: subjectIdd,completed: true)
     if @task.save
       render "api/tasks/show"
     else
@@ -43,6 +45,6 @@ class Api::TasksController < ApplicationController
 
   private 
   def task_params
-      params.require(:task).permit(:name, :author_id, :subject_id, :completed, :duration, :body)
+      params.require(:task).permit(:name, :author_id, :subject_id, :completed, :duration, :body,:subjectName)
   end
 end
