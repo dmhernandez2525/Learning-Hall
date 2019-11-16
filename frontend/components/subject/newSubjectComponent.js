@@ -1,16 +1,25 @@
 import {connect} from "react-redux"
-import {newSubject} from "../../actions/subject"
+import {newSubject,updateSubject, deleteSubject} from "../../actions/subject"
 import SubjectForm from "./subjectForm"
-const mapStateToProps = (state) => ({
-    subject: {
-        name: "",
-        authorId: state.session.currentUser.id,
-        courseName: ""
-    }
-})
+const mapStateToProps = (state) => {
+    return ({
+        subject: {
+            name: "",
+            authorId: state.session.currentUser.id,
+            courseName: "",
+            subject: "",
+            FormType: "Make a New Subject"
+        },
+        allSubjects: {
+            subjescts: Object.values(state.entities.subject)
+        }
+    })
+}
 
 const mapDispatchToProps = (dispatch) => ({
-    newSubject: (subject) => dispatch(newSubject(subject))
+    newSubject: (subject) => dispatch(newSubject(subject)),
+    updateSubject: (subject) => dispatch(updateSubject(subject)),
+    deleteSubject: (id) => dispatch(deleteSubject(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SubjectForm)
