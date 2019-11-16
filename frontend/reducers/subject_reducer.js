@@ -12,6 +12,7 @@ const SubjectReducer = (state = {}, action) => {
         case RECEIVE_ALL_SUBJECTS:
             return action.subjects;
         case RECEIVE_SUBJECT:
+            debugger
             return Object.assign({},state, {[action.subject.id]: action.subject});
         case DELETE_SUBJECT:
             const newState = Object.assign({}, state )
