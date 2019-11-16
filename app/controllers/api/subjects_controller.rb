@@ -5,7 +5,23 @@ class Api::SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.new(subject_params)
+    course = Course.where(name: subject_params[:courseName])
+    courseIdd = course.first.id
+
+      subject =  {
+        name: subject_params[:name],
+        authorId: subject_params[:authorId],
+        courseId: courseIdd
+      }
+    @subject = Subject.new( name: subject_params[:name],authorId: subject_params[:authorId],courseId: courseIdd)
+    p (1111111111111111111111111111111111111)
+    p (courseIdd)
+    p (1111111111111111111111111111111111111)
+    p (2222222222222222222222222222222222222)
+    p (@subject)
+    p (2222222222222222222222222222222222222)
+    
+    # @subject = Subject.new(subject_params)
     if @subject.save
       render "api/subjects/show"
     else
@@ -41,7 +57,7 @@ class Api::SubjectsController < ApplicationController
 
   private 
   def subject_params
-      params.require(:subject).permit(:name,:authorId,:courseId)
+      params.require(:subject).permit(:name,:authorId,:courseId,:courseName)
   end
 
 end
