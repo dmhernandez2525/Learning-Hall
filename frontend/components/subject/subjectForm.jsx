@@ -44,15 +44,6 @@ class SubjectForm extends React.Component {
                         placeholder="Course Name"
                         onChange={this.handleInput("courseName")}
                     />
-                    {/* <input
-                        className="bigInputProfile"
-                        type="text"
-                        value={this.state.courseId}
-                        placeholder=""
-                        onChange={this.handleInput("courseId")}
-                    /> */}
-
-
 
                     <div className="task-buttion-div">
                         <input className="bigButtionProfile" type="submit" value={"make a new subject"} />
