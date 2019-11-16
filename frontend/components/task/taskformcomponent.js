@@ -8,10 +8,11 @@ const mapStateToProps = (state) => ({
     task: {
         name: "",
         completed: true,
-        duration: 0,
+        duration: "",
         body: "",
         author_id: state.session.currentUser.id,
-        subject_id: 1
+        subject_id: "",
+        subjectName: ""
     }
 })
 
