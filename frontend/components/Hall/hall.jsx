@@ -138,7 +138,7 @@ class Hall extends React.Component{
 
                             <h4> The project solution will be available after you submit </h4>
                     </div> */}
-                    {bottem}
+                    {/* {bottem} */}
                     
                 </section>
                 </div>
