@@ -23,9 +23,17 @@ class Api::SubjectsController < ApplicationController
   end
 
   def update
+    # course = Course.find(subject_params[:courseId])
+    # courseName = course[:name]
     @subject = Subject.find(params[:id])
-    if @subject.update(subject_params)
-      render "api/subjects/show"
+    p (1111111111111111111111111111111111111111111)
+    p (@subject)
+    p (subject_params)
+    p (1111111111111111111111111111111111111111111)
+    # if @subject.update(subject_params)
+    if @subject
+      @subject.update(name: subject_params[:name], authorId: subject_params[:authorId], courseId: subject_params[:courseId])
+      render :show
     else
       render json: @subject.errors.full_messages, status: 422
     end
@@ -45,7 +53,7 @@ class Api::SubjectsController < ApplicationController
 
   private 
   def subject_params
-      params.require(:subject).permit(:name,:authorId,:courseId,:courseName)
+      params.require(:subject).permit(:id,:name,:authorId,:courseId,:courseName)
   end
 
 end

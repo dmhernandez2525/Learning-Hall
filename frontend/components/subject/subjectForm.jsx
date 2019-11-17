@@ -8,8 +8,9 @@ class SubjectForm extends React.Component {
         this.editState = { authorId: this.props.subject.authorId, name: this.props.subject.name }
         this.handleNew = this.handleNew.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
-        this.subject = ""
-        this.subjectNames = []
+        this.subject = "";
+        this.subjectNames = [];
+        this.allSubjectsss = {};
     };
 
     handleInput(type) {
@@ -32,15 +33,31 @@ class SubjectForm extends React.Component {
 
     handleEdit(event) {
         event.preventDefault();
-        this.props.newSubject(this.editState)
+        let subjectId = this.allSubjectsss[this.state.subject]
+        let authorId = this.state.authorId
+        let name = this.state.name
+        debugger
+        this.props.showSubject(subjectId).then(subject => {
+            // debugger
+            let newSubject = {
+                id: subjectId, name, courseId: subject.subject.courseId, authorId
+            }
+            // subject.subject.name = this.state.name
+            debugger
+            this.props.updateSubject(newSubject)
+        })
     };
 
 
     render() {
-        debugger
         let allSubjectNames = this.props.allSubjects.subjescts.map(subject => {
             this.subjectNames.push(subject.name)
         })
+       this.props.allSubjects.subjescts.forEach(subject => {
+            this.allSubjectsss[subject.name] = subject.id
+        })
+
+
         if (this.state.FormType === "Make a New Subject"){
             return (
                 <div className="sign_up_form">
@@ -115,9 +132,9 @@ class SubjectForm extends React.Component {
                         <input
                             className="bigInputProfile"
                             type="text"
-                            value={this.state.courseName}
+                            value={this.state.name}
                             placeholder="New Name"
-                            onChange={this.handleInput("courseName")}
+                            onChange={this.handleInput("name")}
                         />
 
                         <div className="task-buttion-div">
