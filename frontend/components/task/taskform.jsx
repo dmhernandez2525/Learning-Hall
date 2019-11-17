@@ -101,6 +101,15 @@ class TaskForm extends React.Component {
                             placeholder="Duration"
                             onChange={this.handleInput("duration")}
                         />
+
+                        <input
+                            className="bigInputProfile"
+                            type="text"
+                                value={this.state.subjectName}
+                            placeholder="Subject Name"
+                                onChange={this.handleInput("subjectName")}
+                        />
+
                         <textarea
                             
                             className="bigInputProfile"
