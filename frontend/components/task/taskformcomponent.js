@@ -7,7 +7,6 @@ import {
 import TaskForm from "./taskform"
 
 const mapStateToProps = (state) => {
-    debugger
     return ({
         task: {
             name: "",

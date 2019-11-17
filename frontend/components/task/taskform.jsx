@@ -44,10 +44,12 @@ class TaskForm extends React.Component {
 
     handleInput(type) {
         if (type === "task" && this.state.task !== ""){
+            debugger
             let allTasksss = this.allTasksss
             let newTask = allTasksss[this.state.task]
+            debugger
             return (e) => {
-                this.setState({ body: newTask.body, duration: newTask.duration, name: newTask.name})
+                this.setState({ body: newTask.body, duration: newTask.duration, name: newTask.name, [type]: e.target.value})
             }
         }
         return (e) => {
@@ -126,7 +128,7 @@ class TaskForm extends React.Component {
                     <form className="course-form" onSubmit={this.handleEdit}>
                         <h2 className="formH2">Edit Task</h2>
                         <h2 className="formH2">Task Name </h2>
-                        <h2 className="formH2">{this.state.task}</h2>
+                        {/* <h2 className="formH2">{this.state.task}</h2> */}
                         <select className="bigSelectorProfile" value={this.state.task} onChange={this.handleInput('task')}>
                             <option defaultValue >Select the task you would like to edit</option>
                             <option value={this.taskNames[0]}>{this.taskNames[0]}</option>
@@ -151,13 +153,15 @@ class TaskForm extends React.Component {
                             <option value={this.taskNames[19]}>{this.taskNames[19]}</option>                        
                         </select>
 
+                        {/* <label htmlFor=""></label>
                         <input
                             className="bigInputProfile"
                             type="text"
                             value={this.state.name}
                             placeholder="task name"
                             onChange={this.handleInput("name")}
-                        />
+                        /> */}
+                        {/* <h2 className="formH2">Duration</h2> */}
                         <input
                             className="bigInputProfile"
                             type="text"
@@ -165,6 +169,8 @@ class TaskForm extends React.Component {
                             placeholder="Duration"
                             onChange={this.handleInput("duration")}
                         />
+
+                        {/* <h2 className="formH2">Lesson</h2> */}
                         <textarea
                             className="bigInputProfile"
                             id="task-new"
