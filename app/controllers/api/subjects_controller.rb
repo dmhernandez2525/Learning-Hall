@@ -26,10 +26,7 @@ class Api::SubjectsController < ApplicationController
     # course = Course.find(subject_params[:courseId])
     # courseName = course[:name]
     @subject = Subject.find(params[:id])
-    p (1111111111111111111111111111111111111111111)
-    p (@subject)
-    p (subject_params)
-    p (1111111111111111111111111111111111111111111)
+
     # if @subject.update(subject_params)
     if @subject
       @subject.update(name: subject_params[:name], authorId: subject_params[:authorId], courseId: subject_params[:courseId])
