@@ -44,7 +44,6 @@ class SubjectForm extends React.Component {
     handleDelete(event) {
         event.preventDefault();
         let subjectId = this.allSubjectsss[this.state.subject]
-        debugger
         this.props.deleteSubject(subjectId)
     };
 
@@ -77,7 +76,7 @@ class SubjectForm extends React.Component {
                             placeholder="Course Name"
                             onChange={this.handleInput("courseName")}
                         />
-                        {allSubjectNames}
+                        {/* {allSubjectNames} */}
                         <div className="task-buttion-div">
                             <input className="bigButtionProfile" type="submit" value={"make a new subject"} />
                         </div>
@@ -96,7 +95,7 @@ class SubjectForm extends React.Component {
                         <h2 className="formH2">Subject Name </h2>
                         <h2 className="formH2">{this.state.subject}</h2>
                         <select className="bigSelectorProfile" value={this.state.subject} onChange={this.handleInput('subject')}>
-                            <option value={this.state.subject} selected disabled hidden>Select the subject you would like to edit</option>
+                            <option defaultValue >Select the subject you would like to edit</option>
                             <option value={this.subjectNames[0]}>{this.subjectNames[0]}</option>
                             <option value={this.subjectNames[1]}>{this.subjectNames[1]}</option>
                             <option value={this.subjectNames[2]}>{this.subjectNames[2]}</option>
