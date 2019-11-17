@@ -18,9 +18,43 @@
     justify-content: flex-end;
     width: 40%;
 }
-@media screen and (max-width: 700px) {
+
+
+
+.user-but {
+    /* padding: 6px 23px; */
+    /* border-radius: 50%; */
+    border: 2px solid;
+    background: #1464cb;
+    color: white;
+    overflow: hidden;
+    height: 4vw;
+    width: 9vw;
+
+
+    // padding: 0 10px;
+    // border-radius: 10%;
+    // border: 2px solid;
+    // background: #1464cb;
+    // color: white;
+    // overflow: hidden;
+
+
+
+}
+
+
+
+@media screen and (max-width: 850px) {
     .user-but {
-        padding: 10px 10px;
+    border-radius: 10%;
+    border: 2px solid;
+    background: #1464cb;
+    color: white;
+    overflow: hidden;
+    padding: 10px 10px;
+    height: auto;
+    width: auto;
     }
     .profile-user {
         flex-direction: column;
@@ -580,7 +614,8 @@ td:hover {
         font-size: 18px;
     }
 }
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 850px) {
+// @media screen and (max-width: 1500px) {
         
     .sidenav {
             position: fixed;

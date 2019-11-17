@@ -1,5 +1,5 @@
 import {connect} from "react-redux"
-import {newSubject,updateSubject, deleteSubject} from "../../actions/subject"
+import {newSubject,updateSubject, deleteSubject,showSubject} from "../../actions/subject"
 import SubjectForm from "./subjectForm"
 const mapStateToProps = (state) => {
     return ({
@@ -19,6 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     newSubject: (subject) => dispatch(newSubject(subject)),
     updateSubject: (subject) => dispatch(updateSubject(subject)),
+    showSubject: (id) => dispatch(showSubject(id)),
     deleteSubject: (id) => dispatch(deleteSubject(id))
 })
 

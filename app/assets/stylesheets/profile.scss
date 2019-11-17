@@ -85,14 +85,27 @@
 //     }
 // }
 
-.user-but {
-    padding: 0 10px;
-    border-radius: 10%;
-    border: 2px solid;
-    background: #1464cb;
-    color: white;
-    overflow: hidden;
-}
+// .user-but {
+//     /* padding: 6px 23px; */
+//     /* border-radius: 50%; */
+//     border: 2px solid;
+//     background: #1464cb;
+//     color: white;
+//     overflow: hidden;
+//     height: 4vw;
+//     width: 9vw;
+
+
+//     // padding: 0 10px;
+//     // border-radius: 10%;
+//     // border: 2px solid;
+//     // background: #1464cb;
+//     // color: white;
+//     // overflow: hidden;
+
+
+    
+// }
 .user-but:hover {
     color: black
 }
@@ -116,8 +129,7 @@
         transition: border-color 2s;
 }
 .bigSelectorProfile{
-        width: 44%;
-        padding: 23px 12px;
+        width: 40%;
         margin: 8px;
         text-align: start;
         font-weight: 400;
@@ -126,11 +138,9 @@
         sans-serif;
         border: 2px solid #ccc;
         border-radius: 7px;
-        height: 20px;
+        height: 55px;
         color: #919191;
         background-color: whitesmoke;
-        /* margin-left: 25%; */
-        /* margin-right: 5%; */
         transition: border-color 2s;
 }
 .bigButtionProfile{
