@@ -8,19 +8,16 @@ class SubjectForm extends React.Component {
         this.editState = { authorId: this.props.subject.authorId, name: this.props.subject.name }
         this.handleNew = this.handleNew.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.subject = "";
         this.subjectNames = [];
         this.allSubjectsss = {};
     };
-
     handleInput(type) {
         return (e) => {
             this.setState({ [type]: e.target.value });
         };
     };
-
-
-
     handleNew(event) {
         event.preventDefault();
         let newState = {
@@ -36,16 +33,19 @@ class SubjectForm extends React.Component {
         let subjectId = this.allSubjectsss[this.state.subject]
         let authorId = this.state.authorId
         let name = this.state.name
-        debugger
         this.props.showSubject(subjectId).then(subject => {
-            // debugger
             let newSubject = {
                 id: subjectId, name, courseId: subject.subject.courseId, authorId
             }
-            // subject.subject.name = this.state.name
-            debugger
             this.props.updateSubject(newSubject)
         })
+    };
+
+    handleDelete(event) {
+        event.preventDefault();
+        let subjectId = this.allSubjectsss[this.state.subject]
+        debugger
+        this.props.deleteSubject(subjectId)
     };
 
 
@@ -61,10 +61,8 @@ class SubjectForm extends React.Component {
         if (this.state.FormType === "Make a New Subject"){
             return (
                 <div className="sign_up_form">
-
                     <form className="course-form" onSubmit={this.handleNew}>
                         <h2 className="formH2">Make a New Subject</h2>
-
                         <input
                             className="bigInputProfile"
                             type="text"
@@ -93,17 +91,8 @@ class SubjectForm extends React.Component {
         }else{
             return (
                 <div className="sign_up_form">
-
                     <form className="course-form" onSubmit={this.handleEdit}>
                         <h2 className="formH2">Edit Subject</h2>
-
-                        {/* <input
-                            className="bigInputProfile"
-                            type="text"
-                            value={this.state.subject}
-                            placeholder="subject name"
-                            onChange={this.handleInput("name")}
-                        /> */}
                         <h2 className="formH2">Subject Name </h2>
                         <h2 className="formH2">{this.state.subject}</h2>
                         <select className="bigSelectorProfile" value={this.state.subject} onChange={this.handleInput('subject')}>
@@ -139,6 +128,9 @@ class SubjectForm extends React.Component {
 
                         <div className="task-buttion-div">
                             <input className="bigButtionProfile" type="submit" value={"Edit Subject Name"} />
+                        {/* </div>
+                        <div className="task-buttion-div"> */}
+                            <input className="bigButtionProfile" type="submit" onClick={this.handleDelete} value={"Delete Subject"} />
                         </div>
                     </form>
                     <div className="task-buttion-div">
