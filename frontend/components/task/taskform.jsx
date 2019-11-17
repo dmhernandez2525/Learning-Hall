@@ -25,21 +25,21 @@ class TaskForm extends React.Component {
 
     handleEdit(event) {
         event.preventDefault();
-        let subjectId = this.allSubjectsss[this.state.subject]
-        let authorId = this.state.authorId
+        debugger
+        let task = this.allTasksss[this.state.task]
+        let taskId = task.id
         let name = this.state.name
-        this.props.showSubject(subjectId).then(subject => {
-            let newSubject = {
-                id: subjectId, name, courseId: subject.subject.courseId, authorId
-            }
-            this.props.updateSubject(newSubject)
-        })
+        let body = this.state.body
+        let duration = this.state.duration
+        let newTask = {id: taskId, name, body, duration}
+        this.props.updateTask(newTask)
     };
 
     handleDelete(event) {
         event.preventDefault();
-        let subjectId = this.allSubjectsss[this.state.subject]
-        this.props.deleteSubject(subjectId)
+        let task = this.allTasksss[this.state.task]
+        let taskId = task.id
+        this.props.deleteTask(taskId)
     };
 
     handleInput(type) {
@@ -153,15 +153,21 @@ class TaskForm extends React.Component {
                             <option value={this.taskNames[19]}>{this.taskNames[19]}</option>                        
                         </select>
 
-                        {/* <label htmlFor=""></label>
-                        <input
+                        {/* <input
                             className="bigInputProfile"
                             type="text"
                             value={this.state.name}
                             placeholder="task name"
                             onChange={this.handleInput("name")}
                         /> */}
-                        {/* <h2 className="formH2">Duration</h2> */}
+                        <input
+                            className="bigInputProfile"
+                            type="text"
+                            value={this.state.name}
+                            placeholder="New Name"
+                            onChange={this.handleInput("name")}
+                        />
+
                         <input
                             className="bigInputProfile"
                             type="text"
@@ -170,7 +176,6 @@ class TaskForm extends React.Component {
                             onChange={this.handleInput("duration")}
                         />
 
-                        {/* <h2 className="formH2">Lesson</h2> */}
                         <textarea
                             className="bigInputProfile"
                             id="task-new"
@@ -181,7 +186,7 @@ class TaskForm extends React.Component {
                         />
 
                         <div className="task-buttion-div">
-                            <input className="bigButtionProfile" type="submit" value={"Edit Task Name"} />
+                            <input className="bigButtionProfile" type="submit" value={"Edit Task"} />
                             <input className="bigButtionProfile" type="submit" onClick={this.handleDelete} value={"Delete Task"} />
                         </div>
                     </form>
