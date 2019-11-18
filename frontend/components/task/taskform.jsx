@@ -45,17 +45,40 @@ class TaskForm extends React.Component {
     handleInput(type) {
         if (type === "task" && this.state.task !== ""){
             debugger
-            let allTasksss = this.allTasksss
-            let newTask = allTasksss[this.state.task]
+            let that = this
             debugger
             return (e) => {
+                let a = that
+                let allTasksss = that.allTasksss;
+                let newTask = allTasksss[e.target.value];
+                let newState = that.state.task;
+                e.preventDefault();
+                debugger
                 this.setState({ body: newTask.body, duration: newTask.duration, name: newTask.name, [type]: e.target.value})
-            }
-        }
-        return (e) => {
-            this.setState({ [type]: e.target.value });
+                debugger
+            };
+            
+        } else if (type === "task" && this.state.task === ""){
+            let that = this
+            debugger
+            return (e) => {
+                e.preventDefault();
+                let a = that
+                let allTasksss = this.allTasksss;
+                let newTask = allTasksss[e.target.value];
+                debugger
+                this.setState({ body: newTask.body, duration: newTask.duration, name: newTask.name, [type]: e.target.value })
+                debugger
+            };
+        }else {
+            return (e) => {
+                debugger
+                this.setState({ [type]: e.target.value });
+            };
         };
     };
+
+    
 
 
     handleSumbit(event) {
@@ -74,7 +97,8 @@ class TaskForm extends React.Component {
 
     render() {
         let taskNames = this.props.allTasks.tasks.map(task => {
-            this.taskNames.push(task.name)
+            // this.taskNames.push(task.name)
+            this.taskNames.push(<option value={task.name}>{task.name}</option>)
         })
         this.props.allTasks.tasks.forEach(task => {
             this.allTasksss[task.name] = task
@@ -140,7 +164,7 @@ class TaskForm extends React.Component {
                         {/* <h2 className="formH2">{this.state.task}</h2> */}
                         <select className="bigSelectorProfile" value={this.state.task} onChange={this.handleInput('task')}>
                             <option defaultValue >Select the task you would like to edit</option>
-                            <option value={this.taskNames[0]}>{this.taskNames[0]}</option>
+                            {/* <option value={this.taskNames[0]}>{this.taskNames[0]}</option>
                             <option value={this.taskNames[1]}>{this.taskNames[1]}</option>
                             <option value={this.taskNames[2]}>{this.taskNames[2]}</option>
                             <option value={this.taskNames[3]}>{this.taskNames[3]}</option>
@@ -159,7 +183,8 @@ class TaskForm extends React.Component {
                             <option value={this.taskNames[16]}>{this.taskNames[16]}</option>
                             <option value={this.taskNames[17]}>{this.taskNames[17]}</option>
                             <option value={this.taskNames[18]}>{this.taskNames[18]}</option>
-                            <option value={this.taskNames[19]}>{this.taskNames[19]}</option>                        
+                            <option value={this.taskNames[19]}>{this.taskNames[19]}</option>                         */}
+                            {this.taskNames}
                         </select>
 
                         {/* <input
