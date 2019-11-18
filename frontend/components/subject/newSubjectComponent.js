@@ -12,6 +12,9 @@ const mapStateToProps = (state) => {
         },
         allSubjects: {
             subjescts: Object.values(state.entities.subject)
+        },
+        allCourse: {
+            courses: Object.values(state.entities.courses)
         }
     })
 }

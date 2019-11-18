@@ -78,8 +78,6 @@ class TaskForm extends React.Component {
         };
     };
 
-    
-
 
     handleSumbit(event) {
         event.preventDefault();
@@ -96,14 +94,17 @@ class TaskForm extends React.Component {
 
 
     render() {
-        let taskNames = this.props.allTasks.tasks.map(task => {
-            // this.taskNames.push(task.name)
-            this.taskNames.push(<option value={task.name}>{task.name}</option>)
-        })
+        if (this.taskNames.length){
+
+        }else{
+            let taskNames = this.props.allTasks.tasks.map(task => {
+                this.taskNames.push(<option value={task.name}>{task.name}</option>)
+            })
+        }
+
         this.props.allTasks.tasks.forEach(task => {
             this.allTasksss[task.name] = task
         })
-
 
         if (this.state.FormType === "Make a New Task") {
                 return (
@@ -135,10 +136,8 @@ class TaskForm extends React.Component {
                         />
 
                         <textarea
-                            
                             className="bigInputProfile"
                             id="task-new"
-
                             value={this.state.body}
                             placeholder="type out a lesson here "
                             onChange={this.handleInput("body")}
@@ -161,39 +160,11 @@ class TaskForm extends React.Component {
                     <form className="course-form" onSubmit={this.handleEdit}>
                         <h2 className="formH2">Edit Task</h2>
                         <h2 className="formH2">Task Name </h2>
-                        {/* <h2 className="formH2">{this.state.task}</h2> */}
                         <select className="bigSelectorProfile" value={this.state.task} onChange={this.handleInput('task')}>
                             <option defaultValue >Select the task you would like to edit</option>
-                            {/* <option value={this.taskNames[0]}>{this.taskNames[0]}</option>
-                            <option value={this.taskNames[1]}>{this.taskNames[1]}</option>
-                            <option value={this.taskNames[2]}>{this.taskNames[2]}</option>
-                            <option value={this.taskNames[3]}>{this.taskNames[3]}</option>
-                            <option value={this.taskNames[4]}>{this.taskNames[4]}</option>
-                            <option value={this.taskNames[5]}>{this.taskNames[5]}</option>
-                            <option value={this.taskNames[6]}>{this.taskNames[6]}</option>
-                            <option value={this.taskNames[7]}>{this.taskNames[7]}</option>
-                            <option value={this.taskNames[8]}>{this.taskNames[8]}</option>
-                            <option value={this.taskNames[9]}>{this.taskNames[9]}</option>
-                            <option value={this.taskNames[10]}>{this.taskNames[10]}</option>
-                            <option value={this.taskNames[11]}>{this.taskNames[11]}</option>
-                            <option value={this.taskNames[12]}>{this.taskNames[12]}</option>
-                            <option value={this.taskNames[13]}>{this.taskNames[13]}</option>
-                            <option value={this.taskNames[14]}>{this.taskNames[14]}</option>
-                            <option value={this.taskNames[15]}>{this.taskNames[15]}</option>
-                            <option value={this.taskNames[16]}>{this.taskNames[16]}</option>
-                            <option value={this.taskNames[17]}>{this.taskNames[17]}</option>
-                            <option value={this.taskNames[18]}>{this.taskNames[18]}</option>
-                            <option value={this.taskNames[19]}>{this.taskNames[19]}</option>                         */}
                             {this.taskNames}
                         </select>
 
-                        {/* <input
-                            className="bigInputProfile"
-                            type="text"
-                            value={this.state.name}
-                            placeholder="task name"
-                            onChange={this.handleInput("name")}
-                        /> */}
                         <input
                             className="bigInputProfile"
                             type="text"
@@ -230,8 +201,6 @@ class TaskForm extends React.Component {
 
                 </div>
             )
-
-
         }
     };
 };
