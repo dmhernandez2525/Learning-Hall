@@ -10,6 +10,7 @@ class TaskForm extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.task = "";
         this.taskNames = [];
+        this.subjectNames = [];
         this.allTasksss = {};
     };
 
@@ -97,7 +98,12 @@ class TaskForm extends React.Component {
         if (this.taskNames.length){
 
         }else{
-            let taskNames = this.props.allTasks.tasks.map(task => {
+            let allSubjectNames = this.props.allSubjects.subjescts.map(subject => {
+                debugger
+                this.subjectNames.push(<option value={subject.name}>{subject.name}</option>)
+            })
+            let alltaskNames = this.props.allTasks.tasks.map(task => {
+                debugger
                 this.taskNames.push(<option value={task.name}>{task.name}</option>)
             })
         }
@@ -127,13 +133,18 @@ class TaskForm extends React.Component {
                             onChange={this.handleInput("duration")}
                         />
 
-                        <input
+                        {/* <input
                             className="bigInputProfile"
                             type="text"
                                 value={this.state.subjectName}
                             placeholder="Subject Name"
                                 onChange={this.handleInput("subjectName")}
-                        />
+                        /> */}
+
+                            <select className="bigSelectorProfile" value={this.state.subjectName} onChange={this.handleInput('subjectName')}>
+                            <option defaultValue >Select the name of the Subject that you want the Task to be listed under</option>
+                                {this.subjectNames}
+                        </select>
 
                         <textarea
                             className="bigInputProfile"
