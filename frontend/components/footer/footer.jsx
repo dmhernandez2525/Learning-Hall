@@ -9,26 +9,22 @@ const Footer = () => (
         <div className="footer-div">
             
             <div className="nav-links">
-                <h4>COMPANY</h4>
-                    <Link to="/">About</Link>
-                    
-                    <Link to="/signIn">Sign In</Link>
-
-                    <Link to="/signUp">Sign Up</Link>
+                <h4>ABOUT</h4>
+                <a href="https://brainydeveloper.com/">Portfolio</a>
+                <a href="https://angel.co/daniel-hernandez-2525">Angel List</a>
+                <a href="https://github.com/dmhernandez2525">Github</a>
 
                 </div>
-                <div className="nav-links">
+                {/* <div className="nav-links">
                     <h4>PROGRAMS</h4>
-
-                    <Link to="/">About</Link>
                     <Link to="/signIn">Sign In</Link>
                     <Link to="/signUp">Sign Up</Link>
-                </div>
+                </div> */}
                 <div className="nav-links">
                     <h4>CONNECT</h4>
-                    <Link to="/">About</Link>
                     <Link to="/signIn">Sign In</Link>
                     <Link to="/signUp">Sign Up</Link>
+                    <Link to="/">Home</Link>
                 </div>
         </div>
  
