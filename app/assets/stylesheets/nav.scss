@@ -15,6 +15,14 @@
 // }
 .main-hall-task-text{
     line-height: 1.5;
+
+}
+.main-hall-task-text-new{
+    line-height: 1.5;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 // .main-hall-task-text p{
 //         /* display: flex; */
