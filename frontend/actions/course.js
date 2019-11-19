@@ -29,12 +29,15 @@ export const newCourse = (course) => (dispatch) => (
 );
 
 
-export const updateCourse = (course) => (dispatch) => (
-    APIcourse.updateCourse(course).then(course => dispatch({
-        type: RECEIVE_COURSE,
-        course
-    }))
-);
+export const updateCourse = (course) => (dispatch) => {
+    debugger
+    return (
+        APIcourse.updateCourse(course).then(course => dispatch({
+            type: RECEIVE_COURSE,
+            course
+        }))
+    )
+};
 
 
 export const deleteCourse = (id) => (dispatch) => (

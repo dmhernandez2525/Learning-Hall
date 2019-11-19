@@ -50,16 +50,12 @@ class SubjectForm extends React.Component {
 
 
     render() {
-        debugger
         if (this.subjectNames.length) {
-
         } else {
             let allSubjectNames = this.props.allSubjects.subjescts.map(subject => {
-                debugger
                 this.subjectNames.push(<option value={subject.name}>{subject.name}</option>)
             })
             let allCourseNames = this.props.allCourse.courses.map(course => {
-                debugger
                 this.courseNames.push(<option value={course.name}>{course.name}</option>)
             })
         }

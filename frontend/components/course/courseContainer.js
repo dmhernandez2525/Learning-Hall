@@ -1,6 +1,10 @@
 import {connect} from "react-redux";
 import CourseForm from "./courseForm"
-import {newCourse} from "../../actions/course"
+import {
+    newCourse,
+    updateCourse,
+    deleteCourse
+} from "../../actions/course"
 const mapStateToProps = (state) => ({
     course: {
         name: "",

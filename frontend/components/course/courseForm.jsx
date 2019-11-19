@@ -19,9 +19,11 @@ class CourseForm extends React.Component {
 
     handleNew(event) {
         event.preventDefault();
+
         let newState = {
             name: this.state.name,
-            author_id: this.state.author_id
+            author_id: this.state.author_id,
+            id: this.state.id
         }
         debugger
         this.props.newCourse(newState)
@@ -29,10 +31,12 @@ class CourseForm extends React.Component {
 
     handleEdit(event) {
         event.preventDefault();
+        debugger
+        let id = this.allCourses[this.state.courseName]
         let newCourse = {
             name: this.state.name,
             author_id: this.state.author_id,
-            id: this.state.id
+            id
         }
         this.props.updateCourse(newCourse)
     };
