@@ -19,7 +19,10 @@ class Api::CoursesController < ApplicationController
   end
 
   def update
+    p(111111111111111111111111111111)
     @course = Course.find(params[:id])
+    p(@course)
+    p(111111111111111111111111111111)
     if @course.update(course_params)
       render "api/courses/show"
     else

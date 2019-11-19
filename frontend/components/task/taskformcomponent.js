@@ -21,6 +21,9 @@ const mapStateToProps = (state) => {
         },
         allTasks: {
             tasks: Object.values(state.entities.task)
+        },
+        allSubjects: {
+            subjescts: Object.values(state.entities.subject)
         }
     })
 }
