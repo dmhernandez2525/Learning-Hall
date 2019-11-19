@@ -38,7 +38,7 @@ class SignUp extends React.Component {
         })
         let Errors;
         if (this.props.errors.length){
-            Errors = <ul >{errors}</ul>
+            Errors = <ul className="heyYou">{errors}</ul>
         }else{
             Errors = <ul className="has-no-errors">{errors}</ul>
 
