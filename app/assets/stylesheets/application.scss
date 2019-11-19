@@ -649,7 +649,6 @@ td:hover {
     }
 }
 
-
 @media screen and (max-width: 400px) {
     .the_nav {
         height: 12vh;
@@ -657,5 +656,11 @@ td:hover {
 
 };
 
-
-
+.heyYou{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    height: 17vh;
+    justify-content: flex-end;
+}
