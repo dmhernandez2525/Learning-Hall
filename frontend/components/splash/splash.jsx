@@ -15,12 +15,7 @@ class Splash extends React.Component{
                 <section className="sec1">
                     <section>
                         <h2 className="free-plan">Free Plan</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse feugiat turpis sit amet tincidunt dignissim. Aliquam vestibulum sem mauris, eget bibendum tortor pretium at. Morbi sit amet euismod arcu. Integer ut sodales magna. Vestibulum interdum non ex ut porta. Proin pretium neque vitae neque sagittis, in ultrices magna pellentesque. Proin eleifend sollicitudin ex, consequat imperdiet est. Nunc tincidunt imperdiet sem, nec viverra augue rutrum eget. Pellentesque nec purus vitae ligula rutrum pharetra. Nam nec placerat enim. Nulla turpis nunc, laoreet vitae quam id, ornare vestibulum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-                           Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
-
-                           Aliquam euismod dolor eget ligula tempor, eget lacinia ante condimentum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla at vestibulum urna. Morbi eu dolor a urna rutrum suscipit vel vel massa. Pellentesque ultricies, justo eget accumsan pellentesque, urna felis placerat arcu, non sagittis ligula sem sit amet nisi. Mauris interdum urna et mollis sollicitudin. Mauris condimentum augue imperdiet ipsum mollis, et fringilla quam elementum. Fusce malesuada dui quis lacus vestibulum, ut consectetur felis bibendum. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum at iaculis massa, vel mattis velit. Quisque fringilla eleifend velit, ut interdum urna lobortis a. Donec molestie mauris id ultrices consequat. Vestibulum dignissim vel est ac sodales. Mauris et arcu maximus, maximus eros id, tristique enim. Phasellus est lectus, fringilla non erat posuere, auctor mattis lorem.
-                        </p>
+                        <p></p>
                     </section>
                 </section>
                 <Switcher />
@@ -348,9 +343,7 @@ class Splash extends React.Component{
                 <section className="sec5">
                     <section>
                         <h2>Plan 2</h2>
-                        <p>
-                           Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
-                        </p>
+                        <p></p>
                     </section>
                     <picture>
                         <img className="bottem-img" src={window.img2Url} alt="Learning Hall Logo" />
@@ -360,9 +353,7 @@ class Splash extends React.Component{
                 <section className="sec6">
                     <section>
                         <h2>Plan 3</h2>
-                        <p>
-                            Cras euismod facilisis lectus, nec vehicula arcu accumsan in. Vestibulum rhoncus dolor quis tempor tincidunt. Aliquam porttitor orci quam. Vivamus a leo sit amet purus varius maximus non eget augue. Etiam porta turpis non erat blandit, non eleifend tortor vestibulum. Nam vulputate urna ut magna auctor efficitur. Suspendisse tincidunt sem dolor, non vulputate magna luctus quis. Phasellus rhoncus diam libero, a fermentum nisi luctus eu. Phasellus odio magna, scelerisque sed facilisis vitae, facilisis vitae felis.
-                        </p>
+                        <p></p>
                     </section>
                     <picture>
                         <img className="bottem-img"  src={window.img3Url} alt="Learning Hall Logo" />
