@@ -27,19 +27,14 @@ _An application that allows teachers or universities to make a course with lesso
 ## Technologies & Challenges
 
 ### Architecture
-The overall application architecture is geared toward rapid development and maintainability of an application that is deployed on both web and mobile.
+The overall application architecture is geared toward rapid development and maintainability.
 
-To that end, **Save A Stray** is built with the **MERN** stack (**MongoDB, Express, React, and Node**).
+To that end, **Learning Hall** is built with a **RAILS** Back-End
 
 Additionally, **Redux** is used for front-end devlopment with **React**, bundling of **client-side javascript** is accomplished by **Webpack**, and **Babel** is used to transpile **ES6+ Javascript** for backward browser compatibility.
 
 Finally, the app will be deployed to **Heroku** .
 
-### Backend: Rails, Ruby
-The backend will be entirely platform agnostic with the exception of potential performance optimizations per platform. The separation of the back and front allows for either to be modified, built, updated, or swapped out entirely with minimal impact to the other.
-
-### Frontend: React
- React Redux
 
 ## Group Members & Work Breakdown
 - **Daniel Hernandez** => Backend,Frontend,UI/UX
