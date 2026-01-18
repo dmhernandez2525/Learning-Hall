@@ -40,7 +40,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.5.5",
+    "@babel/runtime": "^7.28.6",
     "@tailwindcss/vite": "^4.1.18",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
