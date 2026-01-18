@@ -1,0 +1,39 @@
+# Codecov Configuration
+# https://docs.codecov.io/docs/codecovyml-reference
+
+coverage:
+  precision: 2
+  round: down
+  range: "70...100"
+
+  status:
+    project:
+      default:
+        target: 85%
+        threshold: 2%
+        if_ci_failed: error
+    patch:
+      default:
+        target: 85%
+        threshold: 2%
+
+parsers:
+  javascript:
+    enable_partials: true
+
+comment:
+  layout: "reach,diff,flags,files"
+  behavior: default
+  require_changes: true
+
+ignore:
+  - "node_modules/**"
+  - "vendor/**"
+  - "**/*.test.js"
+  - "**/*.test.jsx"
+  - "**/test/**"
+  - "**/tests/**"
+  - "coverage/**"
+  - "public/**"
+  - "log/**"
+  - "tmp/**"
