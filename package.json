@@ -2,11 +2,20 @@
   "name": "LearningHall",
   "private": true,
   "scripts": {
-    "start": "webpack -w --mode=development",
-    "postinstall": "webpack"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "postinstall": "vite build",
+    "start:webpack": "webpack -w --mode=development",
+    "build:webpack": "webpack"
   },
   "devDependencies": {
-    "raw-loader": "^3.1.0"
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "raw-loader": "^3.1.0",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
   },
   "description": "This README would normally document whatever steps are necessary to get the application up and running.",
   "version": "1.0.0",
@@ -32,9 +41,11 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.5.5",
+    "@tailwindcss/vite": "^4.1.18",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "markdown-to-jsx": "^6.10.3",
+    "marked": "^0.3.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
@@ -44,11 +55,10 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "webpack": "^4.39.3",
-    "webpack-cli": "^3.3.7",
-    "marked": "^0.3.5"
+    "webpack-cli": "^3.3.7"
   },
   "engines": {
-    "node": "12.10.0",
-    "npm": "6.11.3"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }

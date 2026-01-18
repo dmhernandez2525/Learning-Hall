@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import configureStore from './store/store';
+import './styles/index.css';
 //go back start
 
 //  /home/daniel/Desktop/LearningHall/frontend/reducers/session_reducer.js
