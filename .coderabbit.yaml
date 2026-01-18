@@ -1,0 +1,50 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/guides/configure-coderabbit
+
+language: en-US
+
+reviews:
+  request_changes_workflow: true
+  high_level_summary: true
+  poem: false
+  review_status: true
+  collapse_walkthrough: false
+  path_instructions:
+    - path: "app/controllers/**/*.rb"
+      instructions: |
+        Review Rails controllers for:
+        - Thin controller principle
+        - Proper use of before_action
+        - Strong parameters
+        - RESTful design
+    - path: "app/models/**/*.rb"
+      instructions: |
+        Review Rails models for:
+        - Proper validations
+        - Association correctness
+        - N+1 query prevention (includes/eager_load)
+        - Business logic placement
+    - path: "frontend/**/*.js"
+      instructions: |
+        Review React components for:
+        - Redux patterns
+        - Component reusability
+        - Performance (unnecessary re-renders)
+        - Proper state management
+    - path: "frontend/**/*.jsx"
+      instructions: |
+        Review React components for:
+        - Redux patterns
+        - Component reusability
+        - Performance (unnecessary re-renders)
+        - Proper state management
+
+auto_review:
+  enabled: true
+  drafts: false
+  base_branches:
+    - main
+    - develop
+
+chat:
+  auto_reply: true
