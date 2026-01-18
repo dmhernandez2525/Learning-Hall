@@ -14,6 +14,6 @@
 //= require activestorage
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+// Note: React bundle is now loaded directly from /assets/bundle.js (built by Vite)
 
 

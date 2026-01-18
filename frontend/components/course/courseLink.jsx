@@ -1,7 +1,6 @@
 import {Link} from "react-router-dom";
 import React from "react"
 import SubjectLink from "../subject/subjectLink"
-import { runInThisContext } from "vm";
 
 
 class CourseLink extends React.Component{
