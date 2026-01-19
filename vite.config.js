@@ -18,7 +18,7 @@ export default defineConfig({
     emptyDirOnBuild: true,
     manifest: true,
     rollupOptions: {
-      input: path.resolve(__dirname, 'frontend/learningHall.jsx'),
+      input: path.resolve(__dirname, 'frontend/learningHall.tsx'),
       output: {
         entryFileNames: 'bundle.js',
         chunkFileNames: '[name]-[hash].js',
@@ -35,7 +35,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, 'frontend'),
     },
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   server: {
     port: 3001,
@@ -44,6 +44,18 @@ export default defineConfig({
         target: 'http://localhost:3000',
         changeOrigin: true,
       },
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./frontend/__tests__/setup.ts'],
+    include: ['frontend/**/*.{test,spec}.{js,jsx,ts,tsx}'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['frontend/**/*.{js,jsx,ts,tsx}'],
+      exclude: ['frontend/__tests__/**'],
     },
   },
 });
