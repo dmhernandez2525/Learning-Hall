@@ -1,7 +1,6 @@
 # Render.com Infrastructure as Code
-# Cost: $0/month (Free tier)
+# Cost: ~$7/month (starter database)
 # Note: Free web services spin down after 15 min inactivity
-# Note: Use Supabase/Neon free tier for PostgreSQL (Render allows only 1 free DB)
 
 services:
   # Backend - Ruby on Rails API (FREE)
@@ -24,7 +23,9 @@ services:
       - key: SECRET_KEY_BASE
         generateValue: true
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: learning-hall-db
+          property: connectionString
       - key: AWS_ACCESS_KEY_ID
         sync: false
       - key: AWS_SECRET_ACCESS_KEY
@@ -33,3 +34,10 @@ services:
         value: us-east-1
       - key: AWS_BUCKET
         sync: false
+
+# Database - PostgreSQL (Starter: $7/month)
+databases:
+  - name: learning-hall-db
+    plan: starter
+    databaseName: learning_hall_production
+    user: learning_hall
