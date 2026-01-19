@@ -35,9 +35,9 @@ services:
       - key: AWS_BUCKET
         sync: false
 
-# Database - PostgreSQL (Starter: $7/month)
+# Database - PostgreSQL (Basic: ~$7/month)
 databases:
   - name: learning-hall-db
-    plan: starter
+    plan: basic
     databaseName: learning_hall_production
     user: learning_hall
