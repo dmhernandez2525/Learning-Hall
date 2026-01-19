@@ -18,14 +18,14 @@ Rails.application.configure do
   # This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
 
-  # Disable serving static files from `public/`, relying on NGINX/Apache to do so instead.
-  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  # Serve static files from `public/` - enabled on Render and similar platforms
+  config.public_file_server.enabled = ENV.fetch("RAILS_SERVE_STATIC_FILES", "true") != "false"
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.asset_host = "http://assets.example.com"
 
-  # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :amazon_prod
+  # Store uploaded files on AWS S3 in production, fall back to local storage if AWS not configured
+  config.active_storage.service = ENV["AWS_ACCESS_KEY_ID"].present? ? :amazon_prod : :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
   config.assume_ssl = true

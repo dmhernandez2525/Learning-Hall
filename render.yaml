@@ -27,7 +27,7 @@ services:
     name: learning-hall-api
     runtime: ruby
     plan: free
-    buildCommand: bundle install --without development test && bundle exec rails assets:precompile && bundle exec rails db:migrate
+    buildCommand: bundle install --without development test && bundle exec rails assets:precompile
     startCommand: bundle exec puma -C config/puma.rb
     healthCheckPath: /health
     envVars:
@@ -45,6 +45,8 @@ services:
         fromDatabase:
           name: learning-hall-db
           property: connectionString
+      - key: RAILS_SERVE_STATIC_FILES
+        value: "true"
       - key: AWS_ACCESS_KEY_ID
         sync: false
       - key: AWS_SECRET_ACCESS_KEY
