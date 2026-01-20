@@ -5,7 +5,7 @@
 services:
   # Frontend - React/Vite Static Site (FREE)
   - type: web
-    name: learning-hall-client
+    name: learning-hall-site
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
