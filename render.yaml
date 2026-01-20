@@ -5,11 +5,12 @@
 
 services:
   # Frontend - React/Vite Static Site (FREE)
+  # Note: Vite outputs to public/assets, buildCommand creates index.html for SPA
   - type: web
     name: learning-hall-site
     runtime: static
-    buildCommand: npm ci && npm run build
-    staticPublishPath: dist
+    buildCommand: npm ci && npm run build && echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LearningHall</title><link rel="stylesheet" href="/assets/bundle.css"><link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"></head><body><div id="root"></div><script type="module" src="/assets/bundle.js"></script></body></html>' > public/index.html
+    staticPublishPath: public
     headers:
       - path: /assets/*
         name: Cache-Control
