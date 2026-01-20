@@ -84,7 +84,4 @@ test:
 #
 production:
   <<: *default
-  adapter: postgresql
-  host: db
-  username: postgres
-  password: 
+  # Uses DATABASE_URL from environment (set by Render)
