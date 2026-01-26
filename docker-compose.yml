@@ -1,3 +1,5 @@
+name: learning-hall
+
 version: "3"
 services:
   db:
