@@ -11,17 +11,16 @@ interface ProfileProps {
   receiveTask: (task: string) => void;
 }
 
+// Task form components lookup
+const taskForms: Record<string, React.ComponentType> = {
+  Course: CourseForm,
+  Subject: SubjectForm,
+  Task: TaskForm,
+};
+
 class Profile extends React.Component<ProfileProps> {
   render(): React.ReactNode {
-    let form: React.ReactNode = null;
-
-    if (this.props.currentTask === "Course") {
-      form = <CourseForm />;
-    } else if (this.props.currentTask === "Subject") {
-      form = <SubjectForm />;
-    } else if (this.props.currentTask === "Task") {
-      form = <TaskForm />;
-    }
+    const FormComponent = taskForms[this.props.currentTask];
 
     return (
       <div role="main" aria-label="Profile page">
@@ -58,7 +57,7 @@ class Profile extends React.Component<ProfileProps> {
             </button>
           </div>
         </div>
-        <div>{form}</div>
+        {FormComponent && <div><FormComponent /></div>}
       </div>
     );
   }
