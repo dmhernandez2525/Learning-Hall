@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" fill="none">
+  <rect width="320" height="180" fill="#1a1a2e"/>
+  <rect x="130" y="65" width="60" height="50" rx="4" fill="#16213e"/>
+  <polygon points="150,75 150,105 175,90" fill="#e94560"/>
+  <text x="160" y="145" font-family="system-ui" font-size="12" fill="#8b8b8b" text-anchor="middle">Video</text>
+</svg>
