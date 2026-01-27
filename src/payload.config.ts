@@ -24,6 +24,7 @@ import {
   CourseFavorites,
   LessonBookmarks,
   LessonActivity,
+  CourseReviews,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -81,6 +82,7 @@ export default buildConfig({
     CourseFavorites,
     LessonBookmarks,
     LessonActivity,
+    CourseReviews,
   ],
   db: postgresAdapter({
     pool: {

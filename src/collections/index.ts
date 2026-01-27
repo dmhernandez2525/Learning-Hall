@@ -16,3 +16,4 @@ export { default as DiscussionPosts } from './DiscussionPosts';
 export { default as CourseFavorites } from './CourseFavorites';
 export { default as LessonBookmarks } from './LessonBookmarks';
 export { default as LessonActivity } from './LessonActivity';
+export { default as CourseReviews } from './CourseReviews';
