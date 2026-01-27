@@ -1,65 +1,60 @@
-# Build fix: Testing Render builds
 # Render.com Infrastructure as Code
-# Cost: ~$7/month (basic database)
-# Note: Free web services spin down after 15 min inactivity
+# Learning Hall - Next.js + Payload CMS LMS Platform
 
 services:
-  # Frontend - React/Vite Static Site (FREE)
-  # Note: Vite outputs to public/assets, buildCommand creates index.html for SPA
-  - type: web
-    name: learning-hall-site
-    runtime: static
-    buildCommand: npm ci && npm run build && echo '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LearningHall</title><link rel="stylesheet" href="/assets/bundle.css"><link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"></head><body><div id="root"></div><script type="module" src="/assets/bundle.js"></script></body></html>' > public/index.html
-    staticPublishPath: public
-    headers:
-      - path: /assets/*
-        name: Cache-Control
-        value: public, max-age=31536000, immutable
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-    envVars:
-      - key: VITE_API_URL
-        sync: false
-
-  # Backend - Ruby on Rails API (FREE)
+  # Main Application - Next.js + Payload CMS
   - type: web
     name: learning-hall-api
-    runtime: ruby
-    plan: free
-    buildCommand: bundle install --without development test && bundle exec rails assets:precompile
-    startCommand: bundle exec puma -C config/puma.rb
-    healthCheckPath: /health
+    runtime: node
+    region: oregon
+    plan: starter
+    buildCommand: NODE_ENV=development npm ci && npm run build
+    startCommand: NODE_ENV=production npm start
+    healthCheckPath: /api/health
     envVars:
-      - key: RAILS_ENV
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
         value: production
-      - key: RACK_ENV
-        value: production
-      - key: PORT
-        value: "10000"
-      - key: RAILS_MASTER_KEY
-        sync: false
-      - key: SECRET_KEY_BASE
-        generateValue: true
       - key: DATABASE_URL
         fromDatabase:
           name: learning-hall-db
           property: connectionString
-      - key: RAILS_SERVE_STATIC_FILES
-        value: "true"
-      - key: AWS_ACCESS_KEY_ID
-        sync: false
-      - key: AWS_SECRET_ACCESS_KEY
-        sync: false
-      - key: AWS_REGION
-        value: us-east-1
-      - key: AWS_BUCKET
+      - key: PAYLOAD_SECRET
+        generateValue: true
+      - key: NEXT_PUBLIC_URL
         sync: false
 
-# Database - PostgreSQL (Basic 256MB: ~$7/month)
+  # Background Worker (for video transcoding, etc.)
+  - type: worker
+    name: learning-hall-worker
+    runtime: node
+    region: oregon
+    plan: starter
+    buildCommand: NODE_ENV=development npm ci && npm run build
+    startCommand: npm run worker
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: learning-hall-db
+          property: connectionString
+      - key: PAYLOAD_SECRET
+        sync: false
+      - key: REDIS_URL
+        sync: false
+
 databases:
   - name: learning-hall-db
-    plan: basic-256mb
-    databaseName: learning_hall_production
-    user: learning_hall
+    databaseName: learning_hall
+    region: oregon
+    plan: starter
+    postgresMajorVersion: 16
+
+# Notes:
+# - Redis: Configure via Dashboard > New > Redis (not available in render.yaml)
+# - Storage: Configure S3/R2/GCS credentials in Dashboard after deployment
+# - Worker: Requires REDIS_URL to be manually set after Redis is created

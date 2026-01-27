@@ -1,0 +1,53 @@
+{
+  "frontend/components/Hall/hall_container.ts": {
+    "file": "hall_container-ixbNGvcJ.js",
+    "name": "hall_container",
+    "src": "frontend/components/Hall/hall_container.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/learningHall.tsx"
+    ]
+  },
+  "frontend/components/session/signin_container.ts": {
+    "file": "signin_container-OsOza1ia.js",
+    "name": "signin_container",
+    "src": "frontend/components/session/signin_container.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/learningHall.tsx"
+    ]
+  },
+  "frontend/components/session/signup_container.ts": {
+    "file": "signup_container-DsdYnUhh.js",
+    "name": "signup_container",
+    "src": "frontend/components/session/signup_container.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/learningHall.tsx"
+    ]
+  },
+  "frontend/components/splash/splash.container.ts": {
+    "file": "splash.container-C_1a48l-.js",
+    "name": "splash.container",
+    "src": "frontend/components/splash/splash.container.ts",
+    "isDynamicEntry": true,
+    "imports": [
+      "frontend/learningHall.tsx"
+    ]
+  },
+  "frontend/learningHall.tsx": {
+    "file": "bundle.js",
+    "name": "learningHall",
+    "src": "frontend/learningHall.tsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "frontend/components/Hall/hall_container.ts",
+      "frontend/components/splash/splash.container.ts",
+      "frontend/components/session/signup_container.ts",
+      "frontend/components/session/signin_container.ts"
+    ],
+    "css": [
+      "bundle.css"
+    ]
+  }
+}
