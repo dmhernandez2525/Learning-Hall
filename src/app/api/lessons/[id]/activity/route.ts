@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { getSession } from '@/lib/auth';
 import { updateLessonActivity } from '@/lib/activity';
 
-type RouteParams = { params: Promise<{ lessonId: string }> };
+type RouteParams = { params: Promise<{ id: string }> };
 
 const schema = z.object({
   position: z.number().min(0).optional(),
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
     if (!user) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
-    const { lessonId } = await params;
+    const { id: lessonId } = await params;
     const body = await request.json();
     const result = schema.safeParse(body);
     if (!result.success) {
