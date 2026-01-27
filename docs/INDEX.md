@@ -1,7 +1,8 @@
 # Learning Hall - Documentation Index
 
-**Version:** 2.0.0
+**Version:** 3.0.0
 **Last Updated:** January 2026
+**Architecture:** Payload CMS v3 + Next.js 14
 
 ---
 
@@ -10,10 +11,40 @@
 | Document | Description |
 |----------|-------------|
 | [README](../README.md) | Project overview and setup |
-| [Analysis Report](./ANALYSIS_REPORT.md) | Comprehensive codebase analysis |
 | [Architecture](./ARCHITECTURE.md) | System design and patterns |
-| [Roadmap](./ROADMAP.md) | Modernization backlog |
+| [Roadmap](./ROADMAP.md) | Feature phases and timeline |
 | [Coding Standards](./CODING_STANDARDS.md) | Code style guidelines |
+| [Vision](./VISION.md) | Product vision and goals |
+| [Work Status](../roadmap/WORK_STATUS.md) | Current development status |
+
+---
+
+## Software Design Documents
+
+### Phase 1: Foundation
+
+| SDD | Feature | Priority |
+|-----|---------|----------|
+| [F1.1.1](./sdd/phase-1/F1.1.1-payload-cms-setup.md) | Payload CMS + Next.js Setup | P0 |
+| [F1.1.2](./sdd/phase-1/F1.1.2-postgresql-rls.md) | PostgreSQL + RLS | P0 |
+| [F1.1.3](./sdd/phase-1/F1.1.3-nextauth-authentication.md) | NextAuth Authentication | P0 |
+| [F1.2.1](./sdd/phase-1/F1.2.1-course-crud.md) | Course Collection & CRUD | P0 |
+| [F1.2.2](./sdd/phase-1/F1.2.2-module-lesson-hierarchy.md) | Module/Lesson Hierarchy | P0 |
+| [F1.2.3](./sdd/phase-1/F1.2.3-course-builder-ui.md) | Course Builder UI | P0 |
+| [F1.3.1](./sdd/phase-1/F1.3.1-byos-storage-abstraction.md) | BYOS Storage Abstraction | P0 |
+| [F1.4.1](./sdd/phase-1/F1.4.1-video-upload.md) | Video Upload | P0 |
+| [F1.4.3](./sdd/phase-1/F1.4.3-video-player.md) | Video Player | P0 |
+| [F1.5.1](./sdd/phase-1/F1.5.1-stripe-checkout.md) | Stripe Checkout | P0 |
+| [F1.6.1](./sdd/phase-1/F1.6.1-docker-deployment.md) | Docker + Render Deployment | P0 |
+
+### Phase Overviews
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| [Phase 1](./sdd/phase-1/PHASE_1_OVERVIEW.md) | Foundation | In Progress |
+| [Phase 2](./sdd/phase-2/PHASE_2_OVERVIEW.md) | Core Features | Planned |
+| [Phase 3](./sdd/phase-3/PHASE_3_OVERVIEW.md) | Scale & Polish | Planned |
+| [Phase 4](./sdd/phase-4/PHASE_4_OVERVIEW.md) | Differentiation | Planned |
 
 ---
 
@@ -25,15 +56,6 @@
 | [Database ERD](./diagrams/database-erd.md) | Entity relationship diagram |
 | [API Map](./diagrams/api-map.md) | API endpoint documentation |
 | [User Flows](./diagrams/user-flows.md) | User journey diagrams |
-
----
-
-## Software Design Documents
-
-| Document | Description |
-|----------|-------------|
-| [Modernization SDD](./sdd/MODERNIZATION_SDD.md) | Technical modernization spec |
-| [Feature SDD Template](./sdd/FEATURE_SDD_TEMPLATE.md) | Template for new features |
 
 ---
 
@@ -49,38 +71,75 @@
 
 ## Project Overview
 
-Learning Hall is a Learning Management System (LMS) clone inspired by App Academy's learning platform. It features course management, progress tracking, and interactive lessons with markdown content rendering.
+Learning Hall is a **self-hostable, white-label course creation platform** with Bring Your Own Storage (BYOS) capability. It enables creators to build and sell courses while maintaining full control over their content and data.
 
-### Tech Stack (Current)
+### Key Differentiators
+
+1. **BYOS (Bring Your Own Storage)** - Connect AWS S3, Cloudflare R2, GCS
+2. **True White-Label** - No platform branding
+3. **Self-Hostable** - Run on your own infrastructure
+4. **Zero Transaction Fees** - Keep 100% of revenue
+5. **Open Source** - MIT license
+
+### Technology Stack
 
 | Layer | Technology | Version |
 |-------|------------|---------|
-| Backend Framework | Ruby on Rails | 7.2.0 |
-| Ruby Version | Ruby | 3.3 |
+| Framework | Next.js | 14+ |
+| CMS | Payload CMS | 3.0 |
 | Database | PostgreSQL | 16 |
-| Frontend Framework | React | 16.9.0 |
-| State Management | Redux + Thunk | 4.0.4 |
-| Routing | React Router | 5.0.1 |
-| Build Tool | Vite | 7.3.1 |
-| Type System | TypeScript | 5.9.3 |
-| Styling | Tailwind CSS | 4.1.18 |
-| Testing | Vitest | 4.0.17 |
+| Language | TypeScript | 5.x |
+| UI Framework | React | 18+ |
+| Styling | Tailwind CSS | 4.x |
+| Components | shadcn/ui | Latest |
+| Auth | NextAuth.js | 5.0 |
+| Payments | Stripe | Latest |
+| Testing | Vitest + Playwright | Latest |
 
-### Modernization Status
+### Target Users
 
-| Component | Status |
-|-----------|--------|
-| Ruby 3.3 | Complete |
-| Rails 7.2 | Complete |
-| Vite Build | Complete |
-| TypeScript | Complete |
-| Tailwind CSS | Complete |
-| Vitest Testing | Complete |
-| React 18+ | **Pending** |
-| React Router 6+ | **Pending** |
-| Redux Toolkit | **Pending** |
+- **Solo Educators** - Content creators wanting full control
+- **Developers** - Add courses to portfolio
+- **Small Businesses** - Internal training or customer education
+- **Privacy-Conscious Creators** - Data ownership and compliance
 
-### Author
+---
+
+## Development Workflow
+
+### Feature Implementation
+
+1. Check `roadmap/WORK_STATUS.md` for next feature
+2. Read the feature's SDD in `docs/sdd/phase-{N}/`
+3. Create feature branch: `feat/F{X}.{Y}.{Z}-{short-name}`
+4. Implement with tests (80%+ coverage)
+5. Run quality checks: `npm run lint && npm run type-check && npm test`
+6. Create PR with proper description
+7. Address code review feedback
+8. Update work status after merge
+
+### Branch Naming
+
+```
+feat/F1.1.1-payload-setup        # New feature
+fix/F1.1.1-auth-redirect         # Bug fix
+docs/update-architecture         # Documentation
+chore/upgrade-dependencies       # Maintenance
+```
+
+---
+
+## External Resources
+
+- [Payload CMS Documentation](https://payloadcms.com/docs)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [shadcn/ui Components](https://ui.shadcn.com)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Compiled Research](../../_@agent-prompts/learning-hall/research/sessions/COMPILED_RESEARCH.md)
+
+---
+
+## Author
 
 Daniel Hernandez (Solo project)
 
@@ -90,7 +149,12 @@ Daniel Hernandez (Solo project)
 
 | Symbol | Meaning |
 |--------|---------|
-| Complete | Fully implemented and tested |
-| **Pending** | Needs implementation |
-| In Progress | Currently being worked on |
-| Blocked | Waiting on dependency |
+| ✅ Complete | Fully implemented and tested |
+| 🚧 In Progress | Currently being worked on |
+| 📋 Planned | Scheduled for implementation |
+| ⏸️ Blocked | Waiting on dependency |
+
+---
+
+**Document Version:** 3.0.0
+**Last Updated:** January 2026

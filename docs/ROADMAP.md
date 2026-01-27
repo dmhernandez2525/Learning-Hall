@@ -1,175 +1,212 @@
 # Learning Hall - Roadmap
 
-**Version:** 2.0.0
+**Version:** 3.0.0
 **Last Updated:** January 2026
+**Architecture:** Payload CMS v3 + Next.js 14 (Complete Rewrite)
 
 ---
 
-## Current Status: Frontend Modernization Required
+## Current Status: Complete Rewrite in Progress
 
-The backend has been fully modernized (Ruby 3.3, Rails 7.2). Build tooling is modern (Vite, TypeScript, Tailwind). The remaining work is frontend modernization (React, Router, Redux).
+Learning Hall is being rebuilt from the ground up with a modern TypeScript-first stack. The previous Ruby on Rails + React application is being replaced with **Payload CMS v3 embedded in Next.js 14**.
 
----
+### Why the Rewrite?
 
-## Completed Upgrades
-
-| Task | Old | New | Status |
-|------|-----|-----|--------|
-| Ruby version | 2.5.x | 3.3 | Done |
-| Rails version | 5.2.3 | 7.2.0 | Done |
-| Node.js | 12.x | 18+ | Done |
-| Build tool | Webpack 4 | Vite 7.3 | Done |
-| Type system | JavaScript | TypeScript 5.9 | Done |
-| Styling | SCSS | Tailwind 4.1 | Done |
-| Testing | None | Vitest 4.0 | Done |
-| Asset pipeline | Sprockets | Propshaft | Done |
+| Factor | Old Stack | New Stack |
+|--------|-----------|-----------|
+| Backend | Ruby on Rails 7.2 | Payload CMS v3 + Next.js |
+| Frontend | React 16.9 + Redux | React 18 + Server Components |
+| Database | PostgreSQL (basic) | PostgreSQL + RLS |
+| Auth | BCrypt sessions | NextAuth.js v5 |
+| Storage | AWS S3 only | **BYOS** (S3, R2, GCS, B2) |
+| Deployment | Separate frontend/backend | Single monolith |
+| Language | Ruby + TypeScript | TypeScript only |
 
 ---
 
-## Pending Upgrades
+## Implementation Phases
 
-### Phase 1: Critical Fixes (Next)
-**Priority: P0 - Immediate**
+### Phase 1: Foundation (Months 1-3)
 
-| Task | Priority | Notes |
-|------|----------|-------|
-| Remove debug code | P0 | `sleep(1)` in tasks controller |
-| Remove console logs | P0 | `p()` statements in controllers |
-| Add frontend tests | P1 | Increase test coverage |
+**Goal:** Core platform with basic course functionality and BYOS
 
-### Phase 2: React Modernization
-**Priority: P1 - High**
+| Feature | Priority | Status | PR |
+|---------|----------|--------|-----|
+| Next.js + Payload CMS Setup | P0 | Planned | - |
+| PostgreSQL + RLS Multi-tenancy | P0 | Planned | - |
+| NextAuth.js Authentication | P0 | Planned | - |
+| Course Collection & CRUD | P0 | Planned | - |
+| Module/Lesson Hierarchy | P0 | Planned | - |
+| Course Builder UI | P0 | Planned | - |
+| BYOS Storage Abstraction | P0 | Planned | - |
+| AWS S3 Provider | P0 | Planned | - |
+| Cloudflare R2 Provider | P1 | Planned | - |
+| Video Upload to BYOS | P0 | Planned | - |
+| HLS Transcoding Pipeline | P1 | Planned | - |
+| Video Player Component | P0 | Planned | - |
+| Stripe Checkout Integration | P0 | Planned | - |
+| Webhook Handling | P0 | Planned | - |
+| Docker Compose Deployment | P0 | Planned | - |
+| Render Configuration | P0 | Planned | - |
+| Marketing Website | P0 | Planned | - |
 
-| Task | Current | Target | Breaking Changes |
-|------|---------|--------|------------------|
-| React upgrade | 16.9.0 | 18.x | Yes - new root API |
-| React DOM upgrade | 16.9.0 | 18.x | Yes - createRoot |
-| Class to Hooks | Class components | Functional | Medium effort |
-
-**Migration Steps:**
-1. Update React and React DOM to 18.x
-2. Update root rendering (`ReactDOM.render` -> `createRoot`)
-3. Migrate class components to functional with hooks
-4. Fix any breaking changes
-
-### Phase 3: React Router Upgrade
-**Priority: P1 - High**
-
-| Task | Current | Target | Breaking Changes |
-|------|---------|--------|------------------|
-| React Router | 5.0.1 | 6.x | Yes - major API change |
-
-**Migration Steps:**
-```jsx
-// OLD (v5)
-import { Switch, Route } from 'react-router-dom';
-<Switch>
-  <Route path="/courses" component={Courses} />
-</Switch>
-
-// NEW (v6)
-import { Routes, Route } from 'react-router-dom';
-<Routes>
-  <Route path="/courses" element={<Courses />} />
-</Routes>
-```
-
-### Phase 4: API Client Modernization
-**Priority: P2 - Medium**
-
-| Task | Current | Target | Notes |
-|------|---------|--------|-------|
-| HTTP client | jQuery AJAX | Native fetch | Remove jQuery dependency |
-| API types | Partial | Complete | Add full TypeScript types |
-
-### Phase 5: State Management
-**Priority: P2 - Medium**
-
-| Task | Current | Target | Notes |
-|------|---------|--------|-------|
-| Redux | 4.0.4 (vanilla) | Redux Toolkit | Simpler patterns |
-| Thunk | redux-thunk | createAsyncThunk | Built into RTK |
-
-**Migration Example:**
-```typescript
-// OLD (vanilla Redux)
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'SET_COURSES':
-      return { ...state, courses: action.payload };
-  }
-};
-
-// NEW (Redux Toolkit)
-const coursesSlice = createSlice({
-  name: 'courses',
-  initialState,
-  reducers: {
-    setCourses: (state, action) => {
-      state.courses = action.payload;
-    },
-  },
-});
-```
-
-### Phase 6: Database Cleanup
-**Priority: P3 - Low**
-
-| Task | Notes |
-|------|-------|
-| Rename camelCase columns | `authorId` -> `author_id` |
-| Add foreign key constraints | Database-level integrity |
-| Uncomment model associations | Fix Task model |
-
-### Phase 7: TypeScript Strictness
-**Priority: P3 - Low**
-
-| Setting | Current | Target |
-|---------|---------|--------|
-| `strictNullChecks` | false | true |
-| `noImplicitAny` | false | true |
+**Phase 1 Deliverables:**
+- Instructors can create and publish courses
+- Students can purchase and view video courses
+- Content stored in creator's own S3/R2 bucket
+- Deployed and running on Render
 
 ---
 
-## Feature Backlog
+### Phase 2: Core Features (Months 4-6)
 
-### High Priority
-- [ ] Enrollment system (users enroll in courses)
-- [ ] Progress dashboard (visualize completion)
-- [ ] Course search functionality
+**Goal:** Complete LMS functionality with enrollments, progress, quizzes
 
-### Medium Priority
-- [ ] Task ordering (drag and drop)
-- [ ] Rich text editor for task content
-- [ ] Admin dashboard
+| Feature | Priority | Status | PR |
+|---------|----------|--------|-----|
+| Enrollment System | P0 | Planned | - |
+| Progress Tracking | P0 | Planned | - |
+| Student Dashboard | P0 | Planned | - |
+| Quiz System | P1 | Planned | - |
+| Question Banks | P1 | Planned | - |
+| Certificate Generation | P1 | Planned | - |
+| Drip Content | P1 | Planned | - |
+| Email Notifications | P1 | Planned | - |
+| Creator Analytics | P1 | Planned | - |
+| Custom Domain Support | P1 | Planned | - |
 
-### Low Priority
-- [ ] Email notifications
-- [ ] Course analytics
-- [ ] Social features (comments, discussions)
-
----
-
-## Original Features (2020)
-
-These features were completed in the original build:
-
-- User authentication (registration, login, logout)
-- Course browsing
-- Subject/Task hierarchy
-- Progress tracking (completion status)
-- Markdown content rendering
-- AWS S3 file uploads (user avatars)
+**Phase 2 Deliverables:**
+- Full student learning experience
+- Quizzes with auto-grading
+- PDF certificates on completion
+- Email notifications for key events
+- Basic analytics dashboard
 
 ---
 
-## Success Criteria
+### Phase 3: Scale & Polish (Months 7-9)
 
-- [ ] All Vitest tests passing
-- [ ] All Rails tests passing
-- [ ] No console warnings or errors
-- [ ] React 18+ with functional components
-- [ ] React Router 6+ with modern API
-- [ ] No jQuery dependency
-- [ ] TypeScript strict mode enabled
-- [ ] 80%+ test coverage
+**Goal:** Performance, monitoring, community features
+
+| Feature | Priority | Status | PR |
+|---------|----------|--------|-----|
+| Redis Caching Layer | P1 | Planned | - |
+| Query Optimization | P1 | Planned | - |
+| Prometheus + Grafana | P2 | Planned | - |
+| Full-Text Search | P1 | Planned | - |
+| Discussion Forums | P2 | Planned | - |
+| WCAG 2.1 AA Compliance | P1 | Planned | - |
+| Webhook System | P2 | Planned | - |
+| API Documentation | P2 | Planned | - |
+
+**Phase 3 Deliverables:**
+- Sub-200ms API response times
+- Monitoring and alerting
+- Community features
+- Accessible to WCAG standards
+- OpenAPI documentation
+
+---
+
+### Phase 4: Differentiation (Months 10-12)
+
+**Goal:** AI features, mobile support, advanced capabilities
+
+| Feature | Priority | Status | PR |
+|---------|----------|--------|-----|
+| AI Course Outline Generator | P2 | Planned | - |
+| AI Quiz Generation | P2 | Planned | - |
+| White-Label Customization UI | P1 | Planned | - |
+| PWA Mobile Support | P2 | Planned | - |
+| SCORM Import/Export | P2 | Planned | - |
+| Affiliate Tracking | P2 | Planned | - |
+
+**Phase 4 Deliverables:**
+- AI-assisted course creation
+- Complete white-label solution
+- Mobile-friendly PWA
+- SCORM compliance for enterprise
+
+---
+
+## First 10 Features (MVP Sprint)
+
+These 10 features will be built first to establish a working MVP:
+
+| # | Feature | Branch | Status |
+|---|---------|--------|--------|
+| 1 | Next.js + Payload Setup | `feat/F1.1.1-payload-setup` | Planned |
+| 2 | PostgreSQL + Auth | `feat/F1.1.2-auth-database` | Planned |
+| 3 | Course Collection | `feat/F1.2.1-course-crud` | Planned |
+| 4 | Module/Lesson Hierarchy | `feat/F1.2.2-module-lesson` | Planned |
+| 5 | Course Builder UI | `feat/F1.2.3-course-builder` | Planned |
+| 6 | BYOS Storage | `feat/F1.3.1-byos-storage` | Planned |
+| 7 | Video Upload | `feat/F1.4.1-video-upload` | Planned |
+| 8 | Video Player | `feat/F1.4.3-video-player` | Planned |
+| 9 | Stripe Payments | `feat/F1.5.1-stripe-checkout` | Planned |
+| 10 | Render Deployment | `feat/F1.6.1-render-deploy` | Planned |
+
+---
+
+## Technology Stack
+
+### Core
+- **Framework:** Next.js 14 (App Router)
+- **CMS:** Payload CMS v3
+- **Database:** PostgreSQL 16 + Row-Level Security
+- **Language:** TypeScript 5.x (strict mode)
+
+### Frontend
+- **UI:** React 18 + Server Components
+- **Styling:** Tailwind CSS 4.x
+- **Components:** shadcn/ui + Radix
+- **Forms:** React Hook Form + Zod
+- **Video:** Video.js with HLS
+
+### Backend
+- **Auth:** NextAuth.js v5
+- **Payments:** Stripe Checkout
+- **Storage:** AWS SDK v3 (S3-compatible)
+- **Jobs:** BullMQ + Redis
+- **Email:** Resend
+
+### Infrastructure
+- **Deploy:** Docker + Render
+- **CDN:** Cloudflare
+- **Testing:** Vitest + Playwright
+- **CI/CD:** GitHub Actions
+
+---
+
+## Success Metrics
+
+### Phase 1 Success Criteria
+- [ ] Working course creation flow
+- [ ] Video upload to BYOS storage
+- [ ] Stripe checkout completes successfully
+- [ ] Page load time < 3 seconds
+- [ ] Test coverage ≥ 80%
+- [ ] Zero critical security vulnerabilities
+- [ ] Deployed on Render
+
+### Project Success Criteria
+- [ ] 100+ GitHub stars
+- [ ] Featured in "awesome self-hosted" lists
+- [ ] Used by 50+ course creators
+- [ ] < $30/month hosting for small deployments
+- [ ] Complete white-label capability
+
+---
+
+## Links
+
+- [Architecture Documentation](./ARCHITECTURE.md)
+- [Coding Standards](./CODING_STANDARDS.md)
+- [Phase 1 SDDs](./sdd/phase-1/)
+- [Work Status](../roadmap/WORK_STATUS.md)
+- [Compiled Research](../../_@agent-prompts/learning-hall/research/sessions/COMPILED_RESEARCH.md)
+
+---
+
+**Document Version:** 3.0.0
+**Last Updated:** January 2026
