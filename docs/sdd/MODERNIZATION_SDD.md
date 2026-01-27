@@ -1,35 +1,34 @@
 # Software Design Document: Learning-Hall Modernization
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Author:** Daniel Hernandez
 **Created:** January 2026
-**Status:** Draft - Awaiting Review
+**Status:** Partially Complete - Frontend Pending
 
 ---
 
 ## 1. Executive Summary
 
-This document outlines the modernization strategy for Learning-Hall, a Ruby on Rails + React application. This project requires both backend (Rails) and frontend (React/Webpack) modernization with adoption of Tailwind v4 and Shadcn for styling.
+This document outlines the modernization strategy for Learning-Hall, a Ruby on Rails + React application. The backend modernization is **COMPLETE**. The remaining work focuses on frontend React modernization.
 
-### Current State
-- **Ruby:** 2.5.x (EOL)
-- **Rails:** 5.2.3 (Legacy)
-- **Node.js:** 12.10.0 (EOL)
-- **React:** 16.9.0 (Legacy)
-- **Build Tool:** Webpack 4 (custom config)
-- **Styling:** SCSS (sass-rails)
-- **State Management:** Redux 4 + Thunk
-- **Database:** PostgreSQL
+### Current State (January 2026)
+- **Ruby:** 3.3 - COMPLETE
+- **Rails:** 7.2.0 - COMPLETE
+- **Node.js:** 18+ / 22 - COMPLETE
+- **Build Tool:** Vite 7.3.1 - COMPLETE
+- **Type System:** TypeScript 5.9.3 - COMPLETE
+- **Styling:** Tailwind CSS 4.1.18 - COMPLETE
+- **Testing:** Vitest 4.0.17 - COMPLETE
+- **React:** 16.9.0 - **PENDING UPGRADE**
+- **React Router:** 5.0.1 - **PENDING UPGRADE**
+- **State Management:** Redux 4 + Thunk - **PENDING MODERNIZATION**
+- **Database:** PostgreSQL 16
 
 ### Target State
-- **Ruby:** 3.3.x
-- **Rails:** 7.2.x (or 8.x if stable)
-- **Node.js:** 22.x LTS
-- **React:** 19.x
-- **Build Tool:** Vite 6.x (via vite-ruby)
-- **Styling:** Tailwind CSS v4 + Shadcn
-- **State Management:** Redux Toolkit or Zustand
-- **Database:** PostgreSQL 16.x
+- **React:** 18.x or 19.x
+- **React Router:** 6.x or 7.x
+- **State Management:** Redux Toolkit
+- **API Client:** Native fetch (remove jQuery)
 
 ---
 
