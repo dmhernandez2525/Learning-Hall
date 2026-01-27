@@ -47,7 +47,9 @@ export const Courses: CollectionConfig = {
                 throw new Error('A course must have at least one module to be published.');
             }
 
-            const hasLessons = course.modules.some(module => module.lessons && module.lessons.length > 0);
+            const hasLessons = course.modules.some((courseModule: { lessons?: unknown[] }) =>
+              courseModule.lessons && courseModule.lessons.length > 0
+            );
 
             if(!hasLessons) {
                 throw new Error('A course must have at least one lesson to be published.');
