@@ -23,15 +23,15 @@ export async function GET(request: NextRequest) {
     // If moduleId is provided, return all lessons for that module sorted by position
     if (moduleId) {
       // Verify module and course access
-      const module = await getModule(moduleId);
-      if (!module) {
+      const courseModule = await getModule(moduleId);
+      if (!courseModule) {
         return NextResponse.json(
           { error: 'Module not found' },
           { status: 404 }
         );
       }
 
-      const course = await getCourse(module.course.id);
+      const course = await getCourse(courseModule.course.id);
       if (course && course.status !== 'published') {
         const user = await getSession();
 
@@ -129,15 +129,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify the module exists and user has access
-    const module = await getModule(result.data.moduleId);
-    if (!module) {
+    const courseModule = await getModule(result.data.moduleId);
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
       );
     }
 
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },

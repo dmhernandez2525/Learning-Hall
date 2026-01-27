@@ -29,27 +29,27 @@ services:
       - key: NEXT_PUBLIC_URL
         sync: false
 
-  # Background Worker (for video transcoding, etc.)
-  - type: worker
-    name: learning-hall-worker
-    runtime: node
-    region: oregon
-    plan: starter
-    buildCommand: NODE_ENV=development npm ci && npm run build
-    startCommand: npm run worker
-    envVars:
-      - key: NODE_VERSION
-        value: "20"
-      - key: NODE_ENV
-        value: production
-      - key: DATABASE_URL
-        fromDatabase:
-          name: learning-hall-db
-          property: connectionString
-      - key: PAYLOAD_SECRET
-        sync: false
-      - key: REDIS_URL
-        sync: false
+  # Background Worker - commented out until worker implementation exists
+  # - type: worker
+  #   name: learning-hall-worker
+  #   runtime: node
+  #   region: oregon
+  #   plan: starter
+  #   buildCommand: NODE_ENV=development npm ci && npm run build
+  #   startCommand: npm run worker
+  #   envVars:
+  #     - key: NODE_VERSION
+  #       value: "20"
+  #     - key: NODE_ENV
+  #       value: production
+  #     - key: DATABASE_URL
+  #       fromDatabase:
+  #         name: learning-hall-db
+  #         property: connectionString
+  #     - key: PAYLOAD_SECRET
+  #       sync: false
+  #     - key: REDIS_URL
+  #       sync: false
 
 databases:
   - name: learning-hall-db

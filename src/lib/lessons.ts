@@ -64,17 +64,17 @@ export interface LessonListResult {
 }
 
 function formatLesson(doc: Record<string, unknown>): Lesson {
-  const module = doc.module as Record<string, unknown> | string;
+  const lessonModule = doc.module as Record<string, unknown> | string;
   const content = doc.content as Record<string, unknown> | null;
   const resources = doc.resources as Array<Record<string, unknown>> | undefined;
   const videoThumbnail = content?.videoThumbnail as Record<string, unknown> | null;
 
   let formattedModule: Lesson['module'];
-  if (typeof module === 'object') {
-    const course = module.course as Record<string, unknown> | string | undefined;
+  if (typeof lessonModule === 'object') {
+    const course = lessonModule.course as Record<string, unknown> | string | undefined;
     formattedModule = {
-      id: String(module.id),
-      title: String(module.title || ''),
+      id: String(lessonModule.id),
+      title: String(lessonModule.title || ''),
       course: course
         ? typeof course === 'object'
           ? { id: String(course.id), title: String(course.title || '') }

@@ -9,9 +9,9 @@ type RouteParams = { params: Promise<{ id: string }> };
 export async function GET(_request: NextRequest, { params }: RouteParams) {
   try {
     const { id } = await params;
-    const module = await getModule(id);
+    const courseModule = await getModule(id);
 
-    if (!module) {
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
@@ -19,7 +19,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
     }
 
     // Check if parent course is published, if not require auth
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (course && course.status !== 'published') {
       const user = await getSession();
 
@@ -38,7 +38,7 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       }
     }
 
-    return NextResponse.json({ doc: module });
+    return NextResponse.json({ doc: courseModule });
   } catch (error) {
     console.error('Get module error:', error);
     return NextResponse.json(
@@ -68,9 +68,9 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     const { id } = await params;
-    const module = await getModule(id);
+    const courseModule = await getModule(id);
 
-    if (!module) {
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
@@ -78,7 +78,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check if user can edit this module's course
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },
@@ -127,9 +127,9 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     }
 
     const { id } = await params;
-    const module = await getModule(id);
+    const courseModule = await getModule(id);
 
-    if (!module) {
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
@@ -137,7 +137,7 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     }
 
     // Check if user can delete this module
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },
