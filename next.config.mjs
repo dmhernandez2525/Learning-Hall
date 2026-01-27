@@ -12,8 +12,6 @@ const nextConfig = {
   experimental: {
     reactCompiler: false,
   },
-  // Ensure Payload packages are properly handled in standalone mode
-  serverExternalPackages: ['payload', '@payloadcms/next', '@payloadcms/db-postgres', '@payloadcms/richtext-lexical'],
   images: {
     remotePatterns: [
       {
