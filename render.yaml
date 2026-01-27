@@ -4,7 +4,7 @@
 services:
   # Main Application - Next.js + Payload CMS
   - type: web
-    name: learning-hall-api
+    name: learning-hall-site
     runtime: node
     region: oregon
     plan: starter
