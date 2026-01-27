@@ -457,7 +457,7 @@ async function callOllama(
 async function generateTitle(
   conversationId: string | number,
   userMessage: string,
-  assistantResponse: string
+  _assistantResponse: string
 ) {
   const payload = await getPayload({ config });
 

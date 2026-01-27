@@ -1,6 +1,5 @@
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { remember, cacheKeys } from '../cache';
 
 export interface SearchFilters {
   category?: string;

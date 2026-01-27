@@ -1,6 +1,5 @@
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import type { Where } from 'payload';
 
 export type LiveSessionProvider = 'zoom' | 'google-meet' | 'microsoft-teams' | 'custom-rtmp';
 
