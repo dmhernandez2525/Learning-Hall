@@ -1,6 +1,4 @@
-'use client';
-
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Where } from 'payload';
 
 export const LiveSessions: CollectionConfig = {
   slug: 'live-sessions',
@@ -12,7 +10,7 @@ export const LiveSessions: CollectionConfig = {
   },
   access: {
     read: ({ req: { user } }) => {
-      if (!user) return { status: { equals: 'published' } };
+      if (!user) return { status: { equals: 'published' } } as Where;
       if (user.role === 'admin') return true;
       if (user.role === 'instructor') {
         return {
@@ -20,9 +18,9 @@ export const LiveSessions: CollectionConfig = {
             { host: { equals: user.id } },
             { status: { equals: 'published' } },
           ],
-        };
+        } as Where;
       }
-      return { status: { equals: 'published' } };
+      return { status: { equals: 'published' } } as Where;
     },
     create: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'instructor',
     update: ({ req: { user } }) => {

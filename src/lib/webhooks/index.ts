@@ -170,7 +170,20 @@ export async function dispatchWebhook(
   const results: { endpointId: string | number; result: DeliveryResult }[] = [];
 
   for (const endpoint of endpoints.docs) {
-    const result = await deliverWebhook(endpoint, webhookPayload);
+    const result = await deliverWebhook(
+      {
+        id: endpoint.id,
+        url: endpoint.url as string,
+        secret: endpoint.secret as string,
+        settings: endpoint.settings as {
+          timeout?: number;
+          headers?: { key: string; value: string }[];
+          retryOnFailure?: boolean;
+          maxRetries?: number;
+        },
+      },
+      webhookPayload
+    );
     results.push({ endpointId: endpoint.id, result });
 
     // Update endpoint stats

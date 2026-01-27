@@ -1,4 +1,5 @@
 import { getPayload } from 'payload';
+import type { Where } from 'payload';
 import config from '@/payload.config';
 
 export interface SearchFilters {
@@ -59,7 +60,7 @@ export async function search(
   const payload = await getPayload({ config });
 
   // Build where clause
-  const conditions: Record<string, unknown>[] = [{ status: { equals: 'active' } }];
+  const conditions: Where[] = [{ status: { equals: 'active' } }];
 
   // Full-text search on title, description, content
   if (query) {
@@ -107,7 +108,7 @@ export async function search(
   // Execute search
   const searchResults = await payload.find({
     collection: 'search-index',
-    where: { and: conditions },
+    where: { and: conditions } as Where,
     sort: '-boostScore,-metrics.rating',
     page,
     limit: pageSize,
@@ -147,14 +148,12 @@ export async function search(
 async function getSearchFacets(tenantId?: string) {
   const payload = await getPayload({ config });
 
-  const whereClause = tenantId
-    ? { and: [{ status: { equals: 'active' } }, { tenant: { equals: tenantId } }] }
-    : { status: { equals: 'active' } };
-
   // Get all active items for facet calculation
   const allItems = await payload.find({
     collection: 'search-index',
-    where: whereClause,
+    where: tenantId
+      ? ({ and: [{ status: { equals: 'active' } }, { tenant: { equals: tenantId } }] } as Where)
+      : { status: { equals: 'active' } },
     limit: 1000,
   });
 
@@ -308,7 +307,7 @@ export async function getSuggestions(
 ): Promise<string[]> {
   const payload = await getPayload({ config });
 
-  const conditions: Record<string, unknown>[] = [
+  const conditions: Where[] = [
     { status: { equals: 'active' } },
     { title: { contains: query } },
   ];
@@ -319,7 +318,7 @@ export async function getSuggestions(
 
   const results = await payload.find({
     collection: 'search-index',
-    where: { and: conditions },
+    where: { and: conditions } as Where,
     limit,
   });
 
@@ -334,7 +333,7 @@ export async function getPopularSearches(tenantId?: string, limit = 10): Promise
   // For now, return most enrolled courses
   const payload = await getPayload({ config });
 
-  const conditions: Record<string, unknown>[] = [{ status: { equals: 'active' } }];
+  const conditions: Where[] = [{ status: { equals: 'active' } }];
 
   if (tenantId) {
     conditions.push({ tenant: { equals: tenantId } });
@@ -342,7 +341,7 @@ export async function getPopularSearches(tenantId?: string, limit = 10): Promise
 
   const results = await payload.find({
     collection: 'search-index',
-    where: { and: conditions },
+    where: { and: conditions } as Where,
     sort: '-metrics.enrollmentCount',
     limit,
   });

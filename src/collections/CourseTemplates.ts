@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Where } from 'payload';
 
 export const CourseTemplates: CollectionConfig = {
   slug: 'course-templates',
@@ -18,7 +18,7 @@ export const CourseTemplates: CollectionConfig = {
           { createdBy: { equals: user.id } },
           { tenant: { equals: user.tenant } },
         ],
-      };
+      } as Where;
     },
     create: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'instructor',
     update: ({ req: { user } }) => {

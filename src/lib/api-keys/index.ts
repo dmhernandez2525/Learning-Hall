@@ -1,4 +1,5 @@
 import { getPayload } from 'payload';
+import type { Where } from 'payload';
 import config from '@/payload.config';
 import crypto from 'crypto';
 
@@ -261,15 +262,13 @@ export async function revokeAPIKey(
 export async function listAPIKeys(tenantId: string, includeRevoked = false) {
   const payload = await getPayload({ config });
 
-  const where = includeRevoked
-    ? { tenant: { equals: tenantId } }
-    : {
-        and: [{ tenant: { equals: tenantId } }, { status: { not_equals: 'revoked' } }],
-      };
-
   const keys = await payload.find({
     collection: 'api-keys',
-    where,
+    where: includeRevoked
+      ? { tenant: { equals: tenantId } }
+      : ({
+          and: [{ tenant: { equals: tenantId } }, { status: { not_equals: 'revoked' } }],
+        } as Where),
     sort: '-createdAt',
     limit: 100,
   });
