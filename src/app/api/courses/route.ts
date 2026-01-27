@@ -5,16 +5,49 @@ import { z } from 'zod';
 
 export async function GET(request: NextRequest) {
   try {
+    const user = await getSession();
     const searchParams = request.nextUrl.searchParams;
     const page = parseInt(searchParams.get('page') || '1', 10);
     const limit = parseInt(searchParams.get('limit') || '10', 10);
-    const status = searchParams.get('status') as 'draft' | 'published' | 'archived' | null;
+    const requestedStatus = searchParams.get('status') as 'draft' | 'published' | 'archived' | null;
     const search = searchParams.get('search') || undefined;
+
+    // Determine allowed status based on authentication
+    // - Unauthenticated users can only see published courses
+    // - Instructors can see their own draft courses
+    // - Admins can see all courses
+    let status: 'draft' | 'published' | 'archived' | undefined;
+
+    if (!user) {
+      // Unauthenticated: only published courses
+      status = 'published';
+    } else if (user.role === 'admin') {
+      // Admin: can see any status
+      status = requestedStatus || undefined;
+    } else if (user.role === 'instructor') {
+      // Instructor: can see published, or their own drafts
+      // For simplicity, if requesting draft, we'll filter by instructor later
+      status = requestedStatus || undefined;
+      if (requestedStatus === 'draft') {
+        // List only their own drafts
+        const result = await listCourses({
+          page,
+          limit,
+          status: 'draft',
+          instructorId: user.id,
+          search,
+        });
+        return NextResponse.json(result);
+      }
+    } else {
+      // Student: only published courses
+      status = 'published';
+    }
 
     const result = await listCourses({
       page,
       limit,
-      status: status || undefined,
+      status,
       search,
     });
 

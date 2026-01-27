@@ -60,6 +60,8 @@ export function VideoPlayer({
   const [hasCompleted, setHasCompleted] = useState(false);
 
   const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastProgressCallRef = useRef<number>(0);
+  const PROGRESS_THROTTLE_MS = 1000; // Only call onProgress once per second
 
   // Hide controls after inactivity
   const resetControlsTimeout = useCallback(() => {
@@ -264,7 +266,12 @@ export function VideoPlayer({
         isComplete: video.currentTime >= video.duration * 0.9,
       };
 
-      onProgress?.(progress);
+      // Throttle onProgress calls to once per second to reduce re-renders
+      const now = Date.now();
+      if (now - lastProgressCallRef.current >= PROGRESS_THROTTLE_MS) {
+        lastProgressCallRef.current = now;
+        onProgress?.(progress);
+      }
 
       // Mark as complete when 90% watched
       if (progress.isComplete && !hasCompleted) {
