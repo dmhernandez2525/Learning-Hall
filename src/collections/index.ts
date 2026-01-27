@@ -5,3 +5,4 @@ export { Modules } from './Modules';
 export { Lessons } from './Lessons';
 export { Media } from './Media';
 export { StorageConfigs } from './StorageConfigs';
+export { Enrollments } from './Enrollments';

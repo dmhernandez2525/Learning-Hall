@@ -1,66 +1,68 @@
-# Learning Hall - Roadmap
+# Learning Hall - Project Roadmap
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Last Updated:** January 2026
 
 ---
 
-## Current Status: Major Modernization Required
+## Overview
 
-This project was built in 2019-2020 with Ruby 2.5 and Rails 5.2. Significant updates are needed.
-
----
-
-## Decision Point
-
-### Option A: Modernize Rails Stack
-- Upgrade Ruby (2.5 → 3.3)
-- Upgrade Rails (5.2 → 7.x)
-- Keep PostgreSQL
-- Modernize frontend
-
-### Option B: Migrate to Node.js
-- Replace Rails with Express/NestJS
-- Keep React frontend
-- Migrate to Prisma ORM
-- Simpler deployment
+This roadmap outlines the development plan for Learning Hall, a modern LMS built with Next.js, Payload CMS, and a multi-tenant architecture.
 
 ---
 
-## Phase 1: Critical Updates (Either Path)
+## Phase 1: Core Infrastructure & Modernization (Completed)
 
-| Status | Task | Priority |
-|--------|------|----------|
-| 📋 | Install Ruby version manager (rbenv/asdf) | P0 |
-| 📋 | Fix Bundler compatibility | P0 |
-| 📋 | Set up PostgreSQL locally | P0 |
-| 📋 | Fix Webpack/OpenSSL issues | P0 |
+This phase focused on migrating from an outdated Ruby on Rails stack to a modern, robust, and scalable Node.js-based architecture.
 
-## Phase 2: Rails Path
-
-| Status | Task | Priority |
-|--------|------|----------|
-| 📋 | Upgrade Ruby to 3.x | P1 |
-| 📋 | Upgrade Rails to 7.x | P1 |
-| 📋 | Update all gems | P1 |
-| 📋 | Migrate to Propshaft/ImportMaps | P2 |
-
-## Phase 3: Frontend Modernization
-
-| Status | Task | Priority |
-|--------|------|----------|
-| 📋 | Upgrade React (16 → 18) | P1 |
-| 📋 | Add TypeScript | P1 |
-| 📋 | Replace Webpack with Vite | P2 |
-| 📋 | Add Tailwind CSS | P2 |
+| Status | Feature ID | Description |
+|:---:|:---:|:---|
+| ✅ | F1.1 | **Project Setup**: Initialized Next.js 14 and Payload 3.0 project. |
+| ✅ | F1.2 | **Database Integration**: Configured PostgreSQL with RLS for multi-tenancy. |
+| ✅ | F1.3 | **Core Collections**: Created Users, Tenants, Courses, Modules, and Lessons collections. |
+| ✅ | F1.4 | **Authentication**: Implemented Payload Auth with NextAuth.js integration. |
+| ✅ | F1.5 | **Styling**: Set up Tailwind CSS with shadcn/ui for the component library. |
+| ✅ | F1.6 | **BYOS Architecture**: Designed the "Bring Your Own Storage" system for media. |
+| ✅ | F1.7 | **Deployment**: Configured Docker and Render.com for CI/CD. |
+| ✅ | F1.8 | **Basic UI**: Built out initial marketing pages, auth flow, and admin panel. |
 
 ---
 
-## Original Features (2020)
+## Phase 2: Core Feature Implementation (In Progress)
 
-- ✅ User authentication
-- ✅ Course browsing
-- ✅ Subject/Task hierarchy
-- ✅ Progress tracking
-- ✅ Markdown content rendering
-- ✅ AWS S3 file uploads
+This phase focuses on building out the essential features for a functional and engaging learning management system.
+
+| Status | Feature ID | Description |
+|:---:|:---:|:---|
+| ⏳ | F2.1 | **User Enrollment System**: Link users to courses and track enrollment status. |
+| 📋 | F2.2 | **Course Progress Tracking**: Track lesson completion and overall course progress. |
+| 📋 | F2.3 | **Student Dashboard**: Allow students to view enrolled courses and their progress. |
+| 📋 | F2.4 | **Instructor Dashboard**: Allow instructors to view their courses and enrollment data. |
+| 📋 | F2.5 | **Course Publishing Workflow**: Implement Draft, Published, and Archived states for courses. |
+| 📋 | F2.6 | **Media Upload to Cloud Storage**: Integrate with S3/R2/GCS for direct media uploads. |
+| 📋 | F2.7 | **Video Thumbnail Generation**: Automatically create thumbnails from video uploads. |
+| 📋 | F2.8 | **Rich Text Content for Lessons**: Integrate a rich text editor (Lexical) for lesson content. |
+| 📋 | F2.9 | **Course Pricing & Access Control**: Add free vs. paid flags and basic access control. |
+| 📋 | F2.10| **Email Notifications**: Implement transactional emails for key events. |
+
+---
+
+## Phase 3: Advanced Features & Polish (Planned)
+
+This phase will focus on enhancing the user experience, adding advanced features, and refining the platform.
+
+| Status | Feature ID | Description |
+|:---:|:---:|:---|
+| 📋 | F3.1 | **Quizzes & Assessments**: Add the ability to create quizzes within lessons. |
+| 📋 | F3.2 | **User Profiles**: Public and private user profiles with activity history. |
+| 📋 | F3.3 | **Payment Gateway Integration**: Integrate Stripe for processing payments for paid courses. |
+| 📋 | F3.4 | **Community Features**: Implement discussion forums or comment sections for courses. |
+| 📋 | F3.5 | **Advanced Analytics**: Detailed analytics for instructors and administrators. |
+| 📋 | F3.6 | **Gamification**: Add badges, points, and certificates for course completion. |
+
+---
+
+### Key
+- ✅: Completed
+- ⏳: In Progress
+- 📋: Planned
