@@ -55,7 +55,7 @@ databases:
   - name: learning-hall-db
     databaseName: learning_hall
     region: oregon
-    plan: basic_256mb
+    plan: basic
 
 # Notes:
 # - Redis: Configure via Dashboard > New > Redis (not available in render.yaml)
