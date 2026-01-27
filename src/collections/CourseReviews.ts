@@ -138,11 +138,55 @@ const CourseReviews: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      async ({ data, req, operation }) => {
+      async ({ data, req, operation, originalDoc }) => {
         // Auto-set user on create
         if (operation === 'create' && req.user && !data.user) {
           data.user = req.user.id;
         }
+
+        // Validate instructor response permission
+        if (
+          operation === 'update' &&
+          data.instructorResponse !== undefined &&
+          originalDoc?.instructorResponse !== data.instructorResponse
+        ) {
+          if (!req.user) {
+            throw new Error('Authentication required');
+          }
+
+          // Admins can respond to any review
+          if (req.user.role === 'admin') {
+            data.respondedAt = new Date().toISOString();
+            return data;
+          }
+
+          // Instructors can only respond to reviews on their own courses
+          if (req.user.role === 'instructor') {
+            const courseId = typeof originalDoc.course === 'object'
+              ? originalDoc.course.id
+              : originalDoc.course;
+
+            const course = await req.payload.findByID({
+              collection: 'courses',
+              id: courseId,
+            });
+
+            const instructorId = typeof course.instructor === 'object'
+              ? course.instructor.id
+              : course.instructor;
+
+            if (instructorId !== req.user.id) {
+              throw new Error('You can only respond to reviews on your own courses');
+            }
+
+            data.respondedAt = new Date().toISOString();
+            return data;
+          }
+
+          // Regular users cannot add instructor responses
+          throw new Error('Only course instructors can respond to reviews');
+        }
+
         return data;
       },
     ],
