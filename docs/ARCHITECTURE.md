@@ -58,7 +58,7 @@ Learning-Hall/
 │   │   ├── Enrollments.ts
 │   │   ├── CourseProgress.ts   # (New) Tracks lesson completion
 │   │   └── ...
-│   ├── components/             # Shared React components (UI, layout, quiz runner)
+│   ├── components/             # Shared React components (UI, layout, quiz runner, discussions)
 │   ├── lib/                    # Core libraries, utilities, and services
 │   ├── payload.config.ts       # Main Payload CMS configuration
 │   └── middleware.ts           # Next.js middleware for route protection
@@ -110,6 +110,14 @@ Data modeling is handled through Payload's collection configuration files.
 - Persists every learner attempt, including the randomized question snapshot, responses, score, and timing data.
 - Drives analytics (average score, pass rate, question difficulty) surfaced to instructors in the dashboard and API.
 
+#### `DiscussionThreads`
+- Stores per-course root threads with title, body, status (open/answered/closed), pin state, vote totals, and subscriber relationships for notifications.
+- Each thread automatically tracks `replyCount` and `lastActivityAt` to keep the board sorted by recent conversations.
+
+#### `DiscussionPosts`
+- Represents individual replies (and nested comments) under a thread.
+- Maintains a `parent` relationship for threading, vote history, and `isAnswer` flag that instructors can toggle when verifying solutions.
+
 ---
 
 ## Business Logic & Automation
@@ -117,6 +125,7 @@ Data modeling is handled through Payload's collection configuration files.
 - **Hooks**: Payload's hooks are used for automation. For example, a `beforeChange` hook on the `CourseProgress` collection calculates the `progressPercentage` whenever the `completedLessons` array is modified. This keeps the data consistent without requiring manual calculations on the client-side.
 - **Assessment Engine**: Attempt creation copies the randomized question set—including shuffled choices—into `QuizAttempts` so grading is deterministic even when the bank changes. Submission grading awards partial credit for matching questions and updates quiz metadata (average score, question count, pass rate) in the background.
 - **Access Control**: Quiz/question APIs enforce instructor-only management and ensure students can only start attempts for courses they are enrolled in. Attempt responses are masked server-side until instructors allow review/explanations.
+- **Community Notifications**: Discussion replies automatically bump `replyCount`, subscribe the author, and trigger the `discussion-reply` email template for thread subscribers and instructors, ensuring learners stay informed about new activity.
 
 ---
 
@@ -137,6 +146,22 @@ Data modeling is handled through Payload's collection configuration files.
 3. **Analytics**
    - `QuizAttempts` updates trigger metadata refresh on the parent `Quiz` so instructors can see cumulative stats in the builder and via API.
    - Question-level accuracy and average points feed the instructor analytics modal and JSON responses, enabling quick identification of tricky items.
+
+---
+
+## Discussion Boards Flow
+
+1. **Thread Lifecycle**
+   - Students and instructors create new topics from `/student/courses/{courseId}/discussions` which calls `POST /api/discussions` and subscribes authors + instructors automatically.
+   - Moderators can pin/close threads via `PATCH /api/discussions/:id` keeping the most important conversations surfaced.
+
+2. **Replies & Voting**
+   - Replies (and nested replies) use `POST /api/discussions/:id/replies` with optional `parentId`. Vote APIs keep per-user scores up to date for both threads and replies.
+   - The UI consumes `GET /api/discussions/:id` for thread detail plus `GET /api/discussions/:id/replies` to hydrate the tree on demand.
+
+3. **Verification & Notifications**
+   - Instructors mark helpful replies as the verified answer (`PATCH /api/discussions/:id/replies/:replyId`) which flips the thread status to answered and highlights the response for students.
+   - Each reply updates `replyCount`, `lastActivityAt`, subscribes the author, and triggers the `discussion-reply` email template so participants know when someone responds.
 
 ---
 

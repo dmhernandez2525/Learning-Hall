@@ -186,3 +186,17 @@ export async function sendEnrollmentExpiringEmail(
     html,
   });
 }
+
+export async function sendDiscussionReplyEmail(
+  to: string,
+  data: Pick<EmailTemplateData, 'userName' | 'courseName'> &
+    Partial<EmailTemplateData> & { threadTitle: string; threadUrl: string; replyAuthorName?: string; replyPreview?: string }
+): Promise<EmailResult> {
+  const html = getEmailTemplate('discussion-reply', data);
+
+  return sendEmail({
+    to,
+    subject: `New reply in ${data.courseName}: ${data.threadTitle}`,
+    html,
+  });
+}

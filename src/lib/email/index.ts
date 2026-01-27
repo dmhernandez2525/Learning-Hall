@@ -8,6 +8,12 @@
  * - Course updates and announcements
  */
 
-export { sendEmail, sendWelcomeEmail, sendEnrollmentEmail, sendPasswordResetEmail } from './sender';
+export {
+  sendEmail,
+  sendWelcomeEmail,
+  sendEnrollmentEmail,
+  sendPasswordResetEmail,
+  sendDiscussionReplyEmail,
+} from './sender';
 export { EmailTemplate, getEmailTemplate } from './templates';
 export type { EmailOptions, EmailResult, EmailTemplateData } from './types';

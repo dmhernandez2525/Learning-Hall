@@ -43,7 +43,7 @@ export interface QuizAttempt {
 
 export interface AttemptAnswerInput {
   questionId: string;
-  response?: unknown;
+  response: unknown;
 }
 
 export interface StartQuizAttemptOptions {
@@ -444,19 +444,19 @@ export async function submitQuizAttempt({ attemptId, user, answers }: SubmitQuiz
   const answersById = new Map(answers.map((answer) => [answer.questionId, answer.response] as const));
 
   const gradedQuestions = (doc.questions as Array<Record<string, unknown>>).map((question) => {
-    const snapshot: QuizAttemptQuestionSnapshot = {
+    const snapshot = {
       questionId: String(question.questionId || ''),
       questionType: question.questionType as QuizAttemptQuestionSnapshot['questionType'],
       prompt: String(question.prompt || ''),
       options: question.options as QuestionOption[] | undefined,
       matchOptions: question.matchOptions as string[] | undefined,
       correctAnswer: question.correctAnswer,
-      response: question.response,
-      explanation: question.explanation as string | undefined,
+      response: question.response ?? null,
+      explanation: question.explanation ? String(question.explanation) : undefined,
       pointsPossible: Number(question.pointsPossible || 0),
       pointsEarned: Number(question.pointsEarned || 0),
       isCorrect: question.isCorrect === true,
-    };
+    } satisfies QuizAttemptQuestionSnapshot;
 
     const response = answersById.get(snapshot.questionId);
     if (response === undefined) {
@@ -464,13 +464,12 @@ export async function submitQuizAttempt({ attemptId, user, answers }: SubmitQuiz
     }
 
     const graded = gradeQuestion(snapshot, response);
-    const result: QuizAttemptQuestionSnapshot = {
+    return {
       ...snapshot,
       response: graded.response,
       pointsEarned: graded.pointsEarned,
       isCorrect: graded.isCorrect,
-    };
-    return result;
+    } satisfies QuizAttemptQuestionSnapshot;
   });
 
   const score = gradedQuestions.reduce((sum, question) => sum + question.pointsEarned, 0);

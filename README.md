@@ -6,7 +6,7 @@ A modern Learning Management System (LMS) built with Next.js 14 and Payload CMS,
 
 ## Overview
 
-Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content. Learners access interactive assessments from `/student/courses/{courseId}/quizzes`, launch timed attempts, and review detailed feedback when instructors enable it.
+Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content. Learners access interactive assessments from `/student/courses/{courseId}/quizzes`, launch timed attempts, and review detailed feedback when instructors enable it. Each course also includes a `/student/courses/{courseId}/discussions` hub for threaded conversations, instructor-verified answers, and community voting.
 
 ### Key Features
 
@@ -17,6 +17,7 @@ Learning Hall is a full-featured LMS platform that enables educators to create c
 - **Role-Based Access**: Admin, instructor, and student roles
 - **Progress Tracking**: Track student progress through courses
 - **Quiz Engine**: Timed assessments with randomized question banks and analytics
+- **Discussion Forums**: Threaded course discussions with instructor badges, pinning, and voting
 - **Responsive Design**: Works on desktop and mobile
 
 ---
@@ -161,6 +162,18 @@ Payload CMS provides a complete REST API at `/api`.
 | GET | `/api/quizzes/:id/attempts/:attemptId` | Fetch attempt details |
 | PATCH | `/api/quizzes/:id/attempts/:attemptId` | Submit answers |
 | GET | `/api/quizzes/:id/analytics` | Instructor analytics dashboard |
+
+### Discussions
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/discussions?courseId={id}` | List threads for a course |
+| POST | `/api/discussions` | Create a new thread |
+| GET | `/api/discussions/:id` | Thread detail with nested replies |
+| PATCH | `/api/discussions/:id` | Update thread status or pin |
+| POST | `/api/discussions/:id/replies` | Add a reply (supports nested parentId) |
+| POST | `/api/discussions/:id/vote` | Upvote/downvote a thread |
+| POST | `/api/discussions/:id/replies/:replyId/vote` | Vote on a reply |
+| PATCH | `/api/discussions/:id/replies/:replyId` | Mark/unmark reply as the answer |
 
 ### Modules & Lessons
 | Method | Endpoint | Description |

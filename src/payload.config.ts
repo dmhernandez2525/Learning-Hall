@@ -18,6 +18,8 @@ import {
   Quizzes,
   Questions,
   QuizAttempts,
+  DiscussionThreads,
+  DiscussionPosts,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -69,6 +71,8 @@ export default buildConfig({
     Quizzes,
     Questions,
     QuizAttempts,
+    DiscussionThreads,
+    DiscussionPosts,
   ],
   db: postgresAdapter({
     pool: {

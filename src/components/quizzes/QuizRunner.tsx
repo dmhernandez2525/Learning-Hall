@@ -80,6 +80,33 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
     return () => clearInterval(interval);
   }, [currentAttempt, quiz.timeLimit, autoSubmitting]);
 
+  const startAttempt = async () => {
+    setIsStarting(true);
+    setErrorMessage(null);
+    try {
+      const response = await fetch(`/api/quizzes/${quiz.id}/attempts`, {
+        method: 'POST',
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setErrorMessage(data.error || 'Unable to start quiz');
+        return;
+      }
+      setCurrentAttempt(data.doc);
+      setView('in-progress');
+    } catch (error) {
+      console.error(error);
+      setErrorMessage('Unable to start quiz');
+    } finally {
+      setIsStarting(false);
+      setAutoSubmitting(false);
+    }
+  };
+
+  const updateResponse = (questionId: string, value: unknown) => {
+    setResponses((prev) => ({ ...prev, [questionId]: value }));
+  };
+
   const handleSubmit = useCallback(
     async () => {
       if (!currentAttempt) return;
@@ -121,33 +148,6 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
       void handleSubmit();
     }
   }, [autoSubmitting, currentAttempt, isSubmitting, handleSubmit]);
-
-  const startAttempt = async () => {
-    setIsStarting(true);
-    setErrorMessage(null);
-    try {
-      const response = await fetch(`/api/quizzes/${quiz.id}/attempts`, {
-        method: 'POST',
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        setErrorMessage(data.error || 'Unable to start quiz');
-        return;
-      }
-      setCurrentAttempt(data.doc);
-      setView('in-progress');
-    } catch (error) {
-      console.error(error);
-      setErrorMessage('Unable to start quiz');
-    } finally {
-      setIsStarting(false);
-      setAutoSubmitting(false);
-    }
-  };
-
-  const updateResponse = (questionId: string, value: unknown) => {
-    setResponses((prev) => ({ ...prev, [questionId]: value }));
-  };
 
   const restart = () => {
     setCurrentAttempt(null);
