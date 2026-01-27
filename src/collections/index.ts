@@ -27,3 +27,4 @@ export { CourseBundles } from './CourseBundles';
 export { Affiliates } from './Affiliates';
 export { AffiliateReferrals } from './AffiliateReferrals';
 export { AffiliatePayouts } from './AffiliatePayouts';
+export { InstructorPayouts } from './InstructorPayouts';
