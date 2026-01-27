@@ -11,6 +11,7 @@ services:
     buildCommand: NODE_ENV=development npm ci && npm run build
     startCommand: NODE_ENV=production npm start
     healthCheckPath: /api/health
+    autoDeploy: true
     envVars:
       - key: NODE_VERSION
         value: "20"
@@ -24,8 +25,33 @@ services:
         generateValue: true
       - key: NEXT_PUBLIC_URL
         sync: false
+      # Stripe (set in Dashboard)
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        sync: false
+      # Storage (set in Dashboard)
+      - key: STORAGE_ENCRYPTION_KEY
+        sync: false
+      - key: DEFAULT_STORAGE_PROVIDER
+        sync: false
+      - key: DEFAULT_STORAGE_BUCKET
+        sync: false
+      - key: DEFAULT_STORAGE_REGION
+        sync: false
+      - key: DEFAULT_STORAGE_ENDPOINT
+        sync: false
+      - key: DEFAULT_STORAGE_ACCESS_KEY
+        sync: false
+      - key: DEFAULT_STORAGE_SECRET_KEY
+        sync: false
+      # Redis (set in Dashboard after creating Redis instance)
+      - key: REDIS_URL
+        sync: false
 
-  # Background Worker (for video transcoding, etc.)
+  # Background Worker (for video transcoding, job processing)
   - type: worker
     name: learning-hall-worker
     runtime: node
@@ -33,6 +59,7 @@ services:
     plan: starter
     buildCommand: NODE_ENV=development npm ci && npm run build
     startCommand: npm run worker
+    autoDeploy: true
     envVars:
       - key: NODE_VERSION
         value: "20"
@@ -46,6 +73,21 @@ services:
         sync: false
       - key: REDIS_URL
         sync: false
+      # Storage (same as main app)
+      - key: STORAGE_ENCRYPTION_KEY
+        sync: false
+      - key: DEFAULT_STORAGE_PROVIDER
+        sync: false
+      - key: DEFAULT_STORAGE_BUCKET
+        sync: false
+      - key: DEFAULT_STORAGE_REGION
+        sync: false
+      - key: DEFAULT_STORAGE_ENDPOINT
+        sync: false
+      - key: DEFAULT_STORAGE_ACCESS_KEY
+        sync: false
+      - key: DEFAULT_STORAGE_SECRET_KEY
+        sync: false
 
 databases:
   - name: learning-hall-db
@@ -54,7 +96,34 @@ databases:
     plan: starter
     postgresMajorVersion: 16
 
-# Notes:
-# - Redis: Configure via Dashboard > New > Redis (not available in render.yaml)
-# - Storage: Configure S3/R2/GCS credentials in Dashboard after deployment
-# - Worker: Requires REDIS_URL to be manually set after Redis is created
+# =============================================================================
+# DEPLOYMENT NOTES
+# =============================================================================
+#
+# After deploying the blueprint, configure these manually in the Dashboard:
+#
+# 1. REDIS
+#    - Go to Dashboard > New > Redis
+#    - Create a Redis instance in Oregon region
+#    - Copy the Internal URL and set REDIS_URL for both web and worker services
+#
+# 2. STRIPE (Payments)
+#    - STRIPE_SECRET_KEY: Your Stripe secret key (sk_live_xxx or sk_test_xxx)
+#    - STRIPE_WEBHOOK_SECRET: Create a webhook in Stripe Dashboard pointing to
+#      https://your-app.onrender.com/api/webhooks/stripe
+#    - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: Your Stripe publishable key
+#
+# 3. STORAGE (BYOS)
+#    For S3-compatible storage (AWS S3, Cloudflare R2, Backblaze B2):
+#    - DEFAULT_STORAGE_PROVIDER: 's3', 'r2', or 'b2'
+#    - DEFAULT_STORAGE_BUCKET: Your bucket name
+#    - DEFAULT_STORAGE_REGION: e.g., 'us-east-1' or 'auto' for R2
+#    - DEFAULT_STORAGE_ENDPOINT: Full endpoint URL (required for R2/B2)
+#    - DEFAULT_STORAGE_ACCESS_KEY: Your access key ID
+#    - DEFAULT_STORAGE_SECRET_KEY: Your secret access key
+#    - STORAGE_ENCRYPTION_KEY: Generate with `openssl rand -hex 32`
+#
+# 4. APPLICATION URL
+#    - NEXT_PUBLIC_URL: Your deployed app URL (e.g., https://learning-hall-api.onrender.com)
+#
+# =============================================================================
