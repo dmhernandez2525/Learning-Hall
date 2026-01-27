@@ -19,3 +19,4 @@ export { default as CourseReviews } from './CourseReviews';
 export { Badges } from './Badges';
 export { UserBadges } from './UserBadges';
 export { UserPoints } from './UserPoints';
+export { Payments } from './Payments';

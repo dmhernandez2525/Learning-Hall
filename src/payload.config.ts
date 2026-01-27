@@ -28,6 +28,7 @@ import {
   Badges,
   UserBadges,
   UserPoints,
+  Payments,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -89,6 +90,7 @@ export default buildConfig({
     Badges,
     UserBadges,
     UserPoints,
+    Payments,
   ],
   db: postgresAdapter({
     pool: {
