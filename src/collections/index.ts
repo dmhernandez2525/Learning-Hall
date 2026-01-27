@@ -13,3 +13,6 @@ export { default as QuizAttempts } from './QuizAttempts';
 export { default as LessonNotes } from './LessonNotes';
 export { default as DiscussionThreads } from './DiscussionThreads';
 export { default as DiscussionPosts } from './DiscussionPosts';
+export { default as CourseFavorites } from './CourseFavorites';
+export { default as LessonBookmarks } from './LessonBookmarks';
+export { default as LessonActivity } from './LessonActivity';
