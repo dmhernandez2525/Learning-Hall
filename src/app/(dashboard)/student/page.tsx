@@ -4,6 +4,8 @@ import { redirect } from 'next/navigation';
 import config from '@/payload.config';
 import { getSession } from '@/lib/auth';
 import Link from 'next/link';
+import { listCertificatesForUser } from '@/lib/certificates';
+import { CertificateDisplay } from '@/components/courses/Certificate';
 
 async function StudentDashboardPage() {
   const user = await getSession();
@@ -33,6 +35,8 @@ async function StudentDashboardPage() {
     depth: 2,
   });
 
+  const certificates = await listCertificatesForUser(user.id);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">My Courses</h1>
@@ -57,7 +61,7 @@ async function StudentDashboardPage() {
                   ></div>
                 </div>
                 <p className="text-sm text-gray-500 mt-2">{progress?.progressPercentage || 0}% Complete</p>
-                <Link href={`/courses/${course.id}`} className="text-blue-500 hover:underline mt-4 inline-block">
+                <Link href={`/courses/${course.slug}`} className="text-blue-500 hover:underline mt-4 inline-block">
                     View Course
                 </Link>
                 <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-4">
@@ -68,8 +72,20 @@ async function StudentDashboardPage() {
           );
         })}
       </div>
+
+      <h1 className="text-3xl font-bold mt-12 mb-6">My Certificates</h1>
+      {certificates.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certificates.map((certificate) => (
+            <CertificateDisplay key={certificate.id} certificate={certificate} />
+          ))}
+        </div>
+      ) : (
+        <p>You have not earned any certificates yet.</p>
+      )}
     </div>
   );
 }
 
 export default StudentDashboardPage;
+
