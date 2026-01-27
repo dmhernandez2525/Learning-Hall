@@ -6,8 +6,9 @@ export const Courses: CollectionConfig = {
   slug: 'courses',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'instructor', 'status', 'price', 'updatedAt'],
+    defaultColumns: ['title', 'instructor', 'status', 'accessType', 'pricing.amount', 'updatedAt'],
     group: 'Content',
+    description: 'Online courses with modules and lessons',
   },
   access: {
     read: () => true,
@@ -121,9 +122,29 @@ export const Courses: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    // Access & Pricing
     {
-      name: 'price',
+      name: 'accessType',
+      type: 'select',
+      required: true,
+      defaultValue: 'free',
+      options: [
+        { label: 'Free', value: 'free' },
+        { label: 'Paid', value: 'paid' },
+        { label: 'Subscription Only', value: 'subscription' },
+        { label: 'Private (Invite Only)', value: 'private' },
+      ],
+      admin: {
+        description: 'How users can access this course',
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'pricing',
       type: 'group',
+      admin: {
+        condition: (data) => data?.accessType === 'paid',
+      },
       fields: [
         {
           name: 'amount',
@@ -132,7 +153,7 @@ export const Courses: CollectionConfig = {
           defaultValue: 0,
           min: 0,
           admin: {
-            description: 'Price in cents (0 = free)',
+            description: 'Price in cents (e.g., 4999 = $49.99)',
           },
         },
         {
@@ -145,6 +166,83 @@ export const Courses: CollectionConfig = {
             { label: 'EUR (€)', value: 'EUR' },
             { label: 'GBP (£)', value: 'GBP' },
           ],
+        },
+        {
+          name: 'compareAtPrice',
+          type: 'number',
+          min: 0,
+          admin: {
+            description: 'Original price (for showing discounts)',
+          },
+        },
+        {
+          name: 'saleEndsAt',
+          type: 'date',
+          admin: {
+            description: 'Sale price expires at this date',
+            date: {
+              pickerAppearance: 'dayAndTime',
+            },
+          },
+        },
+      ],
+    },
+    // Access Control Settings
+    {
+      name: 'accessControl',
+      type: 'group',
+      fields: [
+        {
+          name: 'requiresEnrollment',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Users must be enrolled to access full content',
+          },
+        },
+        {
+          name: 'allowGuestPreview',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Non-logged in users can see course info and preview lessons',
+          },
+        },
+        {
+          name: 'maxEnrollments',
+          type: 'number',
+          min: 0,
+          admin: {
+            description: 'Maximum number of enrollments (0 = unlimited)',
+          },
+        },
+        {
+          name: 'enrollmentStartDate',
+          type: 'date',
+          admin: {
+            description: 'Enrollment opens at this date',
+            date: {
+              pickerAppearance: 'dayAndTime',
+            },
+          },
+        },
+        {
+          name: 'enrollmentEndDate',
+          type: 'date',
+          admin: {
+            description: 'Enrollment closes at this date',
+            date: {
+              pickerAppearance: 'dayAndTime',
+            },
+          },
+        },
+        {
+          name: 'accessDuration',
+          type: 'number',
+          min: 0,
+          admin: {
+            description: 'Access duration in days after enrollment (0 = lifetime)',
+          },
         },
       ],
     },
@@ -207,3 +305,153 @@ export const Courses: CollectionConfig = {
   ],
   timestamps: true,
 };
+
+// Type definitions for course access checking
+export interface CourseAccessResult {
+  hasAccess: boolean;
+  reason: 'enrolled' | 'free' | 'preview' | 'owner' | 'admin' | 'no_enrollment' | 'expired' | 'not_started' | 'closed';
+  canEnroll: boolean;
+  enrollmentStatus?: 'open' | 'closed' | 'full' | 'not_started';
+}
+
+export interface CourseData {
+  id: string | number;
+  accessType: 'free' | 'paid' | 'subscription' | 'private';
+  instructor?: { id: string | number } | string | number;
+  accessControl?: {
+    requiresEnrollment?: boolean;
+    allowGuestPreview?: boolean;
+    maxEnrollments?: number;
+    enrollmentStartDate?: string;
+    enrollmentEndDate?: string;
+    accessDuration?: number;
+  };
+}
+
+export interface EnrollmentData {
+  id: string | number;
+  user: { id: string | number } | string | number;
+  course: { id: string | number } | string | number;
+  status: 'active' | 'completed' | 'expired';
+  enrolledAt?: string;
+  expiresAt?: string;
+}
+
+export interface UserData {
+  id: string | number;
+  role?: 'admin' | 'instructor' | 'student';
+}
+
+/**
+ * Check if a user has access to a course
+ */
+export function checkCourseAccess(
+  course: CourseData,
+  user: UserData | null,
+  enrollment: EnrollmentData | null,
+  currentEnrollmentCount: number = 0
+): CourseAccessResult {
+  const now = new Date();
+
+  // Admin always has access
+  if (user?.role === 'admin') {
+    return { hasAccess: true, reason: 'admin', canEnroll: true };
+  }
+
+  // Course owner (instructor) always has access
+  const instructorId = typeof course.instructor === 'object'
+    ? course.instructor?.id
+    : course.instructor;
+  if (user && instructorId === user.id) {
+    return { hasAccess: true, reason: 'owner', canEnroll: false };
+  }
+
+  // Check enrollment status
+  const enrollmentStatus = getEnrollmentStatus(course, currentEnrollmentCount, now);
+
+  // Free courses
+  if (course.accessType === 'free') {
+    return { hasAccess: true, reason: 'free', canEnroll: enrollmentStatus === 'open' };
+  }
+
+  // Check if user has valid enrollment
+  if (enrollment) {
+    // Check if enrollment is active
+    if (enrollment.status === 'expired') {
+      return { hasAccess: false, reason: 'expired', canEnroll: enrollmentStatus === 'open', enrollmentStatus };
+    }
+
+    // Check if access has expired based on duration
+    if (course.accessControl?.accessDuration && enrollment.enrolledAt) {
+      const enrolledDate = new Date(enrollment.enrolledAt);
+      const expiryDate = new Date(enrolledDate);
+      expiryDate.setDate(expiryDate.getDate() + course.accessControl.accessDuration);
+
+      if (now > expiryDate) {
+        return { hasAccess: false, reason: 'expired', canEnroll: enrollmentStatus === 'open', enrollmentStatus };
+      }
+    }
+
+    return { hasAccess: true, reason: 'enrolled', canEnroll: false, enrollmentStatus };
+  }
+
+  // No enrollment - check if preview is allowed
+  if (course.accessControl?.allowGuestPreview !== false) {
+    return { hasAccess: false, reason: 'preview', canEnroll: enrollmentStatus === 'open', enrollmentStatus };
+  }
+
+  return { hasAccess: false, reason: 'no_enrollment', canEnroll: enrollmentStatus === 'open', enrollmentStatus };
+}
+
+/**
+ * Get enrollment status for a course
+ */
+function getEnrollmentStatus(
+  course: CourseData,
+  currentCount: number,
+  now: Date
+): 'open' | 'closed' | 'full' | 'not_started' {
+  const { accessControl } = course;
+
+  if (!accessControl) return 'open';
+
+  // Check max enrollments
+  if (accessControl.maxEnrollments && currentCount >= accessControl.maxEnrollments) {
+    return 'full';
+  }
+
+  // Check enrollment start date
+  if (accessControl.enrollmentStartDate) {
+    const startDate = new Date(accessControl.enrollmentStartDate);
+    if (now < startDate) {
+      return 'not_started';
+    }
+  }
+
+  // Check enrollment end date
+  if (accessControl.enrollmentEndDate) {
+    const endDate = new Date(accessControl.enrollmentEndDate);
+    if (now > endDate) {
+      return 'closed';
+    }
+  }
+
+  return 'open';
+}
+
+/**
+ * Format price for display
+ */
+export function formatCoursePrice(
+  amount: number,
+  currency: string = 'USD'
+): string {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  });
+
+  return formatter.format(amount / 100);
+}
