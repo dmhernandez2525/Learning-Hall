@@ -18,6 +18,7 @@ async function DashboardNav() {
     { href: '/dashboard/enrollments', label: 'Enrollments', visible: true },
     { href: '/dashboard/media', label: 'Media Library', visible: true },
     { href: '/dashboard/settings', label: 'Settings', visible: true },
+    { href: '/student/notes', label: 'Notes', visible: !!user },
   ];
 
   return (
