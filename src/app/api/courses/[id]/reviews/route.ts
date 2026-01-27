@@ -2,9 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSession } from '@/lib/auth';
 import { listCourseReviews, createReview, getReviewStats, getUserReviewForCourse } from '@/lib/reviews';
-import { getCourseBySlug } from '@/lib/courses';
+import { getCourseByIdOrSlug } from '@/lib/courses';
 
-type RouteParams = { params: Promise<{ slug: string }> };
+type RouteParams = { params: Promise<{ id: string }> };
 
 const createReviewSchema = z.object({
   rating: z.number().min(1).max(5),
@@ -14,11 +14,11 @@ const createReviewSchema = z.object({
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
-    const { slug } = await params;
+    const { id } = await params;
     const user = await getSession();
 
-    // Get course by slug
-    const course = await getCourseBySlug(slug);
+    // Get course by id or slug
+    const course = await getCourseByIdOrSlug(id);
     if (!course) {
       return NextResponse.json({ error: 'Course not found' }, { status: 404 });
     }
@@ -60,10 +60,10 @@ export async function POST(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
     }
 
-    const { slug } = await params;
+    const { id } = await params;
 
-    // Get course by slug
-    const course = await getCourseBySlug(slug);
+    // Get course by id or slug
+    const course = await getCourseByIdOrSlug(id);
     if (!course) {
       return NextResponse.json({ error: 'Course not found' }, { status: 404 });
     }
