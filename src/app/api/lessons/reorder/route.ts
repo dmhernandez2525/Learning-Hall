@@ -44,15 +44,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Check module/course authorization
-    const module = await getModule(result.data.moduleId);
-    if (!module) {
+    const courseModule = await getModule(result.data.moduleId);
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
       );
     }
 
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },

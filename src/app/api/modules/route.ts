@@ -123,9 +123,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const module = await createModule(result.data);
+    const courseModule = await createModule(result.data);
 
-    return NextResponse.json({ doc: module }, { status: 201 });
+    return NextResponse.json({ doc: courseModule }, { status: 201 });
   } catch (error) {
     console.error('Create module error:', error);
     return NextResponse.json(

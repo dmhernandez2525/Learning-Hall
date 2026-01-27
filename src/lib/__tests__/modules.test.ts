@@ -96,31 +96,31 @@ describe('Modules Library', () => {
     it('returns module by id', async () => {
       mockPayload.findByID.mockResolvedValue(mockModuleDoc);
 
-      const module = await getModule('module-123');
+      const result = await getModule('module-123');
 
       expect(mockPayload.findByID).toHaveBeenCalledWith({
         collection: 'modules',
         id: 'module-123',
         depth: 2,
       });
-      expect(module?.title).toBe('Getting Started');
-      expect(module?.lessons).toHaveLength(2);
+      expect(result?.title).toBe('Getting Started');
+      expect(result?.lessons).toHaveLength(2);
     });
 
     it('returns null when module not found', async () => {
       mockPayload.findByID.mockResolvedValue(null);
 
-      const module = await getModule('nonexistent');
+      const result = await getModule('nonexistent');
 
-      expect(module).toBeNull();
+      expect(result).toBeNull();
     });
 
     it('returns null on error', async () => {
       mockPayload.findByID.mockRejectedValue(new Error('Database error'));
 
-      const module = await getModule('module-123');
+      const result = await getModule('module-123');
 
-      expect(module).toBeNull();
+      expect(result).toBeNull();
     });
   });
 
@@ -148,7 +148,7 @@ describe('Modules Library', () => {
       mockPayload.find.mockResolvedValue({ docs: [] });
       mockPayload.create.mockResolvedValue(mockModuleDoc);
 
-      const module = await createModule({
+      const result = await createModule({
         title: 'Getting Started',
         courseId: 'course-1',
       });
@@ -162,7 +162,7 @@ describe('Modules Library', () => {
           dripDelay: 0,
         }),
       });
-      expect(module.title).toBe('Getting Started');
+      expect(result.title).toBe('Getting Started');
     });
 
     it('calculates position based on existing modules', async () => {
@@ -209,7 +209,7 @@ describe('Modules Library', () => {
         title: 'Updated Title',
       });
 
-      const module = await updateModule('module-123', {
+      const result = await updateModule('module-123', {
         title: 'Updated Title',
       });
 
@@ -218,7 +218,7 @@ describe('Modules Library', () => {
         id: 'module-123',
         data: { title: 'Updated Title' },
       });
-      expect(module.title).toBe('Updated Title');
+      expect(result.title).toBe('Updated Title');
     });
   });
 

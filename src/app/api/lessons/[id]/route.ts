@@ -20,9 +20,9 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
     }
 
     // Check if parent course is published, if not require auth
-    const module = await getModule(lesson.module.id);
-    if (module) {
-      const course = await getCourse(module.course.id);
+    const courseModule = await getModule(lesson.module.id);
+    if (courseModule) {
+      const course = await getCourse(courseModule.course.id);
       if (course && course.status !== 'published') {
         const user = await getSession();
 
@@ -92,15 +92,15 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
     }
 
     // Check authorization
-    const module = await getModule(lesson.module.id);
-    if (!module) {
+    const courseModule = await getModule(lesson.module.id);
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
       );
     }
 
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },
@@ -184,15 +184,15 @@ export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     }
 
     // Check authorization
-    const module = await getModule(lesson.module.id);
-    if (!module) {
+    const courseModule = await getModule(lesson.module.id);
+    if (!courseModule) {
       return NextResponse.json(
         { error: 'Module not found' },
         { status: 404 }
       );
     }
 
-    const course = await getCourse(module.course.id);
+    const course = await getCourse(courseModule.course.id);
     if (!course) {
       return NextResponse.json(
         { error: 'Course not found' },
