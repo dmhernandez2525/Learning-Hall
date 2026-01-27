@@ -10,6 +10,7 @@ function DashboardNav() {
   const navItems = [
     { href: '/dashboard', label: 'Overview' },
     { href: '/dashboard/courses', label: 'Courses' },
+    { href: '/dashboard/enrollments', label: 'Enrollments' },
     { href: '/dashboard/media', label: 'Media Library' },
     { href: '/dashboard/settings', label: 'Settings' },
   ];

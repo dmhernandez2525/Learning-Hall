@@ -1,107 +1,120 @@
 # Learning Hall - Architecture
 
-**Version:** 1.0.0
+**Version:** 2.0.0
 **Last Updated:** January 2026
 
 ---
 
 ## System Overview
 
+Learning Hall uses a modern, monolithic architecture with Next.js 14 as the full-stack framework and Payload as a headless CMS integrated directly into the application.
+
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    FRONTEND (React)                          │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────┐ │
-│  │   React     │  │    Redux     │  │      Webpack        │ │
-│  │   Router    │  │    Thunk     │  │      Bundler        │ │
-│  └──────┬──────┘  └──────┬───────┘  └─────────────────────┘ │
-│         │                │                                   │
-│         └────────────────┼───────────────────────────────────┤
-│                          │                                   │
-│                    JSON API (Rails)                          │
-└──────────────────────────┼───────────────────────────────────┘
-                           │
-┌──────────────────────────┼───────────────────────────────────┐
-│               BACKEND (Ruby on Rails)                        │
-│  ┌─────────────┐  ┌──────────────┐  ┌─────────────────────┐ │
-│  │Controllers  │  │   Models     │  │    Jbuilder Views   │ │
-│  │             │  │              │  │                     │ │
-│  └──────┬──────┘  └──────┬───────┘  └─────────────────────┘ │
-│         │                │                                   │
-└─────────┼────────────────┼───────────────────────────────────┘
-          │                │
-   ┌──────┴────────────────┴──────┐
-   │        PostgreSQL            │
-   └──────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                      User / Browser                      │
+└───────────────────────────┬──────────────────────────────┘
+                            │
+┌───────────────────────────▼──────────────────────────────┐
+│                  Next.js Application                     │
+│ ┌──────────────────────────────────────────────────────┐ │
+│ │                  App Router (Server)                 │ │
+│ │ ┌──────────────┐ ┌──────────────┐ ┌───────────────┐ │ │
+│ │ │ Marketing UI │ │ Dashboard UI │ │  API Routes   │ │ │
+│ │ └───────┬──────┘ └───────┬──────┘ └────────┬──────┘ │ │
+│ └─────────│────────────────│─────────────────│────────┘ │
+│           │                │                 │           │
+│ ┌─────────▼────────────────▼─────────────────▼────────┐ │
+│ │                   Payload CMS                      │ │
+│ │ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │ │
+│ │ │ Auth         │ │ REST & GraphQL │ │ Collections  │ │ │
+│ │ │              │ │ API            │ │ (Data Models)│ │ │
+│ │ └───────┬──────┘ └───────┬──────┘ └───────┬──────┘ │ │
+│ └─────────│────────────────│─────────────────│────────┘ │
+└───────────│────────────────│─────────────────│──────────┘
+            │                │                 │
+┌───────────▼────────────────▼─────────────────▼────────┐
+│                      PostgreSQL                      │
+│             (with Row-Level Security)                │
+└──────────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Directory Structure
 
+The project follows a standard Next.js App Router structure with Payload-specific directories integrated within `src`.
+
 ```
 Learning-Hall/
-├── app/                    # Rails application
-│   ├── controllers/        # API controllers
-│   ├── models/             # ActiveRecord models
-│   ├── views/              # Jbuilder JSON views
-│   └── assets/
-├── frontend/               # React application
-│   ├── components/         # React components
-│   ├── actions/            # Redux actions
-│   ├── reducers/           # Redux reducers
-│   ├── store/              # Redux store
-│   └── util/               # API utilities
-├── config/                 # Rails configuration
-├── db/                     # Migrations and schema
-├── docs/                   # Documentation
-├── Gemfile                 # Ruby dependencies
-├── package.json            # Node dependencies
-└── webpack.config.js       # Webpack config
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── (admin)/            # Payload Admin Panel UI
+│   │   ├── (app)/              # Core application (dashboards, courses)
+│   │   ├── (marketing)/        # Public-facing pages (landing, pricing)
+│   │   └── api/                # Next.js API routes (e.g., for webhooks)
+│   ├── collections/            # Payload CMS collection definitions
+│   │   ├── Users.ts
+│   │   ├── Courses.ts
+│   │   ├── Enrollments.ts      # (New) Handles user-course relationships
+│   │   └── ...
+│   ├── components/             # Shared React components (UI, layout)
+│   ├── lib/                    # Core libraries, utilities, and services
+│   ├── payload.config.ts       # Main Payload CMS configuration
+│   └── middleware.ts           # Next.js middleware for route protection
+├── docs/                       # Project documentation
+├── public/                     # Static assets
+├── render.yaml                 # Deployment configuration for Render
+└── tsconfig.json               # TypeScript configuration
 ```
 
 ---
 
-## Data Models
+## Data Models (Payload Collections)
 
-### Course
-```ruby
-class Course
-  has_many :subjects
-  has_many :enrollments
-  has_many :users, through: :enrollments
+Data modeling is handled through Payload's collection configuration files.
 
-  validates :title, :description, presence: true
-end
-```
+### Key Collections
 
-### Subject
-```ruby
-class Subject
-  belongs_to :course
-  has_many :tasks
+#### `Users`
+- Manages user identity, authentication, and roles (admin, instructor, student).
+- `fields`: `email`, `password`, `roles`, `tenant`
 
-  validates :title, :order, presence: true
-end
-```
+#### `Tenants`
+- Represents an organization or workspace in the multi-tenant system.
+- `fields`: `name`, `domains`
 
-### Task
-```ruby
-class Task
-  belongs_to :subject
-  has_many :completions
+#### `Courses`
+- The central collection for educational content.
+- `fields`: `title`, `description`, `published`, `tenant`
 
-  validates :title, :content, presence: true
-end
-```
+#### `Modules` & `Lessons`
+- Provide structure to courses. A `Course` has many `Modules`, which have many `Lessons`.
+- `fields`: `title`, `content`, `course` (relation)
+
+#### `Enrollments` (New in F2.1)
+- Connects a `User` to a `Course`, creating an enrollment record.
+- This is the cornerstone of tracking access and progress.
+- `fields`:
+    - `user` (relationship to `Users`)
+    - `course` (relationship to `Courses`)
+    - `status` (select: `active`, `completed`, `expired`)
 
 ---
 
-## API Endpoints
+## Authentication & Authorization
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/courses` | List courses |
-| GET | `/api/courses/:id` | Get course details |
-| POST | `/api/session` | Login |
-| DELETE | `/api/session` | Logout |
-| POST | `/api/users` | Register |
+- **Authentication**: Handled by Payload Auth, which provides JWT-based authentication. The session is managed on the client via a secure, HTTP-only cookie.
+- **Authorization**:
+    - **Route Protection**: Next.js middleware checks for a valid JWT and redirects unauthenticated users from protected routes.
+    - **Data Access**: Payload's access control functions, combined with PostgreSQL Row-Level Security (RLS) policies, enforce multi-tenancy and role-based permissions at the database level. Each API request is scoped to the user's `tenant`.
+
+---
+
+## Deployment & Hosting
+
+- **Provider**: Render.com
+- **Configuration**: The `render.yaml` file defines a multi-service deployment:
+    1.  **Web Service**: Runs the Next.js/Payload application.
+    2.  **PostgreSQL Service**: Managed PostgreSQL database.
+    3.  **Redis Service**: (Optional) For caching or background jobs.
+- **CI/CD**: Render automatically builds and deploys the application upon pushes to the `main` branch.

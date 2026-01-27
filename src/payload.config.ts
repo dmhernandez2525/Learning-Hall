@@ -4,13 +4,16 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { Users } from './collections/Users';
-import { Tenants } from './collections/Tenants';
-import { Courses } from './collections/Courses';
-import { Modules } from './collections/Modules';
-import { Lessons } from './collections/Lessons';
-import { Media } from './collections/Media';
-import { StorageConfigs } from './collections/StorageConfigs';
+import {
+  Users,
+  Tenants,
+  Courses,
+  Modules,
+  Lessons,
+  Media,
+  StorageConfigs,
+  Enrollments,
+} from './collections';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -30,6 +33,7 @@ export default buildConfig({
     Lessons,
     Media,
     StorageConfigs,
+    Enrollments,
   ],
   db: postgresAdapter({
     pool: {
