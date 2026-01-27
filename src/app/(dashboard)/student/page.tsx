@@ -67,6 +67,12 @@ async function StudentDashboardPage() {
                 <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-4">
                   Resume
                 </button>
+                <Link
+                  href={`/student/courses/${course.id}/quizzes`}
+                  className="text-sm text-blue-600 ml-4"
+                >
+                  Assessments
+                </Link>
               </div>
             </div>
           );
@@ -88,4 +94,3 @@ async function StudentDashboardPage() {
 }
 
 export default StudentDashboardPage;
-

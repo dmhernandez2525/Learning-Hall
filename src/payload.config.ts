@@ -15,6 +15,9 @@ import {
   Enrollments,
   CourseProgress,
   Certificates,
+  Quizzes,
+  Questions,
+  QuizAttempts,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -63,6 +66,9 @@ export default buildConfig({
     Enrollments,
     CourseProgress,
     Certificates,
+    Quizzes,
+    Questions,
+    QuizAttempts,
   ],
   db: postgresAdapter({
     pool: {
