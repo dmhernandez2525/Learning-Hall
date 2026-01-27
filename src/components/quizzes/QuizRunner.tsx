@@ -80,12 +80,6 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
     return () => clearInterval(interval);
   }, [currentAttempt, quiz.timeLimit, autoSubmitting]);
 
-  useEffect(() => {
-    if (autoSubmitting && currentAttempt && !isSubmitting) {
-      void handleSubmit();
-    }
-  }, [autoSubmitting, currentAttempt, isSubmitting, handleSubmit]);
-
   const startAttempt = async () => {
     setIsStarting(true);
     setErrorMessage(null);
@@ -148,6 +142,12 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
     },
     [currentAttempt, quiz.id, responses]
   );
+
+  useEffect(() => {
+    if (autoSubmitting && currentAttempt && !isSubmitting) {
+      void handleSubmit();
+    }
+  }, [autoSubmitting, currentAttempt, isSubmitting, handleSubmit]);
 
   const restart = () => {
     setCurrentAttempt(null);

@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 };
 
 async function DashboardNav() {
-  const session = await getSession();
-  const user = session?.user;
+  const user = await getSession();
 
   const navItems = [
     { href: '/dashboard', label: 'Overview', visible: true },

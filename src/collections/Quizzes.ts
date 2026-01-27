@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 const Quizzes: CollectionConfig = {
   slug: 'quizzes',
@@ -108,7 +108,7 @@ const Quizzes: CollectionConfig = {
       admin: {
         description: 'Optional question pool size. Leave blank to use the entire bank.',
       },
-      validate: (value) => {
+      validate: (value?: number | null) => {
         if (value && value < 1) {
           return 'Must be at least 1 when provided';
         }
@@ -169,9 +169,10 @@ const Quizzes: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [
-      async ({ data, operation }) => {
+      async ({ data, operation }: { data: Record<string, unknown>; operation: 'create' | 'update' }) => {
         if (operation === 'create' && data.title && !data.slug) {
-          data.slug = data.title
+          const title = String(data.title);
+          data.slug = title
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
             .replace(/^-|-$/g, '');

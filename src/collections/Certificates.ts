@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 import { v4 as uuidv4 } from 'uuid'
 
 const Certificates: CollectionConfig = {

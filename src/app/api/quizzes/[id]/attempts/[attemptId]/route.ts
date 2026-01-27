@@ -19,7 +19,7 @@ const submitSchema = z.object({
     .array(
       z.object({
         questionId: z.string().min(1),
-        response: z.any().optional(),
+        response: z.any(),
       })
     )
     .min(1),
@@ -97,7 +97,12 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
       return NextResponse.json({ error: 'Validation failed', details: result.error.flatten() }, { status: 400 });
     }
 
-    const updated = await submitQuizAttempt({ attemptId, user, answers: result.data.answers });
+    const answers = result.data.answers.map((answer) => ({
+      questionId: answer.questionId,
+      response: Object.prototype.hasOwnProperty.call(answer, 'response') ? answer.response : null,
+    }));
+
+    const updated = await submitQuizAttempt({ attemptId, user, answers });
     const doc =
       isOwner && user.role === 'student'
         ? maskAttemptForLearner(updated, {
