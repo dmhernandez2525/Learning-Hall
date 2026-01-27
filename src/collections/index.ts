@@ -7,3 +7,6 @@ export { Media } from './Media';
 export { Enrollments } from './Enrollments';
 export { CourseProgress } from './CourseProgress';
 export { default as Certificates } from './Certificates';
+export { default as Quizzes } from './Quizzes';
+export { default as Questions } from './Questions';
+export { default as QuizAttempts } from './QuizAttempts';

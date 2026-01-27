@@ -6,7 +6,7 @@ A modern Learning Management System (LMS) built with Next.js 14 and Payload CMS,
 
 ## Overview
 
-Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content.
+Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content. Learners access interactive assessments from `/student/courses/{courseId}/quizzes`, launch timed attempts, and review detailed feedback when instructors enable it.
 
 ### Key Features
 
@@ -16,6 +16,7 @@ Learning Hall is a full-featured LMS platform that enables educators to create c
 - **Multi-Tenant**: Support for multiple organizations
 - **Role-Based Access**: Admin, instructor, and student roles
 - **Progress Tracking**: Track student progress through courses
+- **Quiz Engine**: Timed assessments with randomized question banks and analytics
 - **Responsive Design**: Works on desktop and mobile
 
 ---
@@ -139,6 +140,27 @@ Payload CMS provides a complete REST API at `/api`.
 | POST | `/api/courses` | Create course |
 | PATCH | `/api/courses/:id` | Update course |
 | DELETE | `/api/courses/:id` | Delete course |
+
+### Quizzes & Questions
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/quizzes?courseId={id}` | List quizzes for a course |
+| POST | `/api/quizzes` | Create quiz (instructors/admins) |
+| PATCH | `/api/quizzes/:id` | Update quiz configuration |
+| DELETE | `/api/quizzes/:id` | Remove quiz |
+| GET | `/api/questions?quizId={id}` | List questions in a bank |
+| POST | `/api/questions` | Create question |
+| PATCH | `/api/questions/:id` | Update question |
+| DELETE | `/api/questions/:id` | Remove question |
+
+### Quiz Attempts
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/quizzes/:id/attempts` | Start or resume an attempt |
+| GET | `/api/quizzes/:id/attempts` | List attempts (student/instructor views) |
+| GET | `/api/quizzes/:id/attempts/:attemptId` | Fetch attempt details |
+| PATCH | `/api/quizzes/:id/attempts/:attemptId` | Submit answers |
+| GET | `/api/quizzes/:id/analytics` | Instructor analytics dashboard |
 
 ### Modules & Lessons
 | Method | Endpoint | Description |

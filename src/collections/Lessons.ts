@@ -156,11 +156,33 @@ export const Lessons: CollectionConfig = {
       },
       fields: [
         {
+          name: 'mode',
+          type: 'select',
+          defaultValue: 'engine',
+          options: [
+            { label: 'Advanced Quiz Engine', value: 'engine' },
+            { label: 'Inline Builder', value: 'inline' },
+          ],
+          admin: {
+            description: 'Use the quiz engine for analytics or stay with inline questions.',
+          },
+        },
+        {
+          name: 'quiz',
+          type: 'relationship',
+          relationTo: 'quizzes',
+          admin: {
+            condition: (_, siblingData) => siblingData?.mode === 'engine',
+            description: 'Select a published quiz to embed in this lesson',
+          },
+        },
+        {
           name: 'instructions',
           type: 'richText',
           editor: lessonEditor,
           admin: {
             description: 'Quiz instructions shown before starting',
+            condition: (_, siblingData) => siblingData?.mode !== 'engine',
           },
         },
         {
@@ -171,12 +193,16 @@ export const Lessons: CollectionConfig = {
           max: 100,
           admin: {
             description: 'Minimum score (%) to pass',
+            condition: (_, siblingData) => siblingData?.mode !== 'engine',
           },
         },
         {
           name: 'allowRetakes',
           type: 'checkbox',
           defaultValue: true,
+          admin: {
+            condition: (_, siblingData) => siblingData?.mode !== 'engine',
+          },
         },
         {
           name: 'showCorrectAnswers',
@@ -184,11 +210,15 @@ export const Lessons: CollectionConfig = {
           defaultValue: true,
           admin: {
             description: 'Show correct answers after submission',
+            condition: (_, siblingData) => siblingData?.mode !== 'engine',
           },
         },
         {
           name: 'questions',
           type: 'array',
+          admin: {
+            condition: (_, siblingData) => siblingData?.mode !== 'engine',
+          },
           fields: [
             {
               name: 'question',

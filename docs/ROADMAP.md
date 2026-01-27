@@ -5,7 +5,7 @@
 
 ---
 
-## Current Status: Phase 2 Development
+## Current Status: Phase 3 Development
 
 The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Payload CMS stack.
 
@@ -44,12 +44,12 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 
 ---
 
-## Phase 3: Engagement Features (Planned)
+## Phase 3: Engagement Features (In Progress)
 
 | Status | Feature | Description |
 |--------|---------|-------------|
-| 📋 | Certificates | Auto-generated completion certificates |
-| 📋 | Quizzes & Assessments | In-lesson knowledge checks |
+| ✅ | Certificates | Auto-generated completion certificates with verification |
+| ✅ | Quizzes & Assessments | Timed quizzes, question banks, analytics |
 | 📋 | Discussion Forums | Per-course discussion boards |
 | 📋 | Student Notes | Personal note-taking on lessons |
 | 📋 | Bookmarks | Save lessons for later |
