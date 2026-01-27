@@ -1,0 +1,137 @@
+import type { CollectionConfig } from 'payload';
+
+export const Translations: CollectionConfig = {
+  slug: 'translations',
+  admin: {
+    useAsTitle: 'key',
+    group: 'Content',
+    description: 'Content translations for multi-language support',
+  },
+  access: {
+    read: () => true, // Translations are public
+    create: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'instructor',
+    update: ({ req: { user } }) => user?.role === 'admin' || user?.role === 'instructor',
+    delete: ({ req: { user } }) => user?.role === 'admin',
+  },
+  fields: [
+    {
+      name: 'entityType',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Course', value: 'course' },
+        { label: 'Module', value: 'module' },
+        { label: 'Lesson', value: 'lesson' },
+        { label: 'Quiz', value: 'quiz' },
+        { label: 'Question', value: 'question' },
+        { label: 'Badge', value: 'badge' },
+        { label: 'Certificate', value: 'certificate' },
+        { label: 'Email Template', value: 'email' },
+        { label: 'UI String', value: 'ui' },
+      ],
+      index: true,
+    },
+    {
+      name: 'entityId',
+      type: 'text',
+      required: true,
+      index: true,
+      admin: { description: 'ID of the entity being translated' },
+    },
+    {
+      name: 'key',
+      type: 'text',
+      required: true,
+      admin: { description: 'Field name being translated (e.g., title, description)' },
+    },
+    {
+      name: 'locale',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'English', value: 'en' },
+        { label: 'Spanish', value: 'es' },
+        { label: 'French', value: 'fr' },
+        { label: 'German', value: 'de' },
+        { label: 'Portuguese', value: 'pt' },
+        { label: 'Chinese (Simplified)', value: 'zh' },
+        { label: 'Chinese (Traditional)', value: 'zh-TW' },
+        { label: 'Japanese', value: 'ja' },
+        { label: 'Korean', value: 'ko' },
+        { label: 'Arabic', value: 'ar' },
+        { label: 'Hindi', value: 'hi' },
+        { label: 'Italian', value: 'it' },
+        { label: 'Dutch', value: 'nl' },
+        { label: 'Russian', value: 'ru' },
+        { label: 'Turkish', value: 'tr' },
+      ],
+      index: true,
+    },
+    {
+      name: 'value',
+      type: 'textarea',
+      required: true,
+    },
+    {
+      name: 'richValue',
+      type: 'richText',
+      admin: { description: 'Rich text translation (for content fields)' },
+    },
+    {
+      name: 'status',
+      type: 'select',
+      defaultValue: 'draft',
+      options: [
+        { label: 'Draft', value: 'draft' },
+        { label: 'Pending Review', value: 'pending' },
+        { label: 'Approved', value: 'approved' },
+        { label: 'Published', value: 'published' },
+        { label: 'Outdated', value: 'outdated' },
+      ],
+      index: true,
+    },
+    {
+      name: 'translatedBy',
+      type: 'relationship',
+      relationTo: 'users',
+    },
+    {
+      name: 'reviewedBy',
+      type: 'relationship',
+      relationTo: 'users',
+    },
+    {
+      name: 'isAutoTranslated',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: { description: 'Translation was generated automatically' },
+    },
+    {
+      name: 'autoTranslationProvider',
+      type: 'select',
+      options: [
+        { label: 'Google Translate', value: 'google' },
+        { label: 'DeepL', value: 'deepl' },
+        { label: 'OpenAI', value: 'openai' },
+      ],
+      admin: { condition: (data) => data.isAutoTranslated },
+    },
+    {
+      name: 'sourceLocale',
+      type: 'text',
+      admin: { description: 'Original language this was translated from' },
+    },
+    {
+      name: 'sourceHash',
+      type: 'text',
+      admin: { description: 'Hash of source content to detect when updates are needed' },
+    },
+    {
+      name: 'tenant',
+      type: 'relationship',
+      relationTo: 'tenants',
+      index: true,
+    },
+  ],
+  timestamps: true,
+};
