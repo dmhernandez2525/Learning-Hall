@@ -24,3 +24,6 @@ export { SubscriptionPlans } from './SubscriptionPlans';
 export { Subscriptions } from './Subscriptions';
 export { Coupons } from './Coupons';
 export { CourseBundles } from './CourseBundles';
+export { Affiliates } from './Affiliates';
+export { AffiliateReferrals } from './AffiliateReferrals';
+export { AffiliatePayouts } from './AffiliatePayouts';
