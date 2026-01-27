@@ -68,6 +68,12 @@ async function StudentDashboardPage() {
                   Resume
                 </button>
                 <Link
+                  href={`/student/courses/${course.id}/lessons`}
+                  className="text-sm text-blue-600 ml-4"
+                >
+                  Lessons
+                </Link>
+                <Link
                   href={`/student/courses/${course.id}/quizzes`}
                   className="text-sm text-blue-600 ml-4"
                 >

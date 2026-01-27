@@ -118,6 +118,11 @@ Data modeling is handled through Payload's collection configuration files.
 - Represents individual replies (and nested comments) under a thread.
 - Maintains a `parent` relationship for threading, vote history, and `isAnswer` flag that instructors can toggle when verifying solutions.
 
+#### `LessonNotes`
+- Personal notes created by learners per lesson.
+- Stores sanitized HTML content, extracted plain text for search, optional video timestamp metadata, and relationships back to the course/lesson.
+- Notes are private to the author but still accessible to administrators for support purposes.
+
 ---
 
 ## Business Logic & Automation
@@ -126,6 +131,7 @@ Data modeling is handled through Payload's collection configuration files.
 - **Assessment Engine**: Attempt creation copies the randomized question set—including shuffled choices—into `QuizAttempts` so grading is deterministic even when the bank changes. Submission grading awards partial credit for matching questions and updates quiz metadata (average score, question count, pass rate) in the background.
 - **Access Control**: Quiz/question APIs enforce instructor-only management and ensure students can only start attempts for courses they are enrolled in. Attempt responses are masked server-side until instructors allow review/explanations.
 - **Community Notifications**: Discussion replies automatically bump `replyCount`, subscribe the author, and trigger the `discussion-reply` email template for thread subscribers and instructors, ensuring learners stay informed about new activity.
+- **Lesson Notes**: Notes sanitize user-provided HTML both client- and server-side, mirror plain text for search queries, and update metadata (e.g., timestamps) whenever learners edit or export their content.
 
 ---
 
@@ -162,6 +168,22 @@ Data modeling is handled through Payload's collection configuration files.
 3. **Verification & Notifications**
    - Instructors mark helpful replies as the verified answer (`PATCH /api/discussions/:id/replies/:replyId`) which flips the thread status to answered and highlights the response for students.
    - Each reply updates `replyCount`, `lastActivityAt`, subscribes the author, and triggers the `discussion-reply` email template so participants know when someone responds.
+
+---
+
+## Lesson Notes Flow
+
+1. **Note Creation**
+   - Learners open `/student/courses/{courseId}/lessons/{lessonId}` and type into a rich text composer that sanitizes HTML before `POST /api/notes`.
+   - The UI can capture the current video timestamp to store alongside the note for quick jumping later.
+
+2. **Storage & Search**
+   - `LessonNotes` keeps the sanitized HTML plus extracted plain text, making `/api/notes?search=ai` fast for global queries.
+   - Notes record relationships back to course + lesson so the `NotesDashboard` can link directly to the original context.
+
+3. **Exports & Review**
+   - From either the lesson view or `/student/notes`, learners export notes as Markdown or PDF using `jspdf` and downloadable blobs.
+   - Jump buttons call the `VideoPlayer`'s `seekTimestamp` prop so clicking a note replays the captured moment.
 
 ---
 

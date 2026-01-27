@@ -13,6 +13,7 @@ export interface VideoPlayerProps {
   onError?: (error: string) => void;
   startTime?: number;
   className?: string;
+  seekTimestamp?: number;
 }
 
 export interface VideoProgress {
@@ -43,6 +44,7 @@ export function VideoPlayer({
   onError,
   startTime = 0,
   className = '',
+  seekTimestamp,
 }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -62,6 +64,7 @@ export function VideoPlayer({
   const controlsTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastProgressCallRef = useRef<number>(0);
   const PROGRESS_THROTTLE_MS = 1000; // Only call onProgress once per second
+  const lastSeekRequestRef = useRef<number | null>(null);
 
   // Hide controls after inactivity
   const resetControlsTimeout = useCallback(() => {
@@ -318,6 +321,20 @@ export function VideoPlayer({
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
     };
   }, [startTime, onProgress, onComplete, onError, hasCompleted]);
+
+  useEffect(() => {
+    if (typeof seekTimestamp !== 'number') return;
+    const video = videoRef.current;
+    if (!video) return;
+    const target = Math.max(0, seekTimestamp);
+    if (lastSeekRequestRef.current === target) return;
+    if (!Number.isNaN(video.duration) && video.duration > 0) {
+      video.currentTime = Math.min(target, video.duration);
+    } else {
+      video.currentTime = target;
+    }
+    lastSeekRequestRef.current = target;
+  }, [seekTimestamp]);
 
   const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
 
