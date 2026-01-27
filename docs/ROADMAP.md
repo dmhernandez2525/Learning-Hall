@@ -51,7 +51,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | Certificates | Auto-generated completion certificates with verification |
 | ✅ | Quizzes & Assessments | Timed quizzes, question banks, analytics |
 | ✅ | Discussion Forums | Per-course discussion boards |
-| ✅ | Student Notes | Personal note-taking on lessons |
+| 📋 | Student Notes | Personal note-taking on lessons |
 | 📋 | Bookmarks | Save lessons for later |
 | 📋 | Course Reviews | Star ratings and written reviews |
 

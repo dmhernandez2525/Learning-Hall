@@ -21,6 +21,9 @@ import {
   DiscussionThreads,
   DiscussionPosts,
   LessonNotes,
+  CourseFavorites,
+  LessonBookmarks,
+  LessonActivity,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -75,6 +78,9 @@ export default buildConfig({
     DiscussionThreads,
     DiscussionPosts,
     LessonNotes,
+    CourseFavorites,
+    LessonBookmarks,
+    LessonActivity,
   ],
   db: postgresAdapter({
     pool: {

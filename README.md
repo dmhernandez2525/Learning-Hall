@@ -6,7 +6,7 @@ A modern Learning Management System (LMS) built with Next.js 14 and Payload CMS,
 
 ## Overview
 
-Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content. Learners access interactive assessments from `/student/courses/{courseId}/quizzes`, launch timed attempts, review detailed feedback, and hop into `/student/courses/{courseId}/discussions` or `/student/courses/{courseId}/lessons/{lessonId}` for threaded conversations plus timestamped personal notes with exports.
+Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content. Learners access interactive assessments from `/student/courses/{courseId}/quizzes`, launch timed attempts, and review detailed feedback when instructors enable it. Each course also includes a `/student/courses/{courseId}/discussions` hub for threaded conversations, instructor-verified answers, and community voting.
 
 ### Key Features
 
@@ -18,7 +18,6 @@ Learning Hall is a full-featured LMS platform that enables educators to create c
 - **Progress Tracking**: Track student progress through courses
 - **Quiz Engine**: Timed assessments with randomized question banks and analytics
 - **Discussion Forums**: Threaded course discussions with instructor badges, pinning, and voting
-- **Student Notes**: Rich text notes with video timestamps, exports, and cross-course search
 - **Responsive Design**: Works on desktop and mobile
 
 ---
@@ -175,15 +174,6 @@ Payload CMS provides a complete REST API at `/api`.
 | POST | `/api/discussions/:id/vote` | Upvote/downvote a thread |
 | POST | `/api/discussions/:id/replies/:replyId/vote` | Vote on a reply |
 | PATCH | `/api/discussions/:id/replies/:replyId` | Mark/unmark reply as the answer |
-
-### Lesson Notes
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/notes` | List current user's notes (supports `courseId`, `lessonId`, `search`) |
-| POST | `/api/notes` | Create a note for a lesson with optional timestamp |
-| GET | `/api/notes/:id` | Fetch a single note |
-| PATCH | `/api/notes/:id` | Update title/content/timestamp |
-| DELETE | `/api/notes/:id` | Delete a note |
 
 ### Modules & Lessons
 | Method | Endpoint | Description |
