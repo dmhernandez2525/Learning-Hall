@@ -1,19 +1,16 @@
-
 import React from 'react';
 import { getPayload } from 'payload';
-import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import config from '@/payload.config';
-import { getServerSideUser } from '@/lib/payload-utils';
-import { cookies } from 'next/headers';
+import { getSession } from '@/lib/auth';
 import Link from 'next/link';
 
 async function StudentDashboardPage() {
-  const nextCookies = cookies();
-  const { user } = await getServerSideUser(nextCookies);
+  const user = await getSession();
   const payload = await getPayload({ config });
 
   if (!user) {
-    return notFound();
+    redirect('/login');
   }
 
   const { docs: enrollments } = await payload.find({
