@@ -293,6 +293,37 @@ export const Courses: CollectionConfig = {
       ],
     },
     {
+      name: 'reviewStats',
+      type: 'group',
+      admin: {
+        description: 'Aggregated review statistics (auto-calculated)',
+        readOnly: true,
+      },
+      fields: [
+        {
+          name: 'averageRating',
+          type: 'number',
+          admin: {
+            description: 'Average star rating (1-5)',
+          },
+        },
+        {
+          name: 'totalReviews',
+          type: 'number',
+          admin: {
+            description: 'Total number of approved reviews',
+          },
+        },
+        {
+          name: 'ratingDistribution',
+          type: 'json',
+          admin: {
+            description: 'Count of reviews per star rating {1: n, 2: n, ...}',
+          },
+        },
+      ],
+    },
+    {
       name: 'publishedAt',
       type: 'date',
       admin: {
