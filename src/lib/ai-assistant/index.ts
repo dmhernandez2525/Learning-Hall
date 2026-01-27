@@ -9,7 +9,7 @@ function sanitizeForPrompt(text: string | null | undefined, maxLength = 500): st
   if (!text) return '';
 
   // Remove potential prompt injection patterns
-  let sanitized = String(text)
+  const sanitized = String(text)
     // Remove common injection patterns
     .replace(/ignore\s+(all\s+)?previous\s+instructions?/gi, '[filtered]')
     .replace(/system\s*:/gi, '[filtered]')
