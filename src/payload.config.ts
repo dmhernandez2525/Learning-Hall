@@ -36,6 +36,7 @@ import {
   Affiliates,
   AffiliateReferrals,
   AffiliatePayouts,
+  InstructorPayouts,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -105,6 +106,7 @@ export default buildConfig({
     Affiliates,
     AffiliateReferrals,
     AffiliatePayouts,
+    InstructorPayouts,
   ],
   db: postgresAdapter({
     pool: {
