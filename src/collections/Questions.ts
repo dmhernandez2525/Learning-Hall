@@ -74,7 +74,8 @@ const Questions: CollectionConfig = {
       name: 'options',
       type: 'array',
       admin: {
-        condition: (data: Record<string, unknown>) => ['multipleChoice', 'matching'].includes(data.questionType as string),
+        condition: (data?: { questionType?: string }) =>
+          ['multipleChoice', 'matching'].includes(data?.questionType || ''),
       },
       fields: [
         {
@@ -87,14 +88,16 @@ const Questions: CollectionConfig = {
           type: 'checkbox',
           defaultValue: false,
           admin: {
-            condition: (_: unknown, siblingData: Record<string, unknown>) => siblingData?.questionType === 'multipleChoice',
+            condition: (_: unknown, siblingData?: { questionType?: string }) =>
+              siblingData?.questionType === 'multipleChoice',
           },
         },
         {
           name: 'match',
           type: 'text',
           admin: {
-            condition: (_: unknown, siblingData: Record<string, unknown>) => siblingData?.questionType === 'matching',
+            condition: (_: unknown, siblingData?: { questionType?: string }) =>
+              siblingData?.questionType === 'matching',
             description: 'Expected match for this prompt',
           },
         },
@@ -108,14 +111,14 @@ const Questions: CollectionConfig = {
         { label: 'False', value: 'false' },
       ],
       admin: {
-        condition: (data: Record<string, unknown>) => data.questionType === 'trueFalse',
+        condition: (data?: { questionType?: string }) => data?.questionType === 'trueFalse',
       },
     },
     {
       name: 'shortAnswer',
       type: 'textarea',
       admin: {
-        condition: (data: Record<string, unknown>) => data.questionType === 'shortAnswer',
+        condition: (data?: { questionType?: string }) => data?.questionType === 'shortAnswer',
         description: 'Reference answer. We use a case-insensitive contains match.',
       },
     },

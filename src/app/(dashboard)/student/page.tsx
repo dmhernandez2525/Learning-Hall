@@ -73,6 +73,12 @@ async function StudentDashboardPage() {
                 >
                   Assessments
                 </Link>
+                <Link
+                  href={`/student/courses/${course.id}/discussions`}
+                  className="text-sm text-blue-600 ml-2"
+                >
+                  Discussions
+                </Link>
               </div>
             </div>
           );

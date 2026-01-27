@@ -62,4 +62,5 @@ export type EmailTemplateName =
   | 'enrollment-confirmation'
   | 'password-reset'
   | 'course-update'
-  | 'enrollment-expiring';
+  | 'enrollment-expiring'
+  | 'discussion-reply';

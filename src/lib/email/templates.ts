@@ -259,6 +259,23 @@ function enrollmentExpiringTemplate(data: EmailTemplateData): string {
   return baseTemplate(content, data);
 }
 
+function discussionReplyTemplate(data: EmailTemplateData): string {
+  const content = `
+    <h2>New reply on "${data.threadTitle || 'your discussion'}"</h2>
+    <p>Hi ${data.userName || 'there'},</p>
+    <p>${data.replyAuthorName || 'Someone'} just replied to a thread in ${data.courseName}.</p>
+    <div class="highlight-box">
+      <p><strong>Thread:</strong> ${data.threadTitle}</p>
+      <p><strong>Reply preview:</strong> ${data.replyPreview || 'View the full message online.'}</p>
+    </div>
+    <p style="text-align: center;">
+      <a href="${data.threadUrl || data.appUrl}" class="button">View Discussion</a>
+    </p>
+    <p>You received this email because you're subscribed to this thread. You can unsubscribe from the discussion page.</p>
+  `;
+  return baseTemplate(content, data);
+}
+
 /**
  * Template registry
  */
@@ -268,6 +285,7 @@ export const EmailTemplate: Record<EmailTemplateName, (data: EmailTemplateData) 
   'password-reset': passwordResetTemplate,
   'course-update': courseUpdateTemplate,
   'enrollment-expiring': enrollmentExpiringTemplate,
+  'discussion-reply': discussionReplyTemplate,
 };
 
 /**

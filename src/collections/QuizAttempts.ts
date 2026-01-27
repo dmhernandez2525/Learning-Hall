@@ -8,13 +8,18 @@ const QuizAttempts: CollectionConfig = {
     group: 'Content',
   },
   access: {
-    read: ({ req: { user } }) => {
+    read: ({ req }: { req?: unknown }) => {
+      const user = (req as { user?: { id: string; role: string } } | undefined)?.user;
       if (!user) return false;
       if (user.role === 'admin' || user.role === 'instructor') return true;
       return { user: { equals: user.id } };
     },
-    create: ({ req: { user } }) => Boolean(user),
-    update: ({ req: { user } }) => {
+    create: ({ req }: { req?: unknown }) => {
+      const user = (req as { user?: unknown } | undefined)?.user;
+      return Boolean(user);
+    },
+    update: ({ req }: { req?: unknown }) => {
+      const user = (req as { user?: { id: string; role: string } } | undefined)?.user;
       if (!user) return false;
       if (user.role === 'admin') return true;
       return { user: { equals: user.id } };
