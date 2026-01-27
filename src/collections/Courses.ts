@@ -1,4 +1,6 @@
 import type { CollectionConfig } from 'payload';
+import { getPayload } from 'payload';
+import config from '../payload.config';
 
 export const Courses: CollectionConfig = {
   slug: 'courses',
@@ -32,6 +34,32 @@ export const Courses: CollectionConfig = {
         }
         return data;
       },
+      async ({ data, req, operation }) => {
+        if (data.status === 'published') {
+            const payload = await getPayload({ config });
+            const course = await payload.findByID({
+                collection: 'courses',
+                id: data.id,
+                depth: 2,
+            });
+
+            if(!course.modules || course.modules.length === 0) {
+                throw new Error('A course must have at least one module to be published.');
+            }
+
+            const hasLessons = course.modules.some(module => module.lessons && module.lessons.length > 0);
+
+            if(!hasLessons) {
+                throw new Error('A course must have at least one lesson to be published.');
+            }
+
+            if(operation === 'update') {
+                data.publishedAt = new Date().toISOString();
+            }
+
+        }
+        return data;
+      }
     ],
   },
   fields: [
