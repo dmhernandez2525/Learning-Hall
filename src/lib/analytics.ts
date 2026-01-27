@@ -63,6 +63,9 @@ export async function getRevenueOverview(options?: {
     refundConditions.push({
       createdAt: { greater_than_equal: options.dateRange.startDate.toISOString() },
     });
+    refundConditions.push({
+      createdAt: { less_than_equal: options.dateRange.endDate.toISOString() },
+    });
   }
 
   const { docs: refunds } = await payload.find({
@@ -461,12 +464,21 @@ export async function generateInstructorPayout(
     throw new Error('No earnings for this period');
   }
 
-  // Calculate fees
-  const platformFee = Math.round(earnings.totalEarnings * 0.3); // 30% platform
-  const processingFee = Math.round(earnings.totalEarnings * 0.029 + 30); // ~3% processing
-  const netPayout = earnings.totalEarnings - platformFee - processingFee;
-
   const grossRevenue = earnings.courses.reduce((sum, c) => sum + c.revenue, 0);
+
+  // Revenue split: Instructor gets 70%, platform gets 30%
+  // This matches INSTRUCTOR_SHARE = 0.7 in getInstructorEarnings
+  // The 30% platform share covers:
+  //   - 5% base platform fee
+  //   - ~3% payment processing (absorbed by platform)
+  //   - ~22% platform margin
+  const PLATFORM_SHARE = 0.30; // Must match 1 - INSTRUCTOR_SHARE
+  const platformFee = Math.round(grossRevenue * PLATFORM_SHARE);
+
+  // Net payout is the instructor's share (already calculated in totalEarnings)
+  // Only deduct payout processing fee if paying via non-Stripe method
+  const payoutProcessingFee = 0; // Stripe payouts are free; PayPal would add ~2%
+  const netPayout = earnings.totalEarnings - payoutProcessingFee;
 
   return payload.create({
     collection: 'instructor-payouts',
@@ -482,7 +494,7 @@ export async function generateInstructorPayout(
       earnings: {
         gross: grossRevenue,
         platformFee,
-        processingFee,
+        processingFee: payoutProcessingFee,
         refunds: 0,
         adjustments: 0,
         net: netPayout,
