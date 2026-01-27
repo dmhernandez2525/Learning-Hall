@@ -1,6 +1,5 @@
-'use client';
-
 import type { CollectionConfig } from 'payload';
+import { encrypt, decrypt, isEncrypted } from '@/lib/crypto';
 
 export const Affiliates: CollectionConfig = {
   slug: 'affiliates',
@@ -9,6 +8,38 @@ export const Affiliates: CollectionConfig = {
     group: 'Affiliates',
     description: 'Affiliate program members',
     defaultColumns: ['user', 'code', 'tier', 'status', 'balance'],
+  },
+  hooks: {
+    beforeChange: [
+      async ({ data }) => {
+        // Encrypt PII fields before saving
+        if (data?.payout?.paypalEmail && !isEncrypted(data.payout.paypalEmail)) {
+          data.payout.paypalEmail = encrypt(data.payout.paypalEmail);
+        }
+        if (data?.payout?.bankAccount?.accountNumber && !isEncrypted(data.payout.bankAccount.accountNumber)) {
+          data.payout.bankAccount.accountNumber = encrypt(data.payout.bankAccount.accountNumber);
+        }
+        if (data?.payout?.bankAccount?.routingNumber && !isEncrypted(data.payout.bankAccount.routingNumber)) {
+          data.payout.bankAccount.routingNumber = encrypt(data.payout.bankAccount.routingNumber);
+        }
+        return data;
+      },
+    ],
+    afterRead: [
+      async ({ doc }) => {
+        // Decrypt PII fields after reading
+        if (doc?.payout?.paypalEmail && isEncrypted(doc.payout.paypalEmail)) {
+          doc.payout.paypalEmail = decrypt(doc.payout.paypalEmail);
+        }
+        if (doc?.payout?.bankAccount?.accountNumber && isEncrypted(doc.payout.bankAccount.accountNumber)) {
+          doc.payout.bankAccount.accountNumber = decrypt(doc.payout.bankAccount.accountNumber);
+        }
+        if (doc?.payout?.bankAccount?.routingNumber && isEncrypted(doc.payout.bankAccount.routingNumber)) {
+          doc.payout.bankAccount.routingNumber = decrypt(doc.payout.bankAccount.routingNumber);
+        }
+        return doc;
+      },
+    ],
   },
   access: {
     read: ({ req: { user } }) => {
