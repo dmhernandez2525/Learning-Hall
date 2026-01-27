@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { lessonEditor } from '../lib/editor/lessonEditor';
 
 export const Lessons: CollectionConfig = {
   slug: 'lessons',
@@ -6,6 +7,7 @@ export const Lessons: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title', 'module', 'contentType', 'position', 'updatedAt'],
     group: 'Content',
+    description: 'Individual lessons within course modules',
   },
   access: {
     read: ({ req }) => {
@@ -26,6 +28,17 @@ export const Lessons: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      minLength: 3,
+      maxLength: 200,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Auto-generated from title if not provided',
+      },
     },
     {
       name: 'module',
@@ -42,7 +55,7 @@ export const Lessons: CollectionConfig = {
       required: true,
       defaultValue: 0,
       admin: {
-        description: 'Order within the module',
+        description: 'Order within the module (lower = earlier)',
         position: 'sidebar',
       },
     },
@@ -50,69 +63,249 @@ export const Lessons: CollectionConfig = {
       name: 'contentType',
       type: 'select',
       required: true,
-      defaultValue: 'video',
+      defaultValue: 'text',
       options: [
+        { label: 'Rich Text', value: 'text' },
         { label: 'Video', value: 'video' },
-        { label: 'Text', value: 'text' },
         { label: 'Quiz', value: 'quiz' },
         { label: 'Assignment', value: 'assignment' },
+        { label: 'Mixed (Text + Video)', value: 'mixed' },
       ],
+      admin: {
+        description: 'Primary content type for this lesson',
+      },
     },
+    // Main rich text content - shown for text and mixed types
     {
-      name: 'content',
+      name: 'richContent',
+      type: 'richText',
+      editor: lessonEditor,
+      admin: {
+        description: 'Main lesson content with full formatting support',
+        condition: (data) => ['text', 'mixed', 'assignment'].includes(data?.contentType),
+      },
+    },
+    // Video content group
+    {
+      name: 'videoContent',
       type: 'group',
+      admin: {
+        condition: (data) => ['video', 'mixed'].includes(data?.contentType),
+      },
       fields: [
-        // Video content
         {
-          name: 'videoUrl',
-          type: 'text',
-          admin: {
-            condition: (data) => data?.contentType === 'video',
-            description: 'URL to the video (HLS playlist or direct URL)',
-          },
-        },
-        {
-          name: 'videoDuration',
-          type: 'number',
-          admin: {
-            condition: (data) => data?.contentType === 'video',
-            description: 'Duration in seconds',
-          },
-        },
-        {
-          name: 'videoThumbnail',
+          name: 'video',
           type: 'upload',
           relationTo: 'media',
           admin: {
-            condition: (data) => data?.contentType === 'video',
+            description: 'Upload a video file or select from media library',
           },
         },
-        // Text content
         {
-          name: 'textContent',
+          name: 'externalUrl',
+          type: 'text',
+          admin: {
+            description: 'Or provide an external video URL (YouTube, Vimeo, HLS)',
+          },
+        },
+        {
+          name: 'duration',
+          type: 'number',
+          admin: {
+            description: 'Video duration in seconds',
+          },
+        },
+        {
+          name: 'transcript',
           type: 'richText',
+          editor: lessonEditor,
           admin: {
-            condition: (data) => data?.contentType === 'text',
+            description: 'Video transcript for accessibility',
           },
         },
-        // Quiz content (simplified - will be expanded later)
         {
-          name: 'quizData',
-          type: 'json',
+          name: 'chapters',
+          type: 'array',
           admin: {
-            condition: (data) => data?.contentType === 'quiz',
-            description: 'Quiz questions and answers (JSON)',
+            description: 'Video chapters/timestamps',
           },
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'timestamp',
+              type: 'number',
+              required: true,
+              admin: {
+                description: 'Start time in seconds',
+              },
+            },
+          ],
         },
-        // Assignment content
+      ],
+    },
+    // Quiz content
+    {
+      name: 'quizContent',
+      type: 'group',
+      admin: {
+        condition: (data) => data?.contentType === 'quiz',
+      },
+      fields: [
         {
-          name: 'assignmentInstructions',
+          name: 'instructions',
           type: 'richText',
+          editor: lessonEditor,
           admin: {
-            condition: (data) => data?.contentType === 'assignment',
+            description: 'Quiz instructions shown before starting',
+          },
+        },
+        {
+          name: 'passingScore',
+          type: 'number',
+          defaultValue: 70,
+          min: 0,
+          max: 100,
+          admin: {
+            description: 'Minimum score (%) to pass',
+          },
+        },
+        {
+          name: 'allowRetakes',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+        {
+          name: 'showCorrectAnswers',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description: 'Show correct answers after submission',
+          },
+        },
+        {
+          name: 'questions',
+          type: 'array',
+          fields: [
+            {
+              name: 'question',
+              type: 'richText',
+              required: true,
+            },
+            {
+              name: 'type',
+              type: 'select',
+              required: true,
+              defaultValue: 'multiple_choice',
+              options: [
+                { label: 'Multiple Choice', value: 'multiple_choice' },
+                { label: 'True/False', value: 'true_false' },
+                { label: 'Short Answer', value: 'short_answer' },
+              ],
+            },
+            {
+              name: 'options',
+              type: 'array',
+              admin: {
+                condition: (_, siblingData) =>
+                  siblingData?.type === 'multiple_choice',
+              },
+              fields: [
+                {
+                  name: 'text',
+                  type: 'text',
+                  required: true,
+                },
+                {
+                  name: 'isCorrect',
+                  type: 'checkbox',
+                  defaultValue: false,
+                },
+              ],
+            },
+            {
+              name: 'correctAnswer',
+              type: 'text',
+              admin: {
+                condition: (_, siblingData) =>
+                  ['true_false', 'short_answer'].includes(siblingData?.type),
+                description: 'For true/false: "true" or "false". For short answer: expected text.',
+              },
+            },
+            {
+              name: 'explanation',
+              type: 'richText',
+              admin: {
+                description: 'Explanation shown after answering',
+              },
+            },
+            {
+              name: 'points',
+              type: 'number',
+              defaultValue: 1,
+              min: 0,
+            },
+          ],
+        },
+      ],
+    },
+    // Assignment content
+    {
+      name: 'assignmentContent',
+      type: 'group',
+      admin: {
+        condition: (data) => data?.contentType === 'assignment',
+      },
+      fields: [
+        {
+          name: 'dueDate',
+          type: 'date',
+          admin: {
+            date: {
+              pickerAppearance: 'dayAndTime',
+            },
+          },
+        },
+        {
+          name: 'submissionType',
+          type: 'select',
+          defaultValue: 'file',
+          options: [
+            { label: 'File Upload', value: 'file' },
+            { label: 'Text Entry', value: 'text' },
+            { label: 'URL', value: 'url' },
+          ],
+        },
+        {
+          name: 'maxFileSize',
+          type: 'number',
+          defaultValue: 10,
+          admin: {
+            description: 'Maximum file size in MB',
+            condition: (_, siblingData) => siblingData?.submissionType === 'file',
+          },
+        },
+        {
+          name: 'rubric',
+          type: 'richText',
+          editor: lessonEditor,
+          admin: {
+            description: 'Grading rubric',
           },
         },
       ],
+    },
+    // Common fields
+    {
+      name: 'summary',
+      type: 'textarea',
+      maxLength: 500,
+      admin: {
+        description: 'Brief summary shown in lesson list (max 500 chars)',
+      },
     },
     {
       name: 'isPreview',
@@ -129,19 +322,24 @@ export const Lessons: CollectionConfig = {
       type: 'number',
       admin: {
         description: 'Estimated time to complete (minutes)',
+        position: 'sidebar',
       },
     },
     {
       name: 'resources',
       type: 'array',
       admin: {
-        description: 'Downloadable resources',
+        description: 'Downloadable resources and attachments',
       },
       fields: [
         {
           name: 'title',
           type: 'text',
           required: true,
+        },
+        {
+          name: 'description',
+          type: 'text',
         },
         {
           name: 'file',
@@ -151,6 +349,39 @@ export const Lessons: CollectionConfig = {
         },
       ],
     },
+    {
+      name: 'seo',
+      type: 'group',
+      admin: {
+        description: 'Search engine optimization',
+      },
+      fields: [
+        {
+          name: 'metaTitle',
+          type: 'text',
+          maxLength: 60,
+        },
+        {
+          name: 'metaDescription',
+          type: 'textarea',
+          maxLength: 160,
+        },
+      ],
+    },
   ],
+  hooks: {
+    beforeChange: [
+      async ({ data, operation }) => {
+        // Auto-generate slug from title
+        if (operation === 'create' && data.title && !data.slug) {
+          data.slug = data.title
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '');
+        }
+        return data;
+      },
+    ],
+  },
   timestamps: true,
 };
