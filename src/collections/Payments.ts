@@ -1,5 +1,3 @@
-'use client';
-
 import type { CollectionConfig } from 'payload';
 
 export const Payments: CollectionConfig = {

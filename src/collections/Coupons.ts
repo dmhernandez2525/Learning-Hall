@@ -1,5 +1,3 @@
-'use client';
-
 import type { CollectionConfig } from 'payload';
 
 export const Coupons: CollectionConfig = {
@@ -8,6 +6,34 @@ export const Coupons: CollectionConfig = {
     useAsTitle: 'code',
     group: 'Business',
     description: 'Discount codes and coupons',
+  },
+  hooks: {
+    beforeRead: [
+      async ({ doc }) => {
+        // Auto-deactivate expired coupons on read
+        if (doc?.validity?.expiresAt && doc?.isActive) {
+          const expiresAt = new Date(doc.validity.expiresAt);
+          if (expiresAt < new Date()) {
+            doc.isActive = false;
+          }
+        }
+        return doc;
+      },
+    ],
+    beforeChange: [
+      async ({ data, operation }) => {
+        // Validate coupon is not expired when activating
+        if (operation === 'update' && data?.isActive) {
+          if (data?.validity?.expiresAt) {
+            const expiresAt = new Date(data.validity.expiresAt);
+            if (expiresAt < new Date()) {
+              throw new Error('Cannot activate an expired coupon');
+            }
+          }
+        }
+        return data;
+      },
+    ],
   },
   access: {
     read: ({ req: { user } }) => {
