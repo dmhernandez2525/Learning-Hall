@@ -1,20 +1,21 @@
 # Learning Hall
 
-A Learning Management System (LMS) clone inspired by App Academy's online learning platform, enabling educators to create courses with structured lessons for students.
+A modern Learning Management System (LMS) built with Next.js 14 and Payload CMS, featuring Bring Your Own Storage (BYOS) capabilities for video content.
 
 ---
 
 ## Overview
 
-Learning Hall provides a platform for educators to create and manage online courses. Students can browse courses, track their progress through lessons, and complete tasks.
+Learning Hall is a full-featured LMS platform that enables educators to create courses with structured modules and lessons. The standout feature is BYOS (Bring Your Own Storage), allowing users to connect their own cloud storage (AWS S3, Cloudflare R2, or Google Cloud Storage) for storing video content.
 
 ### Key Features
 
-- **User Authentication**: Secure login and registration
-- **Course Management**: Create and organize courses with subjects and tasks
-- **Progress Tracking**: Students can track completion status
-- **Content Rendering**: Markdown-based lesson content
-- **File Uploads**: AWS S3 integration for media assets
+- **BYOS (Bring Your Own Storage)**: Use your own S3, R2, or GCS for media storage
+- **Course Builder**: Visual course creation with modules and lessons
+- **Video Streaming**: HLS adaptive bitrate streaming for videos
+- **Multi-Tenant**: Support for multiple organizations
+- **Role-Based Access**: Admin, instructor, and student roles
+- **Progress Tracking**: Track student progress through courses
 - **Responsive Design**: Works on desktop and mobile
 
 ---
@@ -23,12 +24,14 @@ Learning Hall provides a platform for educators to create and manage online cour
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | React 16, Redux, React Router |
-| Backend | Ruby on Rails 5.2 |
-| Database | PostgreSQL |
-| Bundler | Webpack |
-| Storage | AWS S3 |
-| Styling | SCSS |
+| Framework | Next.js 14 (App Router) |
+| CMS | Payload CMS 3.0 |
+| Database | PostgreSQL 16 with Row-Level Security |
+| Authentication | Payload Auth + NextAuth.js |
+| Styling | Tailwind CSS 4.x + shadcn/ui |
+| Testing | Vitest + Testing Library |
+| Deployment | Docker + Render.com |
+| Storage | S3 / R2 / GCS (BYOS) |
 
 ---
 
@@ -36,24 +39,22 @@ Learning Hall provides a platform for educators to create and manage online cour
 
 ```
 Learning-Hall/
-├── app/                       # Rails application
-│   ├── controllers/           # API controllers
-│   │   └── api/               # JSON API endpoints
-│   ├── models/                # ActiveRecord models
-│   ├── views/                 # Jbuilder JSON views
-│   └── assets/                # Rails assets
-├── frontend/                  # React application
-│   ├── components/            # React components
-│   ├── actions/               # Redux action creators
-│   ├── reducers/              # Redux reducers
-│   ├── store/                 # Redux store configuration
-│   └── util/                  # API utilities
-├── config/                    # Rails configuration
-├── db/                        # Migrations and schema
-├── docs/                      # Documentation
-├── Gemfile                    # Ruby dependencies
-├── package.json               # Node dependencies
-└── webpack.config.js          # Webpack configuration
+├── src/
+│   ├── app/                    # Next.js App Router
+│   │   ├── (admin)/            # Payload admin panel
+│   │   ├── (auth)/             # Authentication pages
+│   │   ├── (dashboard)/        # Dashboard pages
+│   │   ├── (marketing)/        # Public pages
+│   │   └── api/                # API routes
+│   ├── collections/            # Payload CMS collections
+│   ├── components/             # React components
+│   │   └── ui/                 # shadcn/ui components
+│   ├── lib/                    # Utility functions
+│   └── test/                   # Test setup
+├── docs/                       # Documentation
+├── docker-compose.yml          # Docker configuration
+├── render.yaml                 # Render deployment config
+└── package.json                # Dependencies
 ```
 
 ---
@@ -62,103 +63,90 @@ Learning-Hall/
 
 ### Prerequisites
 
-- Ruby 2.5+ (recommend using rbenv or asdf)
-- Node.js 12.x or higher
-- PostgreSQL 10+
-- AWS S3 bucket (for file uploads)
+- Node.js 20+
+- PostgreSQL 16+
+- Docker (optional, for local development)
 
-### Installation
+### Quick Start with Docker
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Learning-Hall.git
+git clone https://github.com/dmhernandez2525/Learning-Hall.git
 cd Learning-Hall
 
-# Install Ruby dependencies
-bundle install
+# Start development services (Postgres + Redis)
+docker-compose -f docker-compose.dev.yml up -d
 
-# Install Node dependencies
+# Install dependencies
 npm install
 
-# Set up database
-rails db:create
-rails db:migrate
-rails db:seed
+# Copy environment variables
+cp .env.example .env
+
+# Run database migrations
+npm run payload:migrate
+
+# Start development server
+npm run dev
 ```
 
-### Environment Configuration
-
-Create a `.env` file or set environment variables:
-```bash
-RAILS_MASTER_KEY=your-master-key
-DATABASE_URL=postgres://localhost/learning_hall_development
-AWS_ACCESS_KEY_ID=your-aws-key
-AWS_SECRET_ACCESS_KEY=your-aws-secret
-AWS_REGION=us-east-1
-AWS_BUCKET=your-bucket-name
-```
-
-### Running the Application
+### Manual Setup
 
 ```bash
-# Start Rails server
-rails server
+# Install dependencies
+npm install
 
-# In another terminal, compile frontend (development)
-npm run postinstall
+# Configure environment variables
+cp .env.example .env
+# Edit .env with your database and storage credentials
+
+# Start development server
+npm run dev
 ```
 
-Note: Frontend may require `NODE_OPTIONS=--openssl-legacy-provider` due to OpenSSL 3.0 compatibility.
+### Environment Variables
+
+```bash
+# Database
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/learning_hall
+
+# Payload CMS
+PAYLOAD_SECRET=your-secret-key
+
+# Application
+NEXT_PUBLIC_URL=http://localhost:3000
+```
 
 ---
 
 ## API Endpoints
 
+Payload CMS provides a complete REST API at `/api`.
+
 ### Authentication
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/session` | Login user |
-| DELETE | `/api/session` | Logout user |
+| POST | `/api/users/login` | Login user |
+| POST | `/api/users/logout` | Logout user |
 | POST | `/api/users` | Register user |
+| GET | `/api/users/me` | Get current user |
 
 ### Courses
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/courses` | List all courses |
 | GET | `/api/courses/:id` | Get course details |
-| POST | `/api/courses` | Create course (admin) |
+| POST | `/api/courses` | Create course |
 | PATCH | `/api/courses/:id` | Update course |
 | DELETE | `/api/courses/:id` | Delete course |
 
-### Subjects & Tasks
+### Modules & Lessons
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/subjects/:id` | Get subject with tasks |
-| POST | `/api/subjects` | Create subject |
-| POST | `/api/tasks` | Create task |
-| PATCH | `/api/tasks/:id/complete` | Mark task complete |
-
----
-
-## Data Models
-
-### Course
-- `title`: Course name
-- `description`: Course overview
-- `instructor_id`: Reference to user
-- Has many subjects
-
-### Subject
-- `title`: Subject/module name
-- `order`: Display order
-- `course_id`: Reference to course
-- Has many tasks
-
-### Task
-- `title`: Task/lesson name
-- `content`: Markdown content
-- `order`: Display order
-- `subject_id`: Reference to subject
+| GET | `/api/modules` | List all modules |
+| GET | `/api/lessons` | List all lessons |
+| POST | `/api/modules` | Create module |
+| POST | `/api/lessons` | Create lesson |
 
 ---
 
@@ -168,30 +156,75 @@ Note: Frontend may require `NODE_OPTIONS=--openssl-legacy-provider` due to OpenS
 |----------|-------------|
 | [Index](./docs/INDEX.md) | Documentation overview |
 | [Architecture](./docs/ARCHITECTURE.md) | System design and patterns |
-| [Roadmap](./docs/ROADMAP.md) | Modernization backlog |
-| [Coding Standards](./docs/CODING_STANDARDS.md) | Code style guidelines |
+| [Roadmap](./docs/ROADMAP.md) | Feature development plan |
 
 ---
 
-## Status
+## Development
 
-**Current State**: Requires modernization
+### Running Tests
 
-This project was built in 2019-2020. It requires:
-- Ruby version manager setup (rbenv/asdf)
-- Bundler version update
-- PostgreSQL database setup
-- Ruby upgrade (2.5 → 3.3)
-- Rails upgrade (5.2 → 7.x)
-- React modernization (16 → 18)
+```bash
+# Run all tests
+npm test
 
-See [ROADMAP.md](./docs/ROADMAP.md) for detailed modernization plan.
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
+```
+
+### Code Quality
+
+```bash
+# Type checking
+npm run typecheck
+
+# Linting
+npm run lint
+
+# Format code
+npm run format
+```
+
+### Building for Production
+
+```bash
+# Build the application
+npm run build
+
+# Start production server
+npm start
+```
+
+---
+
+## Deployment
+
+### Render.com
+
+The project includes `render.yaml` for easy deployment to Render:
+
+1. Connect your GitHub repository to Render
+2. Deploy using the Blueprint feature
+3. Configure environment variables in the Render dashboard
+
+### Docker
+
+```bash
+# Build production image
+docker build -t learning-hall .
+
+# Run with docker-compose
+docker-compose up -d
+```
 
 ---
 
 ## Author
 
-Daniel Hernandez - Backend, Frontend, UI/UX (Solo project)
+Daniel Hernandez
 
 ---
 

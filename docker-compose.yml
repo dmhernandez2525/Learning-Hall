@@ -1,33 +1,51 @@
-name: learning-hall
+version: '3.8'
 
-version: "3"
 services:
-  db:
-    image: postgres
-    volumes:
-      - postgres:/var/lib/postgresql/data
-  web:
+  app:
     build:
       context: .
-      dockerfile: Dockerfile.web
-    image: danielmark2525/learning-hall-rails
-    volumes:
-      - .:/myapp
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/learning_hall
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET:-your-secret-key-change-in-production}
+      - NEXT_PUBLIC_URL=http://localhost:3000
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
     environment:
-      DATABASE_URL: postgres://postgres@db
-  frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile.frontend
-    image: danielmark2525/learning-hall-react
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=learning_hall
     volumes:
-      - ".:/usr/src/app"
-      - "/usr/src/app/node_modules"
-    environment:
-      - NODE_ENV=development
-volumes: 
-  postgres:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
