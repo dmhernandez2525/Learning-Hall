@@ -148,14 +148,14 @@ Payload CMS provides a complete REST API at `/api`.
 | POST | `/api/modules` | Create module |
 | POST | `/api/lessons` | Create lesson |
 
-### Enrollments
+### Course Progress
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/enrollments` | List all enrollments |
-| GET | `/api/enrollments/:id` | Get enrollment details |
-| POST | `/api/enrollments` | Create enrollment |
-| PATCH | `/api/enrollments/:id` | Update enrollment |
-| DELETE | `/api/enrollments/:id` | Delete enrollment |
+| GET | `/api/course-progress` | List all progress records |
+| GET | `/api/course-progress/:id` | Get progress details |
+| POST | `/api/course-progress` | Create a progress record |
+| PATCH | `/api/course-progress/:id` | Update a progress record |
+| DELETE | `/api/course-progress/:id` | Delete a progress record |
 
 ---
 

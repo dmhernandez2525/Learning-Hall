@@ -55,7 +55,8 @@ Learning-Hall/
 │   ├── collections/            # Payload CMS collection definitions
 │   │   ├── Users.ts
 │   │   ├── Courses.ts
-│   │   ├── Enrollments.ts      # (New) Handles user-course relationships
+│   │   ├── Enrollments.ts
+│   │   ├── CourseProgress.ts   # (New) Tracks lesson completion
 │   │   └── ...
 │   ├── components/             # Shared React components (UI, layout)
 │   ├── lib/                    # Core libraries, utilities, and services
@@ -77,44 +78,44 @@ Data modeling is handled through Payload's collection configuration files.
 
 #### `Users`
 - Manages user identity, authentication, and roles (admin, instructor, student).
-- `fields`: `email`, `password`, `roles`, `tenant`
 
 #### `Tenants`
 - Represents an organization or workspace in the multi-tenant system.
-- `fields`: `name`, `domains`
 
-#### `Courses`
-- The central collection for educational content.
-- `fields`: `title`, `description`, `published`, `tenant`
+#### `Courses`, `Modules`, & `Lessons`
+- Form the hierarchical structure of the educational content.
 
-#### `Modules` & `Lessons`
-- Provide structure to courses. A `Course` has many `Modules`, which have many `Lessons`.
-- `fields`: `title`, `content`, `course` (relation)
-
-#### `Enrollments` (New in F2.1)
+#### `Enrollments`
 - Connects a `User` to a `Course`, creating an enrollment record.
-- This is the cornerstone of tracking access and progress.
+
+#### `CourseProgress` (New in F2.2)
+- Stores the progress of a specific `User` in a specific `Course`.
+- This collection holds a list of completed `Lessons`.
 - `fields`:
     - `user` (relationship to `Users`)
     - `course` (relationship to `Courses`)
-    - `status` (select: `active`, `completed`, `expired`)
+    - `completedLessons` (relationship to `Lessons`, hasMany)
+    - `progressPercentage` (number, calculated via hook)
+
+---
+
+## Business Logic & Automation
+
+- **Hooks**: Payload's hooks are used for automation. For example, a `beforeChange` hook on the `CourseProgress` collection calculates the `progressPercentage` whenever the `completedLessons` array is modified. This keeps the data consistent without requiring manual calculations on the client-side.
 
 ---
 
 ## Authentication & Authorization
 
-- **Authentication**: Handled by Payload Auth, which provides JWT-based authentication. The session is managed on the client via a secure, HTTP-only cookie.
+- **Authentication**: Handled by Payload Auth (JWT-based).
 - **Authorization**:
-    - **Route Protection**: Next.js middleware checks for a valid JWT and redirects unauthenticated users from protected routes.
-    - **Data Access**: Payload's access control functions, combined with PostgreSQL Row-Level Security (RLS) policies, enforce multi-tenancy and role-based permissions at the database level. Each API request is scoped to the user's `tenant`.
+    - **Route Protection**: Next.js middleware protects routes.
+    - **Data Access**: Payload access control functions and PostgreSQL RLS enforce multi-tenancy and role-based permissions.
 
 ---
 
 ## Deployment & Hosting
 
 - **Provider**: Render.com
-- **Configuration**: The `render.yaml` file defines a multi-service deployment:
-    1.  **Web Service**: Runs the Next.js/Payload application.
-    2.  **PostgreSQL Service**: Managed PostgreSQL database.
-    3.  **Redis Service**: (Optional) For caching or background jobs.
-- **CI/CD**: Render automatically builds and deploys the application upon pushes to the `main` branch.
+- **Configuration**: The `render.yaml` file defines a multi-service deployment.
+- **CI/CD**: Render automatically builds and deploys on pushes to `main`.

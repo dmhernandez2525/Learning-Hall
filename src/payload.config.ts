@@ -13,6 +13,7 @@ import {
   Media,
   StorageConfigs,
   Enrollments,
+  CourseProgress,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -34,6 +35,7 @@ export default buildConfig({
     Media,
     StorageConfigs,
     Enrollments,
+    CourseProgress,
   ],
   db: postgresAdapter({
     pool: {
