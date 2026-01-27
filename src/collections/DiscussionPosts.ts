@@ -1,6 +1,8 @@
 import type { CollectionConfig } from 'payload';
 import { lessonEditor } from '@/lib/editor/lessonEditor';
 
+const MAX_REPLY_DEPTH = 5;
+
 const DiscussionPosts: CollectionConfig = {
   slug: 'discussion-posts',
   admin: {
@@ -98,6 +100,27 @@ const DiscussionPosts: CollectionConfig = {
     },
   ],
   hooks: {
+    beforeValidate: [
+      async ({ data, req, operation }) => {
+        if (operation === 'create' && data?.parent) {
+          try {
+            const parent = await req.payload?.findByID?.({
+              collection: 'discussion-posts',
+              id: typeof data.parent === 'object' ? data.parent.id : data.parent,
+            });
+            const parentDepth = parent?.depth ? Number(parent.depth) : 0;
+            if (parentDepth >= MAX_REPLY_DEPTH) {
+              throw new Error(`Maximum reply depth of ${MAX_REPLY_DEPTH} reached. Please reply to a parent post.`);
+            }
+          } catch (error) {
+            if (error instanceof Error && error.message.includes('Maximum reply depth')) {
+              throw error;
+            }
+          }
+        }
+        return data;
+      },
+    ],
     beforeChange: [
       async ({ data, req, operation }) => {
         if (operation === 'create' && req.user && !data.author) {
