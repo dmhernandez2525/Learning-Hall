@@ -17,6 +17,26 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
+    // Draft courses require authorization
+    if (course.status !== 'published') {
+      const user = await getSession();
+
+      if (!user) {
+        return NextResponse.json(
+          { error: 'Course not found' },
+          { status: 404 }
+        );
+      }
+
+      // Only admins and the course instructor can view draft/archived courses
+      if (user.role !== 'admin' && course.instructor.id !== user.id) {
+        return NextResponse.json(
+          { error: 'Course not found' },
+          { status: 404 }
+        );
+      }
+    }
+
     return NextResponse.json({ doc: course });
   } catch (error) {
     console.error('Get course error:', error);

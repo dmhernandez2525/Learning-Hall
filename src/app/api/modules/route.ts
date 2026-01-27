@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { listModules, createModule, getModulesByCourse } from '@/lib/modules';
+import { getCourse } from '@/lib/courses';
 import { getSession } from '@/lib/auth';
 import { z } from 'zod';
 
@@ -13,8 +14,45 @@ export async function GET(request: NextRequest) {
 
     // If courseId is provided, return all modules for that course sorted by position
     if (courseId) {
+      // Check if course exists and user has access
+      const course = await getCourse(courseId);
+      if (!course) {
+        return NextResponse.json(
+          { error: 'Course not found' },
+          { status: 404 }
+        );
+      }
+
+      // Draft courses require authorization
+      if (course.status !== 'published') {
+        const user = await getSession();
+
+        if (!user) {
+          return NextResponse.json(
+            { error: 'Course not found' },
+            { status: 404 }
+          );
+        }
+
+        if (user.role !== 'admin' && course.instructor.id !== user.id) {
+          return NextResponse.json(
+            { error: 'Course not found' },
+            { status: 404 }
+          );
+        }
+      }
+
       const modules = await getModulesByCourse(courseId);
       return NextResponse.json({ docs: modules, totalDocs: modules.length });
+    }
+
+    // Generic list requires authentication
+    const user = await getSession();
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      );
     }
 
     const result = await listModules({
@@ -66,6 +104,22 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Validation failed', details: result.error.flatten() },
         { status: 400 }
+      );
+    }
+
+    // Verify the course exists and user has access
+    const course = await getCourse(result.data.courseId);
+    if (!course) {
+      return NextResponse.json(
+        { error: 'Course not found' },
+        { status: 404 }
+      );
+    }
+
+    if (user.role !== 'admin' && course.instructor.id !== user.id) {
+      return NextResponse.json(
+        { error: 'Not authorized to add modules to this course' },
+        { status: 403 }
       );
     }
 

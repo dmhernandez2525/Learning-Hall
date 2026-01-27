@@ -22,8 +22,45 @@ export async function GET(request: NextRequest) {
 
     // If moduleId is provided, return all lessons for that module sorted by position
     if (moduleId) {
+      // Verify module and course access
+      const module = await getModule(moduleId);
+      if (!module) {
+        return NextResponse.json(
+          { error: 'Module not found' },
+          { status: 404 }
+        );
+      }
+
+      const course = await getCourse(module.course.id);
+      if (course && course.status !== 'published') {
+        const user = await getSession();
+
+        if (!user) {
+          return NextResponse.json(
+            { error: 'Module not found' },
+            { status: 404 }
+          );
+        }
+
+        if (user.role !== 'admin' && course.instructor.id !== user.id) {
+          return NextResponse.json(
+            { error: 'Module not found' },
+            { status: 404 }
+          );
+        }
+      }
+
       const lessons = await getLessonsByModule(moduleId);
       return NextResponse.json({ docs: lessons, totalDocs: lessons.length });
+    }
+
+    // Generic list requires authentication
+    const user = await getSession();
+    if (!user) {
+      return NextResponse.json(
+        { error: 'Authentication required' },
+        { status: 401 }
+      );
     }
 
     const result = await listLessons({

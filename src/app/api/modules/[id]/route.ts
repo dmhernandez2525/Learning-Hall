@@ -18,6 +18,26 @@ export async function GET(_request: NextRequest, { params }: RouteParams) {
       );
     }
 
+    // Check if parent course is published, if not require auth
+    const course = await getCourse(module.course.id);
+    if (course && course.status !== 'published') {
+      const user = await getSession();
+
+      if (!user) {
+        return NextResponse.json(
+          { error: 'Module not found' },
+          { status: 404 }
+        );
+      }
+
+      if (user.role !== 'admin' && course.instructor.id !== user.id) {
+        return NextResponse.json(
+          { error: 'Module not found' },
+          { status: 404 }
+        );
+      }
+    }
+
     return NextResponse.json({ doc: module });
   } catch (error) {
     console.error('Get module error:', error);
