@@ -14,6 +14,7 @@ import {
   Media,
   Enrollments,
   CourseProgress,
+  Certificates,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -61,6 +62,7 @@ export default buildConfig({
     Media,
     Enrollments,
     CourseProgress,
+    Certificates,
   ],
   db: postgresAdapter({
     pool: {

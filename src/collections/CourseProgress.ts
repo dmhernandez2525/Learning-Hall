@@ -36,9 +36,33 @@ const calculateProgress: CollectionBeforeChangeHook = async ({ data }) => {
         const completedCount = Array.isArray(progressData.completedLessons)
           ? progressData.completedLessons.length
           : 0;
-        progressData.progressPercentage = Math.round(
+        const progressPercentage = Math.round(
           (completedCount / totalLessons) * 100,
         );
+        progressData.progressPercentage = progressPercentage;
+
+        if (progressPercentage === 100 && progressData.user && progressData.course) {
+          const { docs: existingCertificates } = await payload.find({
+            collection: 'certificates',
+            where: {
+              and: [
+                { user: { equals: progressData.user } },
+                { course: { equals: progressData.course } },
+              ],
+            },
+          });
+
+          if (existingCertificates.length === 0) {
+            await payload.create({
+              collection: 'certificates',
+              data: {
+                user: progressData.user,
+                course: progressData.course,
+                completionDate: new Date().toISOString(),
+              },
+            });
+          }
+        }
       } else {
         progressData.progressPercentage = 0;
       }
