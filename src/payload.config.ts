@@ -33,6 +33,9 @@ import {
   Subscriptions,
   Coupons,
   CourseBundles,
+  Affiliates,
+  AffiliateReferrals,
+  AffiliatePayouts,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -99,6 +102,9 @@ export default buildConfig({
     Subscriptions,
     Coupons,
     CourseBundles,
+    Affiliates,
+    AffiliateReferrals,
+    AffiliatePayouts,
   ],
   db: postgresAdapter({
     pool: {
