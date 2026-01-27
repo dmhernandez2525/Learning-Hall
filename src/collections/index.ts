@@ -21,3 +21,7 @@ export { Badges } from './Badges';
 export { UserBadges } from './UserBadges';
 export { UserPoints } from './UserPoints';
 export { Payments } from './Payments';
+export { SubscriptionPlans } from './SubscriptionPlans';
+export { Subscriptions } from './Subscriptions';
+export { Coupons } from './Coupons';
+export { CourseBundles } from './CourseBundles';
