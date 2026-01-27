@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { getPayloadClient } from '@/lib/payload';
 import type { StorageConfig, StorageProviderInterface } from './types';
 import { S3Provider } from './providers/s3';
@@ -8,17 +9,82 @@ export * from './types';
 // Cache for storage providers to avoid recreating them
 const providerCache = new Map<string, StorageProviderInterface>();
 
+const ENCRYPTION_ALGORITHM = 'aes-256-gcm';
+const IV_LENGTH = 16;
+const AUTH_TAG_LENGTH = 16;
+
 /**
- * Decode encrypted credentials from storage config
+ * Get the encryption key from environment
  */
-function decodeCredentials(credentialsEncrypted: string): {
+function getEncryptionKey(): Buffer {
+  const key = process.env.STORAGE_ENCRYPTION_KEY;
+  if (!key) {
+    throw new Error('STORAGE_ENCRYPTION_KEY environment variable must be set');
+  }
+  // Key should be 32 bytes (64 hex characters) for AES-256
+  if (key.length === 64) {
+    return Buffer.from(key, 'hex');
+  }
+  // If not hex, hash the key to get 32 bytes
+  return crypto.createHash('sha256').update(key).digest();
+}
+
+/**
+ * Encrypt credentials using AES-256-GCM
+ * Returns: base64(iv + authTag + ciphertext)
+ */
+export function encryptCredentials(credentials: {
+  accessKeyId: string;
+  secretAccessKey: string;
+}): string {
+  const key = getEncryptionKey();
+  const iv = crypto.randomBytes(IV_LENGTH);
+  const cipher = crypto.createCipheriv(ENCRYPTION_ALGORITHM, key, iv);
+
+  const plaintext = JSON.stringify(credentials);
+  const encrypted = Buffer.concat([
+    cipher.update(plaintext, 'utf8'),
+    cipher.final(),
+  ]);
+
+  const authTag = cipher.getAuthTag();
+
+  // Combine: IV (16) + AuthTag (16) + Ciphertext
+  const combined = Buffer.concat([iv, authTag, encrypted]);
+  return combined.toString('base64');
+}
+
+/**
+ * Decrypt credentials using AES-256-GCM
+ */
+function decryptCredentials(encryptedData: string): {
   accessKeyId: string;
   secretAccessKey: string;
 } | undefined {
   try {
-    const decoded = Buffer.from(credentialsEncrypted, 'base64').toString('utf-8');
-    return JSON.parse(decoded);
-  } catch {
+    const key = getEncryptionKey();
+    const combined = Buffer.from(encryptedData, 'base64');
+
+    if (combined.length < IV_LENGTH + AUTH_TAG_LENGTH + 1) {
+      console.error('Encrypted data too short');
+      return undefined;
+    }
+
+    const iv = combined.subarray(0, IV_LENGTH);
+    const authTag = combined.subarray(IV_LENGTH, IV_LENGTH + AUTH_TAG_LENGTH);
+    const ciphertext = combined.subarray(IV_LENGTH + AUTH_TAG_LENGTH);
+
+    const decipher = crypto.createDecipheriv(ENCRYPTION_ALGORITHM, key, iv);
+    decipher.setAuthTag(authTag);
+
+    const decrypted = Buffer.concat([
+      decipher.update(ciphertext),
+      decipher.final(),
+    ]);
+
+    return JSON.parse(decrypted.toString('utf8'));
+  } catch (error) {
+    console.error('Failed to decrypt credentials:', error);
     return undefined;
   }
 }
@@ -67,7 +133,7 @@ export async function getStorageConfig(configId: string): Promise<StorageConfig 
       region: doc.region ? String(doc.region) : undefined,
       endpoint: doc.endpoint ? String(doc.endpoint) : undefined,
       credentials: doc.credentialsEncrypted
-        ? decodeCredentials(String(doc.credentialsEncrypted))
+        ? decryptCredentials(String(doc.credentialsEncrypted))
         : undefined,
       isActive: Boolean(doc.isActive),
     };
@@ -105,7 +171,7 @@ export async function getActiveStorageConfig(tenantId: string): Promise<StorageC
       region: doc.region ? String(doc.region) : undefined,
       endpoint: doc.endpoint ? String(doc.endpoint) : undefined,
       credentials: doc.credentialsEncrypted
-        ? decodeCredentials(String(doc.credentialsEncrypted))
+        ? decryptCredentials(String(doc.credentialsEncrypted))
         : undefined,
       isActive: Boolean(doc.isActive),
     };

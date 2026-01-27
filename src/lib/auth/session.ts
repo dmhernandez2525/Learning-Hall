@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import crypto from 'crypto';
 import { getUserById, type User } from './config';
 
 const SESSION_COOKIE_NAME = 'learning-hall-session';
@@ -9,14 +10,73 @@ interface SessionData {
   expiresAt: number;
 }
 
-function encodeSession(data: SessionData): string {
-  return Buffer.from(JSON.stringify(data)).toString('base64');
+/**
+ * Get the session signing key from environment
+ * Falls back to PAYLOAD_SECRET if SESSION_SECRET is not set
+ */
+function getSigningKey(): string {
+  const key = process.env.SESSION_SECRET || process.env.PAYLOAD_SECRET;
+  if (!key) {
+    throw new Error('SESSION_SECRET or PAYLOAD_SECRET environment variable must be set');
+  }
+  return key;
 }
 
+/**
+ * Create HMAC signature for session data
+ */
+function createSignature(data: string): string {
+  const key = getSigningKey();
+  return crypto.createHmac('sha256', key).update(data).digest('hex');
+}
+
+/**
+ * Verify HMAC signature
+ */
+function verifySignature(data: string, signature: string): boolean {
+  const expectedSignature = createSignature(data);
+  // Use timing-safe comparison to prevent timing attacks
+  try {
+    return crypto.timingSafeEqual(
+      Buffer.from(signature, 'hex'),
+      Buffer.from(expectedSignature, 'hex')
+    );
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Encode and sign session data
+ * Format: base64(data).signature
+ */
+function encodeSession(data: SessionData): string {
+  const jsonData = JSON.stringify(data);
+  const encodedData = Buffer.from(jsonData).toString('base64');
+  const signature = createSignature(encodedData);
+  return `${encodedData}.${signature}`;
+}
+
+/**
+ * Decode and verify session data
+ * Returns null if signature is invalid or data is corrupted
+ */
 function decodeSession(token: string): SessionData | null {
   try {
-    const decoded = Buffer.from(token, 'base64').toString('utf-8');
-    return JSON.parse(decoded) as SessionData;
+    const [encodedData, signature] = token.split('.');
+
+    if (!encodedData || !signature) {
+      return null;
+    }
+
+    // Verify signature before decoding
+    if (!verifySignature(encodedData, signature)) {
+      console.warn('Invalid session signature detected');
+      return null;
+    }
+
+    const jsonData = Buffer.from(encodedData, 'base64').toString('utf-8');
+    return JSON.parse(jsonData) as SessionData;
   } catch {
     return null;
   }
@@ -51,6 +111,8 @@ export async function getSession(): Promise<User | null> {
   const sessionData = decodeSession(sessionCookie.value);
 
   if (!sessionData) {
+    // Invalid or tampered session - destroy it
+    await destroySession();
     return null;
   }
 
