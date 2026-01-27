@@ -19,7 +19,7 @@ const submitSchema = z.object({
     .array(
       z.object({
         questionId: z.string().min(1),
-        response: z.any().optional(),
+        response: z.unknown(),
       })
     )
     .min(1),

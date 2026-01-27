@@ -1,4 +1,4 @@
-import { CollectionConfig } from 'payload/types';
+import type { CollectionConfig } from 'payload';
 
 const Questions: CollectionConfig = {
   slug: 'questions',
@@ -74,7 +74,7 @@ const Questions: CollectionConfig = {
       name: 'options',
       type: 'array',
       admin: {
-        condition: (data) => ['multipleChoice', 'matching'].includes(data.questionType),
+        condition: (data: Record<string, unknown>) => ['multipleChoice', 'matching'].includes(data.questionType as string),
       },
       fields: [
         {
@@ -87,14 +87,14 @@ const Questions: CollectionConfig = {
           type: 'checkbox',
           defaultValue: false,
           admin: {
-            condition: (_, siblingData) => siblingData?.questionType === 'multipleChoice',
+            condition: (_: unknown, siblingData: Record<string, unknown>) => siblingData?.questionType === 'multipleChoice',
           },
         },
         {
           name: 'match',
           type: 'text',
           admin: {
-            condition: (_, siblingData) => siblingData?.questionType === 'matching',
+            condition: (_: unknown, siblingData: Record<string, unknown>) => siblingData?.questionType === 'matching',
             description: 'Expected match for this prompt',
           },
         },
@@ -108,14 +108,14 @@ const Questions: CollectionConfig = {
         { label: 'False', value: 'false' },
       ],
       admin: {
-        condition: (data) => data.questionType === 'trueFalse',
+        condition: (data: Record<string, unknown>) => data.questionType === 'trueFalse',
       },
     },
     {
       name: 'shortAnswer',
       type: 'textarea',
       admin: {
-        condition: (data) => data.questionType === 'shortAnswer',
+        condition: (data: Record<string, unknown>) => data.questionType === 'shortAnswer',
         description: 'Reference answer. We use a case-insensitive contains match.',
       },
     },
