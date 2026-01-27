@@ -1,6 +1,7 @@
 import { buildConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import { s3Storage } from '@payloadcms/storage-s3';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -41,7 +42,7 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
-    push: true, // Auto-sync schema to database on startup
+    push: true,
   }),
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || 'default-secret-change-me',
@@ -51,6 +52,22 @@ export default buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
   },
+  plugins: [
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.S3_BUCKET || 'learning-hall-media',
+      config: {
+        endpoint: process.env.S3_ENDPOINT,
+        region: process.env.S3_REGION || 'us-east-1',
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || '',
+        },
+      },
+    }),
+  ],
   serverURL: process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
   cors: [
     process.env.NEXT_PUBLIC_URL || 'http://localhost:3000',
