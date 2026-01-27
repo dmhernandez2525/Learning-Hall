@@ -106,7 +106,7 @@ describe('Video Upload Library', () => {
   });
 
   describe('completeVideoUpload', () => {
-    it('updates video status to processing then ready', async () => {
+    it('updates video status to ready', async () => {
       mockPayload.findByID.mockResolvedValue(mockVideoDoc);
       mockPayload.update.mockResolvedValue(mockVideoDoc);
 
@@ -121,7 +121,7 @@ describe('Video Upload Library', () => {
         collection: 'media',
         id: 'video-123',
         data: expect.objectContaining({
-          status: 'processing',
+          status: 'ready',
           progress: 100,
         }),
       });

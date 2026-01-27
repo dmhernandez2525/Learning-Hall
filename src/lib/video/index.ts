@@ -124,30 +124,20 @@ export async function completeVideoUpload(
 
     const doc = videoDoc as Record<string, unknown>;
 
-    // Update status to processing
-    const updated = await payload.update({
-      collection: 'media',
-      id: uploadId,
-      data: {
-        status: 'processing',
-        progress: 100,
-        metadata: {
-          ...metadata,
-          size: doc.filesize || metadata?.size || 0,
-        },
-      },
-    });
-
-    // In a production environment, we would queue a job here
-    // to process the video (extract metadata, generate thumbnails, transcode to HLS)
-    // For now, we'll just mark it as ready after a simulated delay
-
-    // Simulate immediate processing for development
+    // In a production environment, we would:
+    // 1. Set status to 'processing' and queue a job to transcode/extract metadata
+    // 2. The job would update to 'ready' when complete
+    // For development, we skip directly to 'ready' in a single update
     await payload.update({
       collection: 'media',
       id: uploadId,
       data: {
         status: 'ready',
+        progress: 100,
+        metadata: {
+          ...metadata,
+          size: doc.filesize || metadata?.size || 0,
+        },
       },
     });
 

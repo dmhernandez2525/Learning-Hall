@@ -331,16 +331,17 @@ export async function reorderLessons(
 ): Promise<Lesson[]> {
   const payload = await getPayloadClient();
 
-  const updated: Lesson[] = [];
-
-  for (const { id, position } of lessonOrder) {
-    const result = await payload.update({
+  // Perform updates in parallel for better performance
+  const updatePromises = lessonOrder.map(({ id, position }) =>
+    payload.update({
       collection: 'lessons',
       id,
       data: { position },
-    });
-    updated.push(formatLesson(result as Record<string, unknown>));
-  }
+    })
+  );
+
+  const results = await Promise.all(updatePromises);
+  const updated = results.map((result) => formatLesson(result as Record<string, unknown>));
 
   return updated.sort((a, b) => a.position - b.position);
 }

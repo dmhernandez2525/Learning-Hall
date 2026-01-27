@@ -204,16 +204,17 @@ export async function reorderModules(
 ): Promise<Module[]> {
   const payload = await getPayloadClient();
 
-  const updated: Module[] = [];
-
-  for (const { id, position } of moduleOrder) {
-    const result = await payload.update({
+  // Perform updates in parallel for better performance
+  const updatePromises = moduleOrder.map(({ id, position }) =>
+    payload.update({
       collection: 'modules',
       id,
       data: { position },
-    });
-    updated.push(formatModule(result as Record<string, unknown>));
-  }
+    })
+  );
+
+  const results = await Promise.all(updatePromises);
+  const updated = results.map((result) => formatModule(result as Record<string, unknown>));
 
   return updated.sort((a, b) => a.position - b.position);
 }
