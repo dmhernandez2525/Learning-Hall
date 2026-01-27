@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload';
+import { sendWelcomeEmail } from '../lib/email';
 
 export const Users: CollectionConfig = {
   slug: 'users',
@@ -82,5 +83,23 @@ export const Users: CollectionConfig = {
       ],
     },
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc, operation }) => {
+        // Send welcome email on user registration
+        if (operation === 'create' && doc.email) {
+          try {
+            await sendWelcomeEmail(doc.email, {
+              userName: doc.name || 'there',
+            });
+            console.log(`[Users] Welcome email sent to ${doc.email}`);
+          } catch (error) {
+            // Don't fail registration if email fails
+            console.error(`[Users] Failed to send welcome email to ${doc.email}:`, error);
+          }
+        }
+      },
+    ],
+  },
   timestamps: true,
 };
