@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { listCourses } from '@/lib/courses';
+import { CourseCard } from '@/components/courses';
 
 function EmptyState() {
   return (
@@ -37,8 +39,22 @@ function EmptyState() {
   );
 }
 
-export default function CoursesPage() {
-  const courses: unknown[] = [];
+type PageProps = {
+  searchParams: Promise<{ page?: string; status?: string; search?: string }>;
+};
+
+export default async function CoursesPage({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const page = parseInt(params.page || '1', 10);
+  const status = params.status as 'draft' | 'published' | 'archived' | undefined;
+  const search = params.search;
+
+  let courses;
+  try {
+    courses = await listCourses({ page, limit: 12, status, search });
+  } catch {
+    courses = { docs: [], totalDocs: 0, totalPages: 0, page: 1, hasNextPage: false, hasPrevPage: false };
+  }
 
   return (
     <div className="space-y-6">
@@ -46,7 +62,7 @@ export default function CoursesPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
           <p className="text-muted-foreground">
-            Create and manage your courses
+            Create and manage your courses ({courses.totalDocs} total)
           </p>
         </div>
         <Button asChild>
@@ -54,12 +70,34 @@ export default function CoursesPage() {
         </Button>
       </div>
 
-      {courses.length === 0 ? (
+      {courses.docs.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {/* Course cards will be rendered here */}
-        </div>
+        <>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {courses.docs.map((course) => (
+              <CourseCard key={course.id} course={course} />
+            ))}
+          </div>
+
+          {courses.totalPages > 1 && (
+            <div className="flex justify-center gap-2">
+              {courses.hasPrevPage && (
+                <Button variant="outline" asChild>
+                  <Link href={`/dashboard/courses?page=${page - 1}`}>Previous</Link>
+                </Button>
+              )}
+              <span className="flex items-center px-4 text-sm text-muted-foreground">
+                Page {courses.page} of {courses.totalPages}
+              </span>
+              {courses.hasNextPage && (
+                <Button variant="outline" asChild>
+                  <Link href={`/dashboard/courses?page=${page + 1}`}>Next</Link>
+                </Button>
+              )}
+            </div>
+          )}
+        </>
       )}
     </div>
   );
