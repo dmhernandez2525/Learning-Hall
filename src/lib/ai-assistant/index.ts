@@ -1,6 +1,31 @@
 import { getPayload } from 'payload';
 import config from '@/payload.config';
 
+/**
+ * Sanitize user-controlled content before including in AI prompts
+ * This prevents prompt injection attacks
+ */
+function sanitizeForPrompt(text: string | null | undefined, maxLength = 500): string {
+  if (!text) return '';
+
+  // Remove potential prompt injection patterns
+  let sanitized = String(text)
+    // Remove common injection patterns
+    .replace(/ignore\s+(all\s+)?previous\s+instructions?/gi, '[filtered]')
+    .replace(/system\s*:/gi, '[filtered]')
+    .replace(/assistant\s*:/gi, '[filtered]')
+    .replace(/you\s+are\s+now/gi, '[filtered]')
+    .replace(/pretend\s+(you|to)\s+(are|be)/gi, '[filtered]')
+    .replace(/act\s+as\s+(if|a)/gi, '[filtered]')
+    .replace(/jailbreak/gi, '[filtered]')
+    // Remove backticks which could be used to escape context
+    .replace(/`{3,}/g, '')
+    // Truncate to max length
+    .slice(0, maxLength);
+
+  return sanitized;
+}
+
 export type AIProvider = 'openai' | 'anthropic' | 'google' | 'ollama';
 
 export interface Message {
@@ -184,9 +209,16 @@ async function buildSystemPrompt(context: ConversationContext | null): Promise<s
       });
 
       if (course) {
-        systemPrompt += `\n\nThe student is currently studying the course: "${course.title}".`;
+        const safeTitle = sanitizeForPrompt(course.title, 200);
+        systemPrompt += `\n\nThe student is currently studying the course: "${safeTitle}".`;
         if (course.description) {
-          systemPrompt += ` Course description: ${course.description}`;
+          const safeDesc = sanitizeForPrompt(
+            typeof course.description === 'string' ? course.description : '',
+            1000
+          );
+          if (safeDesc) {
+            systemPrompt += ` Course overview: ${safeDesc}`;
+          }
         }
       }
     } catch {
@@ -203,7 +235,8 @@ async function buildSystemPrompt(context: ConversationContext | null): Promise<s
       });
 
       if (lesson) {
-        systemPrompt += `\n\nThe student is currently viewing the lesson: "${lesson.title}".`;
+        const safeTitle = sanitizeForPrompt(lesson.title, 200);
+        systemPrompt += `\n\nThe student is currently viewing the lesson: "${safeTitle}".`;
       }
     } catch {
       // Lesson not found, continue without context
@@ -219,7 +252,8 @@ async function buildSystemPrompt(context: ConversationContext | null): Promise<s
       });
 
       if (quiz) {
-        systemPrompt += `\n\nThe student is working on the quiz: "${quiz.title}". Help them understand the concepts but don't give away answers directly.`;
+        const safeTitle = sanitizeForPrompt(quiz.title, 200);
+        systemPrompt += `\n\nThe student is working on the quiz: "${safeTitle}". Help them understand the concepts but don't give away answers directly.`;
       }
     } catch {
       // Quiz not found, continue without context

@@ -40,13 +40,16 @@ export async function createLiveSession(params: CreateSessionParams) {
     data: {
       title: params.title,
       course: params.courseId,
-      lesson: params.lessonId,
-      instructor: params.instructorId,
+      host: params.instructorId,
       tenant: params.tenantId,
-      platform: params.provider,
-      scheduledAt: params.scheduledAt.toISOString(),
-      duration: params.duration,
       status: 'scheduled',
+      scheduling: {
+        scheduledAt: params.scheduledAt.toISOString(),
+        duration: params.duration,
+      },
+      platform: {
+        provider: params.provider,
+      },
       settings: {
         waitingRoom: params.settings?.waitingRoom ?? true,
         autoRecord: params.settings?.autoRecord ?? false,
@@ -133,7 +136,7 @@ export async function startSession(sessionId: string | number, userId: string) {
     throw new Error('Session not found');
   }
 
-  if (session.instructor !== userId) {
+  if (session.host !== userId) {
     throw new Error('Only the instructor can start the session');
   }
 
@@ -164,7 +167,7 @@ export async function endSession(sessionId: string | number, userId: string) {
     throw new Error('Session not found');
   }
 
-  if (session.instructor !== userId) {
+  if (session.host !== userId) {
     throw new Error('Only the instructor can end the session');
   }
 
@@ -383,7 +386,7 @@ export async function cancelSession(sessionId: string | number, userId: string, 
     throw new Error('Session not found');
   }
 
-  if (session.instructor !== userId) {
+  if (session.host !== userId) {
     throw new Error('Only the instructor can cancel the session');
   }
 
@@ -423,7 +426,7 @@ export async function rescheduleSession(
     throw new Error('Session not found');
   }
 
-  if (session.instructor !== userId) {
+  if (session.host !== userId) {
     throw new Error('Only the instructor can reschedule the session');
   }
 
