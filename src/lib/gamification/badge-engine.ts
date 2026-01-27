@@ -316,7 +316,15 @@ export async function addPoints(
 }
 
 /**
+ * Get start of day in UTC for consistent timezone handling
+ */
+function getUTCDayStart(date: Date): Date {
+  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
+}
+
+/**
  * Update user streak
+ * Uses UTC to ensure consistent behavior across timezones
  */
 export async function updateStreak(userId: string): Promise<{
   current: number;
@@ -327,32 +335,29 @@ export async function updateStreak(userId: string): Promise<{
   const points = await getOrCreateUserPoints(userId);
 
   const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toISOString();
+  const todayUTC = getUTCDayStart(now);
 
   const lastActivity = points.streak?.lastActivityDate
     ? new Date(points.streak.lastActivityDate)
     : null;
 
-  const lastActivityDay = lastActivity
-    ? new Date(lastActivity.getFullYear(), lastActivity.getMonth(), lastActivity.getDate())
-    : null;
+  const lastActivityDayUTC = lastActivity ? getUTCDayStart(lastActivity) : null;
 
-  const yesterday = new Date(now);
-  yesterday.setDate(yesterday.getDate() - 1);
-  const yesterdayDay = new Date(yesterday.getFullYear(), yesterday.getMonth(), yesterday.getDate());
+  const yesterdayUTC = new Date(todayUTC);
+  yesterdayUTC.setUTCDate(yesterdayUTC.getUTCDate() - 1);
 
   let current = points.streak?.current || 0;
   let isNewDay = false;
   let streakBroken = false;
 
-  if (!lastActivityDay) {
+  if (!lastActivityDayUTC) {
     // First activity
     current = 1;
     isNewDay = true;
-  } else if (lastActivityDay.getTime() === new Date(today).getTime()) {
+  } else if (lastActivityDayUTC.getTime() === todayUTC.getTime()) {
     // Already active today, no change
     isNewDay = false;
-  } else if (lastActivityDay.getTime() === yesterdayDay.getTime()) {
+  } else if (lastActivityDayUTC.getTime() === yesterdayUTC.getTime()) {
     // Active yesterday, continue streak
     current += 1;
     isNewDay = true;
