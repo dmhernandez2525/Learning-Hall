@@ -12,7 +12,6 @@ import {
   Modules,
   Lessons,
   Media,
-  StorageConfigs,
   Enrollments,
   CourseProgress,
 } from './collections';
@@ -60,7 +59,6 @@ export default buildConfig({
     Modules,
     Lessons,
     Media,
-    StorageConfigs,
     Enrollments,
     CourseProgress,
   ],
