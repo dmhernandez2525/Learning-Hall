@@ -17,3 +17,6 @@ export { default as CourseFavorites } from './CourseFavorites';
 export { default as LessonBookmarks } from './LessonBookmarks';
 export { default as LessonActivity } from './LessonActivity';
 export { default as CourseReviews } from './CourseReviews';
+export { Badges } from './Badges';
+export { UserBadges } from './UserBadges';
+export { UserPoints } from './UserPoints';
