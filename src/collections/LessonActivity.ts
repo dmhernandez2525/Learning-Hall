@@ -14,7 +14,11 @@ const LessonActivity: CollectionConfig = {
       return { user: { equals: req.user.id } };
     },
     create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
+    update: ({ req }) => {
+      if (!req.user) return false;
+      if (req.user.role === 'admin') return true;
+      return { user: { equals: req.user.id } };
+    },
     delete: ({ req }) => req.user?.role === 'admin',
   },
   fields: [
