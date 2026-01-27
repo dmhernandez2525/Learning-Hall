@@ -36,8 +36,8 @@ This phase focuses on building out the essential features for a functional and e
 |:---:|:---:|:---|
 | ✅ | F2.1 | **User Enrollment System**: Link users to courses and track enrollment status. |
 | ✅ | F2.2 | **Course Progress Tracking**: Track lesson completion and overall course progress. |
-| ⏳ | F2.3 | **Student Dashboard**: Allow students to view enrolled courses and their progress. |
-| 📋 | F2.4 | **Instructor Dashboard**: Allow instructors to view their courses and enrollment data. |
+| ✅ | F2.3 | **Student Dashboard**: Allow students to view enrolled courses and their progress. |
+| ⏳ | F2.4 | **Instructor Dashboard**: Allow instructors to view their courses and enrollment data. |
 | 📋 | F2.5 | **Course Publishing Workflow**: Implement Draft, Published, and Archived states for courses. |
 | 📋 | F2.6 | **Media Upload to Cloud Storage**: Integrate with S3/R2/GCS for direct media uploads. |
 | 📋 | F2.7 | **Video Thumbnail Generation**: Automatically create thumbnails from video uploads. |
