@@ -10,6 +10,5 @@ export { default as Certificates } from './Certificates';
 export { default as Quizzes } from './Quizzes';
 export { default as Questions } from './Questions';
 export { default as QuizAttempts } from './QuizAttempts';
-export { default as LessonNotes } from './LessonNotes';
 export { default as DiscussionThreads } from './DiscussionThreads';
 export { default as DiscussionPosts } from './DiscussionPosts';

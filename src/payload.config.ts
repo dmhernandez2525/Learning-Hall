@@ -20,7 +20,6 @@ import {
   QuizAttempts,
   DiscussionThreads,
   DiscussionPosts,
-  LessonNotes,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -74,7 +73,6 @@ export default buildConfig({
     QuizAttempts,
     DiscussionThreads,
     DiscussionPosts,
-    LessonNotes,
   ],
   db: postgresAdapter({
     pool: {
