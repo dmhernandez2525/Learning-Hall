@@ -52,7 +52,7 @@ describe('RegisterPage', () => {
     await user.click(screen.getByRole('button', { name: /create account/i }));
 
     await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledWith('/api/users', {
+      expect(mockFetch).toHaveBeenCalledWith('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
