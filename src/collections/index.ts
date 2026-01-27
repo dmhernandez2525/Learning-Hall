@@ -6,3 +6,4 @@ export { Lessons } from './Lessons';
 export { Media } from './Media';
 export { StorageConfigs } from './StorageConfigs';
 export { Enrollments } from './Enrollments';
+export { CourseProgress } from './CourseProgress';
