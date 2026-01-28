@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth';
-import { listLessonNotes } from '@/lib/notes';
+import { listLessonNotes, NoteListResult } from '@/lib/notes';
 import { NotesDashboard } from '@/components/notes/NotesDashboard';
 
 export default async function StudentNotesPage() {
@@ -9,7 +9,20 @@ export default async function StudentNotesPage() {
     redirect('/login');
   }
 
-  const data = await listLessonNotes({ page: 1, limit: 50 }, user);
+  let data: NoteListResult = {
+    docs: [],
+    totalDocs: 0,
+    totalPages: 0,
+    page: 1,
+    hasNextPage: false,
+    hasPrevPage: false,
+  };
+
+  try {
+    data = await listLessonNotes({ page: 1, limit: 50 }, user);
+  } catch (error) {
+    console.error('Error fetching notes:', error);
+  }
 
   return (
     <div className="space-y-6">

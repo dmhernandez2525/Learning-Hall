@@ -1,7 +1,6 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import configPromise from '@/payload.config';
-import { getPayloadHMR } from '@payloadcms/next/utilities';
 import {
   REST_DELETE,
   REST_GET,
