@@ -1,4 +1,4 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities';
+import { getPayload } from 'payload';
 import config from '@/payload.config';
 
 /**
@@ -6,7 +6,7 @@ import config from '@/payload.config';
  * This should be used in server-side code only
  */
 export async function getPayloadClient() {
-  return getPayloadHMR({ config });
+  return getPayload({ config });
 }
 
 /**
