@@ -9,20 +9,26 @@ import { getCacheStats } from '@/lib/performance/cache';
 import { jobQueue } from '@/lib/performance/background-jobs';
 
 // GET /api/admin/metrics - Get system metrics (admin only)
+// Note: System metrics are platform-wide and not tenant-scoped
+// Only platform admins should have access to this endpoint
 export async function GET(request: NextRequest) {
   try {
     const user = await getSession();
 
+    // Require admin role for system metrics
     if (!user || user.role !== 'admin') {
       return NextResponse.json(
-        { error: 'Unauthorized' },
+        { error: 'Unauthorized - admin access required' },
         { status: 403 }
       );
     }
 
     const { searchParams } = new URL(request.url);
     const type = searchParams.get('type') || 'all';
-    const timeWindow = parseInt(searchParams.get('timeWindow') || '60000', 10);
+
+    // Validate and bound timeWindow (1 second to 1 hour)
+    const rawTimeWindow = parseInt(searchParams.get('timeWindow') || '60000', 10);
+    const timeWindow = Math.min(Math.max(rawTimeWindow || 60000, 1000), 3600000);
 
     switch (type) {
       case 'requests':

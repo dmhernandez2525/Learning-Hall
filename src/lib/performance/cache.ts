@@ -1,5 +1,6 @@
 // Multi-layer Caching System
 import { LRUCache } from 'lru-cache';
+import { createHash } from 'crypto';
 
 // Cache configuration
 export interface CacheConfig {
@@ -289,16 +290,9 @@ export const searchCache = {
     return cacheClearNamespace(CacheNamespaces.SEARCH);
   },
 
-  // Generate hash for search query
+  // Generate hash for search query using SHA-256
   hashQuery(query: string, filters: Record<string, unknown>): string {
     const normalized = JSON.stringify({ query: query.toLowerCase(), filters });
-    // Simple hash function
-    let hash = 0;
-    for (let i = 0; i < normalized.length; i++) {
-      const char = normalized.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(36);
+    return createHash('sha256').update(normalized).digest('hex').substring(0, 16);
   },
 };

@@ -203,6 +203,49 @@ export async function bulkDuplicate(
   return results;
 }
 
+// Allowed fields for import by content type
+const ALLOWED_IMPORT_FIELDS = {
+  lesson: ['title', 'description', 'content', 'duration', 'type', 'order'],
+  course: ['title', 'slug', 'description', 'shortDescription', 'price', 'currency', 'level', 'category', 'sections'],
+  quiz: ['title', 'description', 'questions', 'settings'],
+} as const;
+
+// Sanitize string fields to prevent XSS
+function sanitizeString(value: unknown): string | undefined {
+  if (typeof value !== 'string') return undefined;
+  return value.replace(/[<>'"`;]/g, '').slice(0, 10000);
+}
+
+// Validate and sanitize import data
+function sanitizeImportData(
+  type: 'lesson' | 'course' | 'quiz',
+  data: Record<string, unknown>
+): Record<string, unknown> {
+  const allowedFields = ALLOWED_IMPORT_FIELDS[type];
+  const sanitized: Record<string, unknown> = {};
+
+  for (const field of allowedFields) {
+    if (field in data) {
+      const value = data[field];
+
+      // Sanitize string fields
+      if (typeof value === 'string') {
+        sanitized[field] = sanitizeString(value);
+      } else if (typeof value === 'number') {
+        // Validate numbers are reasonable
+        sanitized[field] = Math.max(0, Math.min(value, 1000000));
+      } else if (Array.isArray(value)) {
+        // For arrays (sections, questions), do deep sanitization
+        sanitized[field] = value.slice(0, 100); // Limit array size
+      } else if (value !== null && value !== undefined) {
+        sanitized[field] = value;
+      }
+    }
+  }
+
+  return sanitized;
+}
+
 // Import content from JSON
 export async function importContentFromJson(
   jsonContent: {
@@ -215,11 +258,13 @@ export async function importContentFromJson(
 
   const { type, data } = jsonContent;
 
-  // Remove IDs and relations that shouldn't be imported
-  const cleanData = { ...data };
-  delete cleanData.id;
-  delete cleanData.createdAt;
-  delete cleanData.updatedAt;
+  // Validate type
+  if (!['lesson', 'course', 'quiz'].includes(type)) {
+    throw new Error(`Invalid content type: ${type}`);
+  }
+
+  // Sanitize and validate import data
+  const cleanData = sanitizeImportData(type, data);
 
   // Add user and tenant
   cleanData.tenant = options.tenantId;

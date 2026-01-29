@@ -13,7 +13,7 @@ export const defaultAutoSaveConfig: AutoSaveConfig = {
   maxVersionsPerHour: 20, // Max auto-saves per hour
 };
 
-// Track auto-save state per content
+// Track auto-save state per content with TTL
 const autoSaveState = new Map<
   string,
   {
@@ -22,19 +22,58 @@ const autoSaveState = new Map<
     lastSaveTime: number;
     saveCount: number;
     hourStart: number;
+    lastAccessed: number; // For TTL cleanup
   }
 >();
 
+// Auto-cleanup interval (run every 5 minutes)
+const CLEANUP_INTERVAL = 5 * 60 * 1000;
+const STATE_TTL = 30 * 60 * 1000; // 30 minutes of inactivity
+
+let cleanupTimer: NodeJS.Timeout | null = null;
+
+// Start automatic cleanup
+function startAutoCleanup(): void {
+  if (cleanupTimer) return;
+
+  cleanupTimer = setInterval(() => {
+    const now = Date.now();
+    for (const [contentId, state] of autoSaveState) {
+      if (now - state.lastAccessed > STATE_TTL) {
+        if (state.timer) clearTimeout(state.timer);
+        autoSaveState.delete(contentId);
+      }
+    }
+  }, CLEANUP_INTERVAL);
+}
+
+// Stop automatic cleanup (for testing)
+export function stopAutoCleanup(): void {
+  if (cleanupTimer) {
+    clearInterval(cleanupTimer);
+    cleanupTimer = null;
+  }
+}
+
+// Initialize cleanup on module load
+startAutoCleanup();
+
 // Initialize auto-save for content
 export function initAutoSave(contentId: string): void {
+  const now = Date.now();
   if (!autoSaveState.has(contentId)) {
     autoSaveState.set(contentId, {
       timer: null,
       lastContent: '',
       lastSaveTime: 0,
       saveCount: 0,
-      hourStart: Date.now(),
+      hourStart: now,
+      lastAccessed: now,
     });
+  } else {
+    // Update last accessed time
+    const state = autoSaveState.get(contentId)!;
+    state.lastAccessed = now;
   }
 }
 
