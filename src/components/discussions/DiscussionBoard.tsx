@@ -6,12 +6,22 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
+import { Search, Filter, SortAsc, MessageSquare, ThumbsUp, Clock, CheckCircle2 } from 'lucide-react';
 
 interface DiscussionBoardProps {
   courseId: string;
   courseTitle: string;
   initialData: ThreadListResult;
 }
+
+type SortOption = 'recent' | 'votes' | 'replies' | 'unanswered';
+
+const sortOptions: { value: SortOption; label: string; icon: typeof Clock }[] = [
+  { value: 'recent', label: 'Most Recent', icon: Clock },
+  { value: 'votes', label: 'Most Votes', icon: ThumbsUp },
+  { value: 'replies', label: 'Most Replies', icon: MessageSquare },
+  { value: 'unanswered', label: 'Unanswered', icon: CheckCircle2 },
+];
 
 function richTextFromString(value: string) {
   return [
@@ -47,9 +57,57 @@ export default function DiscussionBoard({ courseId, courseTitle, initialData }: 
   const [composerBody, setComposerBody] = useState('');
   const [composerTags, setComposerTags] = useState('');
   const [composerError, setComposerError] = useState<string | null>(null);
+  const [sortBy, setSortBy] = useState<SortOption>('recent');
+  const [filterTag, setFilterTag] = useState<string | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
 
-  const pinnedThreads = useMemo(() => threads.filter((thread) => thread.isPinned), [threads]);
-  const otherThreads = useMemo(() => threads.filter((thread) => !thread.isPinned), [threads]);
+  // Extract all unique tags from threads
+  const allTags = useMemo(() => {
+    const tagSet = new Set<string>();
+    threads.forEach((thread) => thread.tags.forEach((tag) => tagSet.add(tag)));
+    return Array.from(tagSet).sort();
+  }, [threads]);
+
+  // Apply client-side filtering and sorting
+  const filteredAndSortedThreads = useMemo(() => {
+    let result = [...threads];
+
+    // Apply tag filter
+    if (filterTag) {
+      result = result.filter((thread) => thread.tags.includes(filterTag));
+    }
+
+    // Apply sorting (pinned threads always first)
+    result.sort((a, b) => {
+      // Pinned threads first
+      if (a.isPinned !== b.isPinned) return a.isPinned ? -1 : 1;
+
+      switch (sortBy) {
+        case 'votes':
+          return b.voteScore - a.voteScore;
+        case 'replies':
+          return b.replyCount - a.replyCount;
+        case 'unanswered':
+          // Unanswered first, then by recent activity
+          if (a.isAnswered !== b.isAnswered) return a.isAnswered ? 1 : -1;
+          return (b.lastActivityAt || '').localeCompare(a.lastActivityAt || '');
+        case 'recent':
+        default:
+          return (b.lastActivityAt || '').localeCompare(a.lastActivityAt || '');
+      }
+    });
+
+    return result;
+  }, [threads, sortBy, filterTag]);
+
+  const pinnedThreads = useMemo(
+    () => filteredAndSortedThreads.filter((thread) => thread.isPinned),
+    [filteredAndSortedThreads]
+  );
+  const otherThreads = useMemo(
+    () => filteredAndSortedThreads.filter((thread) => !thread.isPinned),
+    [filteredAndSortedThreads]
+  );
 
   const fetchThreads = async (nextPage = 1, query = search) => {
     setLoading(true);
@@ -200,18 +258,117 @@ export default function DiscussionBoard({ courseId, courseTitle, initialData }: 
           <h1 className="text-3xl font-bold">Discussion Board</h1>
         </div>
         <div className="flex gap-2">
-          <Input
-            placeholder="Search discussions"
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            className="w-64"
-          />
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              placeholder="Search discussions"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              className="w-64 pl-9"
+              onKeyDown={(event) => event.key === 'Enter' && fetchThreads(1, search)}
+            />
+          </div>
           <Button onClick={() => fetchThreads(1, search)} disabled={loading}>
             Search
+          </Button>
+          <Button variant="outline" onClick={() => setShowFilters(!showFilters)}>
+            <Filter className="w-4 h-4 mr-2" />
+            Filters
           </Button>
           <Button onClick={() => setShowComposer(true)}>New Thread</Button>
         </div>
       </div>
+
+      {/* Filters and Sort Panel */}
+      {showFilters && (
+        <Card>
+          <CardContent className="py-4">
+            <div className="flex flex-wrap items-center gap-4">
+              {/* Sort Options */}
+              <div className="flex items-center gap-2">
+                <SortAsc className="w-4 h-4 text-muted-foreground" />
+                <span className="text-sm font-medium">Sort by:</span>
+                <div className="flex gap-1">
+                  {sortOptions.map((option) => (
+                    <Button
+                      key={option.value}
+                      variant={sortBy === option.value ? 'default' : 'ghost'}
+                      size="sm"
+                      onClick={() => setSortBy(option.value)}
+                      className="h-8"
+                    >
+                      <option.icon className="w-3 h-3 mr-1" />
+                      {option.label}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tag Filter */}
+              {allTags.length > 0 && (
+                <div className="flex items-center gap-2 border-l pl-4">
+                  <span className="text-sm font-medium">Filter by tag:</span>
+                  <div className="flex gap-1 flex-wrap">
+                    <Button
+                      variant={filterTag === null ? 'default' : 'ghost'}
+                      size="sm"
+                      onClick={() => setFilterTag(null)}
+                      className="h-7 text-xs"
+                    >
+                      All
+                    </Button>
+                    {allTags.map((tag) => (
+                      <Button
+                        key={tag}
+                        variant={filterTag === tag ? 'default' : 'ghost'}
+                        size="sm"
+                        onClick={() => setFilterTag(filterTag === tag ? null : tag)}
+                        className="h-7 text-xs"
+                      >
+                        {tag}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Active filters indicator */}
+      {(filterTag || sortBy !== 'recent') && (
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+          <span>Active filters:</span>
+          {sortBy !== 'recent' && (
+            <span className="bg-muted px-2 py-0.5 rounded-full">
+              Sorted by {sortOptions.find((o) => o.value === sortBy)?.label}
+            </span>
+          )}
+          {filterTag && (
+            <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full flex items-center gap-1">
+              Tag: {filterTag}
+              <button
+                type="button"
+                onClick={() => setFilterTag(null)}
+                className="hover:text-primary/70"
+              >
+                ×
+              </button>
+            </span>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              setSortBy('recent');
+              setFilterTag(null);
+            }}
+            className="text-primary hover:underline"
+          >
+            Clear all
+          </button>
+        </div>
+      )}
 
       {pinnedThreads.length > 0 && (
         <div className="space-y-3">
