@@ -42,3 +42,4 @@ export { ContentVersions } from './ContentVersions';
 export { CourseTemplates } from './CourseTemplates';
 export { Translations } from './Translations';
 export { SearchIndex } from './SearchIndex';
+export { SearchAnalytics } from './SearchAnalytics';
