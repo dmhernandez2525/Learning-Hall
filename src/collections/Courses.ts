@@ -1,4 +1,4 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionConfig, Where } from 'payload';
 import { getPayload } from 'payload';
 import config from '../payload.config';
 
@@ -25,11 +25,11 @@ export const Courses: CollectionConfig = {
             { tenant: { exists: false } },
             { tenant: { equals: req.user.tenant } },
           ],
-        };
+        } as Where;
       }
 
       // Guest users see only courses without tenant
-      return { tenant: { exists: false } };
+      return { tenant: { exists: false } } as Where;
     },
     create: ({ req }) => Boolean(req.user),
     update: ({ req }) => {
@@ -63,7 +63,7 @@ export const Courses: CollectionConfig = {
         }
         return data;
       },
-      async ({ data, req, operation }) => {
+      async ({ data, operation }) => {
         if (data.status === 'published') {
             const payload = await getPayload({ config });
             const course = await payload.findByID({
