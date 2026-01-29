@@ -12,10 +12,10 @@ async function DashboardNav() {
 
   const navItems = [
     { href: '/dashboard', label: 'Overview', visible: true },
-    { href: '/dashboard/student', label: 'My Courses', visible: !!user },
-    { href: '/dashboard/instructor', label: 'Instructor', visible: user?.role === 'instructor' || user?.role === 'admin' },
+    { href: '/student', label: 'My Courses', visible: !!user },
+    { href: '/instructor', label: 'Instructor', visible: user?.role === 'instructor' || user?.role === 'admin' },
     { href: '/dashboard/courses', label: 'All Courses', visible: true },
-    { href: '/dashboard/enrollments', label: 'Enrollments', visible: true },
+    { href: '/enrollments', label: 'Enrollments', visible: true },
     { href: '/dashboard/media', label: 'Media Library', visible: true },
     { href: '/dashboard/settings', label: 'Settings', visible: true },
     { href: '/student/notes', label: 'Notes', visible: !!user },

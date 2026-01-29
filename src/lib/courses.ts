@@ -183,6 +183,20 @@ export async function getCourseBySlug(slug: string): Promise<Course | null> {
   }
 }
 
+export async function getCourseByIdOrSlug(idOrSlug: string): Promise<Course | null> {
+  // First try to find by ID (numeric IDs or UUIDs)
+  const isNumericId = /^\d+$/.test(idOrSlug);
+  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(idOrSlug);
+
+  if (isNumericId || isUUID) {
+    const course = await getCourse(idOrSlug);
+    if (course) return course;
+  }
+
+  // Fall back to slug lookup
+  return getCourseBySlug(idOrSlug);
+}
+
 export interface CreateCourseData {
   title: string;
   slug?: string;
