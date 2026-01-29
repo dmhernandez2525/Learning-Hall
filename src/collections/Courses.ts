@@ -304,6 +304,101 @@ export const Courses: CollectionConfig = {
         },
       ],
     },
+    // Certificate template customization
+    {
+      name: 'certificateTemplate',
+      type: 'group',
+      admin: {
+        description: 'Customize the certificate template for this course',
+        condition: (data) => data?.settings?.certificateEnabled !== false,
+      },
+      fields: [
+        {
+          name: 'style',
+          type: 'select',
+          defaultValue: 'classic',
+          options: [
+            { label: 'Classic', value: 'classic' },
+            { label: 'Modern', value: 'modern' },
+            { label: 'Minimal', value: 'minimal' },
+            { label: 'Professional', value: 'professional' },
+            { label: 'Elegant', value: 'elegant' },
+          ],
+          admin: {
+            description: 'Visual style of the certificate',
+          },
+        },
+        {
+          name: 'primaryColor',
+          type: 'text',
+          defaultValue: '#1a365d',
+          admin: {
+            description: 'Primary color (hex code)',
+          },
+        },
+        {
+          name: 'accentColor',
+          type: 'text',
+          defaultValue: '#e2e8f0',
+          admin: {
+            description: 'Accent color (hex code)',
+          },
+        },
+        {
+          name: 'logo',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'Custom logo for the certificate (defaults to site logo)',
+          },
+        },
+        {
+          name: 'backgroundImage',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'Background image or pattern',
+          },
+        },
+        {
+          name: 'signatureName',
+          type: 'text',
+          admin: {
+            description: 'Name to display as signature (defaults to instructor name)',
+          },
+        },
+        {
+          name: 'signatureTitle',
+          type: 'text',
+          defaultValue: 'Course Instructor',
+          admin: {
+            description: 'Title under signature',
+          },
+        },
+        {
+          name: 'signatureImage',
+          type: 'upload',
+          relationTo: 'media',
+          admin: {
+            description: 'Signature image',
+          },
+        },
+        {
+          name: 'additionalText',
+          type: 'textarea',
+          admin: {
+            description: 'Additional text to display on certificate',
+          },
+        },
+        {
+          name: 'credentialId',
+          type: 'text',
+          admin: {
+            description: 'Credential/accreditation ID to display',
+          },
+        },
+      ],
+    },
     {
       name: 'seo',
       type: 'group',

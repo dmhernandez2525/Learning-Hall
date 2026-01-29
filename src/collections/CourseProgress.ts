@@ -53,14 +53,63 @@ const calculateProgress: CollectionBeforeChangeHook = async ({ data }) => {
           });
 
           if (existingCertificates.length === 0) {
-            await payload.create({
-              collection: 'certificates',
-              data: {
-                user: progressData.user,
-                course: progressData.course,
-                completionDate: new Date().toISOString(),
-              },
-            });
+            // Get the course's certificate template settings
+            const courseData = course as {
+              settings?: { certificateEnabled?: boolean };
+              certificateTemplate?: Record<string, unknown>;
+              instructor?: { name?: string } | string | number;
+            };
+
+            // Only create certificate if enabled for this course
+            if (courseData.settings?.certificateEnabled !== false) {
+              const certificateTemplate = courseData.certificateTemplate || {};
+              const instructorName = typeof courseData.instructor === 'object'
+                ? courseData.instructor?.name
+                : undefined;
+
+              // Merge course template settings into certificate
+              const templateData: Record<string, unknown> = {
+                style: certificateTemplate.style || 'classic',
+              };
+
+              if (certificateTemplate.primaryColor) {
+                templateData.primaryColor = certificateTemplate.primaryColor;
+              }
+              if (certificateTemplate.accentColor) {
+                templateData.accentColor = certificateTemplate.accentColor;
+              }
+              if (certificateTemplate.logo) {
+                templateData.logo = certificateTemplate.logo;
+              }
+              if (certificateTemplate.backgroundImage) {
+                templateData.backgroundImage = certificateTemplate.backgroundImage;
+              }
+              if (certificateTemplate.signatureName || instructorName) {
+                templateData.signatureName = certificateTemplate.signatureName || instructorName;
+              }
+              if (certificateTemplate.signatureTitle) {
+                templateData.signatureTitle = certificateTemplate.signatureTitle;
+              }
+              if (certificateTemplate.signatureImage) {
+                templateData.signatureImage = certificateTemplate.signatureImage;
+              }
+              if (certificateTemplate.additionalText) {
+                templateData.additionalText = certificateTemplate.additionalText;
+              }
+              if (certificateTemplate.credentialId) {
+                templateData.credentialId = certificateTemplate.credentialId;
+              }
+
+              await payload.create({
+                collection: 'certificates',
+                data: {
+                  user: progressData.user,
+                  course: progressData.course,
+                  completionDate: new Date().toISOString(),
+                  template: templateData,
+                },
+              });
+            }
           }
         }
       } else {
