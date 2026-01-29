@@ -9,14 +9,6 @@ interface StreakDisplayProps {
   showWeek?: boolean;
 }
 
-interface StreakData {
-  streak: {
-    current: number;
-    isNewDay: boolean;
-    streakBroken: boolean;
-  };
-}
-
 export function StreakDisplay({ variant = 'compact', showWeek = false }: StreakDisplayProps) {
   const [data, setData] = useState<{
     current: number;
@@ -47,7 +39,7 @@ export function StreakDisplay({ variant = 'compact', showWeek = false }: StreakD
 
   if (!data) return null;
 
-  const { current, longest, lastActivityDate } = data;
+  const { current, longest } = data;
 
   // Get weekday activity (mock for now - would need to track daily activity)
   const today = new Date().getDay();
