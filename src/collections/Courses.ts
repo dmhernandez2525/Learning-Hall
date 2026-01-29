@@ -11,9 +11,33 @@ export const Courses: CollectionConfig = {
     description: 'Online courses with modules and lessons',
   },
   access: {
-    read: () => true,
+    read: ({ req }) => {
+      // Admins can read all
+      if (req.user?.role === 'admin') return true;
+
+      // For non-admin users, filter by their tenant
+      // Show courses that:
+      // 1. Have no tenant (global courses - backwards compatibility)
+      // 2. Match the user's tenant
+      if (req.user?.tenant) {
+        return {
+          or: [
+            { tenant: { exists: false } },
+            { tenant: { equals: req.user.tenant } },
+          ],
+        };
+      }
+
+      // Guest users see only courses without tenant
+      return { tenant: { exists: false } };
+    },
     create: ({ req }) => Boolean(req.user),
-    update: ({ req }) => Boolean(req.user),
+    update: ({ req }) => {
+      if (!req.user) return false;
+      if (req.user.role === 'admin') return true;
+      // Instructors can only update their own courses
+      return { instructor: { equals: req.user.id } };
+    },
     delete: ({ req }) => req.user?.role === 'admin',
   },
   hooks: {
@@ -32,6 +56,10 @@ export const Courses: CollectionConfig = {
         // Set instructor to current user on create
         if (operation === 'create' && !data.instructor) {
           data.instructor = req.user?.id;
+        }
+        // Auto-assign tenant from user on create
+        if (operation === 'create' && !data.tenant && req.user?.tenant) {
+          data.tenant = req.user.tenant;
         }
         return data;
       },
@@ -331,6 +359,15 @@ export const Courses: CollectionConfig = {
         date: {
           pickerAppearance: 'dayAndTime',
         },
+      },
+    },
+    {
+      name: 'tenant',
+      type: 'relationship',
+      relationTo: 'tenants',
+      admin: {
+        position: 'sidebar',
+        description: 'Tenant this course belongs to (for white-label)',
       },
     },
   ],

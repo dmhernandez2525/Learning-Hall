@@ -1,4 +1,5 @@
 import { getPayload } from 'payload';
+import type { Where } from 'payload';
 import config from '@/payload.config';
 
 const DEFAULT_COOKIE_DAYS = 30;

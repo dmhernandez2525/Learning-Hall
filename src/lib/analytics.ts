@@ -401,7 +401,7 @@ export async function getInstructorEarnings(
   let totalEarnings = 0;
 
   const courseResults = courses.map((course) => {
-    const earnings = courseEarnings.get(String(course.id)) || { revenue: 0, sales: 0 };
+    const earnings = courseEarnings.get(course.id) || { revenue: 0, sales: 0 };
     const instructorEarnings = Math.round(earnings.revenue * INSTRUCTOR_SHARE);
     totalEarnings += instructorEarnings;
 

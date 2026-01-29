@@ -1,11 +1,62 @@
 import type { CollectionConfig } from 'payload';
 
+// CSS property whitelist for safe customization
+const SAFE_CSS_PROPERTIES = [
+  'color', 'background-color', 'background', 'border-color', 'border-radius',
+  'font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing',
+  'padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
+  'margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+  'width', 'max-width', 'min-width', 'height', 'max-height', 'min-height',
+  'box-shadow', 'text-shadow', 'opacity', 'transition', 'transform',
+];
+
+// Patterns that indicate potentially malicious CSS
+const DANGEROUS_PATTERNS = [
+  /url\s*\(/i,           // No external resources
+  /import/i,             // No @import
+  /expression/i,         // No IE expressions
+  /javascript:/i,        // No JS URLs
+  /behavior/i,           // No IE behaviors
+  /-moz-binding/i,       // No XBL bindings
+  /data:/i,              // No data URLs
+  /position\s*:\s*fixed/i, // No position fixed (could overlay UI)
+];
+
+function sanitizeCSS(css: string): string {
+  if (!css) return '';
+
+  // Check for dangerous patterns
+  for (const pattern of DANGEROUS_PATTERNS) {
+    if (pattern.test(css)) {
+      throw new Error(`CSS contains potentially unsafe content: ${pattern.source}`);
+    }
+  }
+
+  // Basic length limit
+  if (css.length > 50000) {
+    throw new Error('CSS exceeds maximum length of 50000 characters');
+  }
+
+  return css;
+}
+
 export const Tenants: CollectionConfig = {
   slug: 'tenants',
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'slug', 'plan', 'createdAt'],
     group: 'Admin',
+  },
+  hooks: {
+    beforeChange: [
+      async ({ data }) => {
+        // Sanitize custom CSS to prevent injection attacks
+        if (data?.branding?.customCSS) {
+          data.branding.customCSS = sanitizeCSS(data.branding.customCSS);
+        }
+        return data;
+      },
+    ],
   },
   access: {
     read: ({ req }) => {
