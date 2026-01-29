@@ -58,7 +58,7 @@ export async function getCategories(tenantId?: string): Promise<Category[]> {
   const courses = await payload.find({
     collection: 'courses',
     where,
-    limit: 10000,
+    limit: 5000, // Aggregation query - reasonable upper bound
   });
 
   // Count courses by category
@@ -99,7 +99,7 @@ export async function getLevels(tenantId?: string): Promise<{ level: string; cou
   const courses = await payload.find({
     collection: 'courses',
     where,
-    limit: 10000,
+    limit: 5000, // Aggregation query - reasonable upper bound
   });
 
   const levelCounts: Record<string, number> = {};
@@ -136,7 +136,7 @@ export async function getPriceRanges(
   const courses = await payload.find({
     collection: 'courses',
     where,
-    limit: 10000,
+    limit: 5000, // Aggregation query - reasonable upper bound
   });
 
   const ranges = [
@@ -272,30 +272,51 @@ async function getContinueLearningCourses(
     limit: 20,
   });
 
-  const courses: DiscoveryCourse[] = [];
+  // Extract course IDs for batch progress query
+  const courseIds: string[] = [];
+  const courseMap = new Map<string, Record<string, unknown>>();
 
   for (const enrollment of enrollments.docs) {
     const course = enrollment.course;
     if (typeof course !== 'object') continue;
-
     if (tenantId && String(course.tenant) !== tenantId) continue;
 
-    // Get progress
-    const progress = await payload.find({
-      collection: 'progress',
-      where: {
-        and: [
-          { user: { equals: userId } },
-          { course: { equals: String(course.id) } },
-        ],
-      },
-      limit: 1,
-    });
+    const courseId = String(course.id);
+    courseIds.push(courseId);
+    courseMap.set(courseId, course as Record<string, unknown>);
+  }
 
-    const progressPercent = progress.docs[0]?.percentage || 0;
+  if (courseIds.length === 0) return [];
+
+  // Batch query for all progress records (fixes N+1)
+  const progressRecords = await payload.find({
+    collection: 'progress',
+    where: {
+      and: [
+        { user: { equals: userId } },
+        { course: { in: courseIds } },
+      ],
+    },
+    limit: courseIds.length,
+  });
+
+  // Map progress by course ID
+  const progressMap = new Map<string, number>();
+  for (const progress of progressRecords.docs) {
+    const courseId = typeof progress.course === 'object'
+      ? String(progress.course.id)
+      : String(progress.course);
+    progressMap.set(courseId, (progress.percentage as number) || 0);
+  }
+
+  // Build result with progress data
+  const courses: DiscoveryCourse[] = [];
+  for (const courseId of courseIds) {
+    const progressPercent = progressMap.get(courseId) || 0;
 
     // Only include incomplete courses
     if (progressPercent > 0 && progressPercent < 100) {
+      const course = courseMap.get(courseId)!;
       courses.push(formatDiscoveryCourse(course));
     }
   }
@@ -547,7 +568,7 @@ export async function getTopInstructors(
     collection: 'courses',
     where,
     depth: 1,
-    limit: 10000,
+    limit: 5000, // Aggregation query - reasonable upper bound
   });
 
   // Aggregate by instructor
