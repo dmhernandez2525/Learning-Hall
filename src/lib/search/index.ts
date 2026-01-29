@@ -410,16 +410,31 @@ export async function getRelatedCourses(courseId: string, limit = 4): Promise<Se
 export async function reindexAll() {
   const payload = await getPayload({ config });
 
-  // Get all published courses
-  const courses = await payload.find({
-    collection: 'courses',
-    where: { status: { equals: 'published' } },
-    limit: 10000,
-  });
+  let page = 1;
+  const pageSize = 100;
+  let totalIndexed = 0;
 
-  for (const course of courses.docs) {
-    await indexCourse(String(course.id));
+  // Paginate through all published courses for scalable reindexing
+  while (true) {
+    const courses = await payload.find({
+      collection: 'courses',
+      where: { status: { equals: 'published' } },
+      limit: pageSize,
+      page,
+    });
+
+    if (courses.docs.length === 0) break;
+
+    // Index courses in parallel batches
+    await Promise.all(
+      courses.docs.map((course) => indexCourse(String(course.id)))
+    );
+
+    totalIndexed += courses.docs.length;
+
+    if (!courses.hasNextPage) break;
+    page++;
   }
 
-  console.log(`Reindexed ${courses.docs.length} courses`);
+  console.log(`Reindexed ${totalIndexed} courses`);
 }

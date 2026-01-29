@@ -1,5 +1,6 @@
 // Redis Client with Connection Pooling
 import Redis from 'ioredis';
+import { randomUUID } from 'crypto';
 
 let redisClient: Redis | null = null;
 let isConnecting = false;
@@ -150,7 +151,8 @@ export async function acquireLock(
 ): Promise<string | null> {
   try {
     const client = await getRedisClient();
-    const lockValue = `${Date.now()}-${Math.random().toString(36)}`;
+    // Use cryptographically secure random UUID for lock value
+    const lockValue = randomUUID();
 
     // SET with NX (only set if not exists) and PX (expiry in ms)
     const result = await client.set(
