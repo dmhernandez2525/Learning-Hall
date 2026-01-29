@@ -1,5 +1,4 @@
 // Multi-layer Caching System
-import { LRUCache } from 'lru-cache';
 import { createHash } from 'crypto';
 
 // Cache configuration
@@ -18,12 +17,62 @@ interface CacheEntry<T> {
 
 // Default cache configurations
 const DEFAULT_TTL = 5 * 60 * 1000; // 5 minutes
-const DEFAULT_MAX_SIZE = 1000;
+const DEFAULT_MAX_SIZE = 5000;
 
-// In-memory cache using LRU
-const memoryCache = new LRUCache<string, CacheEntry<unknown>>({
-  max: 5000,
-  ttl: DEFAULT_TTL,
+// Simple LRU-like cache using Map (maintains insertion order)
+class SimpleCache<K, V> {
+  private cache = new Map<K, V>();
+  private maxSize: number;
+
+  constructor(options: { max: number }) {
+    this.maxSize = options.max;
+  }
+
+  get(key: K): V | undefined {
+    const value = this.cache.get(key);
+    if (value !== undefined) {
+      // Move to end (most recently used)
+      this.cache.delete(key);
+      this.cache.set(key, value);
+    }
+    return value;
+  }
+
+  set(key: K, value: V): void {
+    // Delete first to update position
+    this.cache.delete(key);
+
+    // Evict oldest if at capacity
+    if (this.cache.size >= this.maxSize) {
+      const firstKey = this.cache.keys().next().value;
+      if (firstKey !== undefined) {
+        this.cache.delete(firstKey);
+      }
+    }
+
+    this.cache.set(key, value);
+  }
+
+  delete(key: K): boolean {
+    return this.cache.delete(key);
+  }
+
+  keys(): IterableIterator<K> {
+    return this.cache.keys();
+  }
+
+  get size(): number {
+    return this.cache.size;
+  }
+
+  get max(): number {
+    return this.maxSize;
+  }
+}
+
+// In-memory cache using simple LRU implementation
+const memoryCache = new SimpleCache<string, CacheEntry<unknown>>({
+  max: DEFAULT_MAX_SIZE,
 });
 
 // Cache namespaces for different data types
