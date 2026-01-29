@@ -50,6 +50,7 @@ import {
   CourseTemplates,
   Translations,
   SearchIndex,
+  SearchAnalytics,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -133,6 +134,7 @@ export default buildConfig({
     CourseTemplates,
     Translations,
     SearchIndex,
+    SearchAnalytics,
   ],
   db: postgresAdapter({
     pool: {

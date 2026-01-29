@@ -1,3 +1,8 @@
+// Search & Discovery Module - Main Exports
+export * from './recommendations';
+export * from './analytics';
+export * from './discovery';
+
 import { getPayload } from 'payload';
 import type { Where } from 'payload';
 import config from '@/payload.config';
