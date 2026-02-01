@@ -14,8 +14,9 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { DemoRoleSelector, isDemoMode } from '@/components/auth/DemoRoleSelector';
 
-export default function RegisterPage() {
+function RegisterForm() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -148,4 +149,13 @@ export default function RegisterPage() {
       </form>
     </Card>
   );
+}
+
+export default function RegisterPage() {
+  // Show demo role selector when demo mode is enabled
+  if (isDemoMode()) {
+    return <DemoRoleSelector />;
+  }
+
+  return <RegisterForm />;
 }

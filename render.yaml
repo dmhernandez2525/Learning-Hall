@@ -28,6 +28,8 @@ services:
         generateValue: true
       - key: NEXT_PUBLIC_URL
         sync: false
+      - key: NEXT_PUBLIC_DEMO_MODE
+        value: "true"
 
   # Background Worker - commented out until worker implementation exists
   # - type: worker
