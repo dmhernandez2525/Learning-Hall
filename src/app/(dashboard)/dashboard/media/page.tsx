@@ -47,7 +47,7 @@ export default function MediaPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Media Library</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Media Library</h1>
           <p className="text-muted-foreground">
             Manage your videos, images, and documents
           </p>
@@ -58,7 +58,7 @@ export default function MediaPage() {
       {media.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {/* Media cards will be rendered here */}
         </div>
       )}

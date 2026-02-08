@@ -104,7 +104,7 @@ export default function EditCoursePage({ params }: PageProps) {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Edit Course</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Edit Course</h1>
           <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function EditCoursePage({ params }: PageProps) {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Edit Course</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Edit Course</h1>
           <p className="text-red-500">{error}</p>
         </div>
         <Button asChild>
@@ -131,7 +131,7 @@ export default function EditCoursePage({ params }: PageProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Edit Course</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Edit Course</h1>
           <p className="text-muted-foreground">Update course details and settings</p>
         </div>
         <Button variant="outline" asChild>
@@ -140,7 +140,7 @@ export default function EditCoursePage({ params }: PageProps) {
       </div>
 
       <form onSubmit={onSubmit}>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <Card className="md:col-span-2">
             <CardHeader>
               <CardTitle>Course Details</CardTitle>

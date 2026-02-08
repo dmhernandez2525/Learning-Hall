@@ -81,7 +81,7 @@ export function FeaturedBundles({
             </div>
             {showViewAll && <Skeleton className="h-10 w-28" />}
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: limit }).map((_, i) => (
               <div key={i} className="space-y-3">
                 <Skeleton className="aspect-video rounded-lg" />
@@ -122,7 +122,7 @@ export function FeaturedBundles({
           )}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {bundles.map((bundle) => (
             <BundleCard
               key={bundle.id}

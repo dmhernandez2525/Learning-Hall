@@ -166,7 +166,7 @@ export function BookmarksAndFavorites({
 
       {/* Favorites Tab */}
       {activeTab === 'favorites' && (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {favorites.length === 0 ? (
             <Card className="border-dashed md:col-span-2 lg:col-span-3">
               <CardContent className="py-10 text-center">

@@ -73,8 +73,8 @@ async function StudentDashboardPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">My Courses</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">My Courses</h1>
       {enrollments.length === 0 ? (
         <p className="text-muted-foreground">You are not enrolled in any courses yet.</p>
       ) : (
@@ -90,7 +90,7 @@ async function StudentDashboardPage() {
 
             return (
               <div key={enrollment.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <h2 className="text-xl font-semibold mb-2">{course.title}</h2>
                   <p className="text-gray-600 mb-4">{course.description || 'No description'}</p>
                   <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
@@ -131,7 +131,7 @@ async function StudentDashboardPage() {
         </div>
       )}
 
-      <h1 className="text-3xl font-bold mt-12 mb-6">My Certificates</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold mt-12 mb-6">My Certificates</h1>
       {certificates.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.map((certificate) => (

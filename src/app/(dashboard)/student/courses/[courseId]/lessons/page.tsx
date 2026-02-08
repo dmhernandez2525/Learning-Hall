@@ -29,7 +29,7 @@ export default async function CourseLessonsPage({ params }: PageProps) {
     <div className="space-y-6">
       <div>
         <p className="text-sm text-muted-foreground">{course.title}</p>
-        <h1 className="text-3xl font-bold">Lessons</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">Lessons</h1>
       </div>
       {modules.length === 0 ? (
         <Card className="border-dashed">

@@ -37,7 +37,7 @@ function QuickActions() {
         <CardTitle>Quick Actions</CardTitle>
         <CardDescription>Common tasks to get you started</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4 md:grid-cols-3">
+      <CardContent className="grid grid-cols-1 gap-4 md:grid-cols-3">
         {actions.map((action) => (
           <Link key={action.href} href={action.href}>
             <div className="p-4 border rounded-lg hover:bg-accent transition-colors cursor-pointer">
@@ -60,7 +60,7 @@ function RecentActivity() {
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          <p className="text-sm text-muted-foreground text-center py-8">
+          <p className="text-sm text-muted-foreground text-center py-6 sm:py-8">
             No recent activity yet. Start by creating your first course!
           </p>
         </div>
@@ -107,19 +107,19 @@ function GettingStarted() {
 export default function DashboardPage() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Welcome to Learning Hall. Manage your courses and content.
           </p>
         </div>
-        <Button asChild>
+        <Button asChild className="w-full sm:w-auto">
           <Link href="/dashboard/courses/new">Create Course</Link>
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatsCard title="Total Courses" value={0} description="Published and draft courses" />
         <StatsCard title="Total Lessons" value={0} description="Across all courses" />
         <StatsCard title="Media Files" value={0} description="Videos, images, and documents" />
@@ -128,7 +128,7 @@ export default function DashboardPage() {
 
       <QuickActions />
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         <RecentActivity />
         <GettingStarted />
       </div>

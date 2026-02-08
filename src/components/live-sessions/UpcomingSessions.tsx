@@ -99,7 +99,7 @@ export function UpcomingSessions({
             </div>
             {showViewAll && <Skeleton className="h-10 w-32" />}
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Array.from({ length: limit }).map((_, i) => (
               <div key={i} className="space-y-3">
                 <Skeleton className="aspect-video rounded-lg" />
@@ -148,7 +148,7 @@ export function UpcomingSessions({
           )}
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {displaySessions.map((session) => (
             <SessionCard
               key={session.id}

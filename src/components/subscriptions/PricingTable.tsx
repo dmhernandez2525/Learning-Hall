@@ -190,7 +190,7 @@ export function PricingTable({
 
       {/* Plans Grid */}
       <div
-        className={`grid gap-6 ${
+        className={`grid grid-cols-1 gap-6 ${
           sortedPlans.length === 1
             ? 'max-w-md mx-auto'
             : sortedPlans.length === 2

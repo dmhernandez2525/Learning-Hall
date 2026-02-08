@@ -176,12 +176,12 @@ export function RevenueAnalyticsDashboard({ className }: RevenueAnalyticsDashboa
       <RevenueOverviewCards stats={data.overview} />
 
       {/* Main Content Grid */}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <RevenueChart data={data.byPeriod} period={period} />
         <ProductTypeBreakdown data={data.byProductType} />
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <TopCoursesTable courses={data.topCourses} />
         <SubscriptionMetrics metrics={data.subscriptionMetrics} />
       </div>

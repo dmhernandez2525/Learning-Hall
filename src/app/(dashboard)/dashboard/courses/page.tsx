@@ -60,7 +60,7 @@ export default async function CoursesPage({ searchParams }: PageProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Courses</h1>
           <p className="text-muted-foreground">
             Create and manage your courses ({courses.totalDocs} total)
           </p>
@@ -74,7 +74,7 @@ export default async function CoursesPage({ searchParams }: PageProps) {
         <EmptyState />
       ) : (
         <>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {courses.docs.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}

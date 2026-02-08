@@ -81,7 +81,7 @@ export function ReferralStats({ stats, monthlyStats, className }: ReferralStatsP
     }).format(cents / 100);
 
   return (
-    <div className={cn('grid gap-4 md:grid-cols-2 lg:grid-cols-4', className)}>
+    <div className={cn('grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4', className)}>
       <StatCard
         title="Total Clicks"
         value={stats.totalReferrals || 0}

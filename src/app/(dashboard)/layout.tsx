@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { getSession } from '@/lib/auth';
+import MobileBottomNav from '@/components/dashboard/MobileBottomNav';
 
 export const metadata: Metadata = {
   title: 'Dashboard - Learning Hall',
@@ -22,7 +23,7 @@ async function DashboardNav() {
   ];
 
   return (
-    <nav className="flex items-center space-x-6 text-sm">
+    <nav className="hidden md:flex items-center space-x-6 text-sm">
       {navItems.map((item) =>
         item.visible ? (
           <Link
@@ -48,7 +49,7 @@ async function DashboardHeader() {
           </Link>
           <DashboardNav />
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="hidden md:flex flex-1 items-center justify-end space-x-4">
           <Link
             href="/admin"
             className="text-sm text-muted-foreground hover:text-foreground"
@@ -69,7 +70,8 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <DashboardHeader />
-      <main className="flex-1 container py-6">{children}</main>
+      <main className="flex-1 container px-4 sm:px-6 lg:px-8 py-4 sm:py-6">{children}</main>
+      <MobileBottomNav />
     </div>
   );
 }

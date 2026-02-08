@@ -28,8 +28,8 @@ async function EnrollmentsPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Enrollments</h1>
+    <div className="container mx-auto px-4 py-6 sm:py-8">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6">Enrollments</h1>
 
       {enrollments.length === 0 ? (
         <div className="bg-white shadow-md rounded-lg p-8 text-center">
@@ -39,7 +39,7 @@ async function EnrollmentsPage() {
           </p>
         </div>
       ) : (
-        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        <div className="bg-white shadow-md rounded-lg overflow-x-auto">
           <table className="min-w-full leading-normal">
             <thead>
               <tr>

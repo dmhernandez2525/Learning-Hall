@@ -55,7 +55,7 @@ export default async function CourseQuizzesPage({ params }: PageProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Assessments</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Assessments</h1>
           <p className="text-muted-foreground">{course.title}</p>
         </div>
         <Button variant="outline" asChild>
@@ -92,7 +92,7 @@ export default async function CourseQuizzesPage({ params }: PageProps) {
                 {quiz.description && (
                   <p className="text-sm text-muted-foreground">{quiz.description}</p>
                 )}
-                <div className="grid gap-4 md:grid-cols-3 text-sm">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3 text-sm">
                   <div>
                     <p className="text-muted-foreground">Time Limit</p>
                     <p className="font-medium">{quiz.timeLimit ? `${quiz.timeLimit} minutes` : 'Untimed'}</p>

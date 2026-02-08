@@ -198,7 +198,7 @@ export function AnalyticsDashboard({
         {/* Users Tab (Admin only) */}
         {isAdmin && (
           <TabsContent value="users" className="mt-6">
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
               <UserSegments tenantId={tenantId} />
               <CohortTable tenantId={tenantId} />
             </div>

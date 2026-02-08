@@ -54,7 +54,7 @@ export default async function QuizDetailPage({ params }: PageProps) {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm text-muted-foreground">{course.title}</p>
-          <h1 className="text-3xl font-bold tracking-tight">{quiz.title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{quiz.title}</h1>
         </div>
         <Button variant="outline" asChild>
           <Link href={`/student/courses/${courseId}/quizzes`}>Back to assessments</Link>

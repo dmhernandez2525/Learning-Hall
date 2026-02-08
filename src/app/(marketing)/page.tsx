@@ -10,71 +10,29 @@ import {
   ArrowRight,
   Github,
 } from 'lucide-react';
+import MarketingHeader from '@/components/marketing/MarketingHeader';
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       {/* Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
-              LH
-            </div>
-            <span className="font-bold text-xl">Learning Hall</span>
-          </Link>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link
-              href="/features"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/docs"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Docs
-            </Link>
-          </nav>
-          <div className="flex items-center space-x-4">
-            <Link
-              href="/login"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Log in
-            </Link>
-            <Link
-              href="/register"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
-            >
-              Get Started
-            </Link>
-          </div>
-        </div>
-      </header>
+      <MarketingHeader />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="container py-24 md:py-32">
+        <section className="container px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32">
           <div className="mx-auto max-w-3xl text-center">
             <div className="mb-4 inline-flex items-center rounded-full border px-3 py-1 text-sm">
               <span className="mr-2">🚀</span>
               <span>Open Source & Self-Hostable</span>
             </div>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="mb-6 text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Your courses.{' '}
               <span className="text-primary">Your storage.</span>
               <br />
               Your brand.
             </h1>
-            <p className="mb-8 text-lg text-muted-foreground md:text-xl">
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground md:text-xl">
               Create and sell online courses with your own cloud storage.
               Self-hostable, white-label, zero transaction fees.
               Keep 100% of your revenue.
@@ -82,7 +40,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/register"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90"
               >
                 Start for Free
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -91,7 +49,7 @@ export default function HomePage() {
                 href="https://github.com/dmhernandez2525/Learning-Hall"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md border px-8 py-3 text-base font-medium transition-colors hover:bg-muted"
+                className="w-full sm:w-auto inline-flex items-center justify-center rounded-md border px-8 py-3 text-base font-medium transition-colors hover:bg-muted"
               >
                 <Github className="mr-2 h-4 w-4" />
                 View on GitHub
@@ -101,18 +59,18 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="container py-24 bg-muted/50">
+        <section className="container px-4 sm:px-6 lg:px-8 py-16 sm:py-24 bg-muted/50">
           <div className="mx-auto max-w-5xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl mb-4">
                 Everything you need to create courses
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Built for creators who want full control over their content and data.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
               <FeatureCard
                 icon={<Cloud className="h-6 w-6" />}
                 title="Bring Your Own Storage"
@@ -148,19 +106,19 @@ export default function HomePage() {
         </section>
 
         {/* BYOS Comparison Section */}
-        <section className="container py-24">
+        <section className="container px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="mx-auto max-w-4xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+            <div className="text-center mb-10 sm:mb-16">
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl mb-4">
                 Why BYOS matters
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Stop paying egress fees. Own your content forever.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
-              <div className="rounded-lg border bg-card p-6">
+            <div className="grid grid-cols-1 gap-4 sm:gap-8 md:grid-cols-2">
+              <div className="rounded-lg border bg-card p-4 sm:p-6">
                 <h3 className="font-semibold text-lg mb-4 text-muted-foreground">
                   Traditional LMS Platforms
                 </h3>
@@ -172,7 +130,7 @@ export default function HomePage() {
                   <ComparisonItem negative text="No data portability" />
                 </ul>
               </div>
-              <div className="rounded-lg border-2 border-primary bg-card p-6">
+              <div className="rounded-lg border-2 border-primary bg-card p-4 sm:p-6">
                 <h3 className="font-semibold text-lg mb-4 text-primary">
                   Learning Hall + BYOS
                 </h3>
@@ -189,17 +147,17 @@ export default function HomePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="container py-24 bg-primary text-primary-foreground">
+        <section className="container px-4 sm:px-6 lg:px-8 py-16 sm:py-24 bg-primary text-primary-foreground">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight md:text-4xl mb-4">
               Ready to own your course platform?
             </h2>
-            <p className="text-lg opacity-90 mb-8">
+            <p className="text-base sm:text-lg opacity-90 mb-8">
               Start creating courses in minutes. Free to use, open source forever.
             </p>
             <Link
               href="/register"
-              className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-primary shadow transition-colors hover:bg-white/90"
+              className="w-full sm:w-auto inline-flex items-center justify-center rounded-md bg-white px-8 py-3 text-base font-medium text-primary shadow transition-colors hover:bg-white/90"
             >
               Get Started for Free
               <ArrowRight className="ml-2 h-4 w-4" />
@@ -209,9 +167,9 @@ export default function HomePage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t py-12">
-        <div className="container">
-          <div className="grid gap-8 md:grid-cols-4">
+      <footer className="border-t py-8 sm:py-12">
+        <div className="container px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
             <div>
               <Link href="/" className="flex items-center space-x-2 mb-4">
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold">
@@ -266,7 +224,7 @@ function FeatureCard({
   description: string;
 }) {
   return (
-    <div className="rounded-lg border bg-card p-6 transition-shadow hover:shadow-lg">
+    <div className="rounded-lg border bg-card p-4 sm:p-6 transition-shadow hover:shadow-lg">
       <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
         {icon}
       </div>
