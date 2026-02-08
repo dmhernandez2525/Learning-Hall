@@ -30,7 +30,7 @@ function ProviderSelector({
   onSelect: (provider: StorageProvider) => void;
 }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {(Object.keys(providerInfo) as StorageProvider[]).map((provider) => (
         <div
           key={provider}
@@ -54,7 +54,7 @@ function ProviderSelector({
 function S3ConfigForm({ isLoading }: { isLoading: boolean }) {
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="bucket">Bucket Name</Label>
           <Input
@@ -117,7 +117,7 @@ function S3ConfigForm({ isLoading }: { isLoading: boolean }) {
 function R2ConfigForm({ isLoading }: { isLoading: boolean }) {
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="bucket">Bucket Name</Label>
           <Input
@@ -166,7 +166,7 @@ function R2ConfigForm({ isLoading }: { isLoading: boolean }) {
 function GCSConfigForm({ isLoading }: { isLoading: boolean }) {
   return (
     <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <div className="space-y-2">
           <Label htmlFor="bucket">Bucket Name</Label>
           <Input
@@ -287,7 +287,7 @@ export default function StorageSettingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Storage Configuration</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Storage Configuration</h1>
           <p className="text-muted-foreground">
             Configure your preferred storage provider for media files
           </p>

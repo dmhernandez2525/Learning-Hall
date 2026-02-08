@@ -87,7 +87,7 @@ export function BrandingSettings({ branding, onSave, className }: BrandingSettin
           <CardDescription>Customize your brand colors</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="space-y-2">
               <Label htmlFor="primaryColor">Primary Color</Label>
               <div className="flex gap-2">
@@ -229,7 +229,7 @@ export function BrandingSettings({ branding, onSave, className }: BrandingSettin
           <CardDescription>Font and design settings</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label>Font Family</Label>
               <Select

@@ -703,7 +703,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Course Builder</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Course Builder</h1>
           <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
@@ -714,7 +714,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Course Builder</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Course Builder</h1>
           <p className="text-red-500">{error}</p>
         </div>
         <Button asChild>
@@ -730,7 +730,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Course Builder</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Course Builder</h1>
           <p className="text-muted-foreground">{course.title}</p>
         </div>
         <div className="flex gap-2">
@@ -916,7 +916,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div className="grid gap-4 md:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                     <div>
                       <p className="text-sm text-muted-foreground">Passing Score</p>
                       <p className="text-lg font-semibold">{quiz.passingScore}%</p>
@@ -932,7 +932,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                       </p>
                     </div>
                   </div>
-                  <div className="grid gap-4 md:grid-cols-4 text-sm">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-4 text-sm">
                     <div>
                       <p className="text-muted-foreground">Question Pool</p>
                       <p className="font-medium">
@@ -984,7 +984,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
 
       {showQuizForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background rounded-lg p-6 w-full max-w-2xl">
+          <div className="bg-background rounded-lg p-4 sm:p-6 w-full max-w-2xl">
             <h2 className="text-xl font-bold mb-4">
               {editingQuiz ? 'Edit Quiz' : 'Create Quiz'}
             </h2>
@@ -992,7 +992,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
               <p className="text-sm text-red-500 mb-3">{quizFormError}</p>
             )}
             <form onSubmit={handleQuizSubmit} className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="quiz-title">Title</Label>
                   <Input
@@ -1033,7 +1033,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                   className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
                 />
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="passingScore">Passing Score (%)</Label>
                   <Input
@@ -1076,7 +1076,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                   />
                 </div>
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <label className="flex items-center gap-2 text-sm">
                   <input
                     type="checkbox"
@@ -1135,7 +1135,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
 
       {questionManagerQuiz && (
         <div className="fixed inset-0 bg-black/50 z-40 flex items-center justify-center p-4">
-          <div className="bg-background rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 space-y-4">
+          <div className="bg-background rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">Question Bank</h2>
@@ -1171,7 +1171,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
               <div className="space-y-3">
                 {(questionBank[questionManagerQuiz.id] || []).length === 0 ? (
                   <Card className="border-dashed">
-                    <CardContent className="py-8 text-center text-muted-foreground">
+                    <CardContent className="py-6 sm:py-8 text-center text-muted-foreground">
                       No questions yet. Add your first question to build the bank.
                     </CardContent>
                   </Card>
@@ -1220,7 +1220,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
 
       {questionFormState && (
         <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-          <div className="bg-background rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6">
+          <div className="bg-background rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
             <h2 className="text-xl font-bold mb-4">
               {questionFormState.question ? 'Edit Question' : 'Add Question'}
             </h2>
@@ -1238,7 +1238,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                   required
                 />
               </div>
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 <div className="space-y-2">
                   <Label htmlFor="questionType">Type</Label>
                   <select
@@ -1297,7 +1297,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                   </div>
                   <div className="space-y-3">
                     {questionDraft.options.map((option, index) => (
-                      <div key={index} className="grid gap-3 md:grid-cols-[1fr,auto]">
+                      <div key={index} className="grid grid-cols-1 gap-3 md:grid-cols-[1fr,auto]">
                         <div className="space-y-2">
                           <Input
                             placeholder={`Option ${index + 1}`}
@@ -1401,7 +1401,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
 
       {analyticsQuiz && (
         <div className="fixed inset-0 bg-black/60 z-40 flex items-center justify-center p-4">
-          <div className="bg-background rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 space-y-4">
+          <div className="bg-background rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto p-4 sm:p-6 space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-xl font-bold">Quiz Analytics</h2>
@@ -1429,7 +1429,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
                 const avgMinutes = stats.averageDuration ? (stats.averageDuration / 60).toFixed(1) : '0';
                 return (
                   <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-4 text-center">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-4 text-center">
                       <div className="rounded-lg border p-3">
                         <p className="text-sm text-muted-foreground">Attempts</p>
                         <p className="text-2xl font-semibold">{stats.attemptCount}</p>
@@ -1476,7 +1476,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
       {/* Module Form Modal */}
       {showModuleForm && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background rounded-lg p-6 w-full max-w-md">
+          <div className="bg-background rounded-lg p-4 sm:p-6 w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">
               {editingModule ? 'Edit Module' : 'Add Module'}
             </h2>
@@ -1522,7 +1522,7 @@ export default function CourseBuilderPage({ params }: PageProps) {
       {/* Lesson Form Modal */}
       {showLessonForm && editingLesson && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-background rounded-lg p-6 w-full max-w-md">
+          <div className="bg-background rounded-lg p-4 sm:p-6 w-full max-w-md">
             <h2 className="text-xl font-bold mb-4">
               {editingLesson.lesson ? 'Edit Lesson' : 'Add Lesson'}
             </h2>

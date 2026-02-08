@@ -191,7 +191,7 @@ export function AffiliateDashboard({ className }: AffiliateDashboardProps) {
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <div className="p-4 rounded-lg border bg-muted/30">
               <p className="text-2xl font-bold text-primary">20%</p>
               <p className="text-sm text-muted-foreground">Commission on courses</p>
@@ -318,7 +318,7 @@ export function AffiliateDashboard({ className }: AffiliateDashboardProps) {
       )}
 
       {/* Main Content */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-6">
           <ShareLinks affiliateCode={affiliate.code} customLinks={customLinks} />
 

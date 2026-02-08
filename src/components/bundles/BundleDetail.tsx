@@ -129,7 +129,7 @@ export function BundleDetail({
   if (loading) {
     return (
       <div className={cn('space-y-8', className)}>
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
             <Skeleton className="h-8 w-3/4" />
             <Skeleton className="aspect-video rounded-lg" />
@@ -175,7 +175,7 @@ export function BundleDetail({
         Back to Bundles
       </Link>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Header */}

@@ -66,7 +66,7 @@ export default async function VerifyCertificatePage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Verification Badge */}
         <Card className="bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
-          <CardContent className="p-6">
+          <CardContent className="p-4 sm:p-6">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
                 <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400" />

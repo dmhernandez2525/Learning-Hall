@@ -99,7 +99,7 @@ export function BundleList({
 
   if (loading) {
     return (
-      <div className={cn('grid gap-6', gridCols[columns], className)}>
+      <div className={cn('grid grid-cols-1 gap-6', gridCols[columns], className)}>
         {Array.from({ length: limit }).map((_, i) => (
           <div key={i} className="space-y-3">
             <Skeleton className="aspect-video rounded-lg" />
@@ -139,7 +139,7 @@ export function BundleList({
 
   return (
     <div className={className}>
-      <div className={cn('grid gap-6', gridCols[columns])}>
+      <div className={cn('grid grid-cols-1 gap-6', gridCols[columns])}>
         {bundles.map((bundle) => (
           <BundleCard
             key={bundle.id}

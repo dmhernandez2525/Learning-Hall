@@ -259,7 +259,7 @@ export function SubscriptionManager({ className }: SubscriptionManagerProps) {
 
       <CardContent className="space-y-6">
         {/* Price and Billing Info */}
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
               <CreditCard className="w-5 h-5 text-primary" />

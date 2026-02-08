@@ -105,7 +105,7 @@ export function OverviewCards({ metrics, loading = false, className }: OverviewC
   };
 
   return (
-    <div className={cn('grid gap-4 md:grid-cols-2 lg:grid-cols-4', className)}>
+    <div className={cn('grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4', className)}>
       <MetricCard
         title="Total Users"
         value={metrics?.totalUsers || 0}

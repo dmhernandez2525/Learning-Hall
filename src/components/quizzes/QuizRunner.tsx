@@ -321,7 +321,7 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
             {question.options?.map((option, index) => {
               const optionId = option.id || `${question.questionId}-${index}`;
               return (
-                <div key={optionId} className="grid gap-2 md:grid-cols-2">
+                <div key={optionId} className="grid grid-cols-1 gap-2 md:grid-cols-2">
                   <div className="text-sm font-medium">{option.text}</div>
                   <select
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
@@ -357,7 +357,7 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
     return (
       <div className="space-y-4">
         <Card>
-          <CardContent className="py-6 grid gap-4 md:grid-cols-3 text-center">
+          <CardContent className="py-6 grid grid-cols-1 gap-4 md:grid-cols-3 text-center">
             <div>
               <p className="text-muted-foreground text-sm">Score</p>
               <p className="text-3xl font-bold">{currentAttempt.percentage.toFixed(1)}%</p>
@@ -411,7 +411,7 @@ export default function QuizRunner({ quiz, attempts }: QuizRunnerProps) {
     <Card>
       <CardContent className="py-6 space-y-4">
         {quiz.instructions && <p className="text-sm text-muted-foreground">{quiz.instructions}</p>}
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <div>
             <p className="text-sm text-muted-foreground">Passing Score</p>
             <p className="text-2xl font-semibold">{quiz.passingScore}%</p>

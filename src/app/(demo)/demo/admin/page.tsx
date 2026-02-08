@@ -21,7 +21,7 @@ export default function DemoAdminDashboard() {
   const totalEnrollments = demoEnrollments.length;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* Demo Banner */}
       <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
         <div className="flex items-center justify-between">
@@ -43,7 +43,7 @@ export default function DemoAdminDashboard() {
 
       {/* Welcome Section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Admin Dashboard</h1>
         <p className="text-muted-foreground">
           Platform overview and management tools.
         </p>

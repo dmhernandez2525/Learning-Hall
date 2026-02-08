@@ -222,7 +222,7 @@ export function SessionDetail({ sessionId, className }: SessionDetailProps) {
     return (
       <div className={cn('space-y-8', className)}>
         <Skeleton className="h-8 w-48" />
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-6">
             <Skeleton className="h-10 w-3/4" />
             <Skeleton className="aspect-video rounded-lg" />
@@ -267,7 +267,7 @@ export function SessionDetail({ sessionId, className }: SessionDetailProps) {
         Back to Sessions
       </Link>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
           {/* Header */}

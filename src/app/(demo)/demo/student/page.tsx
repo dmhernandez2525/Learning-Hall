@@ -24,7 +24,7 @@ export default function DemoStudentDashboard() {
   const enrolledCourses = getEnrolledCourses();
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* Demo Banner */}
       <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
         <div className="flex items-center justify-between">
@@ -46,7 +46,7 @@ export default function DemoStudentDashboard() {
 
       {/* Welcome Section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Welcome back, {user.name?.split(' ')[0]}!</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Welcome back, {user.name?.split(' ')[0]}!</h1>
         <p className="text-muted-foreground">
           Continue your learning journey. You&apos;re doing great!
         </p>

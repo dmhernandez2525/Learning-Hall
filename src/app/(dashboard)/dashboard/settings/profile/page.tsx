@@ -80,7 +80,7 @@ export default function ProfileSettingsPage() {
     return (
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Profile Settings</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Profile Settings</h1>
           <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
@@ -91,7 +91,7 @@ export default function ProfileSettingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Profile Settings</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Profile Settings</h1>
           <p className="text-muted-foreground">
             Manage your account information
           </p>
@@ -101,7 +101,7 @@ export default function ProfileSettingsPage() {
         </Button>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>Profile Information</CardTitle>

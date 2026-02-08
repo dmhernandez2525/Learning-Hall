@@ -151,7 +151,7 @@ export function SessionList({
             <Skeleton className="h-10 w-80" />
           </div>
         )}
-        <div className={cn('grid gap-6', gridCols[columns])}>
+        <div className={cn('grid grid-cols-1 gap-6', gridCols[columns])}>
           {Array.from({ length: limit }).map((_, i) => (
             <div key={i} className="space-y-3">
               <Skeleton className="aspect-video rounded-lg" />
@@ -219,7 +219,7 @@ export function SessionList({
 
       {/* Session Grid */}
       {sessions.length > 0 && (
-        <div className={cn('grid gap-6', gridCols[columns])}>
+        <div className={cn('grid grid-cols-1 gap-6', gridCols[columns])}>
           {sessions.map((session) => (
             <SessionCard
               key={session.id}

@@ -14,7 +14,7 @@ export default async function StudentNotesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold">My Notes</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">My Notes</h1>
         <p className="text-muted-foreground">Search across every note you have taken in your courses.</p>
       </div>
       <NotesDashboard initialData={data} />

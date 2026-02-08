@@ -128,7 +128,7 @@ export function PayoutHistory({
   return (
     <div className={cn('space-y-6', className)}>
       {/* Summary */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Card className="bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
           <CardContent className="pt-6">
             <div className="flex items-center gap-3">

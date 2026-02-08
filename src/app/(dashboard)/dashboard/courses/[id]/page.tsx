@@ -44,7 +44,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
       <div className="flex items-center justify-between">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold tracking-tight">{course.title}</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">{course.title}</h1>
             <StatusBadge status={course.status} />
           </div>
           <p className="text-muted-foreground">
@@ -61,7 +61,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Course Details</CardTitle>

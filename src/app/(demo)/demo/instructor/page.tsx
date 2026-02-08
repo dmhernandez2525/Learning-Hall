@@ -34,7 +34,7 @@ export default function DemoInstructorDashboard() {
   ).length;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-6 sm:py-8">
       {/* Demo Banner */}
       <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
         <div className="flex items-center justify-between">
@@ -56,7 +56,7 @@ export default function DemoInstructorDashboard() {
 
       {/* Welcome Section */}
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Instructor Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Instructor Dashboard</h1>
         <p className="text-muted-foreground">
           Manage your courses, track student progress, and grow your teaching impact.
         </p>
