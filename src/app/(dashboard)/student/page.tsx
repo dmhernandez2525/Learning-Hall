@@ -100,30 +100,32 @@ async function StudentDashboardPage() {
                     ></div>
                   </div>
                   <p className="text-sm text-gray-500 mt-2">{progress?.progressPercentage || 0}% Complete</p>
-                  <Link href={`/courses/${course.slug}`} className="text-blue-500 hover:underline mt-4 inline-block">
-                    View Course
-                  </Link>
-                  <button className="bg-green-500 text-white px-4 py-2 rounded-md ml-4">
-                    Resume
-                  </button>
-                  <Link
-                    href={`/student/courses/${course.id}/lessons`}
-                    className="text-sm text-blue-600 ml-4"
-                  >
-                    Lessons
-                  </Link>
-                  <Link
-                    href={`/student/courses/${course.id}/quizzes`}
-                    className="text-sm text-blue-600 ml-4"
-                  >
-                    Assessments
-                  </Link>
-                  <Link
-                    href={`/student/courses/${course.id}/discussions`}
-                    className="text-sm text-blue-600 ml-2"
-                  >
-                    Discussions
-                  </Link>
+                  <div className="flex flex-wrap items-center gap-3 mt-4">
+                    <Link href={`/courses/${course.slug}`} className="text-blue-500 hover:underline">
+                      View Course
+                    </Link>
+                    <button className="bg-green-500 text-white px-4 py-2 rounded-md">
+                      Resume
+                    </button>
+                    <Link
+                      href={`/student/courses/${course.id}/lessons`}
+                      className="text-sm text-blue-600"
+                    >
+                      Lessons
+                    </Link>
+                    <Link
+                      href={`/student/courses/${course.id}/quizzes`}
+                      className="text-sm text-blue-600"
+                    >
+                      Assessments
+                    </Link>
+                    <Link
+                      href={`/student/courses/${course.id}/discussions`}
+                      className="text-sm text-blue-600"
+                    >
+                      Discussions
+                    </Link>
+                  </div>
                 </div>
               </div>
             );

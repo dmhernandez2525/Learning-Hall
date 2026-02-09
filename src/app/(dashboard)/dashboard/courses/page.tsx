@@ -58,14 +58,14 @@ export default async function CoursesPage({ searchParams }: PageProps) {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Courses</h1>
           <p className="text-muted-foreground">
             Create and manage your courses ({courses.totalDocs} total)
           </p>
         </div>
-        <Button asChild>
+        <Button asChild className="w-full sm:w-auto">
           <Link href="/dashboard/courses/new">Create Course</Link>
         </Button>
       </div>
