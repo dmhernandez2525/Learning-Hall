@@ -16,6 +16,7 @@ Learning Hall is a full-featured LMS platform that enables educators to create c
 - **Multi-Tenant**: Support for multiple organizations
 - **Role-Based Access**: Admin, instructor, and student roles
 - **Progress Tracking**: Track student progress through courses
+- **Instructor Analytics Dashboard**: Real-time enrollment alerts, sortable performance metrics, insights, and CSV export
 - **Quiz Engine**: Timed assessments with randomized question banks and analytics
 - **Discussion Forums**: Threaded course discussions with instructor badges, pinning, and voting
 - **Student Notes**: Rich text notes with video timestamps, exports, and cross-course search
@@ -142,6 +143,13 @@ Payload CMS provides a complete REST API at `/api`.
 | POST | `/api/courses` | Create course |
 | PATCH | `/api/courses/:id` | Update course |
 | DELETE | `/api/courses/:id` | Delete course |
+
+### Instructor Analytics
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/instructor/dashboard?range=30d` | Instructor analytics payload with charts, performance metrics, and insights |
+| GET | `/api/instructor/dashboard?format=csv` | Export instructor dashboard data as CSV |
+| GET | `/api/instructor/dashboard?notificationsOnly=true&since={iso}` | Poll for new enrollment notifications |
 
 ### Quizzes & Questions
 | Method | Endpoint | Description |

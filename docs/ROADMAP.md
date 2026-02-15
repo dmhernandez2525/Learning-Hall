@@ -1,13 +1,28 @@
 # Learning Hall - Roadmap
 
-**Version:** 2.0.0
-**Last Updated:** January 2026
+**Version:** 3.1.0
+**Last Updated:** February 2026
 
 ---
 
-## Current Status: Phase 3 Development
+## Current Status: Phase 6 Development
 
 The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Payload CMS stack.
+
+---
+
+## Phase 6: Instructor Experience (In Progress)
+
+| Status | Feature | Description |
+|--------|---------|-------------|
+| ✅ | F6.1 Enhanced Instructor Dashboard | Real-time enrollment notifications, date range filtering, CSV export, line/bar/pie visualizations, sortable course comparison table, and actionable insights |
+| 📋 | F6.2 Course Builder V2 | Drag and drop ordering, autosave, undo/redo, templates |
+| 📋 | F6.3 Advanced Video Management | Chapters, hotspots, playback preferences, analytics |
+| 📋 | F6.4 Assignment System | Rubrics, submissions, grading workflow, analytics |
+| 📋 | F6.5 Learning Paths | Multi-course path sequencing with prerequisites |
+| 📋 | F6.6 Cohort-Based Learning | Time-windowed cohorts, drip scheduling, cohort analytics |
+| 📋 | F6.7 Mentorship Program | Mentor matching, scheduling, session tracking |
+| 📋 | F6.8 Content Marketplace | Instructor-to-instructor marketplace with licensing |
 
 ---
 
