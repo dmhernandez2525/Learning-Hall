@@ -31,7 +31,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | Status | Feature | Description |
 |--------|---------|-------------|
 | ✅ | F7.1 Organization Management | Multi-org hierarchy with parent references, nested department tree structure, org membership with role-based access (owner/admin/manager/member), bulk user provisioning with duplicate detection, and org analytics dashboard |
-| 📋 | F7.2 Compliance Training | Mandatory training assignments, deadline tracking, completion reporting |
+| ✅ | F7.2 Compliance Training | Compliance requirements with course/org relationships, bulk user assignment with duplicate detection, deadline tracking with overdue detection, assignment completion with automatic count sync, SVG donut chart compliance report dashboard, and per-user assignment tracker |
 | 📋 | F7.3 Enterprise Reporting | Custom report builder, scheduled exports, compliance dashboards |
 | 📋 | F7.4 Skills Framework | Skill taxonomy, competency mapping, gap analysis |
 | 📋 | F7.5 Manager Dashboard | Team progress views, training assignment, completion oversight |
