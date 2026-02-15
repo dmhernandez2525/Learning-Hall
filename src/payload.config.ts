@@ -56,6 +56,7 @@ import {
   Translations,
   SearchIndex,
   SearchAnalytics,
+  Cohorts,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -145,6 +146,7 @@ export default buildConfig({
     Translations,
     SearchIndex,
     SearchAnalytics,
+    Cohorts,
   ],
   db: postgresAdapter({
     pool: {
