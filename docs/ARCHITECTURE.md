@@ -128,7 +128,7 @@ Data modeling is handled through Payload's collection configuration files.
 ## Business Logic & Automation
 
 - **Hooks**: Payload's hooks are used for automation. For example, a `beforeChange` hook on the `CourseProgress` collection calculates the `progressPercentage` whenever the `completedLessons` array is modified. This keeps the data consistent without requiring manual calculations on the client-side.
-- **Assessment Engine**: Attempt creation copies the randomized question set—including shuffled choices—into `QuizAttempts` so grading is deterministic even when the bank changes. Submission grading awards partial credit for matching questions and updates quiz metadata (average score, question count, pass rate) in the background.
+- **Assessment Engine**: Attempt creation copies the randomized question set, including shuffled choices, into `QuizAttempts` so grading is deterministic even when the bank changes. Submission grading awards partial credit for matching questions and updates quiz metadata (average score, question count, pass rate) in the background.
 - **Access Control**: Quiz/question APIs enforce instructor-only management and ensure students can only start attempts for courses they are enrolled in. Attempt responses are masked server-side until instructors allow review/explanations.
 - **Community Notifications**: Discussion replies automatically bump `replyCount`, subscribe the author, and trigger the `discussion-reply` email template for thread subscribers and instructors, ensuring learners stay informed about new activity.
 - **Lesson Notes**: Notes sanitize user-provided HTML both client- and server-side, mirror plain text for search queries, and update metadata (e.g., timestamps) whenever learners edit or export their content.
@@ -184,6 +184,26 @@ Data modeling is handled through Payload's collection configuration files.
 3. **Exports & Review**
    - From either the lesson view or `/student/notes`, learners export notes as Markdown or PDF using `jspdf` and downloadable blobs.
    - Jump buttons call the `VideoPlayer`'s `seekTimestamp` prop so clicking a note replays the captured moment.
+
+---
+
+## Instructor Analytics Dashboard (F6.1)
+
+The instructor dashboard at `/instructor` now uses a dedicated analytics domain module.
+
+- **Server data layer**: `src/lib/instructor-dashboard/`
+  - `service.ts` gathers instructor-specific datasets (courses, enrollments, reviews, quiz attempts, lesson activity, and revenue events)
+  - `aggregation.ts`, `timeline.ts`, and `insights.ts` compute summary metrics, trends, and recommendations
+  - `csv.ts` builds downloadable exports for all dashboard sections
+- **API endpoint**: `GET /api/instructor/dashboard`
+  - supports `range=7d|30d|90d|365d`
+  - supports `format=csv` for exports
+  - supports `notificationsOnly=true&since={iso}` for polling-based real-time enrollment alerts
+- **Client UI composition**: `src/components/instructor/dashboard/`
+  - collapsible sidebar with range filters and quick actions
+  - line chart (enrollment trend), bar chart (completion comparison), pie chart (revenue mix)
+  - sortable course performance table and actionable insights panel
+  - notifications panel with unread state and polling refresh
 
 ---
 
