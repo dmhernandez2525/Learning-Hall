@@ -1,13 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSession } from '@/lib/auth';
-import { updateLessonActivity } from '@/lib/activity';
+import { getLessonActivity, updateLessonActivity } from '@/lib/activity';
 
 type RouteParams = { params: Promise<{ id: string }> };
 
 const schema = z.object({
   position: z.number().min(0).optional(),
 });
+
+export async function GET(_request: NextRequest, { params }: RouteParams) {
+  try {
+    const user = await getSession();
+    if (!user) {
+      return NextResponse.json({ error: 'Authentication required' }, { status: 401 });
+    }
+
+    const { id: lessonId } = await params;
+    const entry = await getLessonActivity(lessonId, user);
+    return NextResponse.json({ doc: entry });
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : 'Failed to load activity' },
+      { status: 400 }
+    );
+  }
+}
 
 export async function POST(request: NextRequest, { params }: RouteParams) {
   try {

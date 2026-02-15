@@ -80,6 +80,17 @@ export const Users: CollectionConfig = {
           defaultValue: false,
           label: 'Receive marketing emails',
         },
+        {
+          name: 'videoPlaybackRate',
+          type: 'number',
+          defaultValue: 1,
+          min: 0.5,
+          max: 2,
+          admin: {
+            step: 0.25,
+          },
+          label: 'Preferred video playback speed',
+        },
       ],
     },
   ],

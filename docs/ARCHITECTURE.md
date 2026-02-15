@@ -235,6 +235,32 @@ Course Builder V2 introduces a dedicated instructor editing surface while preser
 
 ---
 
+## Advanced Video Management (F6.3)
+
+Advanced Video Management adds rich video interaction features on top of the base `VideoPlayer`.
+
+- **Collection**: `LessonVideoMetadata` stores chapters, hotspots, annotations, VTT transcript, and quality options per lesson (unique on lesson).
+- **API routes** (all under `/api/lessons/[id]/`):
+  - `video-metadata` (GET/PATCH): read/upsert metadata (instructor/admin only for writes)
+  - `video-analytics` (GET): heatmap, completion rate, drop-off points (instructor/admin only)
+  - `bookmarks` (GET/POST): list/create timestamped bookmarks with optional notes
+  - `bookmarks/[bookmarkId]` (DELETE): remove a bookmark
+  - `activity` (GET): retrieve lesson activity for a user
+- **Components** (`src/components/video/advanced/`):
+  - `AdvancedVideoPlayer`: main player with captions track, quality switching, PiP, playback rate control, progress reporting with 90% completion detection
+  - `VideoControlsBar`: speed, quality, PiP, time display controls
+  - `VideoOverlays`: timed annotation and hotspot overlays
+  - `ChaptersList`: chapter navigation buttons
+  - `VideoBookmarksPanel`: create/list/delete timestamped bookmarks via API
+  - `TranscriptPanel`: view parsed VTT cues, instructor edit mode for VTT content
+  - `VideoAnalyticsDashboard`: SVG heatmap, stat cards (total views, completion rate, avg watch position), drop-off points list
+- **Services** (`src/lib/`):
+  - `video-metadata.ts`: safe Payload doc mappers, `getVideoMetadataByLesson`, `upsertVideoMetadata`
+  - `video-analytics.ts`: heatmap bin generation, drop-off detection, `getLessonVideoAnalytics`
+- **User preferences**: `videoPlaybackRate` field on Users collection, persisted via `/api/users/me` PATCH
+
+---
+
 ## Authentication & Authorization
 
 - **Authentication**: Handled by Payload Auth (JWT-based).

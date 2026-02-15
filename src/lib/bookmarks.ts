@@ -15,6 +15,7 @@ export interface LessonBookmark {
   };
   createdAt: string;
   videoTimestamp?: number;
+  note?: string;
 }
 
 function formatBookmark(doc: Record<string, unknown>): LessonBookmark {
@@ -31,7 +32,11 @@ function formatBookmark(doc: Record<string, unknown>): LessonBookmark {
         ? { id: String(course.id), title: course.title ? String(course.title) : undefined }
         : { id: String(course), title: undefined },
     createdAt: String(doc.createdAt || new Date().toISOString()),
-    videoTimestamp: doc.videoTimestamp ? Number(doc.videoTimestamp) : undefined,
+    videoTimestamp:
+      doc.videoTimestamp !== undefined && doc.videoTimestamp !== null
+        ? Number(doc.videoTimestamp)
+        : undefined,
+    note: doc.note ? String(doc.note) : undefined,
   };
 }
 
@@ -74,6 +79,8 @@ export async function setLessonBookmark(lessonId: string, bookmark: boolean, use
         user: user.id,
         lesson: lessonId,
         course: lesson.module.course.id,
+        videoTimestamp: undefined,
+        note: undefined,
       },
     });
     return true;
@@ -86,4 +93,88 @@ export async function setLessonBookmark(lessonId: string, bookmark: boolean, use
     });
   }
   return false;
+}
+
+export async function listVideoBookmarksForLesson(
+  lessonId: string,
+  user: User
+): Promise<LessonBookmark[]> {
+  const lesson = await getLesson(lessonId);
+  if (!lesson?.module?.course?.id) {
+    throw new Error('Lesson not found');
+  }
+  await requireCourseAccess(lesson.module.course.id, user);
+
+  const payload = await getPayloadClient();
+  const result = await payload.find({
+    collection: 'lesson-bookmarks',
+    where: {
+      and: [
+        { user: { equals: user.id } },
+        { lesson: { equals: lessonId } },
+      ],
+    },
+    sort: '-createdAt',
+    limit: 100,
+    depth: 2,
+  });
+
+  return result.docs.map((doc) => formatBookmark(doc as Record<string, unknown>));
+}
+
+export async function createVideoBookmark(
+  lessonId: string,
+  timestamp: number,
+  note: string | undefined,
+  user: User
+): Promise<LessonBookmark> {
+  const lesson = await getLesson(lessonId);
+  if (!lesson?.module?.course?.id) {
+    throw new Error('Lesson not found');
+  }
+  await requireCourseAccess(lesson.module.course.id, user);
+
+  const payload = await getPayloadClient();
+  const created = await payload.create({
+    collection: 'lesson-bookmarks',
+    data: {
+      user: user.id,
+      lesson: lessonId,
+      course: lesson.module.course.id,
+      videoTimestamp: Math.max(0, Math.floor(timestamp)),
+      note: note?.trim() || undefined,
+    },
+  });
+
+  return formatBookmark(created as Record<string, unknown>);
+}
+
+export async function deleteVideoBookmark(
+  lessonId: string,
+  bookmarkId: string,
+  user: User
+): Promise<void> {
+  const lesson = await getLesson(lessonId);
+  if (!lesson?.module?.course?.id) {
+    throw new Error('Lesson not found');
+  }
+  await requireCourseAccess(lesson.module.course.id, user);
+
+  const payload = await getPayloadClient();
+  const bookmark = await payload.findByID({
+    collection: 'lesson-bookmarks',
+    id: bookmarkId,
+    depth: 0,
+  });
+
+  const owner = String((bookmark as Record<string, unknown>).user ?? '');
+  const bookmarkLesson = String((bookmark as Record<string, unknown>).lesson ?? '');
+  if (owner !== user.id || bookmarkLesson !== lessonId) {
+    throw new Error('Bookmark not found');
+  }
+
+  await payload.delete({
+    collection: 'lesson-bookmarks',
+    id: bookmarkId,
+  });
 }
