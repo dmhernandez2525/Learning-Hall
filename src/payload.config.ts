@@ -63,6 +63,9 @@ import {
   MarketplaceListings,
   MarketplacePurchases,
   MarketplaceReviews,
+  Organizations,
+  Departments,
+  OrgMemberships,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -159,6 +162,9 @@ export default buildConfig({
     MarketplaceListings,
     MarketplacePurchases,
     MarketplaceReviews,
+    Organizations,
+    Departments,
+    OrgMemberships,
   ],
   db: postgresAdapter({
     pool: {

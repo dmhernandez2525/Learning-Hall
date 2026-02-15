@@ -261,6 +261,30 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Organization Management (F7.1)
+
+Organization Management provides multi-org hierarchy, department structure, and bulk user provisioning.
+
+- **Collections**:
+  - `Organizations`: org data with parent self-reference for hierarchy, tenant relationship, slug, status (active/inactive), member count
+  - `Departments`: nested department structure with organization and parent department relationships, manager assignment
+  - `OrgMemberships`: user-to-org assignments with role (owner/admin/manager/member) and optional department
+- **API routes**:
+  - `/api/organizations` (GET/POST): list tenant orgs, create org (admin only)
+  - `/api/organizations/[id]/departments` (GET/POST): list/create departments
+  - `/api/organizations/[id]/members` (GET/POST): list/add org members
+  - `/api/organizations/[id]/bulk-provision` (POST): bulk create users and assign memberships (admin only, up to 500)
+  - `/api/organizations/[id]/analytics` (GET): org analytics with member count, department count, avg course progress
+- **Components** (`src/components/organizations/`):
+  - `OrgList`: org cards with status badges and member counts
+  - `DepartmentTree`: hierarchical tree rendering with nested indentation via `buildTree` algorithm
+  - `MemberTable`: sortable member table with role badges and join dates
+- **Service** (`src/lib/organizations.ts`):
+  - `bulkProvisionUsers`: creates or finds users by email, checks for existing memberships, returns created/skipped/errors summary
+  - `addMember`: creates membership and atomically increments org member count
+
+---
+
 ## Content Marketplace (F6.8)
 
 Content Marketplace enables instructor-to-instructor content sharing with licensing and purchase tracking.

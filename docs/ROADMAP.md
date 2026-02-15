@@ -26,6 +26,37 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 
 ---
 
+## Phase 7: Enterprise Features (In Progress)
+
+| Status | Feature | Description |
+|--------|---------|-------------|
+| ✅ | F7.1 Organization Management | Multi-org hierarchy with parent references, nested department tree structure, org membership with role-based access (owner/admin/manager/member), bulk user provisioning with duplicate detection, and org analytics dashboard |
+| 📋 | F7.2 Compliance Training | Mandatory training assignments, deadline tracking, completion reporting |
+| 📋 | F7.3 Enterprise Reporting | Custom report builder, scheduled exports, compliance dashboards |
+| 📋 | F7.4 Skills Framework | Skill taxonomy, competency mapping, gap analysis |
+| 📋 | F7.5 Manager Dashboard | Team progress views, training assignment, completion oversight |
+| 📋 | F7.6 Content Library | Shared content repository, content versioning, approval workflows |
+| 📋 | F7.7 Security & SSO | SAML/OIDC SSO, role-based access, IP restrictions |
+| 📋 | F7.8 Audit Logs | Activity logging, data export, retention policies |
+| 📋 | F7.9 User Management | Bulk import/export, user groups, custom fields |
+
+---
+
+## Phase 8: Innovation Features (Planned)
+
+| Status | Feature | Description |
+|--------|---------|-------------|
+| 📋 | F8.1 AI Content Assistant | AI-powered content suggestions, quiz generation, summary creation |
+| 📋 | F8.2 Virtual Classrooms | Real-time video sessions, whiteboard, breakout rooms |
+| 📋 | F8.3 Community Hub | User profiles, activity feeds, direct messaging |
+| 📋 | F8.4 Accessibility Engine | WCAG compliance checker, screen reader optimization, keyboard navigation audit |
+| 📋 | F8.5 Microlearning | Bite-sized lessons, spaced repetition, daily challenges |
+| 📋 | F8.6 Notification Center | In-app notifications, email digests, push notifications |
+| 📋 | F8.7 Advanced Search | Full-text search, filters, search analytics |
+| 📋 | F8.8 Social Learning | Study groups, collaborative notes, peer teaching |
+
+---
+
 ## Phase 1: Core Platform (Completed)
 
 | Status | Feature | Description |
