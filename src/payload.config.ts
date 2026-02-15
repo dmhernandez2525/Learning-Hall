@@ -57,6 +57,9 @@ import {
   SearchIndex,
   SearchAnalytics,
   Cohorts,
+  MentorProfiles,
+  MentorshipMatches,
+  MentorshipSessions,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -147,6 +150,9 @@ export default buildConfig({
     SearchIndex,
     SearchAnalytics,
     Cohorts,
+    MentorProfiles,
+    MentorshipMatches,
+    MentorshipSessions,
   ],
   db: postgresAdapter({
     pool: {

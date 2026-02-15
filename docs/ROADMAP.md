@@ -21,7 +21,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | F6.4 Assignment System | Instructor-defined assignments with rubrics, student submissions (text/file/URL), rubric-based grading workflow, peer review support, late submission penalties, resubmission limits, and SVG analytics dashboard with score distribution and criteria performance |
 | ✅ | F6.5 Learning Paths | Multi-course path sequencing with step prerequisites, enrollment tracking, progress visualization with locked/available/completed states, and path catalog |
 | ✅ | F6.6 Cohort-Based Learning | Time-windowed cohorts with drip content scheduling, member management with max capacity, facilitator/student roles, ranked leaderboards, and cohort analytics dashboard with module unlock status tracking |
-| 📋 | F6.7 Mentorship Program | Mentor matching, scheduling, session tracking |
+| ✅ | F6.7 Mentorship Program | Mentor profiles with expertise tags and availability slots, mentee-to-mentor match requests with capacity enforcement, session scheduling with duration options, session status tracking (scheduled/completed/cancelled/no-show), mentee ratings and feedback, SVG session breakdown analytics dashboard, and match lifecycle management (pending/active/completed/cancelled) |
 | 📋 | F6.8 Content Marketplace | Instructor-to-instructor marketplace with licensing |
 
 ---
