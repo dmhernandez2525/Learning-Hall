@@ -261,6 +261,27 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Learning Paths (F6.5)
+
+Learning Paths provide multi-course sequencing with prerequisite enforcement.
+
+- **Collections**:
+  - `LearningPaths`: path definitions with ordered steps array, prerequisite references, and enrollment counts
+  - `LearningPathProgress`: per-user progress with step status tracking (locked/available/in_progress/completed)
+- **API routes**:
+  - `/api/learning-paths` (GET/POST): list published paths, create new paths
+  - `/api/learning-paths/[id]` (GET/PATCH): read/update path details and steps
+  - `/api/learning-paths/[id]/enroll` (POST): enroll in a path
+  - `/api/learning-paths/[id]/progress` (GET): get user progress for a path
+- **Components** (`src/components/learning-paths/`):
+  - `PathCatalog`: grid of path cards with step count, estimated hours, and enrollment count
+  - `PathProgressView`: step-by-step progress display with prerequisite-based status resolution, progress bar, and action buttons
+- **Service** (`src/lib/learning-paths.ts`):
+  - `resolveStepStatuses`: prerequisite resolution algorithm that determines locked/available/completed for each step
+  - CRUD operations for paths, enrollment, and progress tracking
+
+---
+
 ## Assignment System (F6.4)
 
 The Assignment System provides a full grading workflow with rubrics, submissions, and analytics.
