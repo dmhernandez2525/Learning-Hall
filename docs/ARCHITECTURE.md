@@ -261,6 +261,31 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Content Marketplace (F6.8)
+
+Content Marketplace enables instructor-to-instructor content sharing with licensing and purchase tracking.
+
+- **Collections**:
+  - `MarketplaceListings`: listing data with seller/course relationships, pricing, license types (single-use/unlimited/time-limited), categories, tags (JSON), rating, review count, purchase count
+  - `MarketplacePurchases`: purchase records with buyer/seller, license type, expiration tracking, status (pending/completed/refunded)
+  - `MarketplaceReviews`: rating (1-5) and comment per listing with automatic rating recalculation
+- **API routes**:
+  - `/api/marketplace/listings` (GET/POST): browse active listings with search/category filters, create new listing
+  - `/api/marketplace/listings/[id]` (GET/PATCH): read/update listing details and status
+  - `/api/marketplace/listings/[id]/reviews` (GET/POST): list and add reviews with rating recalculation
+  - `/api/marketplace/purchases` (GET/POST): list user purchases, complete a purchase with license expiry calculation
+  - `/api/marketplace/analytics` (GET): seller analytics with revenue, purchase counts, category breakdown
+- **Components** (`src/components/marketplace/`):
+  - `ListingCatalog`: browsable grid with search, category filters, price display, license badges, and purchase buttons
+  - `ListingDetail`: full listing view with description, tags, reviews list, and purchase action
+  - `MarketplaceAnalyticsDashboard`: stat cards for listings/purchases/revenue, SVG horizontal bar chart for top categories
+- **Service** (`src/lib/marketplace.ts`):
+  - `purchaseListing`: self-purchase prevention, time-limited license expiry calculation, atomic purchase count increment
+  - `addReview`: creates review and triggers `recalculateListingRating` for weighted average update
+  - `getMarketplaceAnalytics`: aggregates listings, purchases, and revenue with category distribution
+
+---
+
 ## Mentorship Program (F6.7)
 
 Mentorship Program enables mentor-mentee matching, session scheduling, and progress tracking with analytics.
