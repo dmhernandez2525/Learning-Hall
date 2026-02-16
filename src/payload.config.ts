@@ -94,6 +94,9 @@ import {
   UserProfiles,
   ActivityFeed,
   DirectMessages,
+  AccessibilityAudits,
+  KeyboardNavAudits,
+  ScreenReaderConfigs,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -221,6 +224,9 @@ export default buildConfig({
     UserProfiles,
     ActivityFeed,
     DirectMessages,
+    AccessibilityAudits,
+    KeyboardNavAudits,
+    ScreenReaderConfigs,
   ],
   db: postgresAdapter({
     pool: {
