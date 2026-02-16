@@ -261,6 +261,40 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Skills Framework (F7.4)
+
+The Skills Framework provides a skill taxonomy, competency mapping to courses, user assessments, and gap analysis.
+
+### Collections
+- **Skills** (`skills`): Hierarchical skill definitions with category, level (beginner/intermediate/advanced/expert), parent self-reference, and status (active/deprecated).
+- **CompetencyMappings** (`competency-mappings`): Links skills to courses with target levels and weights (0-10).
+- **UserSkillAssessments** (`user-skill-assessments`): Per-user skill assessments with current/target levels, source tracking (manual/course_completion/quiz/peer_review), and user-scoped read access.
+
+### Service Layer (`src/lib/skills.ts`)
+- `formatSkill()` / `formatMapping()` / `formatAssessment()`: Safe doc-to-type mappers
+- `createSkill()`: Creates skills in the taxonomy
+- `createMapping()`: Links skills to courses with target levels
+- `createAssessment()`: Records user skill assessments
+- `getGapAnalysis(userId)`: Calculates level gaps for each assessed skill, recommends courses via competency mappings, sorted by largest gap
+- `getSkillsAnalytics()`: Aggregates skill counts by category and average gap score
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/skills` | List/create skills (with category filter) |
+| GET | `/api/skills/[id]` | Read a single skill |
+| GET/POST | `/api/skills/mappings` | List/create competency mappings |
+| GET/POST | `/api/skills/assessments` | List/create assessments |
+| GET | `/api/skills/gap-analysis` | Gap analysis for a user |
+| GET | `/api/skills/analytics` | Skills analytics dashboard |
+
+### UI Components
+- **SkillTaxonomy**: Skill list with category filter dropdown, level/status badges
+- **GapAnalysis**: SVG bar chart of skill gaps with level transition labels and recommended course counts
+- **SkillsAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for skills by category
+
+---
+
 ## Enterprise Reporting (F7.3)
 
 Enterprise Reporting provides a custom report builder with scheduled exports and analytics for organizations.

@@ -70,6 +70,9 @@ import {
   OrgMemberships,
   ReportDefinitions,
   ReportExecutions,
+  Skills,
+  CompetencyMappings,
+  UserSkillAssessments,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -173,6 +176,9 @@ export default buildConfig({
     OrgMemberships,
     ReportDefinitions,
     ReportExecutions,
+    Skills,
+    CompetencyMappings,
+    UserSkillAssessments,
   ],
   db: postgresAdapter({
     pool: {
