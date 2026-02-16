@@ -97,3 +97,6 @@ export { default as EmailDigestConfigs } from './EmailDigestConfigs';
 export { default as PushSubscriptions } from './PushSubscriptions';
 export { default as SavedSearches } from './SavedSearches';
 export { default as SearchQueries } from './SearchQueries';
+export { default as StudyGroups } from './StudyGroups';
+export { default as CollaborativeNotes } from './CollaborativeNotes';
+export { default as PeerTeachingSessions } from './PeerTeachingSessions';
