@@ -83,3 +83,6 @@ export { default as ContentSummaries } from './ContentSummaries';
 export { default as VirtualSessions } from './VirtualSessions';
 export { default as SessionParticipants } from './SessionParticipants';
 export { default as BreakoutRooms } from './BreakoutRooms';
+export { default as UserProfiles } from './UserProfiles';
+export { default as ActivityFeed } from './ActivityFeed';
+export { default as DirectMessages } from './DirectMessages';
