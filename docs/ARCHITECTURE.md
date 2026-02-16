@@ -261,6 +261,35 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Manager Dashboard (F7.5)
+
+The Manager Dashboard provides team progress views, training assignment management, and completion oversight.
+
+### Collections
+- **TrainingAssignments** (`training-assignments`): Manager-assigned training with user/course references, due dates, status (assigned/in_progress/completed/overdue), progress percentage, and manager/user-scoped read access.
+
+### Service Layer (`src/lib/manager.ts`)
+- `formatAssignment()`: Safe doc-to-type mapper
+- `createAssignment()`: Creates training assignment with duplicate prevention per manager/user/course
+- `updateAssignmentStatus()`: Updates status and auto-sets completedAt on completion
+- `getTeamProgress(managerId)`: Aggregates per-member stats (enrolled, completed, overdue, average progress)
+- `getManagerDashboard(managerId)`: Full dashboard with team size, assignment counts, completion rate, and team members
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/manager/assignments` | List/create training assignments |
+| PATCH | `/api/manager/assignments/[id]` | Update assignment status/progress |
+| GET | `/api/manager/team` | Team member progress |
+| GET | `/api/manager/dashboard` | Full manager dashboard |
+
+### UI Components
+- **TeamProgressView**: Table with member names, enrolled/completed counts, average progress, overdue badges
+- **AssignmentManager**: Assignment cards with course name, assignee, status badges, due date, progress
+- **ManagerDashboardView**: Stat cards and SVG donut chart for completion rate
+
+---
+
 ## Skills Framework (F7.4)
 
 The Skills Framework provides a skill taxonomy, competency mapping to courses, user assessments, and gap analysis.
