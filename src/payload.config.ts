@@ -100,6 +100,9 @@ import {
   MicroLessons,
   SpacedRepetitionCards,
   DailyChallenges,
+  Notifications,
+  EmailDigestConfigs,
+  PushSubscriptions,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -233,6 +236,9 @@ export default buildConfig({
     MicroLessons,
     SpacedRepetitionCards,
     DailyChallenges,
+    Notifications,
+    EmailDigestConfigs,
+    PushSubscriptions,
   ],
   db: postgresAdapter({
     pool: {
