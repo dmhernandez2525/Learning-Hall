@@ -60,3 +60,5 @@ export { default as ComplianceAssignments } from './ComplianceAssignments';
 export { default as Organizations } from './Organizations';
 export { default as Departments } from './Departments';
 export { default as OrgMemberships } from './OrgMemberships';
+export { default as ReportDefinitions } from './ReportDefinitions';
+export { default as ReportExecutions } from './ReportExecutions';

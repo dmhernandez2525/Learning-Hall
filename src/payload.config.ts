@@ -68,6 +68,8 @@ import {
   Organizations,
   Departments,
   OrgMemberships,
+  ReportDefinitions,
+  ReportExecutions,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -169,6 +171,8 @@ export default buildConfig({
     Organizations,
     Departments,
     OrgMemberships,
+    ReportDefinitions,
+    ReportExecutions,
   ],
   db: postgresAdapter({
     pool: {

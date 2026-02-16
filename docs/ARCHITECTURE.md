@@ -261,6 +261,39 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Enterprise Reporting (F7.3)
+
+Enterprise Reporting provides a custom report builder with scheduled exports and analytics for organizations.
+
+### Collections
+- **ReportDefinitions** (`report-definitions`): Report templates with column/filter/schedule configuration. Supports enrollment, completion, compliance, revenue, engagement, and custom types.
+- **ReportExecutions** (`report-executions`): Execution records tracking status (pending/running/completed/failed), row counts, and export format (CSV/JSON/PDF).
+
+### Service Layer (`src/lib/reporting.ts`)
+- `formatDefinition()` / `formatExecution()`: Safe doc-to-type mappers
+- `createReportDefinition()`: Creates report templates with column and filter configuration
+- `executeReport()`: Runs a report, collects data from the target collection, and records execution metadata
+- `getScheduledReports()`: Returns active reports with schedule configuration
+- `getReportingAnalytics()`: Aggregates report counts, execution totals, and per-type breakdowns
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/reports/definitions` | List/create report definitions |
+| GET/PATCH | `/api/reports/definitions/[id]` | Read/update a definition |
+| POST | `/api/reports/definitions/[id]/execute` | Execute a report |
+| GET | `/api/reports/executions` | List executions (optionally by reportId) |
+| GET | `/api/reports/executions/[id]` | Read a single execution |
+| GET | `/api/reports/scheduled` | List scheduled reports (admin only) |
+| GET | `/api/reports/analytics` | Reporting analytics dashboard |
+
+### UI Components
+- **ReportBuilder**: Report list with inline creation form, type/status badges, column/filter/schedule metadata
+- **ExecutionHistory**: Table of executions with status badges, row counts, timestamps, and run button
+- **ReportingAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for reports by type
+
+---
+
 ## Compliance Training (F7.2)
 
 Compliance Training provides mandatory training assignments with deadline tracking and completion reporting.
