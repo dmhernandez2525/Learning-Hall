@@ -72,3 +72,5 @@ export { default as ContentApprovals } from './ContentApprovals';
 export { default as SSOConfigs } from './SSOConfigs';
 export { default as IPRestrictions } from './IPRestrictions';
 export { default as RolePermissions } from './RolePermissions';
+export { default as AuditLogs } from './AuditLogs';
+export { default as AuditRetentionPolicies } from './AuditRetentionPolicies';
