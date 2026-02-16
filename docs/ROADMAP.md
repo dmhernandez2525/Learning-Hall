@@ -46,7 +46,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 
 | Status | Feature | Description |
 |--------|---------|-------------|
-| 📋 | F8.1 AI Content Assistant | AI-powered content suggestions, quiz generation, summary creation |
+| ✅ | F8.1 AI Content Assistant | Content suggestions with type classification (topic/example/exercise/explanation) and accept/reject workflow, quiz generation with difficulty levels and question management, lesson summaries with key point extraction, and SVG bar chart analytics dashboard with suggestion type distribution |
 | 📋 | F8.2 Virtual Classrooms | Real-time video sessions, whiteboard, breakout rooms |
 | 📋 | F8.3 Community Hub | User profiles, activity feeds, direct messaging |
 | 📋 | F8.4 Accessibility Engine | WCAG compliance checker, screen reader optimization, keyboard navigation audit |

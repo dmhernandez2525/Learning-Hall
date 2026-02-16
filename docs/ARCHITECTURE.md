@@ -261,6 +261,40 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## AI Content Assistant (F8.1)
+
+AI Content Assistant provides content suggestions, quiz generation, and lesson summaries.
+
+### Collections
+- **ContentSuggestions** (`content-suggestions`): Suggestions with type (topic/example/exercise/explanation), lesson/course references, and accept/reject status workflow.
+- **GeneratedQuizzes** (`generated-quizzes`): AI-generated quizzes with question arrays (question, options, correctIndex, explanation), difficulty levels (easy/medium/hard), and publish lifecycle.
+- **ContentSummaries** (`content-summaries`): Lesson summaries with original/summary length tracking, key points array, and draft/published status.
+
+### Service Layer (`src/lib/ai-content.ts`)
+- `formatSuggestion()` / `formatQuiz()` / `formatSummary()`: Safe doc-to-type mappers
+- `createSuggestion()`: Creates a content suggestion for a lesson
+- `updateSuggestionStatus()`: Accepts or rejects a suggestion
+- `createGeneratedQuiz()`: Creates a quiz with questions and difficulty
+- `updateQuizStatus()`: Publishes or archives a quiz
+- `createSummary()`: Creates a lesson summary with key points
+- `getAIContentAnalytics()`: Aggregates suggestion counts, quiz totals, and type distribution
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/ai-content/suggestions` | List/create content suggestions |
+| PATCH | `/api/ai-content/suggestions/[id]` | Accept/reject a suggestion |
+| GET/POST | `/api/ai-content/quizzes` | List/create generated quizzes |
+| GET/POST | `/api/ai-content/summaries` | List/create content summaries |
+| GET | `/api/ai-content/analytics` | AI content analytics dashboard |
+
+### UI Components
+- **SuggestionList**: Suggestion cards with type color badges, status indicators, and content preview
+- **QuizGenerator**: Quiz list with question count, difficulty badges, and status indicators
+- **AIContentAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for suggestion types
+
+---
+
 ## User Management (F7.9)
 
 User Management provides group management, custom user fields, and bulk import capabilities.

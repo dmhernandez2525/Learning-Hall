@@ -77,3 +77,6 @@ export { default as AuditRetentionPolicies } from './AuditRetentionPolicies';
 export { default as UserGroups } from './UserGroups';
 export { default as UserGroupMembers } from './UserGroupMembers';
 export { default as CustomUserFields } from './CustomUserFields';
+export { default as ContentSuggestions } from './ContentSuggestions';
+export { default as GeneratedQuizzes } from './GeneratedQuizzes';
+export { default as ContentSummaries } from './ContentSummaries';
