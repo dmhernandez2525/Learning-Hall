@@ -103,6 +103,8 @@ import {
   Notifications,
   EmailDigestConfigs,
   PushSubscriptions,
+  SavedSearches,
+  SearchQueries,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -239,6 +241,8 @@ export default buildConfig({
     Notifications,
     EmailDigestConfigs,
     PushSubscriptions,
+    SavedSearches,
+    SearchQueries,
   ],
   db: postgresAdapter({
     pool: {
