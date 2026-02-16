@@ -74,3 +74,6 @@ export { default as IPRestrictions } from './IPRestrictions';
 export { default as RolePermissions } from './RolePermissions';
 export { default as AuditLogs } from './AuditLogs';
 export { default as AuditRetentionPolicies } from './AuditRetentionPolicies';
+export { default as UserGroups } from './UserGroups';
+export { default as UserGroupMembers } from './UserGroupMembers';
+export { default as CustomUserFields } from './CustomUserFields';

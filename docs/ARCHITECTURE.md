@@ -261,6 +261,98 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## User Management (F7.9)
+
+User Management provides group management, custom user fields, and bulk import capabilities.
+
+### Collections
+- **UserGroups** (`user-groups`): Groups with organization reference, description, and member count tracking.
+- **UserGroupMembers** (`user-group-members`): Group-to-user membership records with tenant scoping.
+- **CustomUserFields** (`custom-user-fields`): Configurable user fields with type (text/number/date/select/boolean), options array for select fields, and required flag.
+
+### Service Layer (`src/lib/user-management.ts`)
+- `formatGroup()` / `formatMembership()` / `formatCustomField()`: Safe doc-to-type mappers
+- `createGroup()`: Creates a user group within an organization
+- `addGroupMember()`: Adds a user to a group with duplicate prevention and atomic member count increment
+- `listGroupMembers()`: Lists group members with populated user details
+- `createCustomField()`: Defines a new custom field for an organization
+- `bulkImportUsers()`: Creates users with temp passwords, skips existing emails, returns created/skipped/error counts
+- `getUserManagementAnalytics()`: Aggregates user totals, group counts, custom field counts, role distribution, and recent signups
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/user-management/groups` | List/create user groups |
+| GET/POST | `/api/user-management/groups/[id]/members` | List/add group members |
+| GET/POST | `/api/user-management/custom-fields` | List/create custom fields |
+| POST | `/api/user-management/bulk-import` | Bulk import users |
+| GET | `/api/user-management/analytics` | User management analytics |
+
+### UI Components
+- **GroupManager**: Group list with member counts, organization filter support
+- **CustomFieldList**: Table of custom fields with name, type badges, and required indicators
+- **UserManagementAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for role distribution
+
+---
+
+## Audit Logs (F7.8)
+
+Audit Logs provides immutable activity logging with retention policies and analytics.
+
+### Collections
+- **AuditLogs** (`audit-logs`): Immutable log entries with user, action, resource, resourceId, details (JSON), IP address, and user agent. Update access returns false.
+- **AuditRetentionPolicies** (`audit-retention-policies`): Retention rules with days (30-3650), auto-export flag, and export format (csv/json).
+
+### Service Layer (`src/lib/audit.ts`)
+- `formatLogEntry()` / `formatRetentionPolicy()`: Safe doc-to-type mappers
+- `listAuditLogs()`: Filterable listing by user, action, resource, and date range
+- `createAuditLog()`: Records a new immutable audit entry
+- `getAuditAnalytics()`: Aggregates total entries, 24h/7d counts, top actions, and top resources
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/audit/logs` | List audit logs with filters |
+| GET/POST | `/api/audit/retention` | List/create retention policies |
+| GET | `/api/audit/analytics` | Audit analytics dashboard |
+
+### UI Components
+- **AuditLogViewer**: Filterable log table with user, action, resource, IP, and timestamp columns
+- **AuditAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for top actions
+
+---
+
+## Security & SSO (F7.7)
+
+Security & SSO provides single sign-on configuration, IP restrictions, and role-based permissions.
+
+### Collections
+- **SSOConfigs** (`sso-configs`): SAML/OIDC SSO configuration with provider details, metadata URL, client ID/secret, and enabled toggle. Admin-only access.
+- **IPRestrictions** (`ip-restrictions`): IP-based access rules with CIDR ranges and allow/deny actions. Admin-only access.
+- **RolePermissions** (`role-permissions`): Role-to-resource-action permission mappings. Admin-only access.
+
+### Service Layer (`src/lib/security.ts`)
+- `formatSSOConfig()` / `formatIPRestriction()` / `formatRolePermission()`: Safe doc-to-type mappers
+- `toggleSSO()`: Enables or disables an SSO configuration
+- CRUD operations for SSO configs, IP restrictions, and role permissions
+- `getSecurityAnalytics()`: Aggregates SSO provider counts, IP rule totals, and permission breakdowns
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/security/sso` | List/create SSO configs |
+| PATCH | `/api/security/sso/[id]` | Update SSO config |
+| GET/POST | `/api/security/ip-restrictions` | List/create IP restrictions |
+| GET/POST | `/api/security/permissions` | List/create role permissions |
+| GET | `/api/security/analytics` | Security analytics dashboard |
+
+### UI Components
+- **SSOManager**: SSO config list with provider type badges, enabled toggle, and inline creation form
+- **IPRuleList**: IP restriction table with CIDR display, allow/deny badges
+- **SecurityAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for SSO provider types
+
+---
+
 ## Content Library (F7.6)
 
 The Content Library provides a shared content repository with versioning and approval workflows.

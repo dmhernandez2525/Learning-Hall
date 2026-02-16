@@ -82,6 +82,9 @@ import {
   RolePermissions,
   AuditLogs,
   AuditRetentionPolicies,
+  UserGroups,
+  UserGroupMembers,
+  CustomUserFields,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -197,6 +200,9 @@ export default buildConfig({
     RolePermissions,
     AuditLogs,
     AuditRetentionPolicies,
+    UserGroups,
+    UserGroupMembers,
+    CustomUserFields,
   ],
   db: postgresAdapter({
     pool: {
