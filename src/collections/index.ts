@@ -69,3 +69,6 @@ export { default as TrainingAssignments } from './TrainingAssignments';
 export { default as ContentItems } from './ContentItems';
 export { default as ContentItemVersions } from './ContentItemVersions';
 export { default as ContentApprovals } from './ContentApprovals';
+export { default as SSOConfigs } from './SSOConfigs';
+export { default as IPRestrictions } from './IPRestrictions';
+export { default as RolePermissions } from './RolePermissions';
