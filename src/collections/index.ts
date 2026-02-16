@@ -80,3 +80,6 @@ export { default as CustomUserFields } from './CustomUserFields';
 export { default as ContentSuggestions } from './ContentSuggestions';
 export { default as GeneratedQuizzes } from './GeneratedQuizzes';
 export { default as ContentSummaries } from './ContentSummaries';
+export { default as VirtualSessions } from './VirtualSessions';
+export { default as SessionParticipants } from './SessionParticipants';
+export { default as BreakoutRooms } from './BreakoutRooms';

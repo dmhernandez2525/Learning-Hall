@@ -261,6 +261,39 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Virtual Classrooms (F8.2)
+
+Virtual Classrooms provides session scheduling, participant management, and breakout rooms.
+
+### Collections
+- **VirtualSessions** (`virtual-sessions`): Sessions with course/host relationships, scheduling, duration, participant limits, status lifecycle, and recording URL.
+- **SessionParticipants** (`session-participants`): Participant records with session/user relationships, role (host/presenter/participant), and join/leave timestamps.
+- **BreakoutRooms** (`breakout-rooms`): Session sub-rooms with capacity limits and open/closed status.
+
+### Service Layer (`src/lib/virtual-classroom.ts`)
+- `formatSession()` / `formatParticipant()` / `formatBreakoutRoom()`: Safe doc-to-type mappers
+- `createSession()`: Creates a virtual session with host and schedule
+- `updateSessionStatus()`: Transitions session status (scheduled/live/completed/cancelled)
+- `joinSession()`: Adds participant with duplicate prevention and atomic count increment
+- `createBreakoutRoom()`: Creates a breakout room for a session
+- `getVirtualClassroomAnalytics()`: Aggregates session counts, participant totals, and status distribution
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/virtual-classroom/sessions` | List/create virtual sessions |
+| PATCH | `/api/virtual-classroom/sessions/[id]` | Update session status |
+| GET/POST | `/api/virtual-classroom/sessions/[id]/participants` | List/join participants |
+| GET/POST | `/api/virtual-classroom/sessions/[id]/breakout-rooms` | List/create breakout rooms |
+| GET | `/api/virtual-classroom/analytics` | Virtual classroom analytics |
+
+### UI Components
+- **SessionScheduler**: Session list with duration, participant counts, and status color badges
+- **BreakoutRoomManager**: Room grid with capacity bars and open/closed status indicators
+- **VirtualClassroomAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for session status
+
+---
+
 ## AI Content Assistant (F8.1)
 
 AI Content Assistant provides content suggestions, quiz generation, and lesson summaries.
