@@ -18,7 +18,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | F6.1 Enhanced Instructor Dashboard | Real-time enrollment notifications, date range filtering, CSV export, line/bar/pie visualizations, sortable course comparison table, and actionable insights |
 | ✅ | F6.2 Course Builder V2 | Drag-and-drop module/lesson ordering, multi-select bulk lesson actions, template-driven lesson creation, debounced autosave with status, keyboard shortcuts, undo/redo history, live preview, validation warnings, and structure-to-template export API |
 | ✅ | F6.3 Advanced Video Management | Video chapters, interactive hotspots, timed annotations, captions via VTT, quality switching, PiP, playback rate preferences, video bookmarks with notes, transcript management, and instructor analytics dashboard with SVG heatmap |
-| 📋 | F6.4 Assignment System | Rubrics, submissions, grading workflow, analytics |
+| ✅ | F6.4 Assignment System | Instructor-defined assignments with rubrics, student submissions (text/file/URL), rubric-based grading workflow, peer review support, late submission penalties, resubmission limits, and SVG analytics dashboard with score distribution and criteria performance |
 | 📋 | F6.5 Learning Paths | Multi-course path sequencing with prerequisites |
 | 📋 | F6.6 Cohort-Based Learning | Time-windowed cohorts, drip scheduling, cohort analytics |
 | 📋 | F6.7 Mentorship Program | Mentor matching, scheduling, session tracking |

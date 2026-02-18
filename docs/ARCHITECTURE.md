@@ -261,6 +261,30 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Assignment System (F6.4)
+
+The Assignment System provides a full grading workflow with rubrics, submissions, and analytics.
+
+- **Collections**:
+  - `Assignments`: assignment definitions with rubric criteria array, due dates, late policies, submission types (text/file/URL), and peer review settings
+  - `AssignmentSubmissions`: student submissions with rubric scores array, peer reviews array, versioning, and grade tracking
+- **API routes**:
+  - `/api/courses/[id]/assignments` (GET/POST): list/create assignments for a course
+  - `/api/assignments/[id]` (GET/PATCH/DELETE): CRUD on individual assignments
+  - `/api/assignments/[id]/submissions` (GET/POST): list/create submissions
+  - `/api/assignments/[id]/submissions/[submissionId]` (PATCH): grade a submission with rubric scores
+  - `/api/assignments/[id]/analytics` (GET): score distribution, criteria averages, late/on-time counts
+- **Components** (`src/components/assignments/`):
+  - `AssignmentList`: course assignment cards with status badges and due dates
+  - `SubmissionForm`: student submission with late penalty warnings and type-specific inputs
+  - `GradingPanel`: instructor grading interface with per-criterion scoring
+  - `AssignmentAnalytics`: SVG score distribution chart, stat cards, and rubric criteria performance
+- **Services** (`src/lib/`):
+  - `assignments.ts`: CRUD operations with safe Payload doc mapping
+  - `assignment-grading.ts`: submission management, grading, and analytics with score distribution and criteria averages
+
+---
+
 ## Authentication & Authorization
 
 - **Authentication**: Handled by Payload Auth (JWT-based).

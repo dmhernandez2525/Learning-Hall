@@ -17,6 +17,8 @@ export { default as CourseFavorites } from './CourseFavorites';
 export { default as LessonBookmarks } from './LessonBookmarks';
 export { default as LessonActivity } from './LessonActivity';
 export { default as LessonVideoMetadata } from './LessonVideoMetadata';
+export { default as Assignments } from './Assignments';
+export { default as AssignmentSubmissions } from './AssignmentSubmissions';
 export { default as CourseReviews } from './CourseReviews';
 export { Badges } from './Badges';
 export { UserBadges } from './UserBadges';
