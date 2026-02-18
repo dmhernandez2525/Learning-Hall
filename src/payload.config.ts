@@ -88,6 +88,9 @@ import {
   ContentSuggestions,
   GeneratedQuizzes,
   ContentSummaries,
+  VirtualSessions,
+  SessionParticipants,
+  BreakoutRooms,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -209,6 +212,9 @@ export default buildConfig({
     ContentSuggestions,
     GeneratedQuizzes,
     ContentSummaries,
+    VirtualSessions,
+    SessionParticipants,
+    BreakoutRooms,
   ],
   db: postgresAdapter({
     pool: {
