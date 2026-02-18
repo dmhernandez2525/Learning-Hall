@@ -95,3 +95,5 @@ export { default as DailyChallenges } from './DailyChallenges';
 export { default as Notifications } from './Notifications';
 export { default as EmailDigestConfigs } from './EmailDigestConfigs';
 export { default as PushSubscriptions } from './PushSubscriptions';
+export { default as SavedSearches } from './SavedSearches';
+export { default as SearchQueries } from './SearchQueries';

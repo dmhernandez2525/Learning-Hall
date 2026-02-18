@@ -52,7 +52,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | F8.4 Accessibility Engine | WCAG compliance auditing (A/AA/AAA) with issue tracking by severity (error/warning/info), keyboard navigation audits with tab order and focus trap detection, screen reader config tracking (ARIA landmarks, alt text coverage, heading hierarchy, live regions), and SVG bar chart analytics dashboard with severity distribution |
 | ✅ | F8.5 Microlearning | Bite-sized micro lessons with course linking and ordering, spaced repetition cards with interval/ease-factor/repetition tracking and due-card retrieval, daily challenges with multiple-choice questions and difficulty levels, and SVG bar chart analytics dashboard with difficulty distribution |
 | ✅ | F8.6 Notification Center | In-app notifications with type classification (info/success/warning/alert) and read/unread tracking, mark-as-read and mark-all-read actions, email digest configuration with frequency settings (daily/weekly/monthly), push subscription management, user-scoped read access, and SVG bar chart analytics dashboard with notification type distribution |
-| 📋 | F8.7 Advanced Search | Full-text search, filters, search analytics |
+| ✅ | F8.7 Advanced Search | Cross-collection search across courses, lessons, discussions, and users with text matching, saved search management with filter persistence, search query tracking for analytics, and SVG bar chart analytics dashboard with search type distribution |
 | 📋 | F8.8 Social Learning | Study groups, collaborative notes, peer teaching |
 
 ---
