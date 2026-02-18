@@ -91,6 +91,9 @@ import {
   VirtualSessions,
   SessionParticipants,
   BreakoutRooms,
+  UserProfiles,
+  ActivityFeed,
+  DirectMessages,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -215,6 +218,9 @@ export default buildConfig({
     VirtualSessions,
     SessionParticipants,
     BreakoutRooms,
+    UserProfiles,
+    ActivityFeed,
+    DirectMessages,
   ],
   db: postgresAdapter({
     pool: {

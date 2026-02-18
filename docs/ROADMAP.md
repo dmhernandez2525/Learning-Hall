@@ -48,7 +48,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 |--------|---------|-------------|
 | ✅ | F8.1 AI Content Assistant | Content suggestions with type classification (topic/example/exercise/explanation) and accept/reject workflow, quiz generation with difficulty levels and question management, lesson summaries with key point extraction, and SVG bar chart analytics dashboard with suggestion type distribution |
 | ✅ | F8.2 Virtual Classrooms | Virtual session scheduling with host assignment and duration, participant join with duplicate prevention and count tracking, breakout room management with capacity limits, session status lifecycle (scheduled/live/completed/cancelled), and SVG bar chart analytics dashboard with status distribution |
-| 📋 | F8.3 Community Hub | User profiles, activity feeds, direct messaging |
+| ✅ | F8.3 Community Hub | User profiles with display names, bios, and interest tags, activity feed with action tracking (enrolled/completed/posted/reviewed/earned_badge), direct messaging with read status, profile upsert with public/private visibility, and SVG bar chart analytics dashboard with activity distribution |
 | 📋 | F8.4 Accessibility Engine | WCAG compliance checker, screen reader optimization, keyboard navigation audit |
 | 📋 | F8.5 Microlearning | Bite-sized lessons, spaced repetition, daily challenges |
 | 📋 | F8.6 Notification Center | In-app notifications, email digests, push notifications |
