@@ -37,7 +37,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | F7.5 Manager Dashboard | Training assignment creation with duplicate prevention, team progress table with enrolled/completed/overdue tracking, manager dashboard with SVG donut completion rate chart, and per-member progress aggregation |
 | ✅ | F7.6 Content Library | Shared content repository with type filtering (document/video/image/template/SCORM), content versioning with changelog and file tracking, approval workflows (approved/rejected/needs_changes) with auto-status sync, and SVG bar chart analytics dashboard |
 | ✅ | F7.7 Security & SSO | SAML/OIDC SSO configuration with enable/disable toggle, IP restrictions with CIDR ranges and allow/deny actions, role-based permissions with resource/action mapping, admin-only access controls, and security analytics dashboard |
-| 📋 | F7.8 Audit Logs | Activity logging, data export, retention policies |
+| ✅ | F7.8 Audit Logs | Activity logging with user/action/resource tracking, filterable log viewer (by user, action, resource, date range), retention policies with auto-export support, immutable log entries (no update access), and SVG bar chart analytics dashboard with top actions |
 | 📋 | F7.9 User Management | Bulk import/export, user groups, custom fields |
 
 ---
