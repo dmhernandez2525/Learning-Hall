@@ -62,3 +62,6 @@ export { default as Departments } from './Departments';
 export { default as OrgMemberships } from './OrgMemberships';
 export { default as ReportDefinitions } from './ReportDefinitions';
 export { default as ReportExecutions } from './ReportExecutions';
+export { default as Skills } from './Skills';
+export { default as CompetencyMappings } from './CompetencyMappings';
+export { default as UserSkillAssessments } from './UserSkillAssessments';
