@@ -92,3 +92,6 @@ export { default as ScreenReaderConfigs } from './ScreenReaderConfigs';
 export { default as MicroLessons } from './MicroLessons';
 export { default as SpacedRepetitionCards } from './SpacedRepetitionCards';
 export { default as DailyChallenges } from './DailyChallenges';
+export { default as Notifications } from './Notifications';
+export { default as EmailDigestConfigs } from './EmailDigestConfigs';
+export { default as PushSubscriptions } from './PushSubscriptions';
