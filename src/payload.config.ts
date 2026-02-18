@@ -74,6 +74,9 @@ import {
   CompetencyMappings,
   UserSkillAssessments,
   TrainingAssignments,
+  ContentItems,
+  ContentItemVersions,
+  ContentApprovals,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -181,6 +184,9 @@ export default buildConfig({
     CompetencyMappings,
     UserSkillAssessments,
     TrainingAssignments,
+    ContentItems,
+    ContentItemVersions,
+    ContentApprovals,
   ],
   db: postgresAdapter({
     pool: {

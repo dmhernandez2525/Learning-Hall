@@ -261,6 +261,37 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Content Library (F7.6)
+
+The Content Library provides a shared content repository with versioning and approval workflows.
+
+### Collections
+- **ContentItems** (`content-items`): Content entries with type (document/video/image/template/SCORM), tags, status (draft/pending_review/approved/archived), and version tracking.
+- **ContentItemVersions** (`content-item-versions`): Versioned files with changelog, file URL, file size, and auto-incrementing version numbers.
+- **ContentApprovals** (`content-approvals`): Review decisions (approved/rejected/needs_changes) with reviewer comments.
+
+### Service Layer (`src/lib/content-library.ts`)
+- `formatItem()` / `formatVersion()` / `formatApproval()`: Safe doc-to-type mappers
+- `createItem()`: Creates content items in the library
+- `addVersion()`: Creates a new version, increments versionCount, updates currentVersion reference
+- `submitApproval()`: Records review decision and auto-updates item status on approval/rejection
+- `getContentLibraryAnalytics()`: Aggregates items by type, status counts, total versions
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/content-library/items` | List/create content items |
+| GET/POST | `/api/content-library/items/[id]/versions` | List/add versions |
+| GET/POST | `/api/content-library/items/[id]/approvals` | List/submit approvals |
+| GET | `/api/content-library/analytics` | Content library analytics |
+
+### UI Components
+- **ContentBrowser**: Content item list with type filter dropdown, status/type badges, version count, tags
+- **VersionHistory**: Version list with version numbers, changelog, timestamps
+- **ContentLibraryAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for items by type
+
+---
+
 ## Manager Dashboard (F7.5)
 
 The Manager Dashboard provides team progress views, training assignment management, and completion oversight.
