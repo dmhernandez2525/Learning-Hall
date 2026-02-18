@@ -105,6 +105,9 @@ import {
   PushSubscriptions,
   SavedSearches,
   SearchQueries,
+  StudyGroups,
+  CollaborativeNotes,
+  PeerTeachingSessions,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -243,6 +246,9 @@ export default buildConfig({
     PushSubscriptions,
     SavedSearches,
     SearchQueries,
+    StudyGroups,
+    CollaborativeNotes,
+    PeerTeachingSessions,
   ],
   db: postgresAdapter({
     pool: {

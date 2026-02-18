@@ -261,6 +261,123 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Social Learning (F8.8)
+
+Social Learning provides study groups, collaborative notes, and peer teaching sessions.
+
+### Collections
+- **StudyGroups** (`study-groups`): Groups with course reference, member list, capacity limits, public/private visibility, and member count tracking.
+- **CollaborativeNotes** (`collaborative-notes`): Group notes with author tracking and last-edited timestamps.
+- **PeerTeachingSessions** (`peer-teaching-sessions`): Teaching sessions with teacher, topic, schedule, duration, and status lifecycle (scheduled/active/completed).
+
+### Service Layer (`src/lib/social-learning.ts`)
+- `formatGroup()` / `formatNote()` / `formatSession()`: Safe doc-to-type mappers
+- `createStudyGroup()`: Creates a group with the creator as first member
+- `joinStudyGroup()`: Adds member with duplicate prevention and atomic count increment
+- `createNote()` / `createPeerSession()`: CRUD for notes and teaching sessions
+- `getSocialLearningAnalytics()`: Aggregates group counts, notes, sessions, and size distribution
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET/POST | `/api/social-learning/study-groups` | List/create study groups |
+| POST | `/api/social-learning/study-groups/[id]/join` | Join a study group |
+| GET/POST | `/api/social-learning/study-groups/[id]/notes` | List/create collaborative notes |
+| GET/POST | `/api/social-learning/study-groups/[id]/sessions` | List/create peer teaching sessions |
+| GET | `/api/social-learning/analytics` | Social learning analytics |
+
+### UI Components
+- **StudyGroupList**: Group cards with member counts, capacity bars, and public/private badges
+- **CollaborativeNotepad**: Note list with titles, content previews, and author attribution
+- **SocialLearningAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for group sizes
+
+---
+
+## Advanced Search (F8.7)
+
+Advanced Search provides cross-collection search, saved searches, and search analytics.
+
+### Collections
+- **SavedSearches** (`saved-searches`): User-scoped saved search queries with filter arrays and result counts.
+- **SearchQueries** (`search-queries`): Search query tracking for analytics with result counts and search types.
+
+### Service Layer (`src/lib/advanced-search.ts`)
+- `formatSearchResult()` / `formatSavedSearch()`: Safe doc-to-type mappers
+- `performSearch()`: Cross-collection search across courses, lessons, discussions, and users
+- `saveSearch()` / `listSavedSearches()`: CRUD for saved searches
+- `recordQuery()`: Tracks search queries for analytics
+- `getSearchAnalytics()`: Aggregates search counts, top queries, and type distribution
+
+### API Routes
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/api/advanced-search/search` | Perform cross-collection search |
+| GET/POST | `/api/advanced-search/saved-searches` | List/create saved searches |
+| GET | `/api/advanced-search/analytics` | Search analytics dashboard |
+
+### UI Components
+- **SearchInterface**: Search form with results list, type color badges, and excerpts
+- **SavedSearchList**: Saved search cards with query display, result counts, and filter counts
+- **SearchAnalyticsDashboard**: Stat cards and SVG horizontal bar chart for search types
+
+---
+
+## Notification Center (F8.6)
+
+Notification Center provides in-app notifications, email digests, and push subscriptions.
+
+### Collections
+- **Notifications** (`notifications`): User-scoped notifications with type (info/success/warning/alert), read status, and optional link.
+- **EmailDigestConfigs** (`email-digest-configs`): Per-user email digest settings with frequency (daily/weekly/monthly) and enabled toggle.
+- **PushSubscriptions** (`push-subscriptions`): Push notification endpoint registrations with keys and active status.
+
+### Service Layer (`src/lib/notifications.ts`)
+- `formatNotification()` / `formatDigestConfig()` / `formatPushSubscription()`: Safe doc-to-type mappers
+- `markAsRead()` / `markAllRead()`: Read status management
+- CRUD for notifications, digest configs, and push subscriptions
+- `getNotificationAnalytics()`: Aggregates totals, read rates, and type distribution
+
+---
+
+## Microlearning (F8.5)
+
+Microlearning provides bite-sized lessons, spaced repetition, and daily challenges.
+
+### Collections
+- **MicroLessons** (`micro-lessons`): Short lessons with course linking, ordering, duration tracking, and draft/published status.
+- **SpacedRepetitionCards** (`spaced-repetition-cards`): Flashcards with interval, ease factor, repetition count, and next review date.
+- **DailyChallenges** (`daily-challenges`): Challenge sets with multiple-choice questions, difficulty levels, points, and active dates.
+
+### Service Layer (`src/lib/microlearning.ts`)
+- `formatMicroLesson()` / `formatCard()` / `formatChallenge()`: Safe doc-to-type mappers
+- `getNextDueCards()`: Retrieves cards where nextReviewAt is in the past
+- CRUD for lessons, cards, and challenges
+- `getMicrolearningAnalytics()`: Aggregates lesson counts, due cards, and difficulty distribution
+
+---
+
+## Accessibility Engine (F8.4)
+
+Accessibility Engine provides WCAG auditing, keyboard navigation testing, and screen reader optimization.
+
+### Collections
+- **AccessibilityAudits** (`accessibility-audits`): WCAG compliance audits with level (A/AA/AAA), score, issue arrays, and status tracking.
+- **KeyboardNavAudits** (`keyboard-nav-audits`): Keyboard navigation tests with tab order, trapped elements, and missing focus detection.
+- **ScreenReaderConfigs** (`screen-reader-configs`): Screen reader optimization tracking with ARIA landmarks, alt text coverage, heading hierarchy, and live regions.
+
+---
+
+## Community Hub (F8.3)
+
+Community Hub provides user profiles, activity feeds, and direct messaging.
+
+### Collections
+- **UserProfiles** (`user-profiles`): User profiles with display names, bios, interests, avatar URLs, and public/private visibility.
+- **ActivityFeed** (`activity-feed`): Immutable activity records with action types (enrolled/completed/posted/reviewed/earned_badge) and target references.
+- **DirectMessages** (`direct-messages`): User-to-user messages with sender/recipient scoped read access, subject, body, and read status.
+
+---
+
 ## Virtual Classrooms (F8.2)
 
 Virtual Classrooms provides session scheduling, participant management, and breakout rooms.
