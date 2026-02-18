@@ -261,6 +261,33 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Compliance Training (F7.2)
+
+Compliance Training provides mandatory training assignments with deadline tracking and completion reporting.
+
+- **Collections**:
+  - `ComplianceRequirements`: training requirements with course/org relationships, due dates, isRequired flag, assignee/completion counts
+  - `ComplianceAssignments`: per-user assignments with status lifecycle (pending/in_progress/completed/overdue), progress tracking
+- **API routes**:
+  - `/api/compliance/requirements` (GET/POST): list/create requirements with org filter
+  - `/api/compliance/requirements/[id]` (GET/PATCH): read/update requirement
+  - `/api/compliance/requirements/[id]/assign` (POST): bulk assign to users (up to 500)
+  - `/api/compliance/requirements/[id]/assignments` (GET): list assignments for requirement
+  - `/api/compliance/assignments` (GET): list current user assignments
+  - `/api/compliance/assignments/[id]/complete` (POST): mark assignment complete
+  - `/api/compliance/report` (GET): aggregate compliance report
+- **Components** (`src/components/compliance/`):
+  - `RequirementList`: requirement cards with status badges, progress bars, overdue detection
+  - `AssignmentTracker`: per-user assignment list with complete actions
+  - `ComplianceReportDashboard`: SVG donut charts for completion and overdue rates, stat cards
+- **Service** (`src/lib/compliance.ts`):
+  - `assignRequirement`: bulk creates assignments with duplicate skip, auto-increments assignee count
+  - `completeAssignment`: updates status, sets completedAt, increments completion count
+  - `checkOverdueAssignments`: finds past-due pending/in_progress and marks overdue
+  - `getComplianceReport`: aggregates all assignment statuses into summary with rates
+
+---
+
 ## Organization Management (F7.1)
 
 Organization Management provides multi-org hierarchy, department structure, and bulk user provisioning.

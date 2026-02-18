@@ -55,6 +55,8 @@ export { default as MentorshipSessions } from './MentorshipSessions';
 export { default as MarketplaceListings } from './MarketplaceListings';
 export { default as MarketplacePurchases } from './MarketplacePurchases';
 export { default as MarketplaceReviews } from './MarketplaceReviews';
+export { default as ComplianceRequirements } from './ComplianceRequirements';
+export { default as ComplianceAssignments } from './ComplianceAssignments';
 export { default as Organizations } from './Organizations';
 export { default as Departments } from './Departments';
 export { default as OrgMemberships } from './OrgMemberships';
