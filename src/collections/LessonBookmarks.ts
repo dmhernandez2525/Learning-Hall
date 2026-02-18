@@ -7,7 +7,7 @@ const LessonBookmarks: CollectionConfig = {
   slug: 'lesson-bookmarks',
   admin: {
     useAsTitle: 'id',
-    defaultColumns: ['user', 'course', 'lesson', 'createdAt'],
+    defaultColumns: ['user', 'course', 'lesson', 'videoTimestamp', 'createdAt'],
     group: 'Engagement',
   },
   access: {
@@ -54,6 +54,18 @@ const LessonBookmarks: CollectionConfig = {
       admin: {
         description: 'Used for ordering the learning queue (lower first)',
       },
+    },
+    {
+      name: 'videoTimestamp',
+      type: 'number',
+      admin: {
+        description: 'Bookmark timestamp in seconds',
+      },
+    },
+    {
+      name: 'note',
+      type: 'textarea',
+      maxLength: 500,
     },
   ],
   hooks: {

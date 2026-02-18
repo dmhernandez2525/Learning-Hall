@@ -47,6 +47,36 @@ export async function listRecentLessonActivity(user: User, limit = 5): Promise<L
   return result.docs.map((doc) => formatActivity(doc as Record<string, unknown>));
 }
 
+export async function getLessonActivity(
+  lessonId: string,
+  user: User
+): Promise<LessonActivityEntry | null> {
+  const lesson = await getLesson(lessonId);
+  if (!lesson?.module?.course?.id) {
+    throw new Error('Lesson not found');
+  }
+  await requireCourseAccess(lesson.module.course.id, user);
+
+  const payload = await getPayloadClient();
+  const result = await payload.find({
+    collection: 'lesson-activity',
+    where: {
+      and: [
+        { user: { equals: user.id } },
+        { lesson: { equals: lessonId } },
+      ],
+    },
+    limit: 1,
+    depth: 2,
+  });
+
+  if (result.docs.length === 0) {
+    return null;
+  }
+
+  return formatActivity(result.docs[0] as Record<string, unknown>);
+}
+
 export async function updateLessonActivity(
   lessonId: string,
   position: number | undefined,
