@@ -52,3 +52,6 @@ export { default as Cohorts } from './Cohorts';
 export { default as MentorProfiles } from './MentorProfiles';
 export { default as MentorshipMatches } from './MentorshipMatches';
 export { default as MentorshipSessions } from './MentorshipSessions';
+export { default as MarketplaceListings } from './MarketplaceListings';
+export { default as MarketplacePurchases } from './MarketplacePurchases';
+export { default as MarketplaceReviews } from './MarketplaceReviews';
