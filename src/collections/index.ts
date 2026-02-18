@@ -65,3 +65,4 @@ export { default as ReportExecutions } from './ReportExecutions';
 export { default as Skills } from './Skills';
 export { default as CompetencyMappings } from './CompetencyMappings';
 export { default as UserSkillAssessments } from './UserSkillAssessments';
+export { default as TrainingAssignments } from './TrainingAssignments';
