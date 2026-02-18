@@ -1,7 +1,7 @@
 # Learning Hall - Architecture
 
-**Version:** 2.0.0
-**Last Updated:** January 2026
+**Version:** 2.1.0
+**Last Updated:** February 15, 2026
 
 ---
 
@@ -204,6 +204,34 @@ The instructor dashboard at `/instructor` now uses a dedicated analytics domain 
   - line chart (enrollment trend), bar chart (completion comparison), pie chart (revenue mix)
   - sortable course performance table and actionable insights panel
   - notifications panel with unread state and polling refresh
+
+---
+
+## Course Builder V2 (F6.2)
+
+Course Builder V2 introduces a dedicated instructor editing surface while preserving the legacy builder route.
+
+- **Route**: `/dashboard/courses/{courseId}/builder-v2`
+- **Entry points**:
+  - `src/app/(dashboard)/dashboard/courses/[id]/builder-v2/page.tsx`
+  - linked from course detail at `src/app/(dashboard)/dashboard/courses/[id]/page.tsx`
+- **Client module**: `src/components/course-builder-v2/`
+  - `CourseBuilderV2.tsx` renders the V2 workspace
+  - `useCourseBuilderState.ts` manages fetch, autosave, undo/redo, bulk actions, and drag-drop persistence
+  - `SortableModuleTree.tsx` provides nested drag-drop behavior with `@dnd-kit`
+  - `LessonEditorPanel.tsx` provides side-by-side edit + live preview
+- **Domain utilities**: `src/lib/course-builder-v2/`
+  - `reorder.ts`, `history.ts`, `autosave.ts`, `validation.ts`, `template-payload.ts`, `templates.ts`
+- **API extension**:
+  - `POST /api/courses/{id}/template`
+  - builds a reusable structure payload from current modules/lessons and persists to `course-templates`
+- **Behavior highlights**:
+  - drag-and-drop module/lesson ordering with server sync
+  - bulk lesson move/copy/delete
+  - template-based lesson insertion
+  - debounced autosave states (`saved`, `saving`, `unsaved`, `error`)
+  - undo/redo history and keyboard shortcuts (`Ctrl/Cmd+S`, `Ctrl/Cmd+Z`, `Ctrl/Cmd+Y`, `Shift+Ctrl/Cmd+Z`)
+  - validation warnings prior to publish readiness checks
 
 ---
 

@@ -1,7 +1,7 @@
 # Learning Hall - Roadmap
 
 **Version:** 3.1.0
-**Last Updated:** February 2026
+**Last Updated:** February 15, 2026
 
 ---
 
@@ -16,7 +16,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | Status | Feature | Description |
 |--------|---------|-------------|
 | ✅ | F6.1 Enhanced Instructor Dashboard | Real-time enrollment notifications, date range filtering, CSV export, line/bar/pie visualizations, sortable course comparison table, and actionable insights |
-| 📋 | F6.2 Course Builder V2 | Drag and drop ordering, autosave, undo/redo, templates |
+| ✅ | F6.2 Course Builder V2 | Drag-and-drop module/lesson ordering, multi-select bulk lesson actions, template-driven lesson creation, debounced autosave with status, keyboard shortcuts, undo/redo history, live preview, validation warnings, and structure-to-template export API |
 | 📋 | F6.3 Advanced Video Management | Chapters, hotspots, playback preferences, analytics |
 | 📋 | F6.4 Assignment System | Rubrics, submissions, grading workflow, analytics |
 | 📋 | F6.5 Learning Paths | Multi-course path sequencing with prerequisites |

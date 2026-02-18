@@ -12,6 +12,7 @@ Learning Hall is a full-featured LMS platform that enables educators to create c
 
 - **BYOS (Bring Your Own Storage)**: Use your own S3, R2, or GCS for media storage
 - **Course Builder**: Visual course creation with modules and lessons
+- **Course Builder V2**: Drag-and-drop builder with autosave, undo/redo, bulk lesson actions, and template export
 - **Video Streaming**: HLS adaptive bitrate streaming for videos
 - **Multi-Tenant**: Support for multiple organizations
 - **Role-Based Access**: Admin, instructor, and student roles
@@ -200,6 +201,7 @@ Payload CMS provides a complete REST API at `/api`.
 | GET | `/api/lessons` | List all lessons |
 | POST | `/api/modules` | Create module |
 | POST | `/api/lessons` | Create lesson |
+| POST | `/api/courses/:id/template` | Save current course structure into `course-templates` |
 
 ### Course Progress
 | Method | Endpoint | Description |

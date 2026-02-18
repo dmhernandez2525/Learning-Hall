@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getCourse } from '@/lib/courses';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -111,9 +111,14 @@ export default async function CourseDetailPage({ params }: PageProps) {
                 <span className="text-muted-foreground">Modules</span>
                 <span className="font-medium">{course.modules?.length || 0}</span>
               </div>
-              <Button asChild className="w-full mt-4">
+              <Button asChild className="mt-4 w-full">
                 <Link href={`/dashboard/courses/${course.id}/builder`}>
                   Open Course Builder
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <Link href={`/dashboard/courses/${course.id}/builder-v2`}>
+                  Open Builder V2
                 </Link>
               </Button>
             </CardContent>
