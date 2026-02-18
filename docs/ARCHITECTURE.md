@@ -261,6 +261,29 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Cohort-Based Learning (F6.6)
+
+Cohort-Based Learning provides time-windowed cohorts with drip content scheduling and analytics.
+
+- **Collection**: `Cohorts` stores cohort definitions with course relationship, drip schedule array (moduleId + unlockDate), and embedded members array with user relationship, role (student/facilitator), and enrollment timestamp
+- **API routes**:
+  - `/api/courses/[id]/cohorts` (GET/POST): list cohorts for a course, create new cohort
+  - `/api/cohorts/[id]` (GET/PATCH): read/update cohort details, status, and drip schedule
+  - `/api/cohorts/[id]/join` (POST): join a cohort (enforces max capacity)
+  - `/api/cohorts/[id]/analytics` (GET): cohort analytics with member progress and module unlock status (instructor/admin only)
+  - `/api/cohorts/[id]/leaderboard` (GET): ranked member leaderboard by course completion
+- **Components** (`src/components/cohorts/`):
+  - `CohortList`: course cohort cards with status badges, member counts, and scheduled module counts
+  - `CohortDripSchedule`: visual timeline of module unlock dates with locked/unlocked indicators
+  - `CohortLeaderboard`: ranked member list with progress bars and completion percentages
+  - `CohortAnalyticsDashboard`: stat cards for total members, active count, average progress, completion rate, and module unlock status list
+- **Service** (`src/lib/cohorts.ts`):
+  - `getUnlockedModules`: date-based module unlock resolution for drip scheduling
+  - `sortAndRankLeaderboard`: deterministic sorting and ranking of cohort members
+  - CRUD operations for cohorts, member join with capacity enforcement, analytics aggregation, and leaderboard generation
+
+---
+
 ## Learning Paths (F6.5)
 
 Learning Paths provide multi-course sequencing with prerequisite enforcement.
