@@ -97,6 +97,9 @@ import {
   AccessibilityAudits,
   KeyboardNavAudits,
   ScreenReaderConfigs,
+  MicroLessons,
+  SpacedRepetitionCards,
+  DailyChallenges,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -227,6 +230,9 @@ export default buildConfig({
     AccessibilityAudits,
     KeyboardNavAudits,
     ScreenReaderConfigs,
+    MicroLessons,
+    SpacedRepetitionCards,
+    DailyChallenges,
   ],
   db: postgresAdapter({
     pool: {

@@ -89,3 +89,6 @@ export { default as DirectMessages } from './DirectMessages';
 export { default as AccessibilityAudits } from './AccessibilityAudits';
 export { default as KeyboardNavAudits } from './KeyboardNavAudits';
 export { default as ScreenReaderConfigs } from './ScreenReaderConfigs';
+export { default as MicroLessons } from './MicroLessons';
+export { default as SpacedRepetitionCards } from './SpacedRepetitionCards';
+export { default as DailyChallenges } from './DailyChallenges';
