@@ -49,3 +49,6 @@ export { Translations } from './Translations';
 export { SearchIndex } from './SearchIndex';
 export { SearchAnalytics } from './SearchAnalytics';
 export { default as Cohorts } from './Cohorts';
+export { default as MentorProfiles } from './MentorProfiles';
+export { default as MentorshipMatches } from './MentorshipMatches';
+export { default as MentorshipSessions } from './MentorshipSessions';

@@ -261,6 +261,34 @@ Advanced Video Management adds rich video interaction features on top of the bas
 
 ---
 
+## Mentorship Program (F6.7)
+
+Mentorship Program enables mentor-mentee matching, session scheduling, and progress tracking with analytics.
+
+- **Collections**:
+  - `MentorProfiles`: mentor data with expertise tags (JSON), availability slots (JSON), max mentee capacity, active mentee count, and status (active/paused/inactive)
+  - `MentorshipMatches`: mentor-mentee pairings with course relationship, status lifecycle (pending/active/completed/cancelled), and timestamp tracking
+  - `MentorshipSessions`: scheduled sessions with match relationship, duration, status (scheduled/completed/cancelled/no-show), mentee rating (1-5), and feedback
+- **API routes**:
+  - `/api/mentors` (GET/POST): list active mentors with expertise filtering, create mentor profile
+  - `/api/mentors/[id]` (GET/PATCH): read/update mentor profile, availability, and status
+  - `/api/mentorship/matches` (GET/POST): list user matches, request new match with capacity check
+  - `/api/mentorship/matches/[id]` (PATCH): update match status (accept/complete/cancel)
+  - `/api/mentorship/sessions` (GET/POST): list sessions by match, schedule new session
+  - `/api/mentorship/sessions/[id]` (PATCH): update session status, add notes/rating/feedback
+  - `/api/mentorship/analytics` (GET): mentor analytics with match counts, session breakdown, and average rating
+- **Components** (`src/components/mentorship/`):
+  - `MentorList`: mentor cards with expertise badges, availability spots, and match request button
+  - `MentorScheduler`: session scheduling with datetime picker and duration selector, session history list
+  - `SessionTracker`: match lifecycle management with accept/decline/complete actions
+  - `MentorshipAnalyticsDashboard`: stat cards and SVG stacked bar chart for session status breakdown
+- **Service** (`src/lib/mentorship.ts`):
+  - `requestMatch`: validates capacity, prevents self-mentorship, creates pending match
+  - `updateMatchStatus`: manages match lifecycle with automatic mentee count increment/decrement
+  - `getMentorAnalytics`: aggregates match and session data with average rating calculation
+
+---
+
 ## Cohort-Based Learning (F6.6)
 
 Cohort-Based Learning provides time-windowed cohorts with drip content scheduling and analytics.
