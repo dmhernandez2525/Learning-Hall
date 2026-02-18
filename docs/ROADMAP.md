@@ -36,7 +36,7 @@ The platform has been migrated from Ruby on Rails to a modern Next.js 14 + Paylo
 | ✅ | F7.4 Skills Framework | Hierarchical skill taxonomy with categories, competency mappings linking skills to courses with target levels and weights, user skill assessments from multiple sources (manual/course/quiz/peer), gap analysis with level difference calculation and course recommendations, and SVG bar chart analytics dashboard |
 | ✅ | F7.5 Manager Dashboard | Training assignment creation with duplicate prevention, team progress table with enrolled/completed/overdue tracking, manager dashboard with SVG donut completion rate chart, and per-member progress aggregation |
 | ✅ | F7.6 Content Library | Shared content repository with type filtering (document/video/image/template/SCORM), content versioning with changelog and file tracking, approval workflows (approved/rejected/needs_changes) with auto-status sync, and SVG bar chart analytics dashboard |
-| 📋 | F7.7 Security & SSO | SAML/OIDC SSO, role-based access, IP restrictions |
+| ✅ | F7.7 Security & SSO | SAML/OIDC SSO configuration with enable/disable toggle, IP restrictions with CIDR ranges and allow/deny actions, role-based permissions with resource/action mapping, admin-only access controls, and security analytics dashboard |
 | 📋 | F7.8 Audit Logs | Activity logging, data export, retention policies |
 | 📋 | F7.9 User Management | Bulk import/export, user groups, custom fields |
 

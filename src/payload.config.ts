@@ -77,6 +77,9 @@ import {
   ContentItems,
   ContentItemVersions,
   ContentApprovals,
+  SSOConfigs,
+  IPRestrictions,
+  RolePermissions,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -187,6 +190,9 @@ export default buildConfig({
     ContentItems,
     ContentItemVersions,
     ContentApprovals,
+    SSOConfigs,
+    IPRestrictions,
+    RolePermissions,
   ],
   db: postgresAdapter({
     pool: {
