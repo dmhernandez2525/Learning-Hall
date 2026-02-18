@@ -86,3 +86,6 @@ export { default as BreakoutRooms } from './BreakoutRooms';
 export { default as UserProfiles } from './UserProfiles';
 export { default as ActivityFeed } from './ActivityFeed';
 export { default as DirectMessages } from './DirectMessages';
+export { default as AccessibilityAudits } from './AccessibilityAudits';
+export { default as KeyboardNavAudits } from './KeyboardNavAudits';
+export { default as ScreenReaderConfigs } from './ScreenReaderConfigs';
