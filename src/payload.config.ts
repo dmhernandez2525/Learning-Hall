@@ -85,6 +85,9 @@ import {
   UserGroups,
   UserGroupMembers,
   CustomUserFields,
+  ContentSuggestions,
+  GeneratedQuizzes,
+  ContentSummaries,
 } from './collections';
 
 const filename = fileURLToPath(import.meta.url);
@@ -203,6 +206,9 @@ export default buildConfig({
     UserGroups,
     UserGroupMembers,
     CustomUserFields,
+    ContentSuggestions,
+    GeneratedQuizzes,
+    ContentSummaries,
   ],
   db: postgresAdapter({
     pool: {
