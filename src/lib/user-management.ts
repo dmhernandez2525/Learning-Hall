@@ -183,7 +183,7 @@ export async function bulkImportUsers(
 ): Promise<BulkImportResult> {
   const payload = await getPayloadClient();
   let created = 0;
-  let updated = 0;
+  const updated = 0;
   let skipped = 0;
   const errors: string[] = [];
 
