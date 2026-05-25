@@ -1,0 +1,48 @@
+# Learning-Hall production Dockerfile for AWS ECS
+# Next.js 15 + Payload CMS 3 + Postgres
+# Bookworm-slim base (sharp + Payload native deps prefer glibc)
+
+FROM public.ecr.aws/docker/library/node:20-bookworm-slim AS base
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends openssl ca-certificates python3 make g++ \
+ && rm -rf /var/lib/apt/lists/*
+WORKDIR /app
+
+# ---- deps stage ----
+FROM base AS deps
+COPY package.json package-lock.json ./
+COPY .npmrc* ./
+RUN npm ci --ignore-scripts --legacy-peer-deps
+# Install missing peer dep `graphql` (required by @payloadcms/graphql) without
+# touching the host lockfile/package.json. --no-save keeps it out of the manifest.
+RUN npm install --no-save --ignore-scripts --legacy-peer-deps graphql@^16.8.1
+
+# ---- builder stage ----
+FROM base AS builder
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+# Build-time placeholders so `next build` + Payload config evaluation succeed.
+# Real values come from Secrets Manager at runtime.
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PAYLOAD_SECRET=build-time-placeholder-replaced-at-runtime
+ENV DATABASE_URL=postgresql://build:build@localhost:5432/build
+ENV NEXTAUTH_SECRET=build-time-placeholder-replaced-at-runtime
+ENV NEXTAUTH_URL=https://learning-hall.interestingandbeyond.com
+ENV NEXT_PUBLIC_URL=https://learning-hall.interestingandbeyond.com
+ENV STORAGE_ENCRYPTION_KEY=0000000000000000000000000000000000000000000000000000000000000000
+RUN npm run build
+
+# ---- runner stage ----
+FROM base AS runner
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+RUN groupadd --gid 1001 nodejs && useradd --uid 1001 --gid nodejs --create-home nextjs
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+USER nextjs
+EXPOSE 3000
+CMD ["node", "server.js"]

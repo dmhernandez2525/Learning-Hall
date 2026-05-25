@@ -1,0 +1,39 @@
+version: 0.2
+
+# AWS CodeBuild spec for learning-hall
+# Builds the Next.js + Payload CMS standalone Docker image, pushes to ECR, force-redeploys ECS.
+
+env:
+  variables:
+    AWS_REGION: us-east-1
+    AWS_ACCOUNT_ID: "157305260149"
+    ECR_REGISTRY: 157305260149.dkr.ecr.us-east-1.amazonaws.com
+    APP_REPO: production/learning-hall
+    ECS_CLUSTER: production-platform
+    ECS_SERVICE: learning-hall
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to ECR..."
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
+      - export IMAGE_TAG="$(echo ${CODEBUILD_RESOLVED_SOURCE_VERSION:-latest} | cut -c1-8)"
+      - echo "IMAGE_TAG=$IMAGE_TAG"
+
+  build:
+    commands:
+      - echo "Building learning-hall image..."
+      - docker build -f Dockerfile.aws --target runner -t $ECR_REGISTRY/$APP_REPO:$IMAGE_TAG -t $ECR_REGISTRY/$APP_REPO:latest .
+
+  post_build:
+    commands:
+      - echo "Pushing image..."
+      - docker push $ECR_REGISTRY/$APP_REPO:$IMAGE_TAG
+      - docker push $ECR_REGISTRY/$APP_REPO:latest
+      - echo "Forcing ECS redeploy (no-op if service not yet provisioned)..."
+      - aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --force-new-deployment --region $AWS_REGION > /dev/null 2>&1 || echo "ECS service not yet provisioned, skipping redeploy."
+      - echo "Build complete."
+
+artifacts:
+  files:
+    - buildspec.yml
